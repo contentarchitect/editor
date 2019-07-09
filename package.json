@@ -1,7 +1,6 @@
 {
   "name": "@contentarchitect/editor",
   "version": "0.1.0",
-  "private": true,
   "main": "./dist/contentarchitect.common.js",
   "files": [
     "dist/*",

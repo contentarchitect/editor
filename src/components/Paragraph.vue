@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Block from "@/mixins/Block.js"
+import { Block } from "@contentarchitect/base"
 import { quillEditor } from 'vue-quill-editor'
 
 export default {
@@ -65,6 +65,11 @@ export default {
 
 .ql-container, .ql-editor {
     height: auto;
+    padding: 0;
+}
+
+.ql-editor.ql-blank::before {
+    left: 0;
 }
 
 .ql-bubble .ql-tooltip {
@@ -77,7 +82,7 @@ export default {
 }
 
 .ql-tooltip {
-  z-index: 1;
+  z-index: 10;
 }
 
 .ql-clipboard {

@@ -1,12 +1,9 @@
 module.exports = {
-    configureWebpack: {
-        // output: {
-        //     libraryExport: 'default'
-        // },
-        resolve: {
-            symlinks: false
-        }
-    },
+    // configureWebpack: {
+    //     resolve: {
+    //         symlinks: false
+    //     },
+    // },
     chainWebpack: config => {
         const svgRule = config.module.rule("svg");
         svgRule.uses.clear();

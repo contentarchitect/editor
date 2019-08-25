@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueUi from '@vue/ui'
+import App from './App.vue'
 import Blocks from '@/scripts/Blocks.js'
 
 Vue.config.productionTip = false
@@ -18,10 +19,18 @@ Blocks.register(Spacer)
 Blocks.register(Divider)
 Blocks.register(Table)
 
-import App from './App.vue'
+class Editor {
+  constructor (id) {
+    window.app = new Vue({
+      render: h => h(App),
+    })
+    
+    window.app.$mount(id);
+  }
+}
 
-var app = new Vue({
-  render: h => h(App),
-}).$mount('#app')
-
-window.app = app;
+export {
+  Editor,
+  App as EditorComponent,
+  Blocks
+}

@@ -45,7 +45,7 @@
 .ql-editor > * {
   cursor: text;
 }
-.ql-editor p,
+/* .ql-editor p,
 .ql-editor ol,
 .ql-editor ul,
 .ql-editor pre,
@@ -70,7 +70,7 @@
 }
 .ql-editor ul > li::before {
   content: '\2022';
-}
+} */
 .ql-editor ul[data-checked=true],
 .ql-editor ul[data-checked=false] {
   pointer-events: none;

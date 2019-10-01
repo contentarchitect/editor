@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import { Block, Editable } from "@contentarchitect/base"
+import { Block } from "@contentarchitect/base"
+import Editable from "@/components/Editable.vue"
 import Util from "@/scripts/Util"
 
 export default {

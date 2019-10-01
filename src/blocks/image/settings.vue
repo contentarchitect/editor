@@ -1,17 +1,38 @@
 <template>
-  <div>
-    <label for="">Count</label>
-    <vue-group v-model="value.imageCount">
-        <vue-group-button :value="1">1</vue-group-button>
-        <vue-group-button :value="2">2</vue-group-button>
-        <vue-group-button :value="3">3</vue-group-button>
-    </vue-group>
-  </div>
+  <css-grid :columns="['50px', '1fr']" gap="8px">
+	<label for="">Image Count</label>
+	<radio-buttons v-model="imageCount" inline>
+		<radio-button :value="1">1</radio-button>
+		<radio-button :value="2">2</radio-button>
+		<radio-button :value="3">3</radio-button>
+	</radio-buttons>
+  </css-grid>
 </template>
 
 <script>
 export default {
-    props: ['value']
+	props: ['value', 'settings'],
+	data () {
+		return {
+			emptyImage: { image: null, caption: null },
+		}
+	},
+	computed: {
+		imageCount: {
+			get () {
+				return this.value.images.length;
+			},
+			set (newImageCount) {
+				let oldImageCount = this.value.images.length;
+				if (newImageCount > oldImageCount) {
+					let addCount = newImageCount - oldImageCount;
+					this.value.images.push(...Array(addCount).fill().map(_ => { return { ...this.emptyImage } }));
+				} else {
+					this.value.images.splice(newImageCount)
+				}	
+			}
+		}
+	}
 }
 </script>
 

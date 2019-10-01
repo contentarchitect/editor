@@ -1,16 +1,16 @@
 import Vue from 'vue';
 
 const Blocks = new Vue({
-  data() {
-    return {
-      blocks: {}
-    }
-  },
-  methods: {
-    register (component) {
-      this.blocks[component.name] = component;
-    },
-  }
+	data() {
+		return {
+			blocks: {}
+		}
+	},
+	methods: {
+		register (blockConstructor) {
+			this.blocks[blockConstructor.name] = blockConstructor;
+		}
+	}
 });
 
 // const requireComponent = require.context('@/blocks', true, /main\.js$/)

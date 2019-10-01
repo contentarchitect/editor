@@ -11,9 +11,26 @@ export default class Title extends Block {
         return settings;
     }
 
-    get block () {
+    get data () {
         return {
-            content: "Merhaba"
+            content: "Merhaba",
+            level: 4
         }
     }
+
+    static renderHTML (value, settings) {
+        return `<h${value.level}>${value.content}</h${value.level}>`
+    }
+    
+    static serializeFromHTML (html) {
+		let obj = { content: "", level: null }
+
+        const headerName = html.firstChildElement.tagName
+        obj.content = headerName.innerHTML;
+        
+        const level = Number(/\d/.exec(headerName)[0])
+        obj.level = level;
+        
+		return obj
+	}
 }

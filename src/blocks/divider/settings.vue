@@ -1,28 +1,25 @@
 <template>
-    <div>
+    <css-grid :columns="['1fr', '1fr']" gap="8px 0">
         <label for="">Type</label>
         <div>
-            <template v-for="dividerType in dividerTypes">
-                <label :for="dividerType" :key="dividerType">
+            <template v-for="dividerType in settings.types">
+                <label :for="dividerType" :key="dividerType" class="divider-type-options">
                     <input v-model="value.dividerType" :value="dividerType" type="radio" />
                     {{ dividerType }}
                 </label>
             </template>
         </div>
-    </div>
+    </css-grid>
 </template>
 
 <script>
 export default {
-    props: ['value'],
-    data () {
-        return {
-            dividerTypes: ["star", "border"],
-        }
-    }
+    props: ['value', 'settings'],
 }
 </script>
 
 <style>
-
+.divider-type-options {
+    display: block;
+}
 </style>

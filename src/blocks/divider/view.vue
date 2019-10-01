@@ -13,7 +13,7 @@ export default {
     components: {
         star: {
             render (createElement) {
-                return createElement("div", { attrs: {  class: "divider divider-star" } }, "***")
+                return createElement("div", { attrs: {  class: "divider divider-star" } })
             }
         },
         border: {
@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style>
-
 .divider {
     padding: 10px 0;
     display: flex;
@@ -42,8 +41,10 @@ export default {
     align-items: center;
 }
 
-.divider-star {
-    letter-spacing: 5px;
+.divider-star::before {
+    content: "***";
+    letter-spacing: 15px;
+    margin-right: -14px
 }
 
 .divider-line div {

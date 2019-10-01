@@ -1,27 +1,63 @@
 import Vue from 'vue'
-import VueUi from '@vue/ui'
 import Blocks from '@/scripts/Blocks.js'
+import Editor from '@/scripts/Editor.js'
 
 Vue.config.productionTip = false
-Vue.use(VueUi)
 
+import PortalVue from 'portal-vue'
+Vue.use(PortalVue)
+
+
+
+import CssGrid from "@/components/CssGrid.vue"
+import CssGridItem from "@/components/CssGridItem.vue"
+import RadioButtons from "@/components/RadioButtons.vue"
+import RadioButton from "@/components/RadioButton.vue"
+import CaInput from "@/components/CaInput.vue"
+Vue.component("CssGrid", CssGrid);
+Vue.component("CssGridItem", CssGridItem);
+Vue.component("RadioButtons", RadioButtons);
+Vue.component("RadioButton", RadioButton);
+Vue.component("CaInput", CaInput);
+
+import Wysiwyg from '@/blocks/wysiwyg/main.js'
 import Header from '@contentarchitect/header'
 import Title from "@/blocks/title/main.js"
 import Image from "@/blocks/image/main.js"
 import Spacer from "@/blocks/spacer/main.js"
 import Divider from "@/blocks/divider/main.js"
 import Table from "@/blocks/table/main.js"
-Blocks.register(Header)
+import Quote from "@/blocks/quote/main.js"
+
+Blocks.register(Wysiwyg);
+Blocks.register(Header);
 Blocks.register(Title)
 Blocks.register(Image)
 Blocks.register(Spacer)
 Blocks.register(Divider)
 Blocks.register(Table)
+Blocks.register(Quote)
 
-import App from './App.vue'
+import wrap from '@vue/web-component-wrapper'
 
-var app = new Vue({
-  render: h => h(App),
-}).$mount('#app')
+import App from '@/App.vue'
 
-window.app = app;
+
+const CustomElement = wrap(Vue, App)
+window.customElements.define('content-architect', CustomElement)
+
+
+// new Editor({
+//     mount: "#app",
+//     blockSettings: {
+//         Header: {
+//             levels: [1,2],
+//             defaultLevel: 3
+//         },
+//         // Spacer: {
+//         //     defaultHeight: 50,
+//         //     minHeight: 30,
+//         //     maxHeight: 100
+//         // }
+//     }
+// });

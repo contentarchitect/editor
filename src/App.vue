@@ -1,11 +1,9 @@
 <template>
   <div style="margin: 0 auto; width: 100%;">
+    <!-- portal-target, multiple ile kullanildiginda bug oluyor -->
+    <portal-target v-for="block in blocks" :name="`${block.id}`" :key="block.id" />
 
-    <ui-button @click="changeOrder" square>
-        <svg width="16" height="16" viewBox="0 0 16 16" style="display: block; transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.99 4L11 1 7 5l4 4-.01-3V4zM15 4h-4v2h4V4zm-9.99 6L5 7l4 4-4 4 .01-3v-2zM1 12h4v-2H1v2z" fill="currentColor"></path></svg>
-    </ui-button>
-
-    <blocks v-model='blocks' />
+    <blocks v-model='blocks' @htmlrender="reRender" />
 
     <div style="margin-top: 20px;"></div>
 
@@ -14,10 +12,13 @@
         offset="8"
         :open="isNewBlockPopoverActive"
         placement="bottom"
+        :container="false"
         @show="isNewBlockPopoverActive = true"
         @hide="isNewBlockPopoverActive = false">
 
-        <ui-button :active="isNewBlockPopoverActive" v-tooltip="'Add new block'" square>+</ui-button>
+        <Tooltip tooltip="Add new block">
+            <ui-button :active="isNewBlockPopoverActive">+</ui-button>
+        </Tooltip>
 
         <template  slot="popover">
             <ul class="block-list">
@@ -28,6 +29,7 @@
         </template>
     </v-popover>
 
+    <!-- <pre>{{ blocks }}</pre> -->
   </div>
 </template>
 
@@ -39,11 +41,36 @@ import Util from "@/scripts/Util"
 import { VPopover, VTooltip } from 'v-tooltip'
 import Vue from "vue"
 import blocks from "@/components/Blocks.vue"
+import Tooltip from '@/components/Tooltip.vue'
 
 export default {
     name: 'ContentArchitect',
     props: {
-        renderedHtml: String
+        draggableSettings: {
+            type: Boolean,
+            default: true
+        },
+        input: {},
+        modes: {
+            type: String,
+            default: "blog",
+            validator (value) {
+                return ['blog'].indexOf(value) !== -1
+            }
+        }
+    },
+    provide() {
+        return {
+            appSettings: {
+                draggableSettings: this.draggableSettings
+            }
+        }
+    },
+    components: {
+        UiButton: Button,
+        VPopover,
+        blocks,
+        Tooltip
     },
     data() {
         return {
@@ -53,48 +80,70 @@ export default {
         }
     },
     created () {
-        this.blocks = convertHtmlToBlocks(this.renderedHtml);
+        this.blocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
+    },
+    mounted () {
     },
     methods: {
         addBlock (name) {
             this.isNewBlockPopoverActive = false
-            const block = Blocks.blocks[name];
-            debugger;
+            const blockConstructor = Blocks.blocks[name];
+            const block = new blockConstructor();
+            
             this.blocks.push({
-                id: Util.generateID(),
+                id: block.id,
                 name: name,
-                ...new block().blockData
+                ...block.data
             })
         },
         changeOrder () {
             this.blocks.splice(1, 0, this.blocks.splice(0, 1)[0]);
             this.reRender();
         },
-        blockHtmlChanged () {
-            this.reRender();
-        },
-        reRender () {
-            const html = this.blocks.map((block) => block.renderedHtml).join('\n')
-            console.log(html);
-            this.$emit("htmlrender", html)
-            return html;
+        reRender (html) {
+            this.$emit('htmlrender', html)
+            if (this.input) {
+                document.getElementById(this.input).value = html
+            }
         }
     },
-    components: {
-        UiButton: Button,
-        VPopover,
-        blocks
-    },
-    directives: {
-        tooltip: VTooltip
-    }
 }
 </script>
 
 <style>
-@import '~@vue/ui/dist/vue-ui.css';
 @import "~normalize.css/normalize.css";
 @import "~@contentarchitect/base/dist/contentarchitect-base.css";
+
+:host {
+    --accent-color: #0e639c;
+    --accent-fg-color: #cccccc;
+    --accent-color-hover: rgb(17, 119, 187);
+    --focus-bg-color: hsl(214, 19%, 27%);
+    --toolbar-bg-color: #333333;
+    --toolbar-hover-bg-color: #202020;
+    --selection-fg-color: #cdcdcd;
+    --selection-inactive-fg-color: #cdcdcd;
+    --selection-inactive-bg-color: hsl(0, 0%, 28%);
+    --tab-selected-fg-color: #eaeaea;
+    --tab-selected-bg-color: black;
+    --drop-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
+                   0 2px 4px 2px rgba(0, 0, 0, 0.2),
+                   0 2px 6px 2px rgba(0, 0, 0, 0.1);
+    --divider-color: #525252;
+    --focus-ring-inactive-shadow: 0 0 0 1px #5a5a5a;
+    --editor-selection-bg-color: hsl(207, 88%, 22%);
+    --editor-selection-inactive-bg-color: #454545;
+    --focus-ring-active-shadow: 0 0 0 1px var(--accent-color);
+    --selection-bg-color: var(--accent-color);
+    --divider-border: 1px solid var(--divider-color);
+}
+
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
 
 .new-block-panel.tooltip.popover .popover-inner {
     min-width: 200px;

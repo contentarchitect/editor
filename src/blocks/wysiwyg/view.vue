@@ -1,34 +1,20 @@
 <template>
-    <block
-        ref="block"
-        :ind="ind"
-        :disable-move-up="ind == 0"
-        :disable-move-down="ind == blocks.length - 1">
-
-        <template slot="view">
-            <quill-editor
-                v-model="value.content"
-                :options="editorOptions" />
-        </template>
-
-        <template slot="conf">
-            Her hangi bir ayar yok.
-        </template>
-    </block>
+	<!-- <quill-editor
+		v-model="value.content"
+		:options="editorOptions" /> -->
+  <Editable v-model="value.content" block />
 </template>
 
 <script>
-import { Block } from "@contentarchitect/base"
 import { quillEditor } from 'vue-quill-editor'
+import Editable from '@/components/Editable.vue'
 
 export default {
-    mixins: [Block],
-    components: {
-        quillEditor
-    },
-    data () {
-        return {
-            editorOptions: {
+	components: { quillEditor, Editable },
+	props: ['value'],
+	data () {
+		return {
+			editorOptions: {
                 theme: "bubble",
                 modules: {
                     toolbar: [
@@ -50,18 +36,13 @@ export default {
                     }
                 }
             }
-        }
-    },
-    methods: {
-        renderedHtml () {
-            return this.value.content
-        }
-    }
+		}
+	}
 }
 </script>
 
 <style>
-@import '../assets/quill.bubble.custom.css';
+@import '../../assets/quill.bubble.custom.css';
 
 .ql-container, .ql-editor {
     height: auto;

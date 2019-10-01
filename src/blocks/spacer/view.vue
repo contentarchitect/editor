@@ -1,16 +1,17 @@
 <template>
-    <div :style="{ height: value.height + 'px' }" class="spacer">
+    <div :style="{ height: value.height + 'px' }" class="spacer" :class="{ resizing: resizing }">
+        <transition name="fade">
+            <div v-if="resizing" class="spacer-height">{{ value.height }}px</div>
+        </transition>
+
         <div class="spacer-handle" @mousedown="spacerMousedownHandler">
-            <transition name="fade">
-                <span v-if="resizing">{{ value.height }} px</span>
-            </transition>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['value'],
+    props: ['value', 'settings'],
     data () {
         return {
             startPosition: 0,
@@ -20,6 +21,7 @@ export default {
     },
     methods: {
         spacerMousedownHandler (e) {
+            document.body.style.cursor = "n-resize";
             this.startPosition = e.pageY;
             this.startHeight = this.value.height;
             this.resizing = true;
@@ -28,29 +30,40 @@ export default {
             window.addEventListener("mouseup", this.endResizeHandler)
         },
         resizeHandler (e) {
-            this.value.height = this.startHeight + e.pageY - this.startPosition;
+            let height = this.startHeight + e.pageY - this.startPosition;
+            
+            if (height < this.settings.minHeight) {
+                height = this.settings.minHeight;
+            }
+
+            if (height > this.settings.maxHeight) {
+                height = this.settings.maxHeight;
+            }
+
+            this.value.height = Math.floor(height);
         },
         endResizeHandler () {
+            document.body.style.cursor = "auto";
             this.resizing = false;
 
             window.removeEventListener("mousemove", this.resizeHandler)
             window.removeEventListener("mouseup", this.endResizeHandler);
         }
-    },
+    }
 }
 </script>
 
 <style>
-
 .spacer {
     position: relative;
-}
-
-.spacer:hover .spacer-handle {
-    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
 }
 
 .spacer-handle {
+    visibility: hidden;
     position: absolute;
     height: 10px;
     left: 0;
@@ -58,7 +71,27 @@ export default {
     bottom: 0;
     cursor: n-resize;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.spacer:hover .spacer-handle,
+.spacer.resizing .spacer-handle {
+    visibility: visible;
+}
+
+.spacer-handle::before,
+.spacer-handle::after {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: #121212;
+    margin: 0 auto;
+    display: block;
+}
+
+.spacer-handle::after {
+  margin-top: 2px;
 }
 </style>

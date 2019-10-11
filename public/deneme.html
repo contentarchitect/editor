@@ -1,73 +1,20 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+</head>
 <body>
 
-    <style>
-        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
-
-        section {
-            max-width: 1400px;
-            width: 80%;
-            height: 100%;
-            margin: 0px auto;
-            padding-top: 20px;
-            display: flex;
-            align-items: stretch;
-        }
-
-        section > div {
-            flex: 1;
-        }
-
-        #contentarchitect {
-            width: 100%;
-            height: 100%;
-            display: flex;
-        }
-
-        #view {
-            margin-left: 30px;
-        }
-
-        .contentarchitect-frame {
-            margin: 0 auto;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    </style>
-
     <section>
-        <div id="contentarchitect"></div>
-        <div id="view">
-            Deneme
-        </div>
+        <content-architect></content-architect>
     </section>
 
+    <script src="https://unpkg.com/vue"></script>
+    <script src="../dist/Contentarchitect.Editor.umd.js"></script>
+
     <script>
-        // var view = document.getElementById("view");
-        var iframe = document.createElement("iframe");
-        iframe.classList.add("contentarchitect-frame");
-        contentarchitect.appendChild(iframe);
-
-        var iframeBody = iframe.contentDocument.body;
-
-        var app = document.createElement("div")
-        app.setAttribute("id", "app");
-        
-        iframeBody.appendChild(app);
-
-        function makeScript(url, callback) {
-            var script = document.createElement("script");
-            script.src = url;
-            script.onload = callback;
-            return script;
-        }
-
-        var script = makeScript("/app.js", () => {
-            iframe.contentWindow.app.$children[0].$on("htmlrender", html => view.innerHTML = html);
-        });
-
-        iframeBody.appendChild(script);
+        debugger;
     </script>
 </body>
 </html>

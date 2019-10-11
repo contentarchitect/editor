@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from '../App.vue'
+// import App from '../App.vue'
 import Blocks from '@/scripts/Blocks.js'
 
 export default class Editor {
@@ -18,12 +18,11 @@ export default class Editor {
 				}
 			}
 		}
+	
+		// window.contentarchitect = new Vue({
+		// 	render: h => h(App),
+		// })
 
-		
-		window.contentarchitect = new Vue({
-			render: h => h(App),
-		})
-
-		window.contentarchitect.$mount(settings.mount);
+		// window.contentarchitect.$mount(settings.mount);
 	}
 }

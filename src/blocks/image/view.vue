@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Button } from "@contentarchitect/base"
+import UiButton from "@/components/UiButton"
 import Editable from "@/components/Editable.vue"
 import Tooltip from "@/components/Tooltip.vue"
  
@@ -31,7 +31,7 @@ export default {
     props: ['value'],
     components: {
         Editable,
-        [Button.name]: Button,
+        [UiButton.name]: UiButton,
         Tooltip
     },
     data () {
@@ -94,6 +94,10 @@ figure {
 
 .no-image {
     background: #f0f0f0;
+    /* background-color: white;
+    background-image: linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef),linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef);
+    background-position: 0 0,10px 10px;
+    background-size: 21px 21px; */
     min-height: 200px;
     position: relative;
     height: calc(100% - 18px);

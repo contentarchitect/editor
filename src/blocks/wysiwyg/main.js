@@ -1,4 +1,4 @@
-import Block from "@/components/Block.js"
+import Block from "@/scripts/Block.js"
 import view from "./view.vue"
 
 export default class Wysiwyg extends Block {

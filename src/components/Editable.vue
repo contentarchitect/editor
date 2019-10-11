@@ -74,6 +74,10 @@ import Util from "@/scripts/Util.js"
 import CaInput from "@/components/CaInput.vue"
 import Button from "@/components/Button.vue"
 
+function isFirefox() {
+	return typeof InstallTrigger !== 'undefined';
+}
+
 export default {
 	props: {
 		value: {
@@ -113,7 +117,11 @@ export default {
 	},
 	mounted () {
 		setTimeout(() => {
-			this.document = this.$el.getRootNode() || document;
+			if (isFirefox()) {
+				this.document = document;
+			} else {
+				this.document = this.$el.getRootNode() || document;
+			}
 		})
 		this.$refs.body.innerHTML = this.value;
 

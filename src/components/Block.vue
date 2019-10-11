@@ -90,13 +90,16 @@
 </template>
 
 <script>
-import { Button } from '@contentarchitect/base'
-import VButton from "./Button.vue"
+import Button from '@/components/Button.vue'
+import UiButton from '@/components/UiButton.vue'
+import SectionTitle from '@/components/SectionTitle.vue'
+import SettingsSection from '@/components/SettingsSection.vue'
+import Tooltip from '@/components/Tooltip.vue'
+import OnEventOutside from '@/components/OnEventOutside.vue'
+import { Portal } from 'portal-vue'
+
+
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
-import SettingsSection from "./SettingsSection.vue"
-import SectionTitle from "./SectionTitle.vue"
-import Tooltip from "./Tooltip.vue"
-import OnEventOutside from "./OnEventOutside.vue"
 import Popper from "popper.js";
 
 export default {
@@ -120,11 +123,12 @@ export default {
 	components: {
 		SettingsSection,
 		SectionTitle,
-		[Button.name]: Button,
-		'v-button': VButton,
+		[UiButton.name]: UiButton,
+		'v-button': Button,
 		"v-popover": VPopover,
 		OnEventOutside,
-		Tooltip
+		Tooltip,
+		Portal
 	},
 	directives: {
 		tooltip: VTooltip,

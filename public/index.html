@@ -101,8 +101,7 @@
 
 			<div class="block" data-block-name="Wysiwyg">
 				<pre>
-					<code>
-const typography = new Typography({
+					<code>const typography = new Typography({
 	baseFontSize: '18px',
 	baseLineHeight: 1.666,
 	headerFontFamily: ['Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
@@ -115,16 +114,31 @@ typography.toString()
 
 // Or insert styles directly into the <head> (works well for client-only
 // JS web apps.
-typography.injectStyles()
-					</code>
+typography.injectStyles()</code>
 				</pre>
 			</div>
 		</content-architect>
 	</div>
 	<!-- built files will be auto injected -->
-
 	<script>
-		// ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
 	</script>
+
 </body>
+	<script>
+		console.log(Contentarchitect);
+		ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
+		new Contentarchitect.Editor({
+			blockSettings: {
+				Header: {
+					levels: [1,2],
+					defaultLevel: 3
+				},
+				Spacer: {
+				    defaultHeight: 50,
+				    minHeight: 30,
+				    maxHeight: 100
+				}
+			}
+		})
+	</script>
 </html>

@@ -14,7 +14,8 @@
         placement="bottom"
         :container="false"
         @show="isNewBlockPopoverActive = true"
-        @hide="isNewBlockPopoverActive = false">
+        @hide="isNewBlockPopoverActive = false"
+        :handle-resize="false">
 
         <Tooltip tooltip="Add new block">
             <ui-button :active="isNewBlockPopoverActive">+</ui-button>
@@ -34,14 +35,14 @@
 </template>
 
 <script>
+import UiButton from "@/components/UiButton.vue"
+import Util from "@/scripts/Util.js"
+import Tooltip from "@/components/Tooltip.vue"
 import Blocks from "@/scripts/Blocks"
-import { Button } from "@contentarchitect/base"
 import convertHtmlToBlocks from "@/scripts/ConvertHtmlToBlocks"
-import Util from "@/scripts/Util"
 import { VPopover, VTooltip } from 'v-tooltip'
-import Vue from "vue"
 import blocks from "@/components/Blocks.vue"
-import Tooltip from '@/components/Tooltip.vue'
+import { PortalTarget } from 'portal-vue'
 
 export default {
     name: 'ContentArchitect',
@@ -67,10 +68,11 @@ export default {
         }
     },
     components: {
-        UiButton: Button,
+        UiButton,
         VPopover,
         blocks,
-        Tooltip
+        Tooltip,
+        "portal-target": PortalTarget
     },
     data() {
         return {
@@ -112,7 +114,7 @@ export default {
 
 <style>
 @import "~normalize.css/normalize.css";
-@import "~@contentarchitect/base/dist/contentarchitect-base.css";
+/* @import "~@contentarchitect/base/dist/contentarchitect-base.css"; */
 
 :host {
     --accent-color: #0e639c;

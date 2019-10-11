@@ -1,4 +1,4 @@
-import Util from "@/scripts/Util";
+import Util from "./Util.js";
 
 export default class Block {
     get id () {

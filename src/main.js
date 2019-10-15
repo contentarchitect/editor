@@ -59,11 +59,13 @@ window.customElements.define('content-architect', CustomElement)
 
 
 if (process.env.NODE_ENV === "development") {
-    window.Contentarchitect = {
-        Editor
+    window.ContentArchitect = {
+        Editor,
+        Blocks
     }
 }
 
 export {
-    Editor
+    Editor,
+    Blocks
 }

@@ -1,12 +1,12 @@
 module.exports = {
 	configureWebpack (config) {
-		// if (process.env.BUILD_LIB === "base") {
-		// 	config.externals = {
-		// 		jquery: 'jQuery'
-		// 	}
-		// } else if (process.env.BUILD_LIB === "") {
+		if (process.env.BUILD_LIB === "blocks") {
+			config.externals = {
+				"@contentarchitect/editor": "ContentArchitect"
+			}
 
-		// }
+			config.output.filename = 'ContentArchitect.Blocks.js'
+		}
 	},
 	css: {
 		extract: false

@@ -32,7 +32,7 @@ export default class Spacer extends Block {
     static serializeFromHTML (html) {
 		let obj = { height: 0 }
 
-        const height = html.getElementByTagName("div")[0].style.height;
+        let height = html.getElementsByTagName("div")[0].style.height;
         
         height = Number(/\d+/.exec(height)[0])
         

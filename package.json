@@ -1,6 +1,6 @@
 {
   "name": "@contentarchitect/editor",
-  "version": "0.2.3-2",
+  "version": "0.2.3-3",
   "main": "./dist/ContentArchitect.umd.js",
   "module": "./src/base.js",
   "files": [
@@ -15,7 +15,8 @@
     "build:editor": "vue-cli-service build --target lib --name ContentArchitect ./src/main.js --no-clean",
     "build": "rm -rf dist && npm run build:editor && npm run build:blocks",
     "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect"
+    "inspect": "vue-cli-service inspect",
+    "publish": "yarn build && npm publish"
   },
   "dependencies": {
     "@contentarchitect/blocks": "file:src/blocks",

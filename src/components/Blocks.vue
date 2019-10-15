@@ -75,7 +75,7 @@ export default {
 				let htmlStr = '';
 	
 					this.blocks.forEach(block => {
-						htmlStr += `<div class="block">`
+						htmlStr += `<div class="block" data-block-name="${block.name}">`
 						htmlStr += this.registeredBlocks[block.name].renderHTML(block)
 						htmlStr += `</div>`
 					});

@@ -262,7 +262,6 @@ export default {
 </script>
 
 <style>
-@import "../assets/popover.custom.css"; 
 @import "../assets/text-button.css"; 
 
 .tooltip.popover .popover-inner {

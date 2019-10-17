@@ -15,8 +15,7 @@
     "build:editor": "vue-cli-service build --target lib --name ContentArchitect ./src/main.js --no-clean",
     "build": "rm -rf dist && npm run build:editor && npm run build:blocks",
     "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect",
-    "publish": "yarn build && npm publish"
+    "inspect": "vue-cli-service inspect"
   },
   "dependencies": {
     "@contentarchitect/blocks": "file:src/blocks",

@@ -114,7 +114,7 @@ export default {
 
 <style>
 @import "~normalize.css/normalize.css";
-@import "../assets/popover.custom.css";
+@import "./assets/popover.custom.css";
 
 :host {
     --accent-color: #0e639c;

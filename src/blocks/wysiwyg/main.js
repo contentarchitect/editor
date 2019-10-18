@@ -8,7 +8,7 @@ export default class Wysiwyg extends Block {
 
     get data () {
         return {
-            content: "Merhaba"
+            content: "<p>Merhaba</p>"
         }
     }
 

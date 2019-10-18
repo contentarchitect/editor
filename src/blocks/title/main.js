@@ -25,7 +25,7 @@ export default class Title extends Block {
     static serializeFromHTML (html) {
 		let obj = { content: "", level: null }
 
-        const headerName = html.firstChildElement.tagName
+        const headerName = html.firstElementChild.tagName
         obj.content = headerName.innerHTML;
         
         const level = Number(/\d/.exec(headerName)[0])

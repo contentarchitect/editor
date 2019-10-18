@@ -212,15 +212,15 @@ export default {
 			this.$emit('input', this.$refs.body.innerHTML);
 		},
 		keydownHandler (e) {
-			if(e.which === 13 && !this.block){
+			if (e.which === 13 && !this.block) {
 				e.preventDefault();
-			} else if (e.which === 13 && this.block) {
+			} else if (!e.shiftKey && e.which === 13 && this.block) {
 				document.execCommand('formatBlock', false, 'p');
 			}
 		},
 		keyupHandler (e) {
-			if(e.which === 13){
-				if (this.block) {
+			if (e.which === 13){
+				if (this.block && !e.shiftKey) {
 					document.execCommand('formatBlock', false, 'p');
 					e.preventDefault();
 				} else {

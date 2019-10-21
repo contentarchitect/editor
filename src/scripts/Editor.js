@@ -1,4 +1,4 @@
-import Vue from "vue";
+// import Vue from "vue";
 // import App from '../App.vue'
 import Blocks from '@/scripts/Blocks.js'
 
@@ -18,11 +18,19 @@ export default class Editor {
 				}
 			}
 		}
-	
-		// window.contentarchitect = new Vue({
-		// 	render: h => h(App),
-		// })
-
-		// window.contentarchitect.$mount(settings.mount);
 	}
 }
+
+// new Editor({
+//     blockSettings: {
+//         Header: {
+//             levels: [1,2],
+//             defaultLevel: 3
+//         },
+//         // Spacer: {
+//         //     defaultHeight: 50,
+//         //     minHeight: 30,
+//         //     maxHeight: 100
+//         // }
+//     }
+// });

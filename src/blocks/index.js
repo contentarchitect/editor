@@ -1,4 +1,5 @@
 import { Blocks } from '@contentarchitect/editor'
+
 import Wysiwyg from '@/blocks/wysiwyg/main.js'
 import Title from "@/blocks/title/main.js"
 import Image from "@/blocks/image/main.js"
@@ -16,3 +17,16 @@ Blocks.register(Divider)
 Blocks.register(Table)
 Blocks.register(Quote)
 Blocks.register(Header)
+
+window.blocksIndex = Blocks;
+
+export {
+    Wysiwyg,
+    Title,
+    Image,
+    Spacer,
+    Divider,
+    Table,
+    Quote,
+    Header
+}

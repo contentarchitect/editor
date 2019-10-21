@@ -10,6 +10,8 @@ const convertHtmlToBlocks = function (html) {
     doc.querySelectorAll(".block").forEach(block => {
         const blockName = block.dataset.blockName;
 
+        debugger;
+
         const blockInstance = new Blocks.blocks[blockName]();
 
         blocks.push({

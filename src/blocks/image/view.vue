@@ -23,9 +23,7 @@
 </template>
 
 <script>
-import UiButton from "@/components/UiButton"
-import Editable from "@/components/Editable.vue"
-import Tooltip from "@/components/Tooltip.vue"
+import { UiButton, Editable, Tooltip } from "@contentarchitect/editor"
  
 export default {
     props: ['value'],

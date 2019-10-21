@@ -13,20 +13,12 @@ export default {
     components: {
         star: {
             render (createElement) {
-                return createElement("div", { attrs: {  class: "divider divider-star" } })
+                return createElement("hr", { attrs: {  class: "divider divider-star" } })
             }
         },
         border: {
             render (h) {
-                return h(
-                    "div",
-                    {
-                        attrs: {
-                            class: "divider divider-line"
-                        }
-                    },
-                    [h("div", {}, "")]
-                )
+                return h("hr", { attrs: { class: "divider divider-line" } })
             }
         },
     }
@@ -35,10 +27,11 @@ export default {
 
 <style>
 .divider {
-    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 0;
+    padding: 10px 0;
 }
 
 .divider-star::before {
@@ -47,7 +40,7 @@ export default {
     margin-right: -14px
 }
 
-.divider-line div {
+.divider-line {
     flex: 1;
     border-bottom: 1px solid #ccc;
 }

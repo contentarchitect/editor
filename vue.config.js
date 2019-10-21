@@ -1,19 +1,15 @@
 module.exports = {
 	configureWebpack (config) {
-		if (process.env.BUILD_LIB === "blocks") {
-			config.externals = {
+			config.externals = config.externals || [];
+			
+			config.externals.push({
 				"@contentarchitect/editor": "ContentArchitect"
-			}
-
-			config.output.filename = 'ContentArchitect.Blocks.js'
-		}
+			})
 	},
 	css: {
 		extract: false
 	},
 	chainWebpack: config => {
-		console.log(process)
-
 		const svgRule = config.module.rule("svg");
 		svgRule.uses.clear();
 

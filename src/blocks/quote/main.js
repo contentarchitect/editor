@@ -1,4 +1,4 @@
-import Block from "@/scripts/Block.js"
+import { Block } from "@contentarchitect/editor"
 import view from "./view.vue"
 
 export default class Quote extends Block {

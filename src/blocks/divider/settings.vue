@@ -13,7 +13,10 @@
 </template>
 
 <script>
+import { CssGrid } from "@contentarchitect/editor"
+
 export default {
+    components: { CssGrid },
     props: ['value', 'settings'],
 }
 </script>

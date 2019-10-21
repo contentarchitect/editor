@@ -10,7 +10,10 @@
 </template>
 
 <script>
+import { CssGrid, RadioButtons, RadioButton } from "@contentarchitect/editor"
+
 export default {
+	components: { CssGrid, RadioButtons, RadioButton },
 	props: ['value', 'settings'],
 	data () {
 		return {

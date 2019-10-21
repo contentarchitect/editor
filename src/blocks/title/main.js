@@ -1,4 +1,4 @@
-import Block from "@/scripts/Block.js"
+import { Block } from "@contentarchitect/editor"
 import view from "./view.vue"
 import settings from "./settings.vue"
 

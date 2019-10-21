@@ -8,7 +8,10 @@
 </template>
 
 <script>
+import { CssGrid, CssGridItem, CaInput } from "@contentarchitect/editor"
+
 export default {
+    components: { CssGrid, CssGridItem, CaInput },
     props: ['value', 'settings'],
 }
 </script>

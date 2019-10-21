@@ -23,7 +23,7 @@
 		<!-- <div id="app"></div> -->
 		<input type="hidden" id="input">
 		<content-architect draggable-settings="false" id="ca" input="input">
-			<div class="block" data-block-name="Spacer">
+			<!-- <div class="block" data-block-name="Spacer">
 				<div style="height: 130px"></div>
 			</div>
 
@@ -120,7 +120,7 @@ typography.toString()
 // JS web apps.
 typography.injectStyles()</code>
 				</pre>
-			</div>
+			</div> -->
 		</content-architect>
 	</div>
 	<!-- built files will be auto injected -->
@@ -129,20 +129,20 @@ typography.injectStyles()</code>
 
 </body>
 	<script>
-		console.log(Contentarchitect);
+		console.log(ContentArchitect);
 		ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
-		new Contentarchitect.Editor({
-			blockSettings: {
-				Header: {
-					levels: [1,2],
-					defaultLevel: 3
-				},
-				Spacer: {
-				    defaultHeight: 50,
-				    minHeight: 30,
-				    maxHeight: 100
-				}
-			}
-		})
+		// new ContentArchitect.Editor({
+		// 	blockSettings: {
+		// 		Header: {
+		// 			levels: [1,2],
+		// 			defaultLevel: 3
+		// 		},
+		// 		Spacer: {
+		// 		    defaultHeight: 50,
+		// 		    minHeight: 30,
+		// 		    maxHeight: 100
+		// 		}
+		// 	}
+		// })
 	</script>
 </html>

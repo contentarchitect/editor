@@ -22,7 +22,7 @@
 		<!-- <div id="app"></div> -->
 		<input type="hidden" id="input">
 		<content-architect draggable-settings="false" id="ca" input="input">
-			<div class="block" data-block-name="Quote">
+			<!-- <div class="block" data-block-name="Quote">
 				<blockquote>
 					<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
 					<cite>Typography.js</cite>
@@ -117,17 +117,17 @@ typography.toString()
 typography.injectStyles()
 					</code>
 				</pre>
-			</div>
+			</div> -->
 		</content-architect>
 	</div>
 	<!-- built files will be auto injected -->
 
-    
     <script src="http://unpkg.com/vue"></script>
     <script src="../dist/ContentArchitect.umd.js"></script>
-    <script src="../dist/ContentArchitect.Blocks.umd.js"></script>
+    <!-- <script src="../dist/ContentArchitect.Blocks.umd.js"></script> -->
+    <script src="../../header/dist/Header.umd.js"></script>
 	<script>
-		debugger;
+		ContentArchitect.Blocks.register(Header)
 		// ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
     </script>
 </body>

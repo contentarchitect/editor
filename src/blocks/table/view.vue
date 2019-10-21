@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Editable from "@/components/Editable.vue"
+import { Editable } from "@contentarchitect/editor"
 
 export default {
     props: ['value'],

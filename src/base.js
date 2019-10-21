@@ -1,3 +1,8 @@
+import Vue from 'vue'
+import App from '@/App.vue'
+import Block from "@/scripts/Block.js"
+import Blocks from "@/scripts/Blocks.js"
+import Editor from "@/scripts/Editor.js"
 import Button from "@/components/Button.vue"
 import UiButton from "@/components/UiButton.vue"
 import CaInput from "@/components/CaInput.vue"
@@ -10,21 +15,29 @@ import RadioButtons from "@/components/RadioButtons.vue"
 import SectionTitle from "@/components/SectionTitle.vue"
 import SettingsSection from "@/components/SettingsSection.vue"
 import Tooltip from "@/components/Tooltip.vue"
+import wrap from '@vue/web-component-wrapper'
 
-import Block from "@/scripts/Block.js"
+console.log("RUNNNNNNNNNNNNNNNNN");
+const CustomElement = wrap(Vue, App)
+window.customElements.define('content-architect', CustomElement)
+
+window.blocksBase = Blocks
 
 export {
-    Button,
-    UiButton,
-    CaInput,
-    CssGrid,
-    CssGridItem,
-    Editable,
-    OnEventOutside,
-    RadioButton,
-    RadioButtons,
-    SectionTitle,
-    SettingsSection,
-    Tooltip,
-    Block
+	Editor,
+	Block,
+	Blocks,
+	App,
+	Button,
+	UiButton,
+	CaInput,
+	CssGrid,
+	CssGridItem,
+	Editable,
+	OnEventOutside,
+	RadioButton,
+	RadioButtons,
+	SectionTitle,
+	SettingsSection,
+	Tooltip,
 }

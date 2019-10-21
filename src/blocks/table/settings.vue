@@ -27,7 +27,9 @@
 </template>
 
 <script>
+import { CssGrid } from "@contentarchitect/editor"
 export default {
+    components: { CssGrid },
     props: ['value']
 }
 </script>

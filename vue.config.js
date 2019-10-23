@@ -1,10 +1,12 @@
 module.exports = {
 	configureWebpack (config) {
+		if (process.env.NODE_ENV === 'production') {
 			config.externals = config.externals || [];
 			
 			config.externals.push({
 				"@contentarchitect/editor": "ContentArchitect"
 			})
+		}
 	},
 	css: {
 		extract: false

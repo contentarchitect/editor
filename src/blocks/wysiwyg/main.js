@@ -19,7 +19,7 @@ export default class Wysiwyg extends Block {
     static serializeFromHTML (blockDom) {
         let obj = { content: "" }
 
-        obj.content = blockDom.innerHTML;
+        obj.content = blockDom.innerHTML.trim();
 		return obj;
 	}
 }

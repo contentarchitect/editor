@@ -1,14 +1,46 @@
 import Vue from 'vue';
+import Unknown from "@/blocks/unknown/main.js"
 
 const Blocks = new Vue({
 	data() {
 		return {
-			blocks: {}
+			registeredBlocks: {
+				"Unknown": Unknown
+			},
+			slotBlocks: []
 		}
 	},
 	methods: {
 		register (blockConstructor) {
-			this.blocks[blockConstructor.name] = blockConstructor;
+			this.$set(this.registeredBlocks, blockConstructor.name, blockConstructor)
+			this.findUnknownBlocks(blockConstructor);
+		},
+		findUnknownBlocks (blockConstructor) {
+			const newRegisteredBlockName = blockConstructor.name;
+	
+			const parser = new DOMParser();
+
+			this.slotBlocks.filter(block => block.name === "Unknown" && block.holderBlockName === newRegisteredBlockName).forEach(block => {
+				var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector(".block");
+
+				const blockObject = this.registeredBlocks[newRegisteredBlockName].serializeFromHTML(doc)
+
+				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
+				// Delete unknown properties from object
+				const unknownProperties = Object.keys(new this.registeredBlocks["Unknown"]().data)
+				unknownProperties.forEach(prop => {
+					Vue.delete(block, prop)
+				})
+
+				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
+				// Set new block properties
+				Vue.set(block, "name", newRegisteredBlockName)
+				for (var prop in blockObject) {
+					if (blockObject.hasOwnProperty(prop)) {
+						Vue.set(block, prop, blockObject[prop])
+					}
+				}
+			})
 		}
 	}
 });

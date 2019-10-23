@@ -3,7 +3,7 @@
 		<transition-group name="flip-list" tag="div" style="position: relative;">
 			<block
 				v-model="blocks[i]"
-				:component="registeredBlocks[block.name]"
+				:component="Blocks.registeredBlocks[block.name]"
 				v-for="(block, i) in blocks"
 				:key="block.id"
 				@remove-block="removeBlock"
@@ -31,7 +31,7 @@ export default {
 	},
 	data () {
 		return {
-			registeredBlocks: Blocks.blocks
+			Blocks: Blocks
 		}
 	},
 	methods: {
@@ -39,33 +39,26 @@ export default {
 			const index = this.blocks.indexOf(block);
 
 			if (index !== -1) {
-			this.blocks.splice(index, 1)
+				this.blocks.splice(index, 1)
 			}
 			this.$emit("change", this.blocks);
-			this.reRender();
 		},
 		moveBlockDown (block) {
 			const indexOfBlock = this.blocks.indexOf(block);
 			this.blocks.splice(indexOfBlock + 1, 0, this.blocks.splice(indexOfBlock, 1)[0]);
 			this.$emit("change", this.blocks);
-			this.reRender();
 		},
 		moveBlockUp (block) {
 			const indexOfBlock = this.blocks.indexOf(block);
 			this.blocks.splice(indexOfBlock - 1, 0, this.blocks.splice(indexOfBlock, 1)[0]);
 			this.$emit("change", this.blocks);
-			this.reRender();
 		},
 		duplicate (block) {
 			const ind = this.blocks.indexOf(block);
 			let newBlock = { ...block };
 			newBlock.id = Util.generateID();
-			// debugger;
 			this.blocks.splice(ind+1, 0, Vue.util.extend({}, newBlock));
 			this.$emit("change", this.blocks);
-		},
-		reRender () {
-
 		}
 	},
 	watch: {
@@ -74,14 +67,13 @@ export default {
 			handler () {
 				let htmlStr = '';
 	
-					this.blocks.forEach(block => {
-						htmlStr += `<div class="block" data-block-name="${block.name}">`
-						htmlStr += this.registeredBlocks[block.name].renderHTML(block)
-						htmlStr += `</div>`
-					});
-	
-					this.$emit('htmlrender', htmlStr);
+				this.blocks.forEach(block => {
+					htmlStr += `<div class="block" data-block-name="${block.name}">`
+					htmlStr += Blocks.registeredBlocks[block.name].renderHTML(block)
+					htmlStr += `</div>`
+				});
 
+				this.$emit('htmlrender', htmlStr);
 			}
 		}
 	}

@@ -18,8 +18,6 @@ Blocks.register(Table)
 Blocks.register(Quote)
 Blocks.register(Header)
 
-window.blocksIndex = Blocks;
-
 export {
     Wysiwyg,
     Title,

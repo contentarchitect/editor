@@ -6,8 +6,8 @@ const convertHtmlToBlocks = function (html) {
 
 	let blocks = []
 
-	doc.querySelectorAll(".block").forEach(block => {
-		const blockName = block.dataset.blockName;
+	doc.querySelectorAll("[data-block]").forEach(block => {
+		const blockName = block.dataset.block;
 
 		if (Object.prototype.hasOwnProperty.call(Blocks.registeredBlocks, blockName)) {
 			const blockInstance = new Blocks.registeredBlocks[blockName]();
@@ -15,6 +15,7 @@ const convertHtmlToBlocks = function (html) {
 			blocks.push({
 				name: blockName,
 				id: blockInstance.id,
+				classes: [...block.classList],
 				...Blocks.registeredBlocks[blockName].serializeFromHTML(block)
 			})
 		} else {
@@ -23,6 +24,7 @@ const convertHtmlToBlocks = function (html) {
 			blocks.push({
 				name: "Unknown",
 				id: blockInstance.id,
+				classes: [...block.classList],
 				...Blocks.registeredBlocks["Unknown"].serializeFromHTML(block)
 			})
 		}
@@ -31,6 +33,7 @@ const convertHtmlToBlocks = function (html) {
 		// {
 		//     id: Number,
 		//     name: String,
+		//     classes: Array,
 		//     ...Others
 		// }
 	})

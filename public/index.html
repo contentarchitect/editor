@@ -6,78 +6,318 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="icon" href="<%= BASE_URL %>favicon.ico">
-
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 	<title>contentarchitect</title>
 </head>
 
 <body>
-	<noscript>
-		<strong>We're sorry but content-architect doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-	</noscript>
+<noscript>
+	<strong>We're sorry but content-architect doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
 
-	<style>
-		p { color: red }
-	</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+<script src="https://prismjs.com/components/prism-markup.js"></script>
 
-	<div style="margin: 100px auto; max-width: 740px">
-		<!-- <div id="app"></div> -->
+
+<style id="ca-style">
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+/**
+ * atom-dark theme for `prism.js`
+ * Based on Atom's `atom-dark` theme: https://github.com/atom/atom-dark-syntax
+ * @author Joe Gibson (@gibsjose)
+ */
+
+ code[class*="language-"],
+pre[class*="language-"] {
+	color: #c5c8c6;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #1d1f21;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #7C7C7C;
+}
+
+.token.punctuation {
+	color: #c5c8c6;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.keyword,
+.token.tag {
+	color: #96CBFE;
+}
+
+.token.class-name {
+	color: #FFFFB6;
+	text-decoration: underline;
+}
+
+.token.boolean,
+.token.constant {
+	color: #99CC99;
+}
+
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.number {
+	color: #FF73FD;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #A8FF60;
+}
+
+.token.variable {
+	color: #C6C5FE;
+}
+
+.token.operator {
+	color: #EDEDED;
+}
+
+.token.entity {
+	color: #FFFFB6;
+	/* text-decoration: underline; */
+}
+
+.token.url {
+	color: #96CBFE;
+}
+
+.language-css .token.string,
+.style .token.string {
+	color: #87C38A;
+}
+
+.token.atrule,
+.token.attr-value {
+	color: #F9EE98;
+}
+
+.token.function {
+	color: #DAD085;
+}
+
+.token.regex {
+	color: #E9C062;
+}
+
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: .3rem;
+}
+
+.alert {
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.alert-warning {
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.custom-alert {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
+	padding-left: 100px;
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.alert blockquote::before, 
+.alert blockquote::after {
+	color: white !important
+}
+
+.custom-alert blockquote::before, 
+.custom-alert blockquote::after {
+	color: orange !important
+}
+
+.text-left {
+	text-align: left!important;
+}
+
+.text-center {
+	text-align: center!important;
+}
+
+.text-right {
+	text-align: right!important;
+}
+
+		
+</style>
+
+<style>
+	.container {
+		margin: 20px auto;
+		width: 90%;
+		display: flex;
+	}
+
+	.container > section {
+		width: 50%;
+	}
+
+	.container > section:first-child {
+		margin-right: 50px;
+	}
+</style>
+
+<div class="container">
+	<section>
 		<input type="hidden" id="input">
-		<content-architect draggable-settings="false" id="ca" input="input">
-			<div class="block" data-block-name="ExtraUnkown">
-				<p>I don't know how render this.</p>
+
+		<h1>Editor</h1>
+
+		<content-architect draggable-settings="false" id="ca" input="input" block-styles="ca-style">
+			<div data-block="ExtraUnkown">
+				<p>I don't know how to render this.</p>
 			</div>
 
-			<div class="block" data-block-name="Spacer">
+			<div data-block="Spacer">
 				<div style="height: 130px"></div>
 			</div>
 
-			<div class="block" data-block-name="Quote">
+			<div data-block="Quote" class="alert custom-alert">
 				<blockquote>
 					<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
 					<cite>Typography.js</cite>
 				</blockquote>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h1>Typography.js</h1>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<p>A powerful toolkit for building websites with beautiful design.</p>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Install</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<p><code>npm install typography</code></p>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Demo/playground</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<p><a href='#'>http://kyleamathews.github.io/typography.js</a></p>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Why</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
 				<p>Typography.js provides a vastly simpler way to define and explore typography designs.</p>
 				<p>You provide configuration to the Typography.js JS api and it uses its Typography engine to generate CSS for block and inline elements.</p>
 				<p>Typography.js makes it easy to create designs that are unique, personal, and custom to your project.</p>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Themes & Plugins</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<ul>
 					<li><strong>themes</strong>: Typography.js themes are simple Javascript objects. As
 					such they’re easy to share across projects or even
@@ -89,11 +329,11 @@
 				</ul>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Sites that use Typography.js</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<ul>
 					<li><a href="https://bricolage.io/?utm_source=github.com">bricolage.io</a> (<a href="https://github.com/KyleAMathews/blog/blob/master/blog-typography.coffee">source</a>)</li>
 					<li><a href="https://kyleamathews.github.io/react-headroom/">React Headroom</a> (<a href="https://github.com/KyleAMathews/react-headroom/blob/master/www/utils/typography.js">source</a>)</li>
@@ -103,11 +343,11 @@
 				</ul>
 			</div>
 
-			<div class="block" data-block-name="Header">
+			<div data-block="Header">
 				<h2>Javascript usage</h2>
 			</div>
 
-			<div class="block" data-block-name="Wysiwyg">
+			<div data-block="Wysiwyg">
 				<pre>
 					<code>const typography = new Typography({
 	baseFontSize: '18px',
@@ -125,28 +365,81 @@ typography.toString()
 typography.injectStyles()</code>
 				</pre>
 			</div>
+
+			<div data-block="Code" class="">
+				<pre class="language-html">&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Deneme&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body class=&quot;deneme&quot;&gt;
+		&lt;h1&gt;Baslik&lt;/h1&gt;
+	
+		&lt;script&gt;
+			function Deneme () {}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+			</div>
 		</content-architect>
-	</div>
-	<!-- built files will be auto injected -->
-	<script>
-	</script>
+	</section>
+
+	<section>
+		<h1>Preview (static html)</h1>
+		<div id="view"></div>
+	</section>
+</div>
+<!-- built files will be auto injected -->
+<script>
+</script>
 
 </body>
-	<script>
-		console.log(ContentArchitect);
-		ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
-		// new ContentArchitect.Editor({
-		// 	blockSettings: {
-		// 		Header: {
-		// 			levels: [1,2],
-		// 			defaultLevel: 3
-		// 		},
-		// 		Spacer: {
-		// 		    defaultHeight: 50,
-		// 		    minHeight: 30,
-		// 		    maxHeight: 100
-		// 		}
-		// 	}
-		// })
-	</script>
+	
+<script>
+	// console.log(ContentArchitect);
+	ca.addEventListener('htmlrender', val => {
+		view.innerHTML = val.detail[0]
+	});
+	// ca.blockSettings = {
+	// 	Header: {
+	// 		levels: [1,2],
+	// 		defaultLevel: 3
+	// 	},
+	// 	Spacer: {
+	// 		defaultHeight: 50,
+	// 		minHeight: 30,
+	// 		maxHeight: 100
+	// 	}
+	// }
+
+	ca.classOptions = {
+		"jumbotron": "Jumbotron",
+		alert: {
+			"alert-danger": "Danger",
+			"alert-success": "Success",
+			"alert-warning": "Warning",
+			"custom-alert": "Custom"
+		},
+		text: {
+			"text-left": "Left",
+			"text-center": "Center",
+			"text-right": "Right"
+		}
+	}
+
+	// new ContentArchitect.Editor({
+	// 	blockSettings: {
+	// 		Header: {
+	// 			levels: [1,2],
+	// 			defaultLevel: 3
+	// 		},
+	// 		Spacer: {
+	// 		    defaultHeight: 50,
+	// 		    minHeight: 30,
+	// 		    maxHeight: 100
+	// 		}
+	// 	}
+	// })
+
+</script>
+
 </html>

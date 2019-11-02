@@ -55,23 +55,26 @@ export default {
 		blocks: BlocksComponent
 	},
 	props: {
-		draggableSettings: {
-			type: Boolean,
-			default: true
+		blockSettings: {
+			type: Object
+		},
+		classOptions: {
+			type: [Object, Array]
 		},
 		input: {},
-		modes: {
-			type: String,
-			default: "blog",
-			validator (value) {
-				return ['blog'].indexOf(value) !== -1
-			}
-		}
+		blockStyles: {
+			type: String
+		},
 	},
 	provide() {
+		const _this = this;
+
 		return {
 			appSettings: {
-				draggableSettings: this.draggableSettings
+				blockSettings: this.blockSettings,
+				get classOptions () {
+					return _this.classOptions
+				},
 			}
 		}
 	},
@@ -79,10 +82,22 @@ export default {
 		return {
 			Blocks: Blocks,
 			isNewBlockPopoverActive: false,
+
 		}
 	},
 	created () {
 		Blocks.slotBlocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
+
+		if (this.$root && this.$root.$options.customElement) {
+			Object.defineProperty(this.$root.$options.customElement.constructor.prototype, "Blocks", { value: Blocks})
+		}
+
+		if (this.blockStyles) {
+			let clonedStyle = document.getElementById(this.blockStyles).cloneNode(true);
+			this.$root.$options.customElement.shadowRoot.appendChild(clonedStyle)
+		}
+	},
+	mounted () {
 	},
 	methods: {
 		addBlock (name) {
@@ -93,6 +108,7 @@ export default {
 			Blocks.slotBlocks.push({
 				id: block.id,
 				name: name,
+				classes: [],
 				...block.data
 			})
 		},
@@ -102,7 +118,23 @@ export default {
 				document.getElementById(this.input).value = html
 			}
 		}
-	}
+	},
+	watch: {
+		blockSettings: {
+			immediate: true,
+			handler () {
+				if (this.blockSettings) {
+					for (let blockName in this.blockSettings) {
+						if (this.blockSettings.hasOwnProperty(blockName)) {
+							Blocks.registeredBlocks[blockName].settings = this.blockSettings[blockName]
+						}
+					}
+				}
+			}
+		},
+		classOptions () {
+		}
+	},
 }
 </script>
 

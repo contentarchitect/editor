@@ -14,120 +14,356 @@
 		<strong>We're sorry but content-architect doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 	</noscript>
 
-	<style>
-		p { color: red }
-	</style>
+<style id="ca-style">
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
 
-	<div style="margin: 100px auto; max-width: 740px">
-		<!-- <div id="app"></div> -->
-		<input type="hidden" id="input">
-		<content-architect draggable-settings="false" id="ca" input="input">
-			<div class="block" data-block-name="Quote">
-				<blockquote>
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: .3rem;
+}
+
+.alert {
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.alert-warning {
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.custom-alert {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
+	padding-left: 100px;
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.alert blockquote::before, 
+.alert blockquote::after {
+	color: white !important
+}
+
+.custom-alert blockquote::before, 
+.custom-alert blockquote::after {
+	color: orange !important
+}
+
+.text-left {
+	text-align: left!important;
+}
+
+.text-center {
+	text-align: center!important;
+}
+
+.text-right {
+	text-align: right!important;
+}
+</style>
+
+<style>
+	.container {
+		margin: 20px auto;
+		width: 90%;
+		display: flex;
+	}
+
+	.container > section {
+		width: 50%;
+	}
+
+	.container > section:first-child {
+		margin-right: 50px;
+	}
+</style>
+
+	<div class="container">
+		<section>
+			<input type="hidden" id="input">
+
+			<h1>Editor</h1>
+	
+			<content-architect draggable-settings="false" id="ca" input="input" block-styles="ca-style">
+				<div data-block="ExtraUnkown">
+					<p>I don't know how to render this.</p>
+				</div>
+	
+				<div data-block="Spacer">
+					<div style="height: 130px"></div>
+				</div>
+	
+				<div data-block="Quote" class="alert custom-alert">
+					<blockquote>
+						<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
+						<cite>Typography.js</cite>
+					</blockquote>
+				</div>
+	
+				<div data-block="Header">
+					<h1>Typography.js</h1>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<p>A powerful toolkit for building websites with beautiful design.</p>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Install</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<p><code>npm install typography</code></p>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Demo/playground</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<p><a href='#'>http://kyleamathews.github.io/typography.js</a></p>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Why</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
 					<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
-					<cite>Typography.js</cite>
-				</blockquote>
-			</div>
+					<p>Typography.js provides a vastly simpler way to define and explore typography designs.</p>
+					<p>You provide configuration to the Typography.js JS api and it uses its Typography engine to generate CSS for block and inline elements.</p>
+					<p>Typography.js makes it easy to create designs that are unique, personal, and custom to your project.</p>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Themes & Plugins</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<ul>
+						<li><strong>themes</strong>: Typography.js themes are simple Javascript objects. As
+						such they’re easy to share across projects or even
+						<a href="https://www.npmjs.com/browse/keyword/typography-theme">open source and share via
+						NPM</a>.</li>
+						<li><strong>plugins</strong>: Plugins are functions that extend or modify the core
+						Typography engine. They can change how headers are styled
+						or add specialized styles e.g. for code or tables.</li>
+					</ul>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Sites that use Typography.js</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<ul>
+						<li><a href="https://bricolage.io/?utm_source=github.com">bricolage.io</a> (<a href="https://github.com/KyleAMathews/blog/blob/master/blog-typography.coffee">source</a>)</li>
+						<li><a href="https://kyleamathews.github.io/react-headroom/">React Headroom</a> (<a href="https://github.com/KyleAMathews/react-headroom/blob/master/www/utils/typography.js">source</a>)</li>
+						<li><a href="http://gatsbyjs.github.io/gatsby-starter-blog/">Gatsby Blog Starter</a> (<a href="https://github.com/gatsbyjs/gatsby-starter-blog/blob/master/utils/typography.js">source</a>)</li>
+						<li><a href="http://ollieglass.com/">ollieglass.com</a></li>
+						<li><a href="https://github.com/KyleAMathews/typography.js/blob/master/README.md">Edit this file to add yours!</a></li>
+					</ul>
+				</div>
+	
+				<div data-block="Header">
+					<h2>Javascript usage</h2>
+				</div>
+	
+				<div data-block="Wysiwyg">
+					<pre>
+						<code>const typography = new Typography({
+		baseFontSize: '18px',
+		baseLineHeight: 1.666,
+		headerFontFamily: ['Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+		bodyFontFamily: ['Georgia', 'serif'],
+		// See below for the full list of options.
+	})
+	
+	// Output CSS as string.
+	typography.toString()
+	
+	// Or insert styles directly into the <head> (works well for client-only
+	// JS web apps.
+	typography.injectStyles()</code>
+					</pre>
+				</div>
+	
+				<div data-block="Code">
+					<pre class="language-html">&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Deneme&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body class=&quot;deneme&quot;&gt;
+		&lt;h1&gt;Baslik&lt;/h1&gt;
+	
+		&lt;script&gt;
+			function Deneme () {}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+				</div>
+			</content-architect>
+		</section>
 
-			<div class="block" data-block-name="Header">
-				<h1>Typography.js</h1>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<p>A powerful toolkit for building websites with beautiful design.</p>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Install</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<p><code>npm install typography</code></p>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Demo/playground</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<p><a href='#'>http://kyleamathews.github.io/typography.js</a></p>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Why</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<p>Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order. Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.</p>
-				<p>Typography.js provides a vastly simpler way to define and explore typography designs.</p>
-				<p>You provide configuration to the Typography.js JS api and it uses its Typography engine to generate CSS for block and inline elements.</p>
-				<p>Typography.js makes it easy to create designs that are unique, personal, and custom to your project.</p>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Themes & Plugins</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<ul>
-					<li><strong>themes</strong>: Typography.js themes are simple Javascript objects. As
-					such they’re easy to share across projects or even
-					<a href="https://www.npmjs.com/browse/keyword/typography-theme">open source and share via
-					NPM</a>.</li>
-					<li><strong>plugins</strong>: Plugins are functions that extend or modify the core
-					Typography engine. They can change how headers are styled
-					or add specialized styles e.g. for code or tables.</li>
-				</ul>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Sites that use Typography.js</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<ul>
-					<li><a href="https://bricolage.io/?utm_source=github.com">bricolage.io</a> (<a href="https://github.com/KyleAMathews/blog/blob/master/blog-typography.coffee">source</a>)</li>
-					<li><a href="https://kyleamathews.github.io/react-headroom/">React Headroom</a> (<a href="https://github.com/KyleAMathews/react-headroom/blob/master/www/utils/typography.js">source</a>)</li>
-					<li><a href="http://gatsbyjs.github.io/gatsby-starter-blog/">Gatsby Blog Starter</a> (<a href="https://github.com/gatsbyjs/gatsby-starter-blog/blob/master/utils/typography.js">source</a>)</li>
-					<li><a href="http://ollieglass.com/">ollieglass.com</a></li>
-					<li><a href="https://github.com/KyleAMathews/typography.js/blob/master/README.md">Edit this file to add yours!</a></li>
-				</ul>
-			</div>
-
-			<div class="block" data-block-name="Header">
-				<h2>Javascript usage</h2>
-			</div>
-
-			<div class="block" data-block-name="Wysiwyg">
-				<pre>
-					<code>
-const typography = new Typography({
-	baseFontSize: '18px',
-	baseLineHeight: 1.666,
-	headerFontFamily: ['Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
-	bodyFontFamily: ['Georgia', 'serif'],
-	// See below for the full list of options.
-})
-
-// Output CSS as string.
-typography.toString()
-
-// Or insert styles directly into the <head> (works well for client-only
-// JS web apps.
-typography.injectStyles()
-					</code>
-				</pre>
-			</div>
-		</content-architect>
+		<section>
+			<h1>Preview (static html)</h1>
+			<div id="view"></div>
+		</section>
 	</div>
-	<!-- built files will be auto injected -->
 
-	<a href="#" id="addHeader">Add Header</a>
-
-    <script src="http://unpkg.com/vue"></script>
-    <script src="../dist/ContentArchitect.umd.js"></script>
-    <script src="../dist/ContentArchitect.Blocks.umd.js"></script>
-    <!-- <script src="../../header/dist/Header.umd.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+	<script src="https://prismjs.com/components/prism-markup.js"></script>
+	<script src="http://unpkg.com/vue"></script>
+	<script src="../dist/ContentArchitect.umd.js"></script>
+	<script src="../dist/ContentArchitect.Blocks.umd.js"></script>
+	<!-- <script src="../../header/dist/Header.umd.js"></script> -->
 	<script>
 
 		// class Header extends ContentArchitect.Block {
@@ -159,16 +395,47 @@ typography.injectStyles()
 		// 	ContentArchitect.Blocks.register(Header)
 		// })
 
-		addHeader.addEventListener("click", () => {
-			let script = document.createElement("script");
-			script.src = "../../header/dist/Header.umd.js"
-			script.onload = () => {
-				ContentArchitect.Blocks.register(Header)
+		// addHeader.addEventListener("click", () => {
+		// 	let script = document.createElement("script");
+		// 	script.src = "../../header/dist/Header.umd.js"
+		// 	script.onload = () => {
+		// 		ContentArchitect.Blocks.register(Header)
+		// 	}
+		// 	document.body.appendChild(script)
+		// })
+		// ContentArchitect.Blocks.register(Header)
+		// ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
+
+		ca.addEventListener('htmlrender', val => {
+			view.innerHTML = val.detail[0]
+		});
+
+		// ca.blockSettings = {
+		// 	Header: {
+		// 		levels: [1,2],
+		// 		defaultLevel: 3
+		// 	},
+		// 	Spacer: {
+		// 		defaultHeight: 50,
+		// 		minHeight: 30,
+		// 		maxHeight: 100
+		// 	}
+		// }
+
+		ca.classOptions = {
+			"jumbotron": "Jumbotron",
+			alert: {
+				"alert-danger": "Danger",
+				"alert-success": "Success",
+				"alert-warning": "Warning",
+				"custom-alert": "Custom"
+			},
+			text: {
+				"text-left": "Left",
+				"text-center": "Center",
+				"text-right": "Right"
 			}
-			document.body.appendChild(script)
-		})
-		ContentArchitect.Blocks.register(Header)
-		ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
+		}
     </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ export default {
 	name: 'RadioButton',
 	inheritAttrs: false,
 	inject: ['radioButtonsData'],
-	props: ['value'],
+	props: ['value']
 }
 </script>
 

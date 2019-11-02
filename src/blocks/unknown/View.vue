@@ -1,5 +1,5 @@
 <template>
-	<div v-html="value.innerHTML" class="unknown-block"></div>
+	<div v-html="value.innerHTML" class="unknown-block-inner"></div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style>
-.unknown-block {
-	background-color: #ffe7e7
+.unknown-block-inner {
+	opacity: .3;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
 	<on-event-outside :do="closeSettings">
 		<div
-			class="block block-anim"
-			:class="{ 'show-background': showBg || isSettingsOpen }"
+			:data-block="value.name"
+			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': value.name === 'Unknown' }, ...klasses]"
 			ref="block"
 			@mouseenter="showToolbar = true"
 			@mouseleave="showToolbar = false">
@@ -71,6 +71,30 @@
 											<v-button @click="immediatelyRemoveBlock">Remove</v-button>
 										</settings-section>
 
+										<settings-section>
+											<template v-slot:title="{ toggleSection, showSection }">
+												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
+											</template>
+											<template v-for="(humanName, className) in appSettings.classOptions">
+												<template v-if="isObject(humanName)">
+													<div :key="className">
+														<h3>{{ className }}</h3>
+														<radio-buttons v-model="classes[className]">
+															<radio-button :value="''">None</radio-button>
+															<radio-button v-for="(humName, clsName) in appSettings.classOptions[className]" :value="clsName" :key="clsName">
+																{{humName}}
+															</radio-button>
+														</radio-buttons>
+													</div>
+												</template>
+												<template v-else>
+													<checkbox v-model="classes[className]" :key="className">
+														{{ humanName }}
+													</checkbox>
+												</template>
+											</template>
+										</settings-section>
+
 										<settings-section v-if="component.settingsComponent">
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">Block</section-title>
@@ -92,15 +116,23 @@
 <script>
 import Button from '@/components/Button.vue'
 import UiButton from '@/components/UiButton.vue'
+import Checkbox from '@/components/Checkbox.vue'
+import RadioButtons from '@/components/RadioButtons.vue'
+import RadioButton from '@/components/RadioButton.vue'
 import SectionTitle from '@/components/SectionTitle.vue'
 import SettingsSection from '@/components/SettingsSection.vue'
 import Tooltip from '@/components/Tooltip.vue'
 import OnEventOutside from '@/components/OnEventOutside.vue'
 import { Portal } from 'portal-vue'
+import Util from '@/scripts/Util.js'
 
 
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Popper from "popper.js";
+
+function groupClasses (classes, classOptions) {
+	let group = []
+}
 
 export default {
 	inject: ['appSettings'],
@@ -124,11 +156,14 @@ export default {
 		SettingsSection,
 		SectionTitle,
 		[UiButton.name]: UiButton,
-		'v-button': Button,
-		"v-popover": VPopover,
 		OnEventOutside,
 		Tooltip,
-		Portal
+		Portal,
+		Checkbox,
+		RadioButtons,
+		RadioButton,
+		'v-button': Button,
+		"v-popover": VPopover,
 	},
 	directives: {
 		tooltip: VTooltip,
@@ -145,25 +180,9 @@ export default {
 			separatedPopover: false,
 			startDragPos: { x: 0, y: 0 },
 			popperPos: { x: 0, y: 0 },
-			popperModifiers: []
-		}
-	},
-	watch: {
-		showToolbar () {
-			if (!this.showToolbar && this.showRemove) {
-				this.showRemove = false
-			}
-		},
-		isSettingsOpen () {
-			if (this.isSettingsOpen) {
-				this.popperInstance.update();
-				// this.popperInstance.popper.style.display = "block";
-			} else {
-				// this.popperInstance.popper.style.display = "none";
-				setTimeout(() => {
-					this.popperInstance.update();
-				}, 200)
-			}
+			popperModifiers: [],
+			classes: {},
+			klasses: []
 		}
 	},
 	mounted () {
@@ -195,6 +214,64 @@ export default {
 		this.$once("hook:beforeDestroy", () => {
 			this.popperInstance.destroy();
 		})
+	},
+	watch: {
+		showToolbar () {
+			if (!this.showToolbar && this.showRemove) {
+				this.showRemove = false
+			}
+		},
+		isSettingsOpen () {
+			if (this.isSettingsOpen) {
+				this.popperInstance.update();
+				// this.popperInstance.popper.style.display = "block";
+			} else {
+				// this.popperInstance.popper.style.display = "none";
+				setTimeout(() => {
+					this.popperInstance.update();
+				}, 200)
+			}
+		},
+		classes: {
+			deep: true,
+			handler () {
+				this.value.classes = [];
+
+				for (let [className, val] of Object.entries(this.classes)) {
+					if (typeof val === "string" &&  val !== "") {
+						this.value.classes.push(className)
+						this.value.classes.push(val)
+					} else if (typeof val === "boolean" && val) {
+						this.value.classes.push(className)
+					}
+				}
+
+				this.klasses = this.value.classes
+			}
+		},
+		"appSettings.classOptions": {
+			deep: true,
+			handler () {
+				const nonGroupClasses = Object.entries(this.appSettings.classOptions)
+					.filter(([klassName, val]) => typeof val === "string")
+					.map(([klassName, val]) => klassName)
+
+				const groupClasses = Object.entries(this.appSettings.classOptions)
+					.filter(([klassName, val]) => Util.isObject(val))
+					.map(([klassName, val]) => klassName)
+
+				this.value.classes.forEach(className => {
+					if (nonGroupClasses.includes(className)) {
+						this.$set(this.classes, className, true)
+					} else if (groupClasses.includes(className)) {
+						const intersection = Util.intersectionOf(this.value.classes, Object.keys(this.appSettings.classOptions[className]))
+						if (intersection.length > 0) {
+							this.$set(this.classes, className, intersection[0])
+						}
+					}
+				});
+			}
+		}
 	},
 	methods: {
 		duplicate () {
@@ -253,11 +330,13 @@ export default {
 			this.popperPos.x = mat.e;
 			this.popperPos.y = mat.f;
 		},
+		isObject (obj) {
+			return Util.isObject(obj)
+		},
 		renderHTML () {
 			this.$emit('render-html', this.component.renderHTML(this.value))
 		}
 	},
-	
 }
 </script>
 
@@ -265,19 +344,19 @@ export default {
 @import "../assets/text-button.css"; 
 
 .tooltip.popover .popover-inner {
-  background: #121212;
-  border-radius: 3px;
+	background: #121212;
+	border-radius: 3px;
 }
 
 .tooltip.popover .popover-arrow {
-  border-color: #121212;
+	border-color: #121212;
 }
 
-.block {
+[data-block] {
 	position: relative;
 }
 
-.block::before {
+[data-block]::before {
 	content: '';
 	top: -10px;
 	left: -10px;
@@ -287,8 +366,12 @@ export default {
 	z-index: -1;
 }
 
-.show-background::before, .block:hover::before {
+.show-background::before, [data-block]:hover::before {
 	background-color: azure;
+}
+
+.unknown-block.show-background::before, .unknown-block[data-block]:hover::before {
+	background-color: #fbeded;
 }
 
 .control {
@@ -356,11 +439,11 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: all .2s;
+	transition: opacity .2s;
 }
 
 .fade-enter, .fade-leave-to {
-  opacity: 0;
+	opacity: 0;
 }
 
 .vue-ui-input {

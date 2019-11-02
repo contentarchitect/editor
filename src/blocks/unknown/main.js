@@ -20,7 +20,7 @@ export default class Unknown extends Block {
 
     static serializeFromHTML (blockDom) {
         let obj = { content: "" }
-		obj.holderBlockName = blockDom.dataset.blockName
+		obj.holderBlockName = blockDom.dataset.block
 		obj.innerHTML = blockDom.innerHTML;
 		obj.outerHTML = blockDom.outerHTML;
 		return obj;

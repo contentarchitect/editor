@@ -1,12 +1,16 @@
 module.exports = {
 	configureWebpack (config) {
+		config.externals = config.externals || [];
 		if (process.env.NODE_ENV === 'production') {
-			config.externals = config.externals || [];
-			
 			config.externals.push({
-				"@contentarchitect/editor": "ContentArchitect"
+				"@contentarchitect/editor": "ContentArchitect",
+				"codemirror": "CodeMirror"
 			})
 		}
+
+		config.externals.push({
+			"codemirror": "CodeMirror"
+		})
 	},
 	css: {
 		extract: false

@@ -65,4 +65,13 @@ export default class Util {
 
 	}
 
+
+	static isObject (obj) {
+		return obj === Object(obj);
+	}
+
+	static intersectionOf (array1, array2) {
+		return array1.filter(value => array2.includes(value))
+	}
+
 }

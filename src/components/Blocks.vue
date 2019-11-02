@@ -1,5 +1,5 @@
 <template>
-	<div class="blocks">
+	<div data-blocks>
 		<transition-group name="flip-list" tag="div" style="position: relative;">
 			<block
 				v-model="blocks[i]"
@@ -68,7 +68,10 @@ export default {
 				let htmlStr = '';
 	
 				this.blocks.forEach(block => {
-					htmlStr += `<div class="block" data-block-name="${block.name}">`
+					let classes = block.classes.join(" ")
+					let classStr = classes ? `class="${classes}"` : undefined
+
+					htmlStr += `<div data-block="${block.name}" ${classStr}>`
 					htmlStr += Blocks.registeredBlocks[block.name].renderHTML(block)
 					htmlStr += `</div>`
 				});
@@ -81,8 +84,8 @@ export default {
 </script>
 
 <style>
-.block-anim {
-	transition: all .2s;
+[data-block] {
+	transition: transform .2s, all .1s;
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -95,14 +98,17 @@ export default {
 	opacity: 0;
 	transform: translateX(-30px);
 }
+
 .flip-list-enter-to, .flip-list-leave {
 	opacity: 1;
 	transform: translateX(0);
 }
+
 .flip-list-leave-to {
 	opacity: 0;
 	transform: translateX(0);
 }
+
 .flip-list-leave-active {
 	position: absolute !important;
 }

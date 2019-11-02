@@ -21,7 +21,7 @@ const Blocks = new Vue({
 			const parser = new DOMParser();
 
 			this.slotBlocks.filter(block => block.name === "Unknown" && block.holderBlockName === newRegisteredBlockName).forEach(block => {
-				var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector(".block");
+				var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector("[data-block]");
 
 				const blockObject = this.registeredBlocks[newRegisteredBlockName].serializeFromHTML(doc)
 

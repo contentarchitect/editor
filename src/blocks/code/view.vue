@@ -13,7 +13,6 @@ export default {
 	},
 	methods: {
 		highlight () {
-			debugger;
 			// "\n" is necessary. Beacuse if textarea has an empty new line, <pre> doesn't add new line. In this situation, the heights aren't equal.
 			let highlighted = Prism.highlight(this.value.code + "\n", Prism.languages[this.value.language] || "", this.value.language || "")
 			this.highlighted = highlighted
@@ -35,6 +34,7 @@ export default {
 .code {
 	position: relative;
 	display: inline-block !important;
+	min-width: 100%;
 }
 
 .textarea-container {
@@ -55,28 +55,23 @@ export default {
 	margin: 0;
 	opacity: .6;
 	font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-variant-ligatures: inherit;
-    font-weight: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    tab-size: inherit;
-    text-indent: inherit;
-    text-rendering: inherit;
-    text-transform: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant-ligatures: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	line-height: inherit;
+	tab-size: inherit;
+	text-indent: inherit;
+	text-rendering: inherit;
+	text-transform: inherit;
 	color: inherit;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-fill-color: transparent;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-fill-color: transparent;
 	outline: 0;
 	background: none;
 	overflow: hidden;
 	resize: none;
 }
-
-/* .code-pre {
-	position: relative;
-	pointer-events: none;
-} */
 </style>

@@ -16,6 +16,10 @@ export default class Block {
         return this._settings;
     }
 
+    static dataset () {
+        return {}
+    }
+
     static set settings (settings) {
         this._settings = { ...this.defaultSettings, ...settings };
     }

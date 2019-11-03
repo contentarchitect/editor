@@ -69,9 +69,15 @@ export default {
 	
 				this.blocks.forEach(block => {
 					let classes = block.classes.join(" ")
-					let classStr = classes ? `class="${classes}"` : undefined
+					let classStr = classes ? `class="${classes}"` : ''
 
-					htmlStr += `<div data-block="${block.name}" ${classStr}>`
+					const dataset = Blocks.registeredBlocks[block.name].dataset(block)
+
+					let datasetStr = Object.entries(dataset).reduce((acu, [key, value]) => {
+						return acu + ` data-${Util.toKebabCase(key)}="${value}"`
+					}, "")
+
+					htmlStr += `<div data-block="${block.name}" ${classStr} ${datasetStr}>`
 					htmlStr += Blocks.registeredBlocks[block.name].renderHTML(block)
 					htmlStr += `</div>`
 				});

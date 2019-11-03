@@ -21,7 +21,7 @@ export default class Code extends Block {
 
 	static get defaultSettings () {
 		return {
-			defaultLanguage: "txt"
+			defaultLanguage: "txt",
 		}
 	}
 
@@ -32,7 +32,8 @@ export default class Code extends Block {
 	static serializeFromHTML (html) {
 		const languageClass = Array.from(html.querySelector("pre").classList).find(str => str.startsWith("language-"));
 
-		const language = /language-(.+)$/.exec(languageClass)[1]
+		// const language = /language-(.+)$/.exec(languageClass)[1]
+		const language = html.dataset.language;
 
 		let code = Array.from(html.querySelectorAll("pre")).map(line => {
 			return line.innerText
@@ -42,6 +43,14 @@ export default class Code extends Block {
 			language,
 			code,
 			highlighted: ''
+		}
+	}
+
+	static dataset (block) {
+		const { language } = block
+
+		return {
+			language
 		}
 	}
 }

@@ -2,6 +2,7 @@
 	<on-event-outside :do="closeSettings">
 		<div
 			:data-block="value.name"
+			v-bind="dataset"
 			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': value.name === 'Unknown' }, ...klasses]"
 			ref="block"
 			@mouseenter="showToolbar = true"
@@ -214,6 +215,18 @@ export default {
 		this.$once("hook:beforeDestroy", () => {
 			this.popperInstance.destroy();
 		})
+	},
+	computed: {
+		dataset () {
+			let obj = this.component.dataset(this.value)
+			let dataset = {};
+
+			Object.keys(obj).forEach(datakey => {
+				dataset["data-" + Util.toKebabCase(datakey)] = obj[datakey]
+			});
+
+			return dataset;
+		}
 	},
 	watch: {
 		showToolbar () {

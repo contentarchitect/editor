@@ -11,17 +11,22 @@ export default {
 			highlighted: ''
 		}
 	},
+	methods: {
+		highlight () {
+			debugger;
+			// "\n" is necessary. Beacuse if textarea has an empty new line, <pre> doesn't add new line. In this situation, the heights aren't equal.
+			let highlighted = Prism.highlight(this.value.code + "\n", Prism.languages[this.value.language] || "", this.value.language || "")
+			this.highlighted = highlighted
+			let rendered = `<pre class="language-${this.value.language}"><code class="language-${this.value.language}">${highlighted}</code></pre>`
+			this.value.highlighted = rendered
+		}
+	},
 	watch: {
 		"value.code": {
 			immediate: true,
-			handler () {
-				// "\n" is necessary. Beacuse if textarea has an empty new line, <pre> doesn't add new line. In this situation, the heights aren't equal.
-				let highlighted = Prism.highlight(this.value.code + "\n", Prism.languages[this.value.language], this.value.language)
-				this.highlighted = highlighted
-				let rendered = `<pre class="language-${this.value.language}"><code class="language-${this.value.language}">${highlighted}</code></pre>`
-				this.value.highlighted = rendered
-			}
-		}
+			handler: "highlight"
+		},
+		"value.language": "highlight"
 	}
 }
 </script>

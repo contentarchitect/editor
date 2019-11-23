@@ -44,7 +44,7 @@ export default class Image extends Block {
 	static serializeFromHTML (html) {
 		let obj = { images: [] }
 
-		html.getElementsByTagName("figure").forEach(fig => {
+		Array.from(html.getElementsByTagName("figure")).forEach(fig => {
 			const img = fig.getElementByTagName("img");
 			const src = img.getAttribute("src");
 			const cpt = fig.getElementByTagName("figcaption").innerHTML;

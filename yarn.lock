@@ -673,10 +673,10 @@
   version "0.0.1"
 
 "@contentarchitect/editor@file:.":
-  version "0.2.7"
+  version "0.2.12"
   dependencies:
-    "@contentarchitect/blocks" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.7-a3e7df86-e827-48f9-a93c-844fb6286e0b-1572529544689/node_modules/@contentarchitect/editor/src/blocks"
-    "@contentarchitect/header" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.7-a3e7df86-e827-48f9-a93c-844fb6286e0b-1572529544689/node_modules/@contentarchitect/header"
+    "@contentarchitect/blocks" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.12-10273cc8-69e8-419d-a29d-c2a76f6a0c21-1575116063848/node_modules/@contentarchitect/editor/src/blocks"
+    "@contentarchitect/header" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.12-10273cc8-69e8-419d-a29d-c2a76f6a0c21-1575116063848/node_modules/@contentarchitect/header"
     "@vue/web-component-wrapper" "^1.2.0"
     axios "^0.19.0"
     codemirror "^5.49.2"
@@ -691,7 +691,7 @@
 "@contentarchitect/header@file:../header":
   version "0.2.2"
   dependencies:
-    "@contentarchitect/editor" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-header-0.2.2-a27bc347-7dd6-480d-9af3-c1f669e7e385-1572529544681/node_modules/@contentarchitect/editor"
+    "@contentarchitect/editor" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-header-0.2.2-363ae5bb-462a-4914-9729-884803cfcd7d-1575116063832/node_modules/@contentarchitect/editor"
     core-js "^2.6.5"
     vue "^2.6.10"
 
@@ -2169,16 +2169,6 @@ component-emitter@^1.2.1:
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
   integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
 
-component-props@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/component-props/-/component-props-1.1.1.tgz#f9b7df9b9927b6e6d97c9bd272aa867670f34944"
-  integrity sha1-+bffm5kntubZfJvScqqGdnDzSUQ=
-
-component-xor@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/component-xor/-/component-xor-0.0.4.tgz#c55d83ccc1b94cd5089a4e93fa7891c7263e59aa"
-  integrity sha1-xV2DzMG5TNUImk6T+niRxyY+Wao=
-
 compressible@~2.0.16:
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.17.tgz#6e8c108a16ad58384a977f3a482ca20bff2f38c1"
@@ -2827,14 +2817,6 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-iterator@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/dom-iterator/-/dom-iterator-1.0.0.tgz#9c09899846ec41c2d257adc4d6015e4759ef05ad"
-  integrity sha512-7dsMOQI07EMU98gQM8NSB3GsAiIeBYIPKpnxR3c9xOvdvBjChAcOM0iJ222I3p5xyiZO9e5oggkNaCusuTdYig==
-  dependencies:
-    component-props "1.1.1"
-    component-xor "0.0.4"
-
 dom-serializer@0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.1.tgz#13650c850daffea35d8b626a4cfc4d3a17643fdb"
@@ -3041,7 +3023,7 @@ es-to-primitive@^1.2.0:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-escape-html@^1.0.3, escape-html@~1.0.3:
+escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
@@ -7851,13 +7833,6 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-unescape@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/unescape/-/unescape-1.0.1.tgz#956e430f61cad8a4d57d82c518f5e6cc5d0dda96"
-  integrity sha512-O0+af1Gs50lyH1nUu3ZyYS1cRh01Q/kUKatTOkSs7jukXE6/NebucDVxyiDsA9AQ4JC1V1jUH9EO8JX2nMDgGQ==
-  dependencies:
-    extend-shallow "^2.0.1"
-
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -8121,15 +8096,6 @@ vue-loader@^15.7.0:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
-
-vue-prism-editor@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/vue-prism-editor/-/vue-prism-editor-0.3.0.tgz#8ff2c3acb3a7de5b5fe98c0b8501bfccccb1c295"
-  integrity sha512-yNSuwql/xHMJrWghn/OhZ5WPBKdhx7FkvFjgq2uDm99jHSJhuGwhcgPyuoGzpm6w8DRDzi85lgerKCu8DTDWWg==
-  dependencies:
-    dom-iterator "^1.0.0"
-    escape-html "^1.0.3"
-    unescape "^1.0.1"
 
 vue-resize@^0.4.5:
   version "0.4.5"

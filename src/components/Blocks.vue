@@ -1,17 +1,15 @@
 <template>
-	<div data-blocks>
-		<transition-group name="flip-list" tag="div" style="position: relative;">
-			<block
-				v-model="blocks[i]"
-				:component="Blocks.registeredBlocks[block.name]"
-				v-for="(block, i) in blocks"
-				:key="block.id"
-				@remove-block="removeBlock"
-				@move-block-down="moveBlockDown"
-				@move-block-up="moveBlockUp"
-				@duplicate="duplicate" />
-		</transition-group>
-	</div>
+	<transition-group name="flip-list" tag="div" style="position: relative;" data-blocks>
+		<block
+			v-model="blocks[i]"
+			:component="Blocks.registeredBlocks[block.name]"
+			v-for="(block, i) in blocks"
+			:key="block.id"
+			@remove-block="removeBlock"
+			@move-block-down="moveBlockDown"
+			@move-block-up="moveBlockUp"
+			@duplicate="duplicate" />
+	</transition-group>
 </template>
 
 <script>
@@ -92,7 +90,6 @@ export default {
 <style>
 [data-block] {
 	transition: transform .2s, all .1s;
-	width: 100%;
 	box-sizing: border-box;
 }
 

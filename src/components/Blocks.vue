@@ -5,6 +5,8 @@
 			:component="Blocks.registeredBlocks[block.name]"
 			v-for="(block, i) in blocks"
 			:key="block.id"
+			:disable-move-down="i+1 === blocks.length"
+			:disable-move-up="i === 0"
 			@remove-block="removeBlock"
 			@move-block-down="moveBlockDown"
 			@move-block-up="moveBlockUp"

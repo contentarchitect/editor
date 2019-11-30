@@ -29,12 +29,17 @@ export default class Quote extends Block {
         let obj = { content: "", cite: "" }
 
         const blockquote = html.getElementsByTagName("blockquote")[0]
-        const cite = blockquote.getElementsByTagName("cite")[0]
-        blockquote.removeChild(cite);
+        const cite = blockquote ? blockquote.getElementsByTagName("cite")[0] : undefined
 
-        obj.content = blockquote.innerHTML;
-        obj.cite = cite.innerHTML;
-        
-		return obj
+        if (cite) {
+            blockquote.removeChild(cite);
+            obj.cite = cite.innerHTML;
+        }
+
+        if (blockquote) {
+            obj.content = blockquote.innerHTML;
+        }
+
+		return obj;
 	}
 }

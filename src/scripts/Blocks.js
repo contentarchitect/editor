@@ -5,7 +5,6 @@ const Blocks = new Vue({
 	data() {
 		return {
 			registeredBlocks: {
-				"Unknown": Unknown
 			},
 			slotBlocks: []
 		}
@@ -27,7 +26,7 @@ const Blocks = new Vue({
 
 				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
 				// Delete unknown properties from object
-				const unknownProperties = Object.keys(new this.registeredBlocks["Unknown"]().data)
+				const unknownProperties = Object.keys(new Unknown().data)
 				unknownProperties.forEach(prop => {
 					Vue.delete(block, prop)
 				})

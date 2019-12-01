@@ -1,4 +1,5 @@
 import Blocks from "@/scripts/Blocks.js"
+import Unknown from "@/blocks/unknown/main.js"
 
 const convertHtmlToBlocks = function (html) {
 	const parser = new DOMParser();
@@ -19,13 +20,13 @@ const convertHtmlToBlocks = function (html) {
 				...Blocks.registeredBlocks[blockName].serializeFromHTML(block)
 			})
 		} else {
-			const blockInstance = new Blocks.registeredBlocks["Unknown"]();
+			const blockInstance = new Unknown();
 
 			blocks.push({
 				name: "Unknown",
 				id: blockInstance.id,
 				classes: [...block.classList],
-				...Blocks.registeredBlocks["Unknown"].serializeFromHTML(block)
+				...Unknown.serializeFromHTML(block)
 			})
 		}
 

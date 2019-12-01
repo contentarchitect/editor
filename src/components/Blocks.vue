@@ -2,7 +2,7 @@
 	<transition-group name="flip-list" tag="div" style="position: relative;" data-blocks>
 		<block
 			v-model="blocks[i]"
-			:component="Blocks.registeredBlocks[block.name]"
+			:component="Blocks.registeredBlocks[block.name] || Unknown"
 			v-for="(block, i) in blocks"
 			:key="block.id"
 			:disable-move-down="i+1 === blocks.length"
@@ -19,6 +19,7 @@ import Vue from "vue"
 import Block from "@/components/Block.vue"
 import Blocks from "@/scripts/Blocks.js"
 import Util from "@/scripts/Util.js"
+import Unknown from "@/blocks/unknown/main.js"
 
 export default {
 	model: {
@@ -31,7 +32,8 @@ export default {
 	},
 	data () {
 		return {
-			Blocks: Blocks
+			Blocks: Blocks,
+			Unknown: Unknown
 		}
 	},
 	methods: {
@@ -71,14 +73,14 @@ export default {
 					let classes = block.classes.join(" ")
 					let classStr = classes ? `class="${classes}"` : ''
 
-					const dataset = Blocks.registeredBlocks[block.name].dataset(block)
+					const dataset = (Blocks.registeredBlocks[block.name] || Unknown).dataset(block)
 
 					let datasetStr = Object.entries(dataset).reduce((acu, [key, value]) => {
 						return acu + ` data-${Util.toKebabCase(key)}="${value}"`
 					}, "")
 
 					htmlStr += `<div data-block="${block.name}" ${classStr} ${datasetStr}>`
-					htmlStr += Blocks.registeredBlocks[block.name].renderHTML(block)
+					htmlStr += (Blocks.registeredBlocks[block.name] || Unknown).renderHTML(block)
 					htmlStr += `</div>`
 				});
 

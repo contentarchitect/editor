@@ -1,8 +1,8 @@
 // import Vue from "vue";
 // import App from '../App.vue'
-import Blocks from '@/scripts/Blocks.js'
+import Blocks from '../scripts/Blocks.js'
 // import Settings from "@/scripts/Settings.js"
-import Util from "@/scripts/Util.js"
+import Util from "@contentarchitect/core"
 
 export default class Editor {
 	constructor (settings) {

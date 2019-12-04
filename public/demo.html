@@ -225,12 +225,18 @@ pre[class*="language-"] {
 	}
 </style>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+	<script src="https://prismjs.com/components/prism-markup.js"></script>
+	<script src="http://unpkg.com/vue"></script>
+	<script src="../dist/CaCore.umd.js"></script>
+	<script src="../dist/CaBlocks.umd.js"></script>
+	
 	<div class="container">
 		<section>
 			<input type="hidden" id="input">
 
 			<h1>Editor</h1>
-	
+
 			<content-architect draggable-settings="false" id="ca" input="input" block-styles="ca-style">
 				<div data-block="ExtraUnkown">
 					<p>I don't know how to render this.</p>
@@ -358,12 +364,12 @@ pre[class*="language-"] {
 		</section>
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
-	<script src="https://prismjs.com/components/prism-markup.js"></script>
-	<script src="http://unpkg.com/vue"></script>
-	<script src="../dist/ContentArchitect.umd.js"></script>
-	<script src="../dist/ContentArchitect.Blocks.umd.js"></script>
+	
+	
+	<script src="../dist/CaEditor.umd.js"></script>
 	<!-- <script src="../../header/dist/Header.umd.js"></script> -->
+
+
 	<script>
 
 		// class Header extends ContentArchitect.Block {

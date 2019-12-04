@@ -41,9 +41,7 @@
 </template>
 
 <script>
-import { Block } from "@/scripts/base"
-import Editable from "@/components/Editable.vue"
-import Util from "@/scripts/Util"
+import { Block, Editable, Util } from "@contentarchitect/core"
 
 export default {
     mixins: [Block],

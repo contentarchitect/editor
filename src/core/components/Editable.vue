@@ -70,9 +70,9 @@
 <script>
 import Popper from 'popper.js'
 import OnEventOutside from "./OnEventOutside.vue"
-import Util from "@/scripts/Util.js"
-import CaInput from "@/components/CaInput.vue"
-import Button from "@/components/Button.vue"
+import Util from "../scripts/Util.js"
+import CaInput from "./CaInput.vue"
+import Button from "./Button.vue"
 
 function isFirefox() {
 	return typeof InstallTrigger !== 'undefined';

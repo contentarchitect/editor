@@ -672,11 +672,15 @@
 "@contentarchitect/blocks@file:src/blocks":
   version "0.0.1"
 
+"@contentarchitect/core@file:src/core":
+  version "0.0.1"
+
 "@contentarchitect/editor@file:.":
-  version "0.2.12"
+  version "0.2.13"
   dependencies:
-    "@contentarchitect/blocks" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.12-10273cc8-69e8-419d-a29d-c2a76f6a0c21-1575116063848/node_modules/@contentarchitect/editor/src/blocks"
-    "@contentarchitect/header" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.12-10273cc8-69e8-419d-a29d-c2a76f6a0c21-1575116063848/node_modules/@contentarchitect/header"
+    "@contentarchitect/blocks" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.13-b0a9317e-0210-437d-a2d2-5749da3ce471-1575381664851/node_modules/@contentarchitect/editor/src/blocks"
+    "@contentarchitect/core" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.13-b0a9317e-0210-437d-a2d2-5749da3ce471-1575381664851/node_modules/@contentarchitect/editor/src/core"
+    "@contentarchitect/header" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.13-b0a9317e-0210-437d-a2d2-5749da3ce471-1575381664851/node_modules/@contentarchitect/header"
     "@vue/web-component-wrapper" "^1.2.0"
     axios "^0.19.0"
     codemirror "^5.49.2"
@@ -691,7 +695,7 @@
 "@contentarchitect/header@file:../header":
   version "0.2.2"
   dependencies:
-    "@contentarchitect/editor" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-header-0.2.2-363ae5bb-462a-4914-9729-884803cfcd7d-1575116063832/node_modules/@contentarchitect/editor"
+    "@contentarchitect/editor" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-header-0.2.2-047d0148-1a0a-459f-b388-5bf8bd3f72d1-1575381664839/node_modules/@contentarchitect/editor"
     core-js "^2.6.5"
     vue "^2.6.10"
 

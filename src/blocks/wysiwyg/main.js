@@ -1,4 +1,4 @@
-import { Block } from "@contentarchitect/editor"
+import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
 
 export default class Wysiwyg extends Block {

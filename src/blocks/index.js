@@ -1,12 +1,12 @@
-import { Blocks } from '@contentarchitect/editor'
+import { Blocks } from '@contentarchitect/core'
 
-import Wysiwyg from '@/blocks/wysiwyg/main.js'
-import Image from "@/blocks/image/main.js"
-import Spacer from "@/blocks/spacer/main.js"
-import Divider from "@/blocks/divider/main.js"
-import Table from "@/blocks/table/main.js"
-import Quote from "@/blocks/quote/main.js"
-import Code from '@/blocks/code/main.js'
+import Wysiwyg from './wysiwyg/main.js'
+import Image from "./image/main.js"
+import Spacer from "./spacer/main.js"
+import Divider from "./divider/main.js"
+import Table from "./table/main.js"
+import Quote from "./quote/main.js"
+import Code from './code/main.js'
 import Header from '@contentarchitect/header'
 
 Blocks.register(Wysiwyg)

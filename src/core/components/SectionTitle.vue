@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import ArrowLeftIcon from '@/assets/arrow-left.svg';
-import ArrowDownIcon from '@/assets/arrow-down.svg';
+import ArrowLeftIcon from '../../assets/arrow-left.svg';
+import ArrowDownIcon from '../../assets/arrow-down.svg';
 
 export default {
 	components: {

@@ -1,16 +1,24 @@
 module.exports = {
+	pages: {
+		core: "src/core/index.js",
+		editor: "src/editor.js",
+		blocks: "src/blocks/index.js"
+	},
 	configureWebpack (config) {
 		config.externals = config.externals || [];
+
 		if (process.env.NODE_ENV === 'production') {
 			config.externals.push({
-				"@contentarchitect/editor": "ContentArchitect",
-				"codemirror": "CodeMirror"
+				"@contentarchitect/core": "CaCore"
 			})
-		}
 
-		config.externals.push({
-			"codemirror": "CodeMirror"
-		})
+			// config.output = config.output || {}
+	
+			// Object.assign(config.output, {
+			// 	filename: "ContentArchitect.[name].js",
+			// 	library: ["ContentArchitect", "[name]"],
+			// })
+		}
 	},
 	css: {
 		extract: false

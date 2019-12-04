@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { UiButton, Editable, Tooltip } from "@contentarchitect/editor"
+import { UiButton, Editable, Tooltip } from "@contentarchitect/core"
  
 export default {
 	props: ['value'],

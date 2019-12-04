@@ -1,5 +1,5 @@
-import Blocks from "@/scripts/Blocks.js"
-import Unknown from "@/blocks/unknown/main.js"
+import { Blocks } from "@contentarchitect/core"
+import Unknown from "../blocks/unknown/main.js"
 
 const convertHtmlToBlocks = function (html) {
 	const parser = new DOMParser();

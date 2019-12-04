@@ -16,10 +16,9 @@
 
 <script>
 import Vue from "vue"
-import Block from "@/components/Block.vue"
-import Blocks from "@/scripts/Blocks.js"
-import Util from "@/scripts/Util.js"
-import Unknown from "@/blocks/unknown/main.js"
+import Block from "./Block.vue"
+import { Blocks, Util } from "@contentarchitect/core"
+import Unknown from "../blocks/unknown/main.js"
 
 export default {
 	model: {

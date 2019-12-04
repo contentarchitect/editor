@@ -36,13 +36,17 @@
 </template>
 
 <script>
-import UiButton from "@/components/UiButton.vue"
-import Util from "@/scripts/Util.js"
-import Tooltip from "@/components/Tooltip.vue"
-import Blocks from "@/scripts/Blocks"
-import convertHtmlToBlocks from "@/scripts/ConvertHtmlToBlocks"
+import {
+	UiButton,
+	Util,
+	Tooltip,
+	Blocks,
+
+} from "@contentarchitect/core"
+
+import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
 import { VPopover, VTooltip } from 'v-tooltip'
-import BlocksComponent from "@/components/Blocks.vue"
+import BlocksComponent from "./components/Blocks.vue"
 import { PortalTarget } from 'portal-vue'
 
 export default {

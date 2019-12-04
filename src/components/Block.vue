@@ -115,17 +115,19 @@
 </template>
 
 <script>
-import Button from '@/components/Button.vue'
-import UiButton from '@/components/UiButton.vue'
-import Checkbox from '@/components/Checkbox.vue'
-import RadioButtons from '@/components/RadioButtons.vue'
-import RadioButton from '@/components/RadioButton.vue'
-import SectionTitle from '@/components/SectionTitle.vue'
-import SettingsSection from '@/components/SettingsSection.vue'
-import Tooltip from '@/components/Tooltip.vue'
-import OnEventOutside from '@/components/OnEventOutside.vue'
+import {
+	Button,
+	UiButton,
+	Checkbox,
+	RadioButtons,
+	RadioButton,
+	SectionTitle,
+	SettingsSection,
+	Tooltip,
+	OnEventOutside,
+	Util	
+} from '@contentarchitect/core'
 import { Portal } from 'portal-vue'
-import Util from '@/scripts/Util.js'
 
 
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'

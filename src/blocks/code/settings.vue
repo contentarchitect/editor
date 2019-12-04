@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { CssGrid } from "@contentarchitect/editor"
+import { CssGrid } from "@contentarchitect/core"
 
 export default {
 	components: { CssGrid },

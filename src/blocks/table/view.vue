@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Editable } from "@contentarchitect/editor"
+import { Editable } from "@contentarchitect/core"
 
 export default {
     props: ['value'],

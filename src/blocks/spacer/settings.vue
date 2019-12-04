@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { CssGrid, CssGridItem, CaInput } from "@contentarchitect/editor"
+import { CssGrid, CssGridItem, CaInput } from "@contentarchitect/core"
 
 export default {
     components: { CssGrid, CssGridItem, CaInput },

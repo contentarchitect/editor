@@ -1,4 +1,4 @@
-import Block from "@/scripts/Block.js"
+import Block from "../../core/scripts/Block.js"
 import View from "./View.vue"
 
 export default class Unknown extends Block {

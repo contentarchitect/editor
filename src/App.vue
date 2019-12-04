@@ -87,14 +87,23 @@ export default {
 			Blocks: Blocks,
 			isNewBlockPopoverActive: false,
 			slotBlocks: [],
+			renderedHTML: ""
 		}
 	},
 	created () {
 		Blocks.editors.push(this);
 		this.slotBlocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
 
+		var _this = this;
+
 		if (this.$root && this.$root.$options.customElement) {
-			Object.defineProperty(this.$root.$options.customElement.constructor.prototype, "Blocks", { value: this.slotBlocks })
+			// console.log(this.$root.$options.customElement)
+			Object.defineProperty(this.$root.$options.customElement, "blocks", { value: this.slotBlocks })
+			Object.defineProperty(this.$root.$options.customElement, "renderedHTML", {
+				get () {
+					return _this.renderedHTML;
+				}
+			})
 		}
 
 		if (this.blockStyles) {
@@ -119,6 +128,7 @@ export default {
 		},
 		reRender (html) {
 			this.$emit('htmlrender', html)
+			this.renderedHTML = html;	
 			if (this.input) {
 				document.getElementById(this.input).value = html
 			}

@@ -344,7 +344,7 @@ pre[class*="language-"] {
 
 		<h1>Editor</h1>
 
-		<content-architect></content-architect>
+		<content-architect id="editor"></content-architect>
 
 		<content-architect draggable-settings="false" id="ca" input="input" block-styles="ca-style">
 			<div data-block="ExtraUnkown">
@@ -471,6 +471,7 @@ typography.injectStyles()</code>
 
 	<section>
 		<h1>Preview (static html)</h1>
+		<div id="view1"></div>
 		<div id="view"></div>
 	</section>
 </div>
@@ -481,6 +482,8 @@ typography.injectStyles()</code>
 </body>
 	
 <script>
+	editor.addEventListener('htmlrender', val => view1.innerHTML = val.detail[0])
+
 	// console.log(ContentArchitect);
 	ca.addEventListener('htmlrender', val => {
 		view.innerHTML = val.detail[0]

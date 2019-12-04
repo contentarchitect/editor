@@ -2,9 +2,9 @@
 	<div style="margin: 0 auto; width: 100%;">
 		<!-- portal-target, multiple ile kullanildiginda bug oluyor -->
 		<!-- bug yuzunden dongu yapildi -->
-		<portal-target v-for="block in Blocks.slotBlocks" :name="`${block.id}`" :key="block.id" />
+		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
 
-		<blocks v-model='Blocks.slotBlocks' @htmlrender="reRender" />
+		<blocks v-model='slotBlocks' @htmlrender="reRender" />
 
 		<div style="margin-top: 20px;"></div>
 
@@ -31,7 +31,7 @@
 			</template>
 		</v-popover>
 
-		<!-- <pre>{{ Blocks.slotBlocks }}</pre> -->
+		<!-- <pre>{{ slotBlocks }}</pre> -->
 	</div>
 </template>
 
@@ -86,14 +86,15 @@ export default {
 		return {
 			Blocks: Blocks,
 			isNewBlockPopoverActive: false,
-
+			slotBlocks: [],
 		}
 	},
 	created () {
-		Blocks.slotBlocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
+		Blocks.editors.push(this);
+		this.slotBlocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
 
 		if (this.$root && this.$root.$options.customElement) {
-			Object.defineProperty(this.$root.$options.customElement.constructor.prototype, "Blocks", { value: Blocks})
+			Object.defineProperty(this.$root.$options.customElement.constructor.prototype, "Blocks", { value: this.slotBlocks })
 		}
 
 		if (this.blockStyles) {
@@ -109,7 +110,7 @@ export default {
 			const blockConstructor = Blocks.registeredBlocks[name];
 			const block = new blockConstructor();
 			
-			Blocks.slotBlocks.push({
+			this.slotBlocks.push({
 				id: block.id,
 				name: name,
 				classes: [],

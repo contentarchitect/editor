@@ -6,13 +6,13 @@ const Blocks = new Vue({
 		return {
 			registeredBlocks: {
 			},
-			slotBlocks: []
+			editors: []
 		}
 	},
 	methods: {
 		register (blockConstructor) {
 			this.$set(this.registeredBlocks, blockConstructor.name, blockConstructor)
-			this.findUnknownBlocks(blockConstructor);
+			this.editors.forEach(editor => this.findUnknownBlocks(blockConstructor, editor.slotBlocks))
 		},
 		findUnknownBlocks (blockConstructor) {
 			const newRegisteredBlockName = blockConstructor.name;

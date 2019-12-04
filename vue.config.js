@@ -1,9 +1,4 @@
 module.exports = {
-	pages: {
-		core: "src/core/index.js",
-		editor: "src/editor.js",
-		blocks: "src/blocks/index.js"
-	},
 	configureWebpack (config) {
 		config.externals = config.externals || [];
 
@@ -11,13 +6,6 @@ module.exports = {
 			config.externals.push({
 				"@contentarchitect/core": "CaCore"
 			})
-
-			// config.output = config.output || {}
-	
-			// Object.assign(config.output, {
-			// 	filename: "ContentArchitect.[name].js",
-			// 	library: ["ContentArchitect", "[name]"],
-			// })
 		}
 	},
 	css: {

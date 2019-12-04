@@ -1,7 +1,8 @@
 import Vue from 'vue'
 // import { Block, Blocks } from "@contentarchitect/core"
+import "./core/index.js"
+import "./blocks/index.js"
 import "./editor.js"
-import "@/blocks/index.js"
 
 Vue.config.productionTip = false
 

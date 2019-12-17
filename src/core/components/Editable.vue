@@ -133,6 +133,8 @@ export default {
 				offset: 10
 			}
 		});
+
+		this.changeHandler()
 	},
 	watch: {
 		showCreateLink () {

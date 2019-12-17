@@ -79,7 +79,7 @@ export default {
 					}, "")
 
 					htmlStr += `<div data-block="${block.name}" ${classStr} ${datasetStr}>`
-					htmlStr += (Blocks.registeredBlocks[block.name] || Unknown).renderHTML(block)
+					htmlStr += (Blocks.registeredBlocks[block.name] || Unknown).renderHTML(block, null, this.blocks)
 					htmlStr += `</div>`
 				});
 

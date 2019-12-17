@@ -22,7 +22,11 @@ const Blocks = new Vue({
 			this.slotBlocks.filter(block => block.name === "Unknown" && block.holderBlockName === newRegisteredBlockName).forEach(block => {
 				var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector("[data-block]");
 
-				const blockObject = this.registeredBlocks[newRegisteredBlockName].serializeFromHTML(doc)
+				let blockClass = this.registeredBlocks[newRegisteredBlockName];
+
+				const blockObject = "serializeFromHTML" in blockClass
+					? blockClass.serializeFromHTML(doc)
+					: {}
 
 				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
 				// Delete unknown properties from object

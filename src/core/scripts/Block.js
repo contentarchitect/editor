@@ -16,6 +16,10 @@ export default class Block {
         return this._settings;
     }
 
+    get data () {
+		return {}
+	}
+
     static dataset () {
         return {}
     }
@@ -27,4 +31,8 @@ export default class Block {
     static setSettings (settings) {
         this.settings = settings || {};
     }
+
+    static renderHTML (value, settings, blocks) {
+		return ""
+	}
 }

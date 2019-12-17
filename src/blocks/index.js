@@ -8,6 +8,7 @@ import Table from "./table/main.js"
 import Quote from "./quote/main.js"
 import Code from './code/main.js'
 import Header from '@contentarchitect/header'
+import Index from './index/main.js'
 
 Blocks.register(Wysiwyg)
 Blocks.register(Image)
@@ -17,8 +18,7 @@ Blocks.register(Table)
 Blocks.register(Quote)
 Blocks.register(Header)
 Blocks.register(Code)
-
-window.blocksIndex = Blocks;
+Blocks.register(Index)
 
 export {
     Wysiwyg,
@@ -28,5 +28,6 @@ export {
     Table,
     Quote,
     Code,
-    Header
+    Header,
+    Index
 }

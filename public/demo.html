@@ -410,9 +410,10 @@ pre[class*="language-"] {
 		// 	document.body.appendChild(script)
 		// })
 		// ContentArchitect.Blocks.register(Header)
-		// ca.addEventListener('htmlrender', val => console.log(val.detail[0]));
+		// ca.addEventListener('change', val => console.log(val.detail[0]));
 
-		ca.addEventListener('htmlrender', val => {
+		ca.addEventListener('change', val => {
+			console.log(val)
 			view.innerHTML = val.detail[0]
 		});
 

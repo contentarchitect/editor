@@ -4,7 +4,8 @@
 			contenteditable="true"
 			:placeholder="placeholder"
 			spellcheck="false"
-			class="editable-body" 
+			class="editable-body"
+			:class="{ placeholder: showPlaceholder }"
 			ref="body"
 			@selectstart="selectStartHandler"
 			@input="changeHandler" 
@@ -113,6 +114,7 @@ export default {
 				link: false
 			},
 			selectionLinkUrl: '',
+			showPlaceholder: false
 		}
 	},
 	mounted () {
@@ -209,6 +211,8 @@ export default {
 			this.selectionLinkUrl = '';
 		},
 		changeHandler () {
+			this.showPlaceholder = this.$refs.body.innerText.trim() == ""
+
 			this.$emit('input', this.$refs.body.innerHTML);
 		},
 		keydownHandler (e) {
@@ -393,9 +397,13 @@ export default {
     fill-rule: evenodd;
 }
 
-[contenteditable][placeholder]:empty:before {
+.placeholder[placeholder] {
+	position: relative;
+}
+
+.placeholder[placeholder]:before {
+	position: absolute;
     content: attr(placeholder);
-	color: #555;
 	font-style: italic;
 	opacity: .5;
     padding: inherit;

@@ -351,6 +351,9 @@ pre[class*="language-"] {
 				<p>I don't know how to render this.</p>
 			</div>
 
+			<div data-block="Index">
+			</div>
+
 			<div data-block="Spacer">
 				<div style="height: 130px"></div>
 			</div>
@@ -482,10 +485,10 @@ typography.injectStyles()</code>
 </body>
 	
 <script>
-	editor.addEventListener('htmlrender', val => view1.innerHTML = val.detail[0])
+	editor.addEventListener('change', val => view1.innerHTML = val.detail[0])
 
 	// console.log(ContentArchitect);
-	ca.addEventListener('htmlrender', val => {
+	ca.addEventListener('change', val => {
 		view.innerHTML = val.detail[0]
 	});
 	// ca.blockSettings = {

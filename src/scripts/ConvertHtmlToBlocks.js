@@ -11,13 +11,18 @@ const convertHtmlToBlocks = function (html) {
 		const blockName = block.dataset.block;
 
 		if (Object.prototype.hasOwnProperty.call(Blocks.registeredBlocks, blockName)) {
-			const blockInstance = new Blocks.registeredBlocks[blockName]();
-			
+			const blockConstructor = Blocks.registeredBlocks[blockName]
+			const blockInstance = new blockConstructor();
+
+			const blockObject = "serializeFromHTML" in blockConstructor
+				? blockConstructor.serializeFromHTML(block)
+				: {}
+
 			blocks.push({
 				name: blockName,
 				id: blockInstance.id,
 				classes: [...block.classList],
-				...Blocks.registeredBlocks[blockName].serializeFromHTML(block)
+				...blockObject
 			})
 		} else {
 			const blockInstance = new Unknown();

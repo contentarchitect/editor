@@ -8,13 +8,19 @@ export default class Wysiwyg extends Block {
 
     get data () {
         return {
-            content: "<p>Merhaba</p>"
+            content: "<p></p>"
         }
     }
 
     static renderHTML (data) {
         return data.content
     }
+
+    static get defaultSettings () {
+		return {
+			placeholder: "Type your text"
+		}
+	}
 
     static serializeFromHTML (blockDom) {
         let obj = { content: "" }

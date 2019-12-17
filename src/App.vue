@@ -79,6 +79,10 @@ export default {
 				get classOptions () {
 					return _this.classOptions
 				},
+			},
+			// $slotBlocks: () => this.slotBlocks
+			get slottedBlocks () {
+				return _this.slotBlocks
 			}
 		}
 	},
@@ -127,7 +131,7 @@ export default {
 			})
 		},
 		reRender (html) {
-			this.$emit('htmlrender', html)
+			this.$emit('change', html)
 			this.renderedHTML = html;	
 			if (this.input) {
 				document.getElementById(this.input).value = html

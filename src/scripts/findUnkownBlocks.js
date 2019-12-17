@@ -10,7 +10,11 @@ export default function findUnknownBlocks (blockConstructor, slotBlocks) {
 	slotBlocks.filter(block => block.name === "Unknown" && block.holderBlockName === newRegisteredBlockName).forEach(block => {
 		var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector("[data-block]");
 
-		const blockObject = Blocks.registeredBlocks[newRegisteredBlockName].serializeFromHTML(doc)
+		let blockClass = Blocks.registeredBlocks[newRegisteredBlockName];
+
+		const blockObject = "serializeFromHTML" in blockClass
+			? blockClass.serializeFromHTML(doc)
+			: {}
 
 		// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
 		// Delete unknown properties from object

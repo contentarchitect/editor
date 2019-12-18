@@ -2,7 +2,7 @@ import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
 import { serialize, treeToHTML } from "./serialize"
 
-export default class Index extends Block {
+export default class Toc extends Block {
 	static get viewComponent () {
 		return view;
 	}

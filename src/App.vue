@@ -58,6 +58,9 @@ export default {
 		PortalTarget,
 		blocks: BlocksComponent
 	},
+	model: {
+		event: "change"
+	},
 	props: {
 		blockSettings: {
 			type: Object
@@ -65,7 +68,8 @@ export default {
 		classOptions: {
 			type: [Object, Array]
 		},
-		input: {},
+		output: {},
+		value: {},
 		blockStyles: {
 			type: String
 		},
@@ -96,17 +100,15 @@ export default {
 	},
 	created () {
 		Blocks.editors.push(this);
-		this.slotBlocks = convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
 
-		var _this = this;
+		this.slotBlocks = this.value 
+			? convertHtmlToBlocks(this.value)
+			: convertHtmlToBlocks(this.$root.$options.customElement.innerHTML);
 
-		if (this.$root && this.$root.$options.customElement) {
-			// console.log(this.$root.$options.customElement)
-			Object.defineProperty(this.$root.$options.customElement, "blocks", { value: this.slotBlocks })
-			Object.defineProperty(this.$root.$options.customElement, "renderedHTML", {
-				get () {
-					return _this.renderedHTML;
-				}
+		if (this.$root.$options.customElement) {
+			Object.defineProperties(this.$root.$options.customElement, {
+				blocks: { get: () => this.slotBlocks },
+				value: { get: () => this.renderedHTML },
 			})
 		}
 
@@ -132,9 +134,9 @@ export default {
 		},
 		reRender (html) {
 			this.$emit('change', html)
-			this.renderedHTML = html;	
-			if (this.input) {
-				document.getElementById(this.input).value = html
+			this.renderedHTML = html;
+			if (this.output) {
+				document.getElementById(this.output).value = html
 			}
 		}
 	},
@@ -150,8 +152,6 @@ export default {
 					}
 				}
 			}
-		},
-		classOptions () {
 		}
 	},
 }

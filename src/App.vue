@@ -165,24 +165,14 @@ export default {
 	--accent-color: #0e639c;
 	--accent-fg-color: #cccccc;
 	--accent-color-hover: rgb(17, 119, 187);
-	--focus-bg-color: hsl(214, 19%, 27%);
 	--toolbar-bg-color: #333333;
 	--toolbar-hover-bg-color: #202020;
 	--selection-fg-color: #cdcdcd;
 	--selection-inactive-fg-color: #cdcdcd;
 	--selection-inactive-bg-color: hsl(0, 0%, 28%);
-	--tab-selected-fg-color: #eaeaea;
-	--tab-selected-bg-color: black;
-	--drop-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
-				   0 2px 4px 2px rgba(0, 0, 0, 0.2),
-				   0 2px 6px 2px rgba(0, 0, 0, 0.1);
 	--divider-color: #525252;
 	--focus-ring-inactive-shadow: 0 0 0 1px #5a5a5a;
-	--editor-selection-bg-color: hsl(207, 88%, 22%);
-	--editor-selection-inactive-bg-color: #454545;
 	--focus-ring-active-shadow: 0 0 0 1px var(--accent-color);
-	--selection-bg-color: var(--accent-color);
-	--divider-border: 1px solid var(--divider-color);
 }
 
 :host {
@@ -190,6 +180,7 @@ export default {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
+	display: block;
 }
 
 .new-block-panel.tooltip.popover .popover-inner {

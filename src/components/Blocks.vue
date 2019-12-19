@@ -67,19 +67,21 @@ export default {
 			deep: true,
 			handler () {
 				let htmlStr = '';
+
 	
 				this.blocks.forEach(block => {
+					let blockConstructor = (Blocks.registeredBlocks[block.name] || Unknown)
 					let classes = block.classes.join(" ")
 					let classStr = classes ? `class="${classes}"` : ''
 
-					const dataset = (Blocks.registeredBlocks[block.name] || Unknown).dataset(block)
+					const dataset = blockConstructor.dataset(block)
 
 					let datasetStr = Object.entries(dataset).reduce((acu, [key, value]) => {
 						return acu + ` data-${Util.toKebabCase(key)}="${value}"`
 					}, "")
 
 					htmlStr += `<div data-block="${block.name}" ${classStr} ${datasetStr}>`
-					htmlStr += (Blocks.registeredBlocks[block.name] || Unknown).renderHTML(block, null, this.blocks)
+					htmlStr += blockConstructor.renderHTML(block, blockConstructor.settings, this.blocks)
 					htmlStr += `</div>`
 				});
 

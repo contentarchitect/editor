@@ -319,6 +319,36 @@ pre[class*="language-"] {
 	color: rgba(255,255,255,.5);
 	font-size: .8rem;
 }
+
+
+.anchor,
+.anchor,
+.anchor,
+.anchor,
+.anchor,
+.anchor {
+	float: left;
+	padding-right: 8px;
+	margin-left: -24px;
+}
+
+.anchor svg,
+.anchor svg,
+.anchor svg,
+.anchor svg,
+.anchor svg,
+.anchor svg {
+	visibility: hidden;
+}
+
+h1:hover .anchor svg,
+h2:hover .anchor svg,
+h3:hover .anchor svg,
+h4:hover .anchor svg,
+h5:hover .anchor svg,
+h6:hover .anchor svg {
+	visibility: visible;
+}
 		
 </style>
 
@@ -490,17 +520,18 @@ typography.injectStyles()</code>
 	ca.addEventListener('change', val => {
 		view.innerHTML = val.detail[0]
 	});
-	// ca.blockSettings = {
-	// 	Header: {
-	// 		levels: [1,2],
-	// 		defaultLevel: 3
-	// 	},
-	// 	Spacer: {
-	// 		defaultHeight: 50,
-	// 		minHeight: 30,
-	// 		maxHeight: 100
-	// 	}
-	// }
+	ca.blockSettings = {
+		Header: {
+			// levels: [1,2],
+			// defaultLevel: 3
+			// anchorLink: false
+		},
+		// Spacer: {
+		// 	defaultHeight: 50,
+		// 	minHeight: 30,
+		// 	maxHeight: 100
+		// }
+	}
 
 	ca.classOptions = {
 		"jumbotron": "Jumbotron",

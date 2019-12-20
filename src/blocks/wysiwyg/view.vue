@@ -1,5 +1,5 @@
 <template>
-  <Editable v-model="value.content" block :placeholder="settings.placeholder" />
+  <Editable v-model="value.content" block :placeholder="value.constructor.settings.placeholder" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import { Editable } from "@contentarchitect/core"
 
 export default {
 	components: { Editable },
-	props: ['value', 'settings'],
+	props: ['value'],
 }
 </script>
 

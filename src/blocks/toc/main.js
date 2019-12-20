@@ -7,8 +7,16 @@ export default class Toc extends Block {
 		return view;
 	}
 
-	static renderHTML (value, settings, blocks) {
-		const headers = blocks.filter(block => block.name == "Header")
+	static defaultData = {
+		tree: null
+	}
+
+	toString (blocks) {
+		const headers = blocks.filter(block => block.constructor.name == "Header")
 		return treeToHTML(serialize(headers).children)
+	}
+
+	static serializeFromHTML (doc) {
+		return {}
 	}
 }

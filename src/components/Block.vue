@@ -1,14 +1,14 @@
 <template>
 	<on-event-outside :do="closeSettings">
 		<div
-			:data-block="value.name"
+			:data-block="block.constructor.name"
 			v-bind="dataset"
-			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': value.name === 'Unknown' }, ...klasses]"
+			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': block.constructor.name === 'Unknown' }, ...klasses]"
 			ref="block"
 			@mouseenter="showToolbar = true"
 			@mouseleave="showToolbar = false">
 
-			<component :is="component.viewComponent" :settings="component.settings" :value="value" />
+			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" />
 
 			<div class="control" v-show="showToolbar || (isSettingsOpen && !separatedPopover)">
 				<Tooltip tooltip="Move down">
@@ -45,20 +45,20 @@
 				</Tooltip>
 
 				<Tooltip tooltip="Settings">
-					<ui-button :active="isSettingsOpen" square class="settings-button" :disable="!component.settingsComponent" ref="settingsButton" @click="toggleSettings">
+					<ui-button :active="isSettingsOpen" square class="settings-button" :disable="!block.constructor.settingsComponent" ref="settingsButton" @click="toggleSettings">
 						⋮
 					</ui-button>
 				</Tooltip>
 			</div>
 
-			<portal :to="`${value.id}`">
+			<portal :to="`${block.id}`">
 				<transition name="fade">
 					<div v-show="isSettingsOpen || separatedPopover" ref="settings" class="settings-card">
 						<div class="tooltip popover vue-popover-theme">
 							<div class="vue-ui-dark-mode settings-panel">
 								<div class="tooltip-inner popover-inner">
 									<div class="settings-panel-header" @mousedown="mousedownHandler">
-										{{component.name.toUpperCase() }} SETTINGS
+										{{block.constructor.name.toUpperCase() }} SETTINGS
 										<Tooltip tooltip="Close the window">
 											<a @click="closeBtnAction">✕</a>
 										</Tooltip>
@@ -96,11 +96,11 @@
 											</template>
 										</settings-section>
 
-										<settings-section v-if="component.settingsComponent">
+										<settings-section v-if="block.constructor.settingsComponent">
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">Block</section-title>
 											</template>
-											<component :is="component.settingsComponent" :settings="component.settings" :value="value" />
+											<component :is="block.constructor.settingsComponent" :settings="block.constructor.settings" :value="block" />
 										</settings-section>
 									</div>
 								</div>
@@ -139,12 +139,12 @@ function groupClasses (classes, classOptions) {
 
 export default {
 	inject: ['appSettings'],
+	model: {
+		prop: 'block',
+	},
 	props: {
-		value: {
+		block: {
 			type: Object,
-		},
-		component: {
-			type: Function
 		},
 		disableMoveUp: {
 			type: Boolean,
@@ -220,7 +220,7 @@ export default {
 	},
 	computed: {
 		dataset () {
-			let obj = this.component.dataset(this.value)
+			let obj = this.block.dataset
 			let dataset = {};
 
 			Object.keys(obj).forEach(datakey => {
@@ -250,18 +250,18 @@ export default {
 		classes: {
 			deep: true,
 			handler () {
-				this.value.classes = [];
+				this.block.classes = [];
 
 				for (let [className, val] of Object.entries(this.classes)) {
 					if (typeof val === "string" &&  val !== "") {
-						this.value.classes.push(className)
-						this.value.classes.push(val)
+						this.block.classes.push(className)
+						this.block.classes.push(val)
 					} else if (typeof val === "boolean" && val) {
-						this.value.classes.push(className)
+						this.block.classes.push(className)
 					}
 				}
 
-				this.klasses = this.value.classes
+				this.klasses = this.block.classes
 			}
 		},
 		"appSettings.classOptions": {
@@ -275,11 +275,11 @@ export default {
 					.filter(([klassName, val]) => Util.isObject(val))
 					.map(([klassName, val]) => klassName)
 
-				this.value.classes.forEach(className => {
+				this.block.classes.forEach(className => {
 					if (nonGroupClasses.includes(className)) {
 						this.$set(this.classes, className, true)
 					} else if (groupClasses.includes(className)) {
-						const intersection = Util.intersectionOf(this.value.classes, Object.keys(this.appSettings.classOptions[className]))
+						const intersection = Util.intersectionOf(this.block.classes, Object.keys(this.appSettings.classOptions[className]))
 						if (intersection.length > 0) {
 							this.$set(this.classes, className, intersection[0])
 						}
@@ -290,23 +290,23 @@ export default {
 	},
 	methods: {
 		duplicate () {
-			this.$emit('duplicate', this.value);
+			this.$emit('duplicate', this.block);
 		},
 		moveBlockDown () {
-			this.$emit('move-block-down', this.value)
+			this.$emit('move-block-down', this.block)
 		},
 		moveBlockUp () {
-			this.$emit('move-block-up', this.value)
+			this.$emit('move-block-up', this.block)
 		},
 		removeBlock () {
 			if (this.showRemove) {
-				this.$emit('remove-block', this.value)
+				this.$emit('remove-block', this.block)
 			} else {
 				this.showRemove = true;
 			}
 		},
 		immediatelyRemoveBlock() {
-			this.$emit('remove-block', this.value)
+			this.$emit('remove-block', this.block)
 		},
 		closeSettings () {
 			if (!this.separatedPopover) {
@@ -349,7 +349,7 @@ export default {
 			return Util.isObject(obj)
 		},
 		renderHTML () {
-			this.$emit('render-html', this.component.renderHTML(this.value))
+			this.$emit('render-html', this.block.toString())
 		}
 	},
 }

@@ -2,30 +2,28 @@ import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
 
 export default class Wysiwyg extends Block {
-    static get viewComponent () {
-        return view;
-    }
-
-    get data () {
-        return {
-            content: "<p></p>"
-        }
-    }
-
-    static renderHTML (data) {
-        return data.content
-    }
-
-    static get defaultSettings () {
-		return {
-			placeholder: "Type your text"
-		}
+	static get viewComponent () {
+		return view;
 	}
 
-    static serializeFromHTML (blockDom) {
-        let obj = { content: "" }
+	static defaultData = {
+		content: "<p></p>"
+	}
 
-        obj.content = blockDom.innerHTML.trim();
-		return obj;
+	static defaultSettings = {
+		placeholder: "Type your text"
+	}
+
+	toString () {
+		return this.content
+	}
+
+	static serializeFromHTML (blockDom) {
+		let content;
+		content = blockDom.innerHTML.trim();
+
+		return {
+			content
+		};
 	}
 }

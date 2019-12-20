@@ -2,7 +2,7 @@
     <css-grid :columns="['1fr', '1fr']" gap="8px 0">
         <label for="">Type</label>
         <div>
-            <template v-for="dividerType in settings.types">
+            <template v-for="dividerType in value.constructor.settings.types">
                 <label :for="dividerType" :key="dividerType" class="divider-type-options">
                     <input v-model="value.dividerType" :value="dividerType" type="radio" />
                     {{ dividerType }}
@@ -17,7 +17,7 @@ import { CssGrid } from "@contentarchitect/core"
 
 export default {
     components: { CssGrid },
-    props: ['value', 'settings'],
+    props: ['value'],
 }
 </script>
 

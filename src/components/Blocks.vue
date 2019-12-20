@@ -2,7 +2,6 @@
 	<transition-group name="flip-list" tag="div" style="position: relative;" data-blocks>
 		<block
 			v-model="blocks[i]"
-			:component="Blocks.registeredBlocks[block.name] || Unknown"
 			v-for="(block, i) in blocks"
 			:key="block.id"
 			:disable-move-down="i+1 === blocks.length"
@@ -27,12 +26,10 @@ export default {
 	},
 	props: ['blocks'],
 	components: {
-		block: Block
+		Block
 	},
 	data () {
 		return {
-			Blocks: Blocks,
-			Unknown: Unknown
 		}
 	},
 	methods: {
@@ -56,9 +53,8 @@ export default {
 		},
 		duplicate (block) {
 			const ind = this.blocks.indexOf(block);
-			let newBlock = { ...block };
-			newBlock.id = Util.generateID();
-			this.blocks.splice(ind+1, 0, Vue.util.extend({}, newBlock));
+			const newBlock = block.cloneSelf();
+			this.blocks.splice(ind+1, 0, newBlock);
 			this.$emit("change", this.blocks);
 		}
 	},
@@ -70,18 +66,18 @@ export default {
 
 	
 				this.blocks.forEach(block => {
-					let blockConstructor = (Blocks.registeredBlocks[block.name] || Unknown)
+					let blockConstructor = block.constructor
 					let classes = block.classes.join(" ")
 					let classStr = classes ? `class="${classes}"` : ''
 
-					const dataset = blockConstructor.dataset(block)
+					const dataset = block.dataset
 
 					let datasetStr = Object.entries(dataset).reduce((acu, [key, value]) => {
 						return acu + ` data-${Util.toKebabCase(key)}="${value}"`
 					}, "")
 
-					htmlStr += `<div data-block="${block.name}" ${classStr} ${datasetStr}>`
-					htmlStr += blockConstructor.renderHTML(block, blockConstructor.settings, this.blocks)
+					htmlStr += `<div data-block="${blockConstructor.name}" ${classStr} ${datasetStr}>`
+					htmlStr += block.toString(this.blocks)
 					htmlStr += `</div>`
 				});
 

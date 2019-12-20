@@ -12,7 +12,7 @@ import { CssGrid } from "@contentarchitect/core"
 
 export default {
 	components: { CssGrid },
-	props: ['value', 'settings'],
+	props: ['value'],
 	data () {
 		return {
 			languages: Object.keys(Prism.languages).filter(lang => typeof Prism.languages[lang] !== "function")

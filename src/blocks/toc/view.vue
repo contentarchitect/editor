@@ -24,7 +24,7 @@ export default {
 			immediate: true,
 			deep: true,
 			handler () {
-				const headers = this.slottedBlocks.filter(block => block.name === "Header");
+				const headers = this.slottedBlocks.filter(block => block.constructor.name === "Header");
 				this.tree = serialize(headers);
 			}
 		}

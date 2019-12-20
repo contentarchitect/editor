@@ -11,26 +11,18 @@ export default class Image extends Block {
 		return settings;
 	}
 
-	get data () {
-		let images = Array(this.constructor.settings.defaultImageCount).fill().map(() => {
-			return { image: null, caption: null }
-		});
-
-		return {
-			images
-		}
+	static defaultData = {
+		images: [
+			{ image: null, caption: null }
+		]
 	}
 
-	static get defaultSettings () {
-		return {
-			defaultImageCount: 1
-		}
-	}
+	static defaultSettings = {}
 
-	static renderHTML (value, settings) {
+	toString () {
 		let str = '';
 
-		value.images.forEach(image => {
+		this.images.forEach(image => {
 			str += `<figure><img src="${image.image}" />`
 			if (image.caption && image.caption !== '') {
 				str += `<figcaption>${image.caption}</figcaption>`
@@ -41,10 +33,10 @@ export default class Image extends Block {
 		return `<div>${str}</div>`;
 	}
 
-	static serializeFromHTML (html) {
+	static serializeFromHTML (doc) {
 		let obj = { images: [] }
 
-		Array.from(html.getElementsByTagName("figure")).forEach(fig => {
+		Array.from(doc.getElementsByTagName("figure")).forEach(fig => {
 			const img = fig.getElementByTagName("img");
 			const src = img.getAttribute("src");
 			const cpt = fig.getElementByTagName("figcaption").innerHTML;

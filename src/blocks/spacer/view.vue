@@ -11,7 +11,7 @@
 
 <script>
 export default {
-	props: ['value', 'settings'],
+	props: ['value'],
 	data () {
 		return {
 			startPosition: 0,
@@ -32,12 +32,12 @@ export default {
 		resizeHandler (e) {
 			let height = this.startHeight + e.pageY - this.startPosition;
 			
-			if (height < this.settings.minHeight) {
-				height = this.settings.minHeight;
+			if (height < this.value.constructor.settings.minHeight) {
+				height = this.value.constructor.settings.minHeight;
 			}
 
-			if (height > this.settings.maxHeight) {
-				height = this.settings.maxHeight;
+			if (height > this.value.constructor.settings.maxHeight) {
+				height = this.value.constructor.settings.maxHeight;
 			}
 
 			this.value.height = Math.floor(height);

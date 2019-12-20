@@ -24,8 +24,8 @@
 
 			<template slot="popover">
 				<ul class="block-list">
-					<li v-for="(_, blockName) in Blocks.registeredBlocks" :key="blockName" @click="addBlock(blockName)">
-						{{blockName}}
+					<li v-for="usableBlock in usableBlocks" :key="usableBlock.name" @click="addBlock(usableBlock)">
+						{{usableBlock.name}}
 					</li>
 				</ul>
 			</template>
@@ -41,7 +41,6 @@ import {
 	Util,
 	Tooltip,
 	Blocks,
-
 } from "@contentarchitect/core"
 
 import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
@@ -63,7 +62,10 @@ export default {
 	},
 	props: {
 		blockSettings: {
-			type: Object
+			type: Object,
+			default () {
+				return {}
+			}
 		},
 		classOptions: {
 			type: [Object, Array]
@@ -73,6 +75,14 @@ export default {
 		blockStyles: {
 			type: String
 		},
+		usableBlocks: {
+			type: Array,
+			default() {
+				return Blocks.registeredBlocks.slice().map(blockConstructor => {
+					return new Proxy(blockConstructor, {})
+				});
+			}
+		}
 	},
 	provide() {
 		const _this = this;
@@ -120,17 +130,9 @@ export default {
 	mounted () {
 	},
 	methods: {
-		addBlock (name) {
-			this.isNewBlockPopoverActive = false
-			const blockConstructor = Blocks.registeredBlocks[name];
-			const block = new blockConstructor();
-			
-			this.slotBlocks.push({
-				id: block.id,
-				name: name,
-				classes: [],
-				...block.data
-			})
+		addBlock (usableBlock) {
+			const newBlock = new usableBlock();
+			this.slotBlocks.push(newBlock)
 		},
 		reRender (html) {
 			this.$emit('change', html)
@@ -144,13 +146,13 @@ export default {
 		blockSettings: {
 			immediate: true,
 			handler () {
-				if (this.blockSettings) {
-					for (let blockName in this.blockSettings) {
-						if (this.blockSettings.hasOwnProperty(blockName)) {
-							Blocks.registeredBlocks[blockName].settings = this.blockSettings[blockName]
-						}
+				Object.entries(this.blockSettings).forEach(([blockName, settings]) => {
+					let usableBlock;
+
+					if (usableBlock = this.usableBlocks.find(blk => blk.name === blockName)) {
+						usableBlock.setSettings(settings)
 					}
-				}
+				})
 			}
 		}
 	},

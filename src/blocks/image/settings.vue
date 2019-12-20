@@ -14,7 +14,7 @@ import { CssGrid, RadioButtons, RadioButton } from "@contentarchitect/core"
 
 export default {
 	components: { CssGrid, RadioButtons, RadioButton },
-	props: ['value', 'settings'],
+	props: ['value'],
 	data () {
 		return {
 			emptyImage: { image: null, caption: null },

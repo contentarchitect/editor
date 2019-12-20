@@ -4,44 +4,26 @@ import Unknown from "@/blocks/unknown/main.js"
 const Blocks = new Vue({
 	data() {
 		return {
-			registeredBlocks: {
-			},
+			registeredBlocks: [],
 			editors: []
 		}
 	},
 	methods: {
 		register (blockConstructor) {
-			this.$set(this.registeredBlocks, blockConstructor.name, blockConstructor)
+			this.registeredBlocks.push(blockConstructor)
 			this.editors.forEach(editor => this.findUnknownBlocks(blockConstructor, editor.slotBlocks))
 		},
-		findUnknownBlocks (blockConstructor) {
+		findUnknownBlocks (blockConstructor, blocks) {
 			const newRegisteredBlockName = blockConstructor.name;
-	
+
 			const parser = new DOMParser();
 
-			this.slotBlocks.filter(block => block.name === "Unknown" && block.holderBlockName === newRegisteredBlockName).forEach(block => {
-				var doc = parser.parseFromString(block.outerHTML, "text/html").querySelector("[data-block]");
-
-				let blockClass = this.registeredBlocks[newRegisteredBlockName];
-
-				const blockObject = "serializeFromHTML" in blockClass
-					? blockClass.serializeFromHTML(doc)
-					: {}
-
-				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
-				// Delete unknown properties from object
-				const unknownProperties = Object.keys(new Unknown().data)
-				unknownProperties.forEach(prop => {
-					Vue.delete(block, prop)
-				})
-
-				// for reactivity look at: https://vuejs.org/v2/guide/reactivity.html
-				// Set new block properties
-				Vue.set(block, "name", newRegisteredBlockName)
-				for (var prop in blockObject) {
-					if (blockObject.hasOwnProperty(prop)) {
-						Vue.set(block, prop, blockObject[prop])
-					}
+			blocks.forEach((block, index) => {
+				if (block instanceof Unknown && block.holderBlockName === newRegisteredBlockName) {
+					const blockDom = parser.parseFromString(block.outerHTML, "text/html")
+										   .querySelector("[data-block]");
+					const newBlock = new blockConstructor(blockDom);
+					Vue.set(blocks, index, newBlock)
 				}
 			})
 		}

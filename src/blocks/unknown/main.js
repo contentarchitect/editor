@@ -2,27 +2,30 @@ import Block from "../../core/scripts/Block.js"
 import View from "./View.vue"
 
 export default class Unknown extends Block {
-    static get viewComponent () {
-        return View;
-    }
+	static get viewComponent () {
+		return View;
+	}
 
-    get data () {
-        return {
-			holderBlockName: null,
-			innerHTML: "",
-			outerHTML: ""
-        }
-    }
+	static defaultData = {
+		holderBlockName: null,
+		innerHTML: "",
+		outerHTML: ""
+	}
 
-    static renderHTML (data) {
-        return data.innerHTML
-    }
+	toString () {
+		return this.innerHTML
+	}
 
-    static serializeFromHTML (blockDom) {
-        let obj = { content: "" }
-		obj.holderBlockName = blockDom.dataset.block
-		obj.innerHTML = blockDom.innerHTML;
-		obj.outerHTML = blockDom.outerHTML;
-		return obj;
+	static serializeFromHTML (blockDom) {
+		let holderBlockName, innerHTML, outerHTML;
+		holderBlockName = blockDom.dataset.block
+		innerHTML = blockDom.innerHTML;
+		outerHTML = blockDom.outerHTML;
+
+		return {
+			holderBlockName,
+			innerHTML,
+			outerHTML
+		};
 	}
 }

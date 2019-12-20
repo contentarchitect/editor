@@ -11,22 +11,18 @@ export default class Code extends Block {
 		return settings;
 	}
 
-	get data () {
-		return {
-			language: '',
-			code: '',
-			highlighted: ''
-		}
+	static defaultSettings = {
+		defaultLanguage: "txt",
 	}
 
-	static get defaultSettings () {
-		return {
-			defaultLanguage: "txt",
-		}
+	static defaultData = {
+		language: '',
+		code: '',
+		highlighted: ''
 	}
 
-	static renderHTML (value, settings) {
-		return value.highlighted
+	toString () {
+		return this.highlighted
 	}
 
 	static serializeFromHTML (html) {
@@ -46,11 +42,9 @@ export default class Code extends Block {
 		}
 	}
 
-	static dataset (block) {
-		const { language } = block
-
+	get dataset () {
 		return {
-			language
+			language: this.language
 		}
 	}
 }

@@ -70,6 +70,23 @@ export default class Util {
 		return obj === Object(obj);
 	}
 
+	// https://stackoverflow.com/a/384380/7663430
+	// Returns true if it is a DOM node
+	static isNode(o){
+		return (
+			typeof Node === "object" ? o instanceof Node : 
+			o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+		);
+	}
+
+	// Returns true if it is a DOM element
+	static isElement(o){
+		return (
+			typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+			o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string"
+		);
+	}
+
 	static intersectionOf (array1, array2) {
 		return array1.filter(value => array2.includes(value))
 	}
@@ -79,6 +96,12 @@ export default class Util {
 			str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
 				.map(x => x.toLowerCase())
 				.join('-');
+	}
+
+	static cloneBlock (block) {
+		const clonedBlock = Object.assign(Object.create(Object.getPrototypeOf(block)), block)
+		clonedBlock.id = Util.generateID()
+		return clonedBlock
 	}
 
 }

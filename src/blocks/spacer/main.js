@@ -11,28 +11,22 @@ export default class Spacer extends Block {
 		return settings;
 	}
 
-	get data () {
-		return {
-			height: this.constructor.settings.defaultHeight
-		}
+	static defaultData = {
+		height: 30
 	}
 
-	static get defaultSettings () {
-		return {
-			defaultHeight: 30,
-			minHeight: 5,
-			maxHeight: Infinity
-		}
+	static defaultSettings = {
+		minHeight: 5,
+		maxHeight: Infinity
 	}
 
-	static renderHTML (value, settings) {
-		return `<div style="height: ${value.height}px"></div>`;
+	toString () {
+		return `<div style="height: ${this.height}px"></div>`;
 	}
 	
 	static serializeFromHTML (html) {
-		let obj = { height: 0 },
-			cssString = html.getElementsByTagName("div")[0].getAttribute("style"),
-			height;
+		let height = 0,
+			cssString = html.getElementsByTagName("div")[0].getAttribute("style");
 		
 
 		function css2obj (css) {
@@ -46,8 +40,8 @@ export default class Spacer extends Block {
 		height = css2obj(cssString)["height"]
 		height = Number(/\d+/.exec(height)[0])
 
-		obj.height = height
-
-		return obj
+		return {
+			height
+		}
 	}
 }

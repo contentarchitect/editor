@@ -9,9 +9,15 @@
 
 <script>
 export default {
+	props: {
+		collapsed: {
+			type: Boolean,
+			default: true
+		}
+	},
 	data () {
 		return {
-			showSection: true
+			showSection: this.collapsed
 		}
 	},
 	methods: {

@@ -10,22 +10,32 @@ export default class Block {
 			return new this.constructor({ classes, ...obj })
 		} else {
 			obj = domOrObject;
+			this.classOptions = this.constructor.getInitialClassOptions()
 			Object.assign(this, this.constructor.defaultData, obj)
-			this.classes = this.classes || []
 		}
 	}
 
 	static defaultData = {}
 	static defaultSettings = {}
+	static defaultClassOptions = {}
+	classes = []
 
-	static setSettings (set) {
+	static setSettings (settings) {
 		this._settings = this._settings || {}
-		Object.assign(this._settings, this.defaultSettings, set)
+		this._classOptions = this._classOptions || {}
+		const { classOptions, ...sets } = settings
+		Object.assign(this._classOptions, this.defaultClassOptions, classOptions)
+		Object.assign(this._settings, this.defaultSettings, sets)
 	}
 
 	static get settings () {
-		if  (!this._settings) this.setSettings({})
+		if (!this._settings) this.setSettings({})
 		return this._settings;
+	}
+
+	static get classOptions () {
+		if  (!this._classOptions) this.setSettings({ classOptions: {} })
+		return this._classOptions;
 	}
 	
 	get id () {
@@ -47,6 +57,20 @@ export default class Block {
 
 	get dataset () {
 		return {}
+	}
+
+	static getInitialClassOptions () {
+		const options = {}
+
+		Object.keys(this.classOptions).forEach(key => {
+			if (typeof this.classOptions[key] === "string") {
+				options[key] = false
+			} else if (Util.isObject(this.classOptions[key])) {
+				options[key] = ""
+			}
+		})
+
+		return options;
 	}
 
 	cloneSelf () {

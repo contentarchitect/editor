@@ -370,13 +370,8 @@ h6:hover .anchor svg {
 
 <div class="container">
 	<section>
-		<input type="hidden" id="output">
-
 		<h1>Editor</h1>
-
-		<content-architect id="editor"></content-architect>
-
-		<content-architect draggable-settings="false" id="ca" output="output" block-styles="ca-style">
+		<content-architect draggable-settings="false" id="editor" output="output" block-styles="ca-style">
 			<div data-block="Toc"></div>
 
 			<div data-block="ExtraUnkown">
@@ -498,12 +493,11 @@ typography.injectStyles()</code>
 			</div>
 		</content-architect>
 
-		<!-- <content-architect></content-architect> -->
+		<input type="hidden" id="output">
 	</section>
 
 	<section>
 		<h1>Preview (static html)</h1>
-		<div id="view1"></div>
 		<div id="view"></div>
 	</section>
 </div>
@@ -514,13 +508,12 @@ typography.injectStyles()</code>
 </body>
 	
 <script>
-	editor.addEventListener('change', val => view1.innerHTML = val.detail[0])
 
 	// console.log(ContentArchitect);
-	ca.addEventListener('change', val => {
+	editor.addEventListener('change', val => {
 		view.innerHTML = val.detail[0]
 	});
-	ca.blockSettings = {
+	editor.blockSettings = {
 		Header: {
 			// levels: [1,2],
 			// defaultLevel: 3
@@ -533,20 +526,44 @@ typography.injectStyles()</code>
 		// }
 	}
 
-	ca.classOptions = {
-		"jumbotron": "Jumbotron",
-		alert: {
-			"alert-danger": "Danger",
-			"alert-success": "Success",
-			"alert-warning": "Warning",
-			"custom-alert": "Custom"
+	// editor.classOptions = {
+	// 	"jumbotron": "Jumbotron",
+	// 	alert: {
+	// 		"alert-danger": "Danger",
+	// 		"alert-success": "Success",
+	// 		"alert-warning": "Warning",
+	// 		"custom-alert": "Custom"
+	// 	},
+	// 	text: {
+	// 		"text-left": "Left",
+	// 		"text-center": "Center",
+	// 		"text-right": "Right"
+	// 	}
+	// }
+
+	editor.classOptions = [
+		{
+			blocks: ["Code", "Quote"],
+			classes: {
+				jumbotron: "Jumbotron",
+				alert: {
+					"alert-danger": "Danger",
+					"alert-success": "Success",
+					"alert-warning": "Warning",
+					"custom-alert": "Custom"
+				},
+			}
 		},
-		text: {
-			"text-left": "Left",
-			"text-center": "Center",
-			"text-right": "Right"
+		{
+			classes: {
+				text: {
+					"text-left": "Left",
+					"text-center": "Center",
+					"text-right": "Right"
+				}
+			}
 		}
-	}
+	]
 
 	// new ContentArchitect.Editor({
 	// 	blockSettings: {

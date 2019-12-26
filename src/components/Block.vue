@@ -3,7 +3,7 @@
 		<div
 			:data-block="block.constructor.name"
 			v-bind="dataset"
-			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': block.constructor.name === 'Unknown' }, ...klasses]"
+			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': block.constructor.name === 'Unknown' }, ...block.classes]"
 			ref="block"
 			@mouseenter="showToolbar = true"
 			@mouseleave="showToolbar = false">
@@ -64,7 +64,7 @@
 										</Tooltip>
 									</div>
 									<div class="settings-panel-body">
-										<settings-section>
+										<settings-section :collapsed="false">
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">General</section-title>
 											</template>
@@ -72,31 +72,32 @@
 											<v-button @click="immediatelyRemoveBlock">Remove</v-button>
 										</settings-section>
 
-										<settings-section>
+										<settings-section :collapsed="true">
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
 											</template>
-											<template v-for="(humanName, className) in appSettings.classOptions">
+											<pre>{{	block.classOptions}}</pre>
+											<template v-for="(humanName, className) in block.constructor.classOptions">
 												<template v-if="isObject(humanName)">
 													<div :key="className">
 														<h3>{{ className }}</h3>
-														<radio-buttons v-model="classes[className]">
+														<radio-buttons v-model="block.classOptions[className]">
 															<radio-button :value="''">None</radio-button>
-															<radio-button v-for="(humName, clsName) in appSettings.classOptions[className]" :value="clsName" :key="clsName">
+															<radio-button v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
 																{{humName}}
 															</radio-button>
 														</radio-buttons>
 													</div>
 												</template>
 												<template v-else>
-													<checkbox v-model="classes[className]" :key="className">
+													<checkbox v-model="block.classOptions[className]" :key="className">
 														{{ humanName }}
 													</checkbox>
 												</template>
 											</template>
 										</settings-section>
 
-										<settings-section v-if="block.constructor.settingsComponent">
+										<settings-section v-if="block.constructor.settingsComponent" :collapsed="false">
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">Block</section-title>
 											</template>
@@ -132,10 +133,6 @@ import { Portal } from 'portal-vue'
 
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Popper from "popper.js";
-
-function groupClasses (classes, classOptions) {
-	let group = []
-}
 
 export default {
 	inject: ['appSettings'],
@@ -184,8 +181,6 @@ export default {
 			startDragPos: { x: 0, y: 0 },
 			popperPos: { x: 0, y: 0 },
 			popperModifiers: [],
-			classes: {},
-			klasses: []
 		}
 	},
 	mounted () {
@@ -211,7 +206,6 @@ export default {
 					}
 				}
 			});
-
 		});
 
 		this.$once("hook:beforeDestroy", () => {
@@ -247,12 +241,15 @@ export default {
 				}, 200)
 			}
 		},
-		classes: {
+		"block.classOptions": {
+			immediate: true,
 			deep: true,
 			handler () {
+				if (Util.isObjectEmpty(this.block.constructor.classOptions)) return;
 				this.block.classes = [];
 
-				for (let [className, val] of Object.entries(this.classes)) {
+
+				for (let [className, val] of Object.entries(this.block.classOptions)) {
 					if (typeof val === "string" &&  val !== "") {
 						this.block.classes.push(className)
 						this.block.classes.push(val)
@@ -260,32 +257,7 @@ export default {
 						this.block.classes.push(className)
 					}
 				}
-
-				this.klasses = this.block.classes
-			}
-		},
-		"appSettings.classOptions": {
-			deep: true,
-			handler () {
-				const nonGroupClasses = Object.entries(this.appSettings.classOptions)
-					.filter(([klassName, val]) => typeof val === "string")
-					.map(([klassName, val]) => klassName)
-
-				const groupClasses = Object.entries(this.appSettings.classOptions)
-					.filter(([klassName, val]) => Util.isObject(val))
-					.map(([klassName, val]) => klassName)
-
-				this.block.classes.forEach(className => {
-					if (nonGroupClasses.includes(className)) {
-						this.$set(this.classes, className, true)
-					} else if (groupClasses.includes(className)) {
-						const intersection = Util.intersectionOf(this.block.classes, Object.keys(this.appSettings.classOptions[className]))
-						if (intersection.length > 0) {
-							this.$set(this.classes, className, intersection[0])
-						}
-					}
-				});
-			}
+			},
 		}
 	},
 	methods: {

@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Vue from "vue"
 import {
 	UiButton,
 	Util,
@@ -127,8 +128,6 @@ export default {
 			this.$root.$options.customElement.shadowRoot.appendChild(clonedStyle)
 		}
 	},
-	mounted () {
-	},
 	methods: {
 		addBlock (usableBlock) {
 			const newBlock = new usableBlock();
@@ -153,6 +152,44 @@ export default {
 						usableBlock.setSettings(settings)
 					}
 				})
+			}
+		},
+		classOptions: {
+			immediate: true,
+			handler () {
+				if (!this.classOptions) return;
+				let classOptions = this.classOptions
+
+				if (Util.isObject(this.classOptions)) {
+					classOptions = Array.from({ classes: this.classOptions })
+				}
+
+				classOptions.forEach(optionsSetting => {
+					let blockConstructors = optionsSetting.blocks
+						? this.usableBlocks.filter(blockConstructor => optionsSetting.blocks.includes(blockConstructor.name))
+						: this.usableBlocks
+					const classOptionsMap = optionsSetting.classes
+
+					blockConstructors.forEach(blockConstructor => {
+						// set classOptions to class constructor
+						blockConstructor.setSettings({ classOptions: classOptionsMap })
+
+						// set classOptions to block instance
+						this.slotBlocks.filter(block => block instanceof blockConstructor).forEach(block => {
+
+							Object.keys(classOptionsMap).forEach(key => {
+								if (typeof classOptionsMap[key] === "string") {
+									Vue.set(block.classOptions, key, block.classes.includes(key))
+								} else if (Util.isObject(classOptionsMap[key])) {
+									Vue.set(block.classOptions, key, "")
+									Object.keys(classOptionsMap[key]).forEach(k => {
+										if (block.classes.includes(k)) Vue.set(block.classOptions, key, k)
+									})
+								}
+							})
+						})
+					});
+				});
 			}
 		}
 	},

@@ -67,7 +67,11 @@ export default class Util {
 
 
 	static isObject (obj) {
-		return obj === Object(obj);
+		return Object.prototype.toString.call(obj) === "[object Object]"
+	}
+
+	static isObjectEmpty (obj) {
+		return Object.keys(obj).length === 0 && obj.constructor === Object
 	}
 
 	// https://stackoverflow.com/a/384380/7663430

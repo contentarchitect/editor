@@ -83,7 +83,6 @@
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
 											</template>
-											<pre>{{	block.classOptions}}</pre>
 											<template v-for="(humanName, className) in block.constructor.classOptions">
 												<template v-if="isObject(humanName)">
 													<div :key="className">

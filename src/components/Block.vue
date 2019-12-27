@@ -45,7 +45,14 @@
 				</Tooltip>
 
 				<Tooltip tooltip="Settings">
-					<ui-button :active="isSettingsOpen" square class="settings-button" :disable="!block.constructor.settingsComponent" ref="settingsButton" @click="toggleSettings">
+					<ui-button
+						:active="isSettingsOpen"
+						square
+						class="settings-button"
+						:disable="!block.constructor.settingsComponent"
+						ref="settingsButton"
+						@click="toggleSettings"
+					>
 						⋮
 					</ui-button>
 				</Tooltip>
@@ -280,8 +287,10 @@ export default {
 		immediatelyRemoveBlock() {
 			this.$emit('remove-block', this.block)
 		},
-		closeSettings () {
-			if (!this.separatedPopover) {
+		closeSettings (e, path) {
+			if (path.find(el => el == this.$refs.settings)) return
+
+			if (!this.separatedPopover && this.isSettingsOpen) {
 				this.isSettingsOpen = false;
 				this.separatedPopover = false;
 			}
@@ -292,6 +301,8 @@ export default {
 		},
 		toggleSettings () {
 			this.isSettingsOpen = !this.isSettingsOpen;
+
+			if (!this.isSettingsOpen) this.separatedPopover = false
 		},
 		mousedownHandler (event) {
 			this.startDragPos.x = event.pageX;

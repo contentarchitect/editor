@@ -62,7 +62,7 @@
 				<transition name="fade">
 					<div v-show="isSettingsOpen || separatedPopover" ref="settings" class="settings-card">
 						<div class="tooltip popover vue-popover-theme">
-							<div class="vue-ui-dark-mode settings-panel">
+							<div class="settings-panel">
 								<div class="tooltip-inner popover-inner">
 									<div class="settings-panel-header" @mousedown="mousedownHandler">
 										{{block.constructor.name.toUpperCase() }} SETTINGS
@@ -83,24 +83,23 @@
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
 											</template>
-											<template v-for="(humanName, className) in block.constructor.classOptions">
-												<template v-if="isObject(humanName)">
-													<div :key="className">
-														<h3>{{ className }}</h3>
-														<radio-buttons v-model="block.classOptions[className]">
-															<radio-button :value="''">None</radio-button>
-															<radio-button v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
+											<css-grid :columns="['2fr', '3fr']" gap="8px 0">
+												<template v-for="(humanName, className) in block.constructor.classOptions">
+													<template v-if="isObject(humanName)">
+														<span :key="className">{{ capitalized(className) }}</span>
+														<select v-model="block.classOptions[className]" :key="className">
+															<option value=""></option>
+															<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
 																{{humName}}
-															</radio-button>
-														</radio-buttons>
-													</div>
+															</option>
+														</select>
+													</template>
+													<template v-else>
+														<span :key="className">{{ humanName }}</span>
+														<checkbox v-model="block.classOptions[className]" :key="className" />
+													</template>
 												</template>
-												<template v-else>
-													<checkbox v-model="block.classOptions[className]" :key="className">
-														{{ humanName }}
-													</checkbox>
-												</template>
-											</template>
+											</css-grid>
 										</settings-section>
 
 										<settings-section v-if="block.constructor.settingsComponent" :collapsed="false">
@@ -128,6 +127,7 @@ import {
 	Checkbox,
 	RadioButtons,
 	RadioButton,
+	CssGrid,
 	SectionTitle,
 	SettingsSection,
 	Tooltip,
@@ -168,6 +168,7 @@ export default {
 		Checkbox,
 		RadioButtons,
 		RadioButton,
+		CssGrid,
 		'v-button': Button,
 		"v-popover": VPopover,
 	},
@@ -332,6 +333,10 @@ export default {
 		},
 		renderHTML () {
 			this.$emit('render-html', this.block.toString())
+		},
+		capitalized (str) {
+			if (typeof str !== 'string') return ''
+			return str.charAt(0).toUpperCase() + str.slice(1)
 		}
 	},
 }
@@ -341,7 +346,7 @@ export default {
 @import "../assets/text-button.css"; 
 
 .tooltip.popover .popover-inner {
-	background: #121212;
+	background: #2b2b2b;
 	border-radius: 3px;
 }
 

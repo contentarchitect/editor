@@ -36,5 +36,5 @@ export {
 	Block,
 	Blocks,
 	Upload,
-	Util,
+	Util
 }

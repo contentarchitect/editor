@@ -16,54 +16,56 @@
 		<div class="fake-ref" :style="fakeRefStyle" ref="fakeRef"></div>
 
 		<on-event-outside :do="closeToolbar" event="mousedown">
-			<div ref="toolbar" class="toolbar" v-show="isOpenToolbar">
-				<template v-if="showCreateLink">
-					<div class="link-toolbar">
-						<CaInput v-model="selectionLinkUrl" />
-						<CaButton @click="createLink">Add</CaButton>
-						<div class="divider"></div>
-						<CaButton @click="removeLink" :disabled="selectionLinkUrl.trim() === ''">Remove</CaButton>
-					</div>
-				</template>
-				<template v-else>
-					<button @click.prevent="command('bold')" :class="{ 'ca-active': commandStatus.bold }" type="button" tabindex="-1">
-						<svg viewBox="0 0 18 18">
-							<path class="ca-stroke" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
-							<path class="ca-stroke" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path>
-						</svg>
-					</button>
-					<button @click.prevent="command('italic')" :class="{ 'ca-active': commandStatus.italic }" type="button" tabindex="-1">
-						<svg viewBox="0 0 18 18">
-							<line class="ca-stroke" x1="7" x2="13" y1="4" y2="4"></line>
-							<line class="ca-stroke" x1="5" x2="11" y1="14" y2="14"></line>
-							<line class="ca-stroke" x1="8" x2="10" y1="14" y2="4"></line>
-						</svg>
-					</button>
-					<button @click.prevent="command('underline')" :class="{ 'ca-active': commandStatus.underline }" type="button" tabindex="-1">
-						<svg viewBox="0 0 18 18">
-							<path class="ca-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
-							<rect class="ca-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
-						</svg>
-					</button>
-					<button @click.prevent="command('strikethrough')" :class="{ 'ca-active': commandStatus.strike }" type="button" tabindex="-1">
-						<svg viewBox="0 0 18 18">
-							<line class="ca-stroke ca-thin" x1="15.5" x2="2.5" y1="8.5" y2="9.5"></line>
-							<path class="ca-fill" d="M9.007,8C6.542,7.791,6,7.519,6,6.5,6,5.792,7.283,5,9,5c1.571,0,2.765.679,2.969,1.309a1,1,0,0,0,1.9-.617C13.356,4.106,11.354,3,9,3,6.2,3,4,4.538,4,6.5a3.2,3.2,0,0,0,.5,1.843Z"></path>
-							<path class="ca-fill" d="M8.984,10C11.457,10.208,12,10.479,12,11.5c0,0.708-1.283,1.5-3,1.5-1.571,0-2.765-.679-2.969-1.309a1,1,0,1,0-1.9.617C4.644,13.894,6.646,15,9,15c2.8,0,5-1.538,5-3.5a3.2,3.2,0,0,0-.5-1.843Z"></path>
-						</svg>
-					</button>
+			<transition name="fade">
+				<div ref="toolbar" class="toolbar" v-show="isOpenToolbar" >
+					<template v-if="showCreateLink">
+						<div class="link-toolbar">
+							<CaInput v-model="selectionLinkUrl" />
+							<CaButton @click="createLink">Add</CaButton>
+							<div class="divider"></div>
+							<CaButton @click="removeLink" :disabled="selectionLinkUrl.trim() === ''">Remove</CaButton>
+						</div>
+					</template>
+					<template v-else>
+						<button @click.prevent="command('bold')" :class="{ 'ca-active': commandStatus.bold }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<path class="ca-stroke" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
+								<path class="ca-stroke" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path>
+							</svg>
+						</button>
+						<button @click.prevent="command('italic')" :class="{ 'ca-active': commandStatus.italic }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<line class="ca-stroke" x1="7" x2="13" y1="4" y2="4"></line>
+								<line class="ca-stroke" x1="5" x2="11" y1="14" y2="14"></line>
+								<line class="ca-stroke" x1="8" x2="10" y1="14" y2="4"></line>
+							</svg>
+						</button>
+						<button @click.prevent="command('underline')" :class="{ 'ca-active': commandStatus.underline }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<path class="ca-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
+								<rect class="ca-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
+							</svg>
+						</button>
+						<button @click.prevent="command('strikethrough')" :class="{ 'ca-active': commandStatus.strike }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<line class="ca-stroke ca-thin" x1="15.5" x2="2.5" y1="8.5" y2="9.5"></line>
+								<path class="ca-fill" d="M9.007,8C6.542,7.791,6,7.519,6,6.5,6,5.792,7.283,5,9,5c1.571,0,2.765.679,2.969,1.309a1,1,0,0,0,1.9-.617C13.356,4.106,11.354,3,9,3,6.2,3,4,4.538,4,6.5a3.2,3.2,0,0,0,.5,1.843Z"></path>
+								<path class="ca-fill" d="M8.984,10C11.457,10.208,12,10.479,12,11.5c0,0.708-1.283,1.5-3,1.5-1.571,0-2.765-.679-2.969-1.309a1,1,0,1,0-1.9.617C4.644,13.894,6.646,15,9,15c2.8,0,5-1.538,5-3.5a3.2,3.2,0,0,0-.5-1.843Z"></path>
+							</svg>
+						</button>
 
-					<button @click.prevent="command('createLink')" :class="{ 'ca-active': commandStatus.link }" type="button" tabindex="-1">
-						<svg viewBox="0 0 18 18">
-							<line class="ca-stroke" x1="7" x2="11" y1="7" y2="11"></line>
-							<path class="ca-even ca-stroke" d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path>
-							<path class="ca-even ca-stroke" d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path>
-						</svg>
-					</button>
-				</template>
+						<button @click.prevent="command('createLink')" :class="{ 'ca-active': commandStatus.link }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<line class="ca-stroke" x1="7" x2="11" y1="7" y2="11"></line>
+								<path class="ca-even ca-stroke" d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path>
+								<path class="ca-even ca-stroke" d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path>
+							</svg>
+						</button>
+					</template>
 
-				<div class="toolbar-arrow"></div>
-			</div>
+					<div class="toolbar-arrow"></div>
+				</div>
+			</transition>
 		</on-event-outside>
 	</div>
 </template>
@@ -104,7 +106,6 @@ export default {
 			},
 			isOpenToolbar: false,
 			showCreateLink: false,
-			isSelectionStart: false,
 			currentRange: null,
 			commandStatus: {
 				bold: false,
@@ -135,6 +136,11 @@ export default {
 		});
 
 		this.changeHandler()
+
+		this.$once("hook:beforeDestroy", () => {
+			this.popperInstance.destroy();
+			document.removeEventListener('selectionchange', this.selectionChangeHandler);
+		})
 	},
 	watch: {
 		showCreateLink () {
@@ -145,13 +151,11 @@ export default {
 	},
 	methods: {
 		selectStartHandler () {
-			this.isSelectionStart = true;
-			this.document.addEventListener('mouseup', this.selectionEndHandler)	
+			document.addEventListener("selectionchange", this.selectionChangeHandler)
 		},
-		selectionEndHandler () {
+		selectionChangeHandler (e) {
 			let selection = this.document.getSelection();
 			let selectionRect = selection.getRangeAt(0).getBoundingClientRect();
-
 
 			if (selection.anchorNode === selection.focusNode && selection.anchorOffset === selection.focusOffset) {
 				this.isSelected = false;
@@ -159,8 +163,8 @@ export default {
 				return;
 			}
 
-			let editableRect = this.$el.getBoundingClientRect();
 
+			let editableRect = this.$el.getBoundingClientRect();
 
 			this.fakeRefStyle.width = selectionRect.width + "px";
 			this.fakeRefStyle.height = selectionRect.height + "px";
@@ -175,8 +179,6 @@ export default {
 			});
 
 			this.currentRange = this.document.getSelection().getRangeAt(0);
-
-			this.document.removeEventListener('mouseup', this.selectionEndHandler);
 		},
 		command (command) {
 			switch(command) {
@@ -198,16 +200,8 @@ export default {
 			}
 
 			this.updateCommandStatus();
-			// this.closeToolbar();
 		},
-		closeToolbar (event) {
-			if (event) {
-				let target = event.composedPath()[0];
-				if (target === this.$refs.body || this.$refs.body.contains(target)) {
-					return;
-				}
-			}
-
+		closeToolbar () {
 			this.isOpenToolbar = false;
 			this.showCreateLink = false;
 			this.selectionLinkUrl = '';

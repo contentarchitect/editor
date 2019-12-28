@@ -83,23 +83,23 @@
 											<template v-slot:title="{ toggleSection, showSection }">
 												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
 											</template>
-											<css-grid :columns="['2fr', '3fr']" gap="8px 0">
 												<template v-for="(humanName, className) in block.constructor.classOptions">
-													<template v-if="isObject(humanName)">
-														<span :key="className">{{ capitalized(className) }}</span>
-														<select v-model="block.classOptions[className]" :key="className">
-															<option value=""></option>
-															<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
-																{{humName}}
-															</option>
-														</select>
-													</template>
-													<template v-else>
-														<span :key="className">{{ humanName }}</span>
-														<checkbox v-model="block.classOptions[className]" :key="className" />
-													</template>
-												</template>
-											</css-grid>
+													<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
+														<template v-if="isObject(humanName)">
+															<span>{{ capitalized(className) }}</span>
+															<select v-model="block.classOptions[className]">
+																<option value=""></option>
+																<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
+																	{{humName}}
+																</option>
+															</select>
+														</template>
+														<template v-else>
+															<span>{{ humanName }}</span>
+															<checkbox v-model="block.classOptions[className]" />
+														</template>
+												</css-grid>
+											</template>
 										</settings-section>
 
 										<settings-section v-if="block.constructor.settingsComponent" :collapsed="false">

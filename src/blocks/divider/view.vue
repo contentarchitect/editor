@@ -18,7 +18,7 @@ export default {
         },
         border: {
             render (h) {
-                return h("hr", { attrs: { class: "divider divider-line" } })
+                return h("hr", { attrs: { class: "divider divider-border" } })
             }
         },
     }
@@ -26,22 +26,22 @@ export default {
 </script>
 
 <style>
-.divider {
+/* .divider {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 0;
     padding: 10px 0;
-}
+} */
 
-.divider-star::before {
+/* .divider-star::before {
     content: "***";
     letter-spacing: 15px;
     margin-right: -14px
 }
 
-.divider-line {
+.divider-border {
     flex: 1;
     border-bottom: 1px solid #ccc;
-}
+} */
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<li>
-		<a :href="`#${item.anchorId}`">{{ item.content }}</a>
+		<a :href="`#${item.anchorId}`" v-html="item.content"></a>
 		<ul v-if="item.children.length">
 			<TreeItem
 				v-for="(child, index) in item.children"

@@ -253,7 +253,10 @@ export default {
 			document.execCommand('unlink');
 			this.showCreateLink = false;
 			this.updateCommandStatus();
-		}
+		},
+		innerText () {
+			return this.$refs.body.innerText;
+		} 
 
 	}
 }

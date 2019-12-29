@@ -236,6 +236,25 @@ h5:hover .anchor svg,
 h6:hover .anchor svg {
 	visibility: visible;
 }
+
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 10px 0;
+}
+
+.divider-star::before {
+    content: "***";
+    letter-spacing: 15px;
+    margin-right: -14px
+}
+
+.divider-border {
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
 </style>
 
 <style>
@@ -256,6 +275,7 @@ h6:hover .anchor svg {
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
 	<script src="https://prismjs.com/components/prism-markup.js"></script>
+	<script src="https://prismjs.com/components/prism-javascript.js"></script>
 	<script src="http://unpkg.com/vue"></script>
 	<script src="../dist/CaCore.umd.js"></script>
 	<script src="../dist/CaBlocks.umd.js"></script>

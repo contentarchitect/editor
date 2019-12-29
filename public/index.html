@@ -16,6 +16,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
 <script src="https://prismjs.com/components/prism-markup.js"></script>
+<script src="https://prismjs.com/components/prism-clike.js"></script>
+<script src="https://prismjs.com/components/prism-javascript.js"></script>
 <script src="https://prismjs.com/components/prism-css.js"></script>
 
 
@@ -349,7 +351,25 @@ h5:hover .anchor svg,
 h6:hover .anchor svg {
 	visibility: visible;
 }
+
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 10px 0;
+}
 		
+.divider-star::before {
+    content: "***";
+    letter-spacing: 15px;
+    margin-right: -14px
+}
+
+.divider-border {
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
 </style>
 
 <style>
@@ -458,38 +478,21 @@ h6:hover .anchor svg {
 				<h2>Javascript usage</h2>
 			</div>
 
-			<div data-block="Wysiwyg">
-				<pre>
-					<code>const typography = new Typography({
+			<div data-block="Code" data-language="js">
+				<pre class="language-js">const typography = new Typography({
 	baseFontSize: '18px',
 	baseLineHeight: 1.666,
 	headerFontFamily: ['Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
 	bodyFontFamily: ['Georgia', 'serif'],
 	// See below for the full list of options.
 })
-
+				
 // Output CSS as string.
 typography.toString()
 
-// Or insert styles directly into the <head> (works well for client-only
+// Or insert styles directly into the  (works well for client-only
 // JS web apps.
-typography.injectStyles()</code>
-				</pre>
-			</div>
-
-			<div data-block="Code" data-language="html">
-				<pre class="language-html">&lt;html&gt;
-	&lt;head&gt;
-		&lt;title&gt;Deneme&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body class=&quot;deneme&quot;&gt;
-		&lt;h1&gt;Baslik&lt;/h1&gt;
-	
-		&lt;script&gt;
-			function Deneme () {}
-		&lt;/script&gt;
-	&lt;/body&gt;
-&lt;/html&gt;</pre>
+typography.injectStyles()</pre>
 			</div>
 		</content-architect>
 

@@ -77,32 +77,47 @@
 											<v-button @click="immediatelyRemoveBlock">Remove</v-button>
 										</settings-section>
 
-										<settings-section :collapsed="true">
-											<template v-slot:title="{ toggleSection, showSection }">
-												<section-title @click="toggleSection" :collapsed="showSection">CSS class options</section-title>
+										<settings-section :collapsed="true" :disabled="isObjectEmpty(block.constructor.classOptions)">
+											<template v-slot:title="{ toggleSection, showSection, disabled }">
+												<section-title
+													@click="() => !disabled && toggleSection()"
+													:collapsed="showSection"
+													:disabled="disabled"
+												>
+													CSS class options
+												</section-title>
 											</template>
-												<template v-for="(humanName, className) in block.constructor.classOptions">
-													<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
-														<template v-if="isObject(humanName)">
-															<span>{{ capitalized(className) }}</span>
-															<select v-model="block.classOptions[className]">
-																<option value=""></option>
-																<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
-																	{{humName}}
-																</option>
-															</select>
-														</template>
-														<template v-else>
-															<span>{{ humanName }}</span>
-															<checkbox v-model="block.classOptions[className]" />
-														</template>
+											<template v-for="(humanName, className) in block.constructor.classOptions">
+												<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
+													<template v-if="isObject(humanName)">
+														<span>{{ capitalized(className) }}</span>
+														<select v-model="block.classOptions[className]">
+															<option value=""></option>
+															<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
+																{{humName}}
+															</option>
+														</select>
+													</template>
+													<template v-else>
+														<span>{{ humanName }}</span>
+														<checkbox v-model="block.classOptions[className]" />
+													</template>
 												</css-grid>
 											</template>
 										</settings-section>
 
-										<settings-section v-if="block.constructor.settingsComponent" :collapsed="false">
-											<template v-slot:title="{ toggleSection, showSection }">
-												<section-title @click="toggleSection" :collapsed="showSection">Block</section-title>
+										<settings-section
+											:collapsed="false"
+											:disabled="!block.constructor.settingsComponent"
+										>
+											<template v-slot:title="{ toggleSection, showSection, disabled }">
+												<section-title
+													@click="() => !disabled && toggleSection()"
+													:collapsed="showSection"
+													:disabled="disabled"
+												>
+													Block
+												</section-title>
 											</template>
 											<component :is="block.constructor.settingsComponent" :settings="block.constructor.settings" :value="block" />
 										</settings-section>
@@ -186,6 +201,7 @@ export default {
 			startDragPos: { x: 0, y: 0 },
 			popperPos: { x: 0, y: 0 },
 			popperModifiers: [],
+			isObjectEmpty: Util.isObjectEmpty
 		}
 	},
 	mounted () {

@@ -1,6 +1,6 @@
 <template>
 	<div class="settings-section" >
-		<slot name="title" :toggle-section="toggleSection" :show-section="showSection" />
+		<slot name="title" :toggle-section="toggleSection" :show-section="showSection" :disabled="disabled" />
 		<div class="settings-section-body" v-if="showSection">
 			<slot  />
 		</div>
@@ -13,11 +13,15 @@ export default {
 		collapsed: {
 			type: Boolean,
 			default: true
+		},
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data () {
 		return {
-			showSection: this.collapsed
+			showSection: this.collapsed && !this.disabled
 		}
 	},
 	methods: {

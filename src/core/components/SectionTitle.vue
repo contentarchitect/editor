@@ -1,5 +1,5 @@
 <template>
-	<div class="settings-section-title" v-on="$listeners">
+	<div class="settings-section-title" v-on="$listeners" :style="styles">
 		<div>
 			<slot />
 		</div>
@@ -23,8 +23,19 @@ export default {
 		collapsed: {
 			type: Boolean,
 			default: true
+		},
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
+	computed: {
+		styles () {
+			return {
+				opacity: this.disabled ? .5 : 1
+			}
+		}
+	}
 }
 </script>
 

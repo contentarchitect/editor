@@ -66,9 +66,7 @@
 								<div class="tooltip-inner popover-inner">
 									<div class="settings-panel-header" @mousedown="mousedownHandler">
 										{{block.constructor.name.toUpperCase() }} SETTINGS
-										<Tooltip tooltip="Close the window">
-											<a @click="closeBtnAction">✕</a>
-										</Tooltip>
+										<a @click="closeBtnAction">✕</a>
 									</div>
 									<div class="settings-panel-body">
 										<settings-section :collapsed="false">

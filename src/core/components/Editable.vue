@@ -214,8 +214,15 @@ export default {
 		keydownHandler (e) {
 			if (e.which === 13 && !this.block) {
 				e.preventDefault();
-			} else if (!e.shiftKey && e.which === 13 && this.block) {
-				document.execCommand('formatBlock', false, 'p');
+			} else if (e.which === 8) {
+				const range = this.document.getSelection().getRangeAt(0)
+				if (
+					range.startContainer.nodeType === Node.ELEMENT_NODE &&
+					range.startContainer.innerText.trim() === "" &&
+					!range.startContainer.previousElementSibling
+				) {
+					e.preventDefault();
+				}
 			}
 		},
 		keyupHandler (e) {

@@ -1,3892 +1,1183 @@
-yarn run v1.12.3
-$ rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks
 
-> @contentarchitect/editor@0.2.13 build:core D:\projects\vue\contentarchitect\editor
-> vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean
+> @contentarchitect/editor@0.2.19 inspect D:\projects\vue\contentarchitect\editor
+> vue-cli-service inspect
 
-
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Core',
-     '--filename',
-     'ContentArchitect.Core',
-     './src/core/index.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:core"],"original":["run","build:core"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:core',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 15276,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 14184,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Core',
-     '--filename',
-     'ContentArchitect.Core',
-     './src/core/index.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:core"],"original":["run","build:core"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:core',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     VUE_CLI_ENTRY_FILES:
-      '["D:\\\\projects\\\\vue\\\\contentarchitect\\\\editor\\\\src\\\\main.js"]',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 15276,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 14184,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Core',
-     '--filename',
-     'ContentArchitect.Core',
-     './src/core/index.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:core"],"original":["run","build:core"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:core',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     VUE_CLI_ENTRY_FILES:
-      '["D:\\\\projects\\\\vue\\\\contentarchitect\\\\editor\\\\src\\\\main.js"]',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 15276,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 14184,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
- WARNING  Compiled with 3 warnings13:53:11
-
- warning  
-
-asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
-This can impact web performance.
-Assets: 
-  ContentArchitect.Core.umd.js (551 KiB)
-
- warning  
-
-entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
-Entrypoints:
-  ContentArchitect.Core.umd (551 KiB)
-      ContentArchitect.Core.umd.js
-
-
- warning  
-
-webpack performance recommendations: 
-You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
-For more info visit https://webpack.js.org/guides/code-splitting/
-
- WARNING  Compiled with 3 warnings13:53:11
-
- warning  
-
-asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
-This can impact web performance.
-Assets: 
-  ContentArchitect.Core.common.js (554 KiB)
-
- warning  
-
-entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
-Entrypoints:
-  ContentArchitect.Core.common (554 KiB)
-      ContentArchitect.Core.common.js
-
-
- warning  
-
-webpack performance recommendations: 
-You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
-For more info visit https://webpack.js.org/guides/code-splitting/
-
- DONE  Compiled successfully in 6756ms13:53:11
-
-  File                                     Size             Gzipped
-
-  dist\ContentArchitect.Core.umd.min.js    170.83 KiB       54.08 KiB
-  dist\ContentArchitect.Core.common.js     554.40 KiB       125.63 KiB
-  dist\ContentArchitect.Core.umd.js        550.82 KiB       124.24 KiB
-
-  Images and other types of assets omitted.
-
-
-> @contentarchitect/editor@0.2.13 build:editor D:\projects\vue\contentarchitect\editor
-> vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean
-
-
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Editor',
-     '--filename',
-     'ContentArchitect.Editor',
-     './src/editor.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:editor"],"original":["run","build:editor"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:editor',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 2452,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 8992,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Editor',
-     '--filename',
-     'ContentArchitect.Editor',
-     './src/editor.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:editor"],"original":["run","build:editor"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:editor',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     VUE_CLI_ENTRY_FILES:
-      '["D:\\\\projects\\\\vue\\\\contentarchitect\\\\editor\\\\src\\\\main.js"]',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 2452,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 8992,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
-process {
-  title: 'npm',
-  version: 'v10.13.0',
-  versions:
-   { http_parser: '2.8.0',
-     node: '10.13.0',
-     v8: '6.8.275.32-node.36',
-     uv: '1.23.2',
-     zlib: '1.2.11',
-     ares: '1.14.0',
-     modules: '64',
-     nghttp2: '1.34.0',
-     napi: '3',
-     openssl: '1.1.0i',
-     icu: '62.1',
-     unicode: '11.0',
-     cldr: '33.1',
-     tz: '2018e' },
-  arch: 'x64',
-  platform: 'win32',
-  release:
-   { name: 'node',
-     lts: 'Dubnium',
-     sourceUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0.tar.gz',
-     headersUrl:
-      'https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz',
-     libUrl:
-      'https://nodejs.org/download/release/v10.13.0/win-x64/node.lib' },
-  argv:
-   [ 'C:\\Program Files\\nodejs\\node.exe',
-     'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     'build',
-     '--target',
-     'lib',
-     '--name',
-     'Editor',
-     '--filename',
-     'ContentArchitect.Editor',
-     './src/editor.js',
-     '--no-clean' ],
-  execArgv: [],
-  env:
-   { ALLUSERSPROFILE: 'C:\\ProgramData',
-     APPDATA: 'C:\\Users\\cihad\\AppData\\Roaming',
-     BABEL_ENV: 'production',
-     COLORTERM: 'truecolor',
-     COMMONPROGRAMFILES: 'C:\\Program Files\\Common Files',
-     'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
-     CommonProgramW6432: 'C:\\Program Files\\Common Files',
-     COMPUTERNAME: 'WINDOWS-0IC9RLS',
-     COMSPEC: 'C:\\windows\\system32\\cmd.exe',
-     DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
-     EXEPATH: 'C:\\Program Files\\Git\\bin',
-     FPS_BROWSER_APP_PROFILE_STRING: 'Internet Explorer',
-     FPS_BROWSER_USER_PROFILE_STRING: 'Default',
-     GDAL_DATA: 'C:\\Program Files\\PostgreSQL\\10\\gdal-data',
-     HOME: 'C:\\Users\\cihad',
-     HOMEDRIVE: 'C:',
-     HOMEPATH: '\\Users\\cihad',
-     INIT_CWD: 'D:\\projects\\vue\\contentarchitect\\editor',
-     LANG: 'en_US.UTF-8',
-     LOCALAPPDATA: 'C:\\Users\\cihad\\AppData\\Local',
-     LOGONSERVER: '\\\\WINDOWS-0IC9RLS',
-     MSYSTEM: 'MINGW64',
-     NODE: 'C:\\Program Files\\nodejs\\node.exe',
-     NODE_ENV: 'production',
-     NODE_EXE: 'C:\\Program Files\\nodejs\\\\node.exe',
-     NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_config_access: '',
-     npm_config_allow_same_version: '',
-     npm_config_also: '',
-     npm_config_always_auth: '',
-     npm_config_argv:
-      '{"remain":[],"cooked":["run","build:editor"],"original":["run","build:editor"]}',
-     npm_config_audit: 'true',
-     npm_config_audit_level: 'low',
-     npm_config_auth_type: 'legacy',
-     npm_config_before: '',
-     npm_config_bin_links: 'true',
-     npm_config_browser: '',
-     npm_config_ca: '',
-     npm_config_cache: 'C:\\Users\\cihad\\AppData\\Roaming\\npm-cache',
-     npm_config_cache_lock_retries: '10',
-     npm_config_cache_lock_stale: '60000',
-     npm_config_cache_lock_wait: '10000',
-     npm_config_cache_max: 'Infinity',
-     npm_config_cache_min: '10',
-     npm_config_cafile: '',
-     npm_config_cert: '',
-     npm_config_cidr: '',
-     npm_config_color: 'true',
-     npm_config_commit_hooks: 'true',
-     npm_config_depth: 'Infinity',
-     npm_config_description: 'true',
-     npm_config_dev: '',
-     npm_config_dry_run: '',
-     npm_config_editor: 'notepad.exe',
-     npm_config_engine_strict: '',
-     npm_config_fetch_retries: '2',
-     npm_config_fetch_retry_factor: '10',
-     npm_config_fetch_retry_maxtimeout: '60000',
-     npm_config_fetch_retry_mintimeout: '10000',
-     npm_config_force: '',
-     npm_config_git: 'git',
-     npm_config_git_tag_version: 'true',
-     npm_config_global: '',
-     npm_config_globalconfig: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmrc',
-     npm_config_globalignorefile: 'C:\\Users\\cihad\\AppData\\Roaming\\npm\\etc\\npmignore',
-     npm_config_global_style: '',
-     npm_config_group: '',
-     npm_config_ham_it_up: '',
-     npm_config_heading: 'npm',
-     npm_config_https_proxy: '',
-     npm_config_if_present: '',
-     npm_config_ignore_prepublish: '',
-     npm_config_ignore_scripts: '',
-     npm_config_init_author_email: '',
-     npm_config_init_author_name: '',
-     npm_config_init_author_url: '',
-     npm_config_init_license: 'MIT',
-     npm_config_init_module: 'C:\\Users\\cihad\\.npm-init.js',
-     npm_config_init_version: '1.0.0',
-     npm_config_json: '',
-     npm_config_key: '',
-     npm_config_legacy_bundling: '',
-     npm_config_link: '',
-     npm_config_local_address: '',
-     npm_config_loglevel: 'notice',
-     npm_config_logs_max: '10',
-     npm_config_long: '',
-     npm_config_maxsockets: '50',
-     npm_config_message: '%s',
-     npm_config_metrics_registry: 'https://registry.yarnpkg.com/',
-     npm_config_node_gyp:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js',
-     npm_config_node_options: '',
-     npm_config_node_version: '10.13.0',
-     npm_config_noproxy: '',
-     npm_config_offline: '',
-     npm_config_onload_script: '',
-     npm_config_only: '',
-     npm_config_optional: 'true',
-     npm_config_otp: '',
-     npm_config_package_lock: 'true',
-     npm_config_package_lock_only: '',
-     npm_config_parseable: '',
-     npm_config_prefer_offline: '',
-     npm_config_prefer_online: '',
-     npm_config_prefix: 'C:\\Users\\cihad\\AppData\\Roaming\\npm',
-     npm_config_preid: '',
-     npm_config_production: '',
-     npm_config_progress: 'true',
-     npm_config_proxy: '',
-     npm_config_read_only: '',
-     npm_config_rebuild_bundle: 'true',
-     npm_config_registry: 'https://registry.yarnpkg.com/',
-     npm_config_rollback: 'true',
-     npm_config_save: 'true',
-     npm_config_save_bundle: '',
-     npm_config_save_dev: '',
-     npm_config_save_exact: '',
-     npm_config_save_optional: '',
-     npm_config_save_prefix: '^',
-     npm_config_save_prod: '',
-     npm_config_scope: '',
-     npm_config_scripts_prepend_node_path: 'warn-only',
-     npm_config_script_shell: '',
-     npm_config_searchexclude: '',
-     npm_config_searchlimit: '20',
-     npm_config_searchopts: '',
-     npm_config_searchstaleness: '900',
-     npm_config_send_metrics: '',
-     npm_config_shell: 'C:\\windows\\system32\\cmd.exe',
-     npm_config_shrinkwrap: 'true',
-     npm_config_sign_git_commit: '',
-     npm_config_sign_git_tag: '',
-     npm_config_sso_poll_frequency: '500',
-     npm_config_sso_type: 'oauth',
-     npm_config_strict_ssl: 'true',
-     npm_config_tag: 'latest',
-     npm_config_tag_version_prefix: 'v',
-     npm_config_timing: '',
-     npm_config_tmp: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     npm_config_umask: '0000',
-     npm_config_unicode: '',
-     npm_config_unsafe_perm: 'true',
-     npm_config_update_notifier: 'true',
-     npm_config_usage: '',
-     npm_config_user: '',
-     npm_config_userconfig: 'C:\\Users\\cihad\\.npmrc',
-     npm_config_user_agent: 'yarn/1.12.3 npm/? node/v10.13.0 win32 x64',
-     npm_config_version: '',
-     npm_config_versions: '',
-     npm_config_version_commit_hooks: 'true',
-     npm_config_version_git_message: 'v%s',
-     npm_config_version_git_tag: 'true',
-     npm_config_version_tag_prefix: 'v',
-     npm_config_viewer: 'browser',
-     npm_execpath:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     npm_lifecycle_event: 'build:editor',
-     npm_lifecycle_script:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_node_execpath: 'C:\\Program Files\\nodejs\\node.exe',
-     npm_package_browserslist_0: '> 1%',
-     npm_package_browserslist_1: 'last 2 versions',
-     npm_package_dependencies_axios: '^0.19.0',
-     npm_package_dependencies_codemirror: '^5.49.2',
-     npm_package_dependencies_core_js: '^2.6.5',
-     npm_package_dependencies_normalize_css: '^8.0.1',
-     npm_package_dependencies_popper_js: '^1.16.0',
-     npm_package_dependencies_portal_vue: '^2.1.6',
-     npm_package_dependencies_vue: '^2.6.10',
-     npm_package_dependencies_vue_image_upload_resize: '^2.0.4',
-     npm_package_dependencies_v_tooltip: '^2.0.2',
-     npm_package_dependencies__contentarchitect_blocks: 'file:src/blocks',
-     npm_package_dependencies__contentarchitect_core: 'file:src/core',
-     npm_package_dependencies__contentarchitect_header: 'file:../header',
-     npm_package_dependencies__vue_web_component_wrapper: '^1.2.0',
-     npm_package_description: '## Project setup ``` yarn install ```',
-     npm_package_devDependencies_babel_eslint: '^10.0.1',
-     npm_package_devDependencies_eslint: '^5.16.0',
-     npm_package_devDependencies_eslint_plugin_vue: '^5.0.0',
-     npm_package_devDependencies_vue_svg_loader: '^0.12.0',
-     npm_package_devDependencies_vue_template_compiler: '^2.6.10',
-     npm_package_devDependencies__vue_cli_plugin_babel: '^3.9.0',
-     npm_package_devDependencies__vue_cli_plugin_eslint: '^3.9.0',
-     npm_package_devDependencies__vue_cli_service: '^3.9.0',
-     npm_package_eslintConfig_env_node: 'true',
-     npm_package_eslintConfig_extends_0: 'plugin:vue/essential',
-     npm_package_eslintConfig_extends_1: 'eslint:recommended',
-     npm_package_eslintConfig_parserOptions_parser: 'babel-eslint',
-     npm_package_eslintConfig_root: 'true',
-     npm_package_files_0: 'dist/*',
-     npm_package_files_1: 'public/*',
-     npm_package_files_2: '*.json',
-     npm_package_files_3: '*.js',
-     npm_package_gitHead: 'd386ef84ae93dfab069559d8b34fed25ab3d9116',
-     npm_package_main: './dist/ContentArchitect.umd.js',
-     npm_package_module: './src/base.js',
-     npm_package_name: '@contentarchitect/editor',
-     npm_package_readmeFilename: 'README.md',
-     npm_package_scripts_build:
-      'rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks',
-     npm_package_scripts_build_blocks:
-      'vue-cli-service build --target lib --name Blocks --filename ContentArchitect.Blocks ./src/blocks/index.js --no-clean',
-     npm_package_scripts_build_core:
-      'vue-cli-service build --target lib --name Core --filename ContentArchitect.Core ./src/core/index.js --no-clean',
-     npm_package_scripts_build_editor:
-      'vue-cli-service build --target lib --name Editor --filename ContentArchitect.Editor ./src/editor.js --no-clean',
-     npm_package_scripts_inspect: 'vue-cli-service inspect',
-     npm_package_scripts_lint: 'vue-cli-service lint',
-     npm_package_scripts_serve: 'vue-cli-service serve',
-     npm_package_version: '0.2.13',
-     NPM_PREFIX_NPM_CLI_JS:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-     NUMBER_OF_PROCESSORS: '4',
-     OLDPWD: 'D:/projects/vue/contentarchitect',
-     OneDrive: 'C:\\Users\\cihad\\OneDrive',
-     OS: 'Windows_NT',
-     PATH:
-      'C:\\Users\\cihad\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Temp\\yarn--1575370379949-0.9980215531484906;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\cihad\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\cihad\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;C:\\windows\\System32\\OpenSSH;C:\\Program Files\\nodejs;C:\\Program Files\\dotnet;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\cihad\\AppData\\Roaming\\npm;C:\\Users\\cihad\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\src\\flutter\\bin;C:\\Users\\cihad\\AppData\\Local\\Microsoft\\WindowsApps',
-     PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC',
-     PLINK_PROTOCOL: 'ssh',
-     POSTGIS_ENABLE_OUTDB_RASTERS: '1',
-     POSTGIS_GDAL_ENABLED_DRIVERS: 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid',
-     PROCESSOR_ARCHITECTURE: 'AMD64',
-     PROCESSOR_IDENTIFIER: 'Intel64 Family 6 Model 78 Stepping 3, GenuineIntel',
-     PROCESSOR_LEVEL: '6',
-     PROCESSOR_REVISION: '4e03',
-     ProgramData: 'C:\\ProgramData',
-     PROGRAMFILES: 'C:\\Program Files',
-     'ProgramFiles(x86)': 'C:\\Program Files (x86)',
-     ProgramW6432: 'C:\\Program Files',
-     PROMPT: '$P$G',
-     PSModulePath:
-      'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules',
-     PUBLIC: 'C:\\Users\\Public',
-     PWD: 'D:/projects/vue/contentarchitect/editor',
-     SESSIONNAME: 'Console',
-     SHLVL: '2',
-     SYSTEMDRIVE: 'C:',
-     SYSTEMROOT: 'C:\\windows',
-     TEMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     TERM: 'cygwin',
-     TERM_PROGRAM: 'vscode',
-     TERM_PROGRAM_VERSION: '1.40.2',
-     TMP: 'C:\\Users\\cihad\\AppData\\Local\\Temp',
-     USERDOMAIN: 'WINDOWS-0IC9RLS',
-     USERDOMAIN_ROAMINGPROFILE: 'WINDOWS-0IC9RLS',
-     USERNAME: 'cihad',
-     USERPROFILE: 'C:\\Users\\cihad',
-     VUE_CLI_BUILD_TARGET: 'lib',
-     VUE_CLI_CSS_SHADOW_MODE: 'true',
-     VUE_CLI_ENTRY_FILES:
-      '["D:\\\\projects\\\\vue\\\\contentarchitect\\\\editor\\\\src\\\\main.js"]',
-     WINDIR: 'C:\\windows',
-     YARN_WRAP_OUTPUT: 'false',
-     _: 'C:/Program Files/nodejs/node' },
-  pid: 2452,
-  features:
-   { debug: false,
-     uv: true,
-     ipv6: true,
-     tls_alpn: true,
-     tls_sni: true,
-     tls_ocsp: true,
-     tls: true },
-  ppid: 8992,
-  execPath: 'C:\\Program Files\\nodejs\\node.exe',
-  debugPort: 9229,
-  _debugProcess: [Function: _debugProcess],
-  _debugEnd: [Function: _debugEnd],
-  _startProfilerIdleNotifier: [Function: _startProfilerIdleNotifier],
-  _stopProfilerIdleNotifier: [Function: _stopProfilerIdleNotifier],
-  abort: [Function: abort],
-  chdir: [Function],
-  umask: [Function: umask],
-  _getActiveRequests: [Function: _getActiveRequests],
-  _getActiveHandles: [Function: _getActiveHandles],
-  _kill: [Function: _kill],
-  cwd: [Function],
-  dlopen: [Function: dlopen],
-  reallyExit: [Function: processReallyExit],
-  uptime: [Function: uptime],
-  _rawDebug: [Function],
-  moduleLoadList:
-   [ 'Binding contextify',
-     'Internal Binding worker',
-     'NativeModule events',
-     'NativeModule internal/async_hooks',
-     'NativeModule internal/errors',
-     'Binding uv',
-     'Binding buffer',
-     'Binding async_wrap',
-     'Binding config',
-     'Binding icu',
-     'NativeModule util',
-     'NativeModule internal/util/inspect',
-     'Binding util',
-     'NativeModule internal/util',
-     'Binding constants',
-     'Internal Binding types',
-     'NativeModule internal/util/types',
-     'NativeModule internal/validators',
-     'NativeModule internal/encoding',
-     'NativeModule buffer',
-     'NativeModule internal/buffer',
-     'NativeModule internal/process/per_thread',
-     'NativeModule internal/process/main_thread_only',
-     'NativeModule internal/process/stdio',
-     'NativeModule assert',
-     'NativeModule internal/assert',
-     'NativeModule fs',
-     'NativeModule path',
-     'NativeModule internal/constants',
-     'Binding fs',
-     'NativeModule internal/fs/streams',
-     'NativeModule internal/fs/utils',
-     'NativeModule stream',
-     'NativeModule internal/streams/pipeline',
-     'NativeModule internal/streams/end-of-stream',
-     'NativeModule internal/streams/legacy',
-     'NativeModule _stream_readable',
-     'NativeModule internal/streams/buffer_list',
-     'NativeModule internal/streams/destroy',
-     'NativeModule internal/streams/state',
-     'NativeModule _stream_writable',
-     'NativeModule _stream_duplex',
-     'NativeModule _stream_transform',
-     'NativeModule _stream_passthrough',
-     'NativeModule internal/url',
-     'NativeModule internal/querystring',
-     'Binding url',
-     'NativeModule internal/process/warning',
-     'NativeModule internal/process/next_tick',
-     'NativeModule internal/process/promises',
-     'NativeModule internal/fixed_queue',
-     'Binding performance',
-     'Binding trace_events',
-     'NativeModule internal/inspector_async_hook',
-     'Binding inspector',
-     'Internal Binding options',
-     'NativeModule timers',
-     'Binding timer_wrap',
-     'NativeModule internal/linkedlist',
-     'NativeModule internal/timers',
-     'NativeModule internal/modules/cjs/loader',
-     'NativeModule vm',
-     'NativeModule internal/modules/cjs/helpers',
-     'NativeModule console',
-     'Binding tty_wrap',
-     'NativeModule internal/fs/sync_write_stream',
-     'NativeModule tty',
-     'NativeModule net',
-     'NativeModule internal/net',
-     'Binding stream_wrap',
-     'Binding tcp_wrap',
-     'Binding pipe_wrap',
-     'NativeModule internal/stream_base_commons',
-     'NativeModule internal/tty',
-     'Binding signal_wrap',
-     'NativeModule child_process',
-     'NativeModule internal/child_process',
-     'NativeModule dgram',
-     'NativeModule internal/dgram',
-     'Binding udp_wrap',
-     'Binding process_wrap',
-     'NativeModule internal/socket_list',
-     'Binding spawn_sync',
-     'Binding http_parser',
-     'NativeModule _http_common',
-     'NativeModule internal/freelist',
-     'NativeModule internal/http',
-     'NativeModule _http_incoming',
-     'NativeModule os',
-     'Binding os',
-     'NativeModule tls',
-     'NativeModule internal/tls',
-     'NativeModule url',
-     'Binding crypto',
-     'NativeModule internal/streams/duplexpair',
-     'Binding cares_wrap',
-     'NativeModule _tls_common',
-     'NativeModule _tls_wrap',
-     'NativeModule crypto',
-     'NativeModule internal/crypto/random',
-     ... 20 more items ],
-  binding: [Function: binding],
-  _linkedBinding: [Function: _linkedBinding],
-  _events:
-   { newListener: [Function],
-     removeListener: [Function],
-     warning: [Function],
-     SIGWINCH: [Function],
-     SIGABRT: [Function: listener],
-     SIGALRM: [Function: listener],
-     SIGHUP: [Function: listener],
-     SIGINT: [Function: listener],
-     SIGTERM: [Function: listener] },
-  _eventsCount: 9,
-  _maxListeners: undefined,
-  _fatalException: [Function],
-  domain: null,
-  _exiting: false,
-  assert: [Function: deprecated],
-  config:
-   { target_defaults:
-      { cflags: [],
-        default_configuration: 'Release',
-        defines: [],
-        include_dirs: [],
-        libraries: [] },
-     variables:
-      { asan: 0,
-        build_v8_with_gn: false,
-        coverage: false,
-        debug_nghttp2: false,
-        enable_lto: false,
-        enable_pgo_generate: false,
-        enable_pgo_use: false,
-        force_dynamic_crt: 0,
-        host_arch: 'x64',
-        icu_data_in: '..\\..\\deps/icu-small\\source/data/in\\icudt62l.dat',
-        icu_endianness: 'l',
-        icu_gyp_path: 'tools/icu/icu-generic.gyp',
-        icu_locales: 'en,root',
-        icu_path: 'deps/icu-small',
-        icu_small: true,
-        icu_ver_major: '62',
-        nasm_version: '2.13',
-        node_byteorder: 'little',
-        node_debug_lib: false,
-        node_enable_d8: false,
-        node_enable_v8_vtunejit: false,
-        node_install_npm: true,
-        node_module_version: 64,
-        node_no_browser_globals: false,
-        node_prefix: '/usr/local',
-        node_release_urlbase: 'https://nodejs.org/download/release/',
-        node_shared: false,
-        node_shared_cares: false,
-        node_shared_http_parser: false,
-        node_shared_libuv: false,
-        node_shared_nghttp2: false,
-        node_shared_openssl: false,
-        node_shared_zlib: false,
-        node_tag: '',
-        node_target_type: 'executable',
-        node_use_bundled_v8: true,
-        node_use_dtrace: false,
-        node_use_etw: true,
-        node_use_openssl: true,
-        node_use_pch: false,
-        node_use_perfctr: true,
-        node_use_v8_platform: true,
-        node_with_ltcg: true,
-        node_without_node_options: false,
-        openssl_fips: '',
-        openssl_no_asm: 0,
-        shlib_suffix: 'so.64',
-        target_arch: 'x64',
-        v8_enable_gdbjit: 0,
-        v8_enable_i18n_support: 1,
-        v8_enable_inspector: 1,
-        v8_no_strict_aliasing: 1,
-        v8_optimized_debug: 0,
-        v8_promise_internal_field_count: 1,
-        v8_random_seed: 0,
-        v8_trace_maps: 0,
-        v8_typed_array_max_size_in_heap: 0,
-        v8_use_snapshot: true,
-        want_separate_host_toolset: 0 } },
-  setUncaughtExceptionCaptureCallback: [Function],
-  hasUncaughtExceptionCaptureCallback: [Function],
-  emitWarning: [Function],
-  nextTick: [Function: nextTick],
-  _tickCallback: [Function: _tickCallback],
-  stdout: [Getter],
-  stderr: [Getter],
-  stdin: [Getter],
-  openStdin: [Function],
-  hrtime: { [Function: hrtime] bigint: [Function] },
-  cpuUsage: [Function: cpuUsage],
-  memoryUsage: [Function: memoryUsage],
-  exit: [Function],
-  kill: [Function],
-  argv0: 'node',
-  allowedNodeEnvironmentFlags: [Getter/Setter],
-  mainModule:
-   Module {
-     id: '.',
-     exports: {},
-     parent: null,
-     filename:
-      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\vue-cli-service.js',
-     loaded: false,
-     children: [ [Module], [Module], [Module], [Module], [Module] ],
-     paths:
-      [ 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\bin\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
-        'D:\\projects\\vue\\contentarchitect\\node_modules',
-        'D:\\projects\\vue\\node_modules',
-        'D:\\projects\\node_modules',
-        'D:\\node_modules' ] },
-  __signal_exit_emitter__:
-   EventEmitter {
-     _events: { afterexit: [Function] },
-     _eventsCount: 1,
-     _maxListeners: Infinity,
-     count: 1,
-     emitted: {},
-     infinite: true },
-  VUE_CLI_SERVICE:
-   Service {
-     initialized: true,
-     context: 'D:\\projects\\vue\\contentarchitect\\editor',
-     inlineOptions: undefined,
-     webpackChainFns:
-      [ [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function],
-        [Function: chainWebpack] ],
-     webpackRawConfigFns: [ [Function: configureWebpack] ],
-     devServerConfigFns: [],
-     commands:
-      { serve: [Object],
-        build: [Object],
-        inspect: [Object],
-        help: [Object],
-        lint: [Object] },
-     pkgContext: 'D:\\projects\\vue\\contentarchitect\\editor',
-     pkg:
-      { name: '@contentarchitect/editor',
-        version: '0.2.13',
-        main: './dist/ContentArchitect.umd.js',
-        module: './src/base.js',
-        files: [Array],
-        scripts: [Object],
-        dependencies: [Object],
-        devDependencies: [Object],
-        eslintConfig: [Object],
-        postcss: [Object],
-        browserslist: [Array],
-        readme: 'ERROR: No README data found!',
-        _id: '@contentarchitect/editor@0.2.13' },
-     plugins:
-      [ [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object],
-        [Object] ],
-     pluginsToSkip: Set {},
-     modes:
-      { serve: 'development',
-        build: 'production',
-        inspect: 'development' },
-     mode: 'production',
-     projectOptions:
-      { configureWebpack: [Function: configureWebpack],
-        css: [Object],
-        chainWebpack: [Function: chainWebpack],
-        baseUrl: '/',
-        publicPath: '/',
-        outputDir: 'dist',
-        assetsDir: '',
-        indexPath: 'index.html',
-        filenameHashing: true,
-        runtimeCompiler: false,
-        transpileDependencies: [],
-        productionSourceMap: true,
-        parallel: true,
-        pages: undefined,
-        crossorigin: undefined,
-        integrity: false,
-        lintOnSave: true,
-        devServer: {} } },
-  emit: [Function: processEmit] }
- ERROR  Failed to compile with 1 errors13:53:22
-
- error  in ContentArchitect.Editor.umd.js
-
-Missing external configuration for type:commonjs2
-
- ERROR  Failed to compile with 1 errors13:53:22
-
- error  in ContentArchitect.Editor.umd.min.js
-
-Missing external configuration for type:commonjs2
-
- WARNING  Compiled with 3 warnings13:53:22
-
- warning  
-
-asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
-This can impact web performance.
-Assets: 
-  ContentArchitect.Editor.common.js (499 KiB)
-
- warning  
-
-entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
-Entrypoints:
-  ContentArchitect.Editor.common (499 KiB)
-      ContentArchitect.Editor.common.js
-
-
- warning  
-
-webpack performance recommendations: 
-You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
-For more info visit https://webpack.js.org/guides/code-splitting/
-
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+{
+  mode: 'development',
+  context: 'D:\\projects\\vue\\contentarchitect\\editor',
+  devtool: 'cheap-module-eval-source-map',
+  node: {
+    setImmediate: false,
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  },
+  output: {
+    path: 'D:\\projects\\vue\\contentarchitect\\editor\\dist',
+    filename: '[name].js',
+    publicPath: '/',
+    globalObject: '(typeof self !== \'undefined\' ? self : this)'
+  },
+  resolve: {
+    alias: {
+      '@': 'D:\\projects\\vue\\contentarchitect\\editor\\src',
+      vue$: 'vue/dist/vue.runtime.esm.js'
+    },
+    extensions: [
+      '.mjs',
+      '.js',
+      '.jsx',
+      '.vue',
+      '.json',
+      '.wasm'
+    ],
+    modules: [
+      'node_modules',
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules'
+    ]
+  },
+  resolveLoader: {
+    modules: [
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-plugin-eslint\\node_modules',
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-plugin-babel\\node_modules',
+      'node_modules',
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules',
+      'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\node_modules'
+    ]
+  },
+  module: {
+    noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
+    rules: [
+      /* config.module.rule('vue') */
+      {
+        test: /\.vue$/,
+        use: [
+          /* config.module.rule('vue').use('cache-loader') */
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\vue-loader',
+              cacheIdentifier: '3c92ddfc'
+            }
+          },
+          /* config.module.rule('vue').use('vue-loader') */
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false
+              },
+              cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\vue-loader',
+              cacheIdentifier: '3c92ddfc',
+              shadowMode: true
+            }
+          }
+        ]
+      },
+      /* config.module.rule('images') */
+      {
+        test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+        use: [
+          /* config.module.rule('images').use('url-loader') */
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'img/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      /* config.module.rule('svg') */
+      {
+        test: /\.(svg)(\?.*)?$/,
+        use: [
+          /* config.module.rule('svg').use('vue-svg-loader') */
+          {
+            loader: 'vue-svg-loader'
+          }
+        ]
+      },
+      /* config.module.rule('media') */
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          /* config.module.rule('media').use('url-loader') */
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      /* config.module.rule('fonts') */
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        use: [
+          /* config.module.rule('fonts').use('url-loader') */
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'fonts/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+      /* config.module.rule('pug') */
+      {
+        test: /\.pug$/,
+        oneOf: [
+          /* config.module.rule('pug').oneOf('pug-vue') */
+          {
+            resourceQuery: /vue/,
+            use: [
+              /* config.module.rule('pug').oneOf('pug-vue').use('pug-plain-loader') */
+              {
+                loader: 'pug-plain-loader'
+              }
+            ]
+          },
+          /* config.module.rule('pug').oneOf('pug-template') */
+          {
+            use: [
+              /* config.module.rule('pug').oneOf('pug-template').use('raw') */
+              {
+                loader: 'raw-loader'
+              },
+              /* config.module.rule('pug').oneOf('pug-template').use('pug-plain') */
+              {
+                loader: 'pug-plain-loader'
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('css') */
+      {
+        test: /\.css$/,
+        oneOf: [
+          /* config.module.rule('css').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('css').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('css').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('css').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('css').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: true
+                }
+              },
+              /* config.module.rule('css').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('css').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('css').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('css').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('css').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('css').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('css').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('css').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('css').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('css').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('postcss') */
+      {
+        test: /\.p(ost)?css$/,
+        oneOf: [
+          /* config.module.rule('postcss').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('postcss').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('postcss').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('postcss').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('postcss').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('postcss').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('postcss').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('postcss').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('postcss').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('postcss').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('postcss').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('postcss').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('postcss').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('postcss').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('postcss').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('postcss').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('scss') */
+      {
+        test: /\.scss$/,
+        oneOf: [
+          /* config.module.rule('scss').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('scss').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue-modules').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('scss').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('scss').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: true
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('vue').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('scss').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('scss').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal-modules').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('scss').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('scss').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('scss').oneOf('normal').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('sass') */
+      {
+        test: /\.sass$/,
+        oneOf: [
+          /* config.module.rule('sass').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('sass').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue-modules').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false,
+                  sassOptions: {
+                    indentedSyntax: true
+                  }
+                }
+              }
+            ]
+          },
+          /* config.module.rule('sass').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('sass').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('vue').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false,
+                  sassOptions: {
+                    indentedSyntax: true
+                  }
+                }
+              }
+            ]
+          },
+          /* config.module.rule('sass').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('sass').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal-modules').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false,
+                  sassOptions: {
+                    indentedSyntax: true
+                  }
+                }
+              }
+            ]
+          },
+          /* config.module.rule('sass').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('sass').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('sass').oneOf('normal').use('sass-loader') */
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: false,
+                  sassOptions: {
+                    indentedSyntax: true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('less') */
+      {
+        test: /\.less$/,
+        oneOf: [
+          /* config.module.rule('less').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('less').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('less').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('less').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('less').oneOf('vue-modules').use('less-loader') */
+              {
+                loader: 'less-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('less').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('less').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('less').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('less').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('less').oneOf('vue').use('less-loader') */
+              {
+                loader: 'less-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('less').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('less').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('less').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('less').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('less').oneOf('normal-modules').use('less-loader') */
+              {
+                loader: 'less-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          },
+          /* config.module.rule('less').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('less').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('less').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('less').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('less').oneOf('normal').use('less-loader') */
+              {
+                loader: 'less-loader',
+                options: {
+                  sourceMap: false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('stylus') */
+      {
+        test: /\.styl(us)?$/,
+        oneOf: [
+          /* config.module.rule('stylus').oneOf('vue-modules') */
+          {
+            resourceQuery: /module/,
+            use: [
+              /* config.module.rule('stylus').oneOf('vue-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue-modules').use('stylus-loader') */
+              {
+                loader: 'stylus-loader',
+                options: {
+                  sourceMap: false,
+                  preferPathResolver: 'webpack'
+                }
+              }
+            ]
+          },
+          /* config.module.rule('stylus').oneOf('vue') */
+          {
+            resourceQuery: /\?vue/,
+            use: [
+              /* config.module.rule('stylus').oneOf('vue').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('vue').use('stylus-loader') */
+              {
+                loader: 'stylus-loader',
+                options: {
+                  sourceMap: false,
+                  preferPathResolver: 'webpack'
+                }
+              }
+            ]
+          },
+          /* config.module.rule('stylus').oneOf('normal-modules') */
+          {
+            test: /\.module\.\w+$/,
+            use: [
+              /* config.module.rule('stylus').oneOf('normal-modules').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal-modules').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal-modules').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal-modules').use('stylus-loader') */
+              {
+                loader: 'stylus-loader',
+                options: {
+                  sourceMap: false,
+                  preferPathResolver: 'webpack'
+                }
+              }
+            ]
+          },
+          /* config.module.rule('stylus').oneOf('normal') */
+          {
+            use: [
+              /* config.module.rule('stylus').oneOf('normal').use('vue-style-loader') */
+              {
+                loader: 'vue-style-loader',
+                options: {
+                  sourceMap: false,
+                  shadowMode: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal').use('css-loader') */
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: false,
+                  importLoaders: 2
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal').use('postcss-loader') */
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: false
+                }
+              },
+              /* config.module.rule('stylus').oneOf('normal').use('stylus-loader') */
+              {
+                loader: 'stylus-loader',
+                options: {
+                  sourceMap: false,
+                  preferPathResolver: 'webpack'
+                }
+              }
+            ]
+          }
+        ]
+      },
+      /* config.module.rule('js') */
+      {
+        test: /\.m?jsx?$/,
+        exclude: [
+          function () { /* omitted long function */ }
+        ],
+        use: [
+          /* config.module.rule('js').use('cache-loader') */
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\babel-loader',
+              cacheIdentifier: '772665af'
+            }
+          },
+          /* config.module.rule('js').use('babel-loader') */
+          {
+            loader: 'babel-loader'
+          }
+        ]
+      },
+      /* config.module.rule('eslint') */
+      {
+        enforce: 'pre',
+        test: /\.(vue|(j|t)sx?)$/,
+        exclude: [
+          /node_modules/,
+          'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\@vue\\cli-service\\lib'
+        ],
+        use: [
+          /* config.module.rule('eslint').use('eslint-loader') */
+          {
+            loader: 'eslint-loader',
+            options: {
+              extensions: [
+                '.js',
+                '.jsx',
+                '.vue'
+              ],
+              cache: true,
+              cacheIdentifier: '58017d1e',
+              emitWarning: true,
+              emitError: false,
+              eslintPath: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\eslint',
+              formatter: function () { /* omitted long function */ }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    /* config.plugin('vue-loader') */
+    new VueLoaderPlugin(),
+    /* config.plugin('define') */
+    new DefinePlugin(
+      {
+        'process.env': {
+          NODE_ENV: '"development"',
+          BASE_URL: '"/"'
+        }
+      }
+    ),
+    /* config.plugin('case-sensitive-paths') */
+    new CaseSensitivePathsPlugin(),
+    /* config.plugin('friendly-errors') */
+    new FriendlyErrorsWebpackPlugin(
+      {
+        additionalTransformers: [
+          function () { /* omitted long function */ }
+        ],
+        additionalFormatters: [
+          function () { /* omitted long function */ }
+        ]
+      }
+    ),
+    /* config.plugin('hmr') */
+    new HotModuleReplacementPlugin(),
+    /* config.plugin('progress') */
+    new ProgressPlugin(),
+    /* config.plugin('html') */
+    new HtmlWebpackPlugin(
+      {
+        templateParameters: function () { /* omitted long function */ },
+        template: 'D:\\projects\\vue\\contentarchitect\\editor\\public\\index.html'
+      }
+    ),
+    /* config.plugin('preload') */
+    new PreloadPlugin(
+      {
+        rel: 'preload',
+        include: 'initial',
+        fileBlacklist: [
+          /\.map$/,
+          /hot-update\.js$/
+        ]
+      }
+    ),
+    /* config.plugin('prefetch') */
+    new PreloadPlugin(
+      {
+        rel: 'prefetch',
+        include: 'asyncChunks'
+      }
+    ),
+    /* config.plugin('copy') */
+    new CopyWebpackPlugin(
+      [
+        {
+          from: 'D:\\projects\\vue\\contentarchitect\\editor\\public',
+          to: 'D:\\projects\\vue\\contentarchitect\\editor\\dist',
+          toType: 'dir',
+          ignore: [
+            '.DS_Store',
+            {
+              glob: 'index.html',
+              matchBase: false
+            }
+          ]
+        }
+      ]
+    )
+  ],
+  entry: {
+    app: [
+      './src/main.js'
+    ]
+  },
+  externals: []
+}

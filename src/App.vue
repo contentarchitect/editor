@@ -49,6 +49,7 @@ import { VPopover, VTooltip } from 'v-tooltip'
 import BlocksComponent from "./components/Blocks.vue"
 import { PortalTarget } from 'portal-vue'
 
+
 export default {
 	name: 'ContentArchitect',
 	components: {
@@ -124,8 +125,10 @@ export default {
 		}
 
 		if (this.blockStyles) {
-			let clonedStyle = document.getElementById(this.blockStyles).cloneNode(true);
-			this.$root.$options.customElement.shadowRoot.appendChild(clonedStyle)
+			document.querySelectorAll(this.blockStyles).forEach(style => {
+				let clonedStyle = style.cloneNode(true);
+				this.$root.$options.customElement.shadowRoot.appendChild(clonedStyle)
+			})
 		}
 	},
 	methods: {

@@ -10,7 +10,9 @@
 			@selectstart="selectStartHandler"
 			@input="changeHandler" 
 			@keydown="keydownHandler"
-			@keyup="keyupHandler">
+			@keyup="keyupHandler"
+			@paste="pasteHandler"
+		>
 		</div>
 
 		<div class="fake-ref" :style="fakeRefStyle" ref="fakeRef"></div>
@@ -234,6 +236,11 @@ export default {
 					e.preventDefault();
 				}
 			}
+		},
+		pasteHandler (event) {
+			let paste = (event.clipboardData || window.clipboardData).getData('text');
+			document.execCommand("insertText", false, paste);
+			event.preventDefault();
 		},
 		updateCommandStatus () {
 			this.commandStatus.bold = document.queryCommandState("bold");

@@ -1,4 +1,5 @@
 import Util from "./Util.js";
+import clonedeep from "lodash.clonedeep"
 
 export default class Block {
 	constructor (domOrObject) {
@@ -74,7 +75,7 @@ export default class Block {
 	}
 
 	cloneSelf () {
-		const cloned = Object.assign(Object.create(Object.getPrototypeOf(this)), this)
+		const cloned = clonedeep(this)
 		cloned.id = Util.generateID()
 		return cloned
 	}

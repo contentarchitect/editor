@@ -1,7 +1,7 @@
 {
-  mode: 'production',
+  mode: 'development',
   context: 'D:\\projects\\vue\\contentarchitect\\editor',
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   node: {
     setImmediate: false,
     dgram: 'empty',
@@ -12,14 +12,9 @@
   },
   output: {
     path: 'D:\\projects\\vue\\contentarchitect\\editor\\dist',
-    filename: 'js/[name].[contenthash:8].js',
+    filename: '[name].js',
     publicPath: '/',
-    chunkFilename: 'js/[name].[contenthash:8].js',
-    library: [
-      'ContentArchitect',
-      '[name]'
-    ],
-    libraryTarget: 'umd'
+    globalObject: '(typeof self !== \'undefined\' ? self : this)'
   },
   resolve: {
     alias: {
@@ -61,7 +56,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '0018e74e'
+              cacheIdentifier: 'd0c8f584'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
@@ -72,7 +67,7 @@
                 preserveWhitespace: false
               },
               cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: '0018e74e',
+              cacheIdentifier: 'd0c8f584',
               shadowMode: true
             }
           }
@@ -195,19 +190,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('css').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
@@ -228,7 +213,7 @@
                 loader: 'vue-style-loader',
                 options: {
                   sourceMap: false,
-                  shadowMode: false
+                  shadowMode: true
                 }
               },
               /* config.module.rule('css').oneOf('vue').use('css-loader') */
@@ -236,17 +221,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('css').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('css').oneOf('vue').use('postcss-loader') */
@@ -275,19 +250,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('css').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('css').oneOf('normal-modules').use('postcss-loader') */
@@ -315,17 +280,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('css').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('css').oneOf('normal').use('postcss-loader') */
@@ -360,19 +315,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('postcss').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('postcss-loader') */
@@ -401,17 +346,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('postcss').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('postcss').oneOf('vue').use('postcss-loader') */
@@ -440,19 +375,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('postcss').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('postcss-loader') */
@@ -480,17 +405,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('postcss').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('postcss').oneOf('normal').use('postcss-loader') */
@@ -525,19 +440,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('scss').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('postcss-loader') */
@@ -565,7 +470,7 @@
                 loader: 'vue-style-loader',
                 options: {
                   sourceMap: false,
-                  shadowMode: false
+                  shadowMode: true
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('css-loader') */
@@ -573,17 +478,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('scss').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('scss').oneOf('vue').use('postcss-loader') */
@@ -619,19 +514,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('scss').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('postcss-loader') */
@@ -666,17 +551,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('scss').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('scss').oneOf('normal').use('postcss-loader') */
@@ -718,19 +593,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('sass').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('postcss-loader') */
@@ -769,17 +634,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('sass').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('sass').oneOf('vue').use('postcss-loader') */
@@ -818,19 +673,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('sass').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('postcss-loader') */
@@ -868,17 +713,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('sass').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('sass').oneOf('normal').use('postcss-loader') */
@@ -923,19 +758,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('less').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('less').oneOf('vue-modules').use('postcss-loader') */
@@ -971,17 +796,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('less').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('less').oneOf('vue').use('postcss-loader') */
@@ -1017,19 +832,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('less').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('less').oneOf('normal-modules').use('postcss-loader') */
@@ -1064,17 +869,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('less').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('less').oneOf('normal').use('postcss-loader') */
@@ -1116,19 +911,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('stylus').oneOf('vue-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('postcss-loader') */
@@ -1165,17 +950,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('stylus').oneOf('vue').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('stylus').oneOf('vue').use('postcss-loader') */
@@ -1212,19 +987,9 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]'
-                }
-              },
-              /* config.module.rule('stylus').oneOf('normal-modules').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
                 }
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('postcss-loader') */
@@ -1260,17 +1025,7 @@
                 loader: 'css-loader',
                 options: {
                   sourceMap: false,
-                  importLoaders: 3
-                }
-              },
-              /* config.module.rule('stylus').oneOf('normal').use('cssnano') */
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                  plugins: [
-                    function () { /* omitted long function */ }
-                  ]
+                  importLoaders: 2
                 }
               },
               /* config.module.rule('stylus').oneOf('normal').use('postcss-loader') */
@@ -1304,12 +1059,8 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\.cache\\babel-loader',
-              cacheIdentifier: '72477db7'
+              cacheIdentifier: '5e064978'
             }
-          },
-          /* config.module.rule('js').use('thread-loader') */
-          {
-            loader: 'thread-loader'
           },
           /* config.module.rule('js').use('babel-loader') */
           {
@@ -1336,7 +1087,7 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: 'e2ca8eb2',
+              cacheIdentifier: '28f803a1',
               emitWarning: true,
               emitError: false,
               eslintPath: 'D:\\projects\\vue\\contentarchitect\\editor\\node_modules\\eslint',
@@ -1347,75 +1098,6 @@
       }
     ]
   },
-  optimization: {
-    minimizer: [
-      {
-        options: {
-          test: /\.m?js(\?.*)?$/i,
-          chunkFilter: () => true,
-          warningsFilter: () => true,
-          extractComments: false,
-          sourceMap: true,
-          cache: true,
-          cacheKeys: defaultCacheKeys => defaultCacheKeys,
-          parallel: true,
-          include: undefined,
-          exclude: undefined,
-          minify: undefined,
-          terserOptions: {
-            output: {
-              comments: /^\**!|@preserve|@license|@cc_on/i
-            },
-            compress: {
-              arrows: false,
-              collapse_vars: false,
-              comparisons: false,
-              computed_props: false,
-              hoist_funs: false,
-              hoist_props: false,
-              hoist_vars: false,
-              inline: false,
-              loops: false,
-              negate_iife: false,
-              properties: false,
-              reduce_funcs: false,
-              reduce_vars: false,
-              switches: false,
-              toplevel: false,
-              typeofs: false,
-              booleans: true,
-              if_return: true,
-              sequences: true,
-              unused: true,
-              conditionals: true,
-              dead_code: true,
-              evaluate: true
-            },
-            mangle: {
-              safari10: true
-            }
-          }
-        }
-      }
-    ],
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          name: 'chunk-vendors',
-          test: /[\\\/]node_modules[\\\/]/,
-          priority: -10,
-          chunks: 'initial'
-        },
-        common: {
-          name: 'chunk-common',
-          minChunks: 2,
-          priority: -20,
-          chunks: 'initial',
-          reuseExistingChunk: true
-        }
-      }
-    }
-  },
   plugins: [
     /* config.plugin('vue-loader') */
     new VueLoaderPlugin(),
@@ -1423,7 +1105,7 @@
     new DefinePlugin(
       {
         'process.env': {
-          NODE_ENV: '"production"',
+          NODE_ENV: '"development"',
           BASE_URL: '"/"'
         }
       }
@@ -1441,176 +1123,33 @@
         ]
       }
     ),
-    /* config.plugin('hash-module-ids') */
-    new HashedModuleIdsPlugin(
-      {
-        hashDigest: 'hex'
-      }
-    ),
-    /* config.plugin('named-chunks') */
-    new NamedChunksPlugin(
-      function () { /* omitted long function */ }
-    ),
-    /* config.plugin('html-core') */
+    /* config.plugin('hmr') */
+    new HotModuleReplacementPlugin(),
+    /* config.plugin('progress') */
+    new ProgressPlugin(),
+    /* config.plugin('html') */
     new HtmlWebpackPlugin(
       {
         templateParameters: function () { /* omitted long function */ },
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          collapseBooleanAttributes: true,
-          removeScriptTypeAttributes: true
-        },
-        chunks: [
-          'chunk-vendors',
-          'chunk-common',
-          'core'
-        ],
-        template: 'D:\\projects\\vue\\contentarchitect\\editor\\public\\index.html',
-        filename: 'core.html'
+        template: 'D:\\projects\\vue\\contentarchitect\\editor\\public\\index.html'
       }
     ),
-    /* config.plugin('html-editor') */
-    new HtmlWebpackPlugin(
-      {
-        templateParameters: function () { /* omitted long function */ },
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          collapseBooleanAttributes: true,
-          removeScriptTypeAttributes: true
-        },
-        chunks: [
-          'chunk-vendors',
-          'chunk-common',
-          'editor'
-        ],
-        template: 'D:\\projects\\vue\\contentarchitect\\editor\\public\\index.html',
-        filename: 'editor.html'
-      }
-    ),
-    /* config.plugin('html-blocks') */
-    new HtmlWebpackPlugin(
-      {
-        templateParameters: function () { /* omitted long function */ },
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          collapseBooleanAttributes: true,
-          removeScriptTypeAttributes: true
-        },
-        chunks: [
-          'chunk-vendors',
-          'chunk-common',
-          'blocks'
-        ],
-        template: 'D:\\projects\\vue\\contentarchitect\\editor\\public\\index.html',
-        filename: 'blocks.html'
-      }
-    ),
-    /* config.plugin('preload-core') */
+    /* config.plugin('preload') */
     new PreloadPlugin(
       {
         rel: 'preload',
-        includeHtmlNames: [
-          'core.html'
-        ],
-        include: {
-          type: 'initial',
-          entries: [
-            'core'
-          ]
-        },
+        include: 'initial',
         fileBlacklist: [
           /\.map$/,
           /hot-update\.js$/
         ]
       }
     ),
-    /* config.plugin('prefetch-core') */
+    /* config.plugin('prefetch') */
     new PreloadPlugin(
       {
         rel: 'prefetch',
-        includeHtmlNames: [
-          'core.html'
-        ],
-        include: {
-          type: 'asyncChunks',
-          entries: [
-            'core'
-          ]
-        }
-      }
-    ),
-    /* config.plugin('preload-editor') */
-    new PreloadPlugin(
-      {
-        rel: 'preload',
-        includeHtmlNames: [
-          'editor.html'
-        ],
-        include: {
-          type: 'initial',
-          entries: [
-            'editor'
-          ]
-        },
-        fileBlacklist: [
-          /\.map$/,
-          /hot-update\.js$/
-        ]
-      }
-    ),
-    /* config.plugin('prefetch-editor') */
-    new PreloadPlugin(
-      {
-        rel: 'prefetch',
-        includeHtmlNames: [
-          'editor.html'
-        ],
-        include: {
-          type: 'asyncChunks',
-          entries: [
-            'editor'
-          ]
-        }
-      }
-    ),
-    /* config.plugin('preload-blocks') */
-    new PreloadPlugin(
-      {
-        rel: 'preload',
-        includeHtmlNames: [
-          'blocks.html'
-        ],
-        include: {
-          type: 'initial',
-          entries: [
-            'blocks'
-          ]
-        },
-        fileBlacklist: [
-          /\.map$/,
-          /hot-update\.js$/
-        ]
-      }
-    ),
-    /* config.plugin('prefetch-blocks') */
-    new PreloadPlugin(
-      {
-        rel: 'prefetch',
-        includeHtmlNames: [
-          'blocks.html'
-        ],
-        include: {
-          type: 'asyncChunks',
-          entries: [
-            'blocks'
-          ]
-        }
+        include: 'asyncChunks'
       }
     ),
     /* config.plugin('copy') */
@@ -1625,14 +1164,6 @@
             {
               glob: 'index.html',
               matchBase: false
-            },
-            {
-              glob: 'index.html',
-              matchBase: false
-            },
-            {
-              glob: 'index.html',
-              matchBase: false
             }
           ]
         }
@@ -1640,26 +1171,9 @@
     )
   ],
   entry: {
-    core: [
-      'D:\\projects\\vue\\contentarchitect\\editor\\src\\core\\index.js'
-    ],
-    editor: [
-      'D:\\projects\\vue\\contentarchitect\\editor\\src\\editor.js'
-    ],
-    blocks: [
-      'D:\\projects\\vue\\contentarchitect\\editor\\src\\blocks\\index.js'
+    app: [
+      './src/main.js'
     ]
   },
-  externals: [
-    {
-      '@contentarchitect/core': [
-        'ContentArchitect',
-        'Core'
-      ],
-      '@contentarchitect/editor': [
-        'ContentArchitect',
-        'Editor'
-      ]
-    }
-  ]
+  externals: []
 }

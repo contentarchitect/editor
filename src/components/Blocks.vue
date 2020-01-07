@@ -152,11 +152,12 @@ export default {
 .add-block-inner {
   position: absolute;
   display: flex;
+  align-items: center;
   left: 0;
   right: 0;
-  height: 20px;
+  height: 14px;
   opacity: 0;
-  margin-top: -10px;
+  margin-top: -7px;
 }
 
 .add-block-inner > hr:first-child {

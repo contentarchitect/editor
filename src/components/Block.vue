@@ -10,7 +10,7 @@
 
 			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" />
 
-			<div class="control" v-show="showToolbar || (isSettingsOpen && !separatedPopover)">
+			<div class="control" v-show="block.constructor.name != 'New' && showToolbar || (isSettingsOpen && !separatedPopover)">
 				<Tooltip tooltip="Move down">
 					<ui-button
 						square
@@ -154,7 +154,10 @@ import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Popper from "popper.js";
 
 export default {
-	inject: ['appSettings'],
+	inject: [
+		'slottedBlocks',
+		'appSettings'
+	],
 	model: {
 		prop: 'block',
 	},
@@ -243,7 +246,7 @@ export default {
 			});
 
 			return dataset;
-		}
+		},
 	},
 	watch: {
 		showToolbar () {
@@ -346,7 +349,7 @@ export default {
 			return Util.isObject(obj)
 		},
 		renderHTML () {
-			this.$emit('render-html', this.block.toString())
+			this.$emit('render-html', this.block.toHTML())
 		},
 		capitalized (str) {
 			if (typeof str !== 'string') return ''

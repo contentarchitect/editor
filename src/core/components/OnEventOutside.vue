@@ -44,7 +44,10 @@ export default {
 			this.do(e, path)
 		}
 
-		document.addEventListener(this.event, listener)
+		setTimeout(() => {
+			document.addEventListener(this.event, listener)
+		}, 0)
+
 		this.$once("hook:beforeDestroy", () => {
 			document.removeEventListener(this.event, listener)
 		})

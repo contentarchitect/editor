@@ -1,15 +1,29 @@
 <template>
 	<transition-group name="flip-list" tag="div" style="position: relative;" data-blocks>
-		<block
-			v-model="blocks[i]"
-			v-for="(block, i) in blocks"
-			:key="block.id"
-			:disable-move-down="i+1 === blocks.length"
-			:disable-move-up="i === 0"
-			@remove-block="removeBlock"
-			@move-block-down="moveBlockDown"
-			@move-block-up="moveBlockUp"
-			@duplicate="duplicate" />
+		<template v-for="(block, i) in blocks">
+			<block
+				v-model="blocks[i]"
+				
+				:key="block.id"
+				:disable-move-down="i+1 === blocks.length"
+				:disable-move-up="i === 0"
+				@remove-block="removeBlock"
+				@move-block-down="moveBlockDown"
+				@move-block-up="moveBlockUp"
+				@duplicate="duplicate" />			
+			<div
+				:key="block.id"
+				v-show="showAddBlock(block)"
+				class="add-block"
+				@click="addNewBlockAfter(block)"
+			>
+				<div class="add-block-inner">
+					<hr />
+					<span>add block</span>
+					<hr />
+				</div>
+			</div>
+		</template>
 	</transition-group>
 </template>
 
@@ -20,6 +34,7 @@ import { Blocks, Util } from "@contentarchitect/core"
 import Unknown from "../blocks/unknown/main.js"
 
 export default {
+	inject: ['addNewBlockAfter'],
 	model: {
 		prop: 'blocks',
 		event: 'change',
@@ -56,6 +71,15 @@ export default {
 			const newBlock = block.cloneSelf();
 			this.blocks.splice(ind+1, 0, newBlock);
 			this.$emit("change", this.blocks);
+		},
+		showAddBlock (block) {
+			const ind = this.blocks.indexOf(block)
+			const nextBlock = this.blocks[ind + 1]
+
+			const isThisNewBlock = block.constructor.name == "New"
+			const isNextBlockNew = nextBlock && nextBlock.constructor.name == "New"
+
+			return isThisNewBlock || isNextBlockNew ? false : true
 		}
 	},
 	watch: {
@@ -66,6 +90,8 @@ export default {
 
 	
 				this.blocks.forEach(block => {
+					if (!("toHTML" in block)) return;
+
 					let blockConstructor = block.constructor
 					let classes = block.classes.join(" ")
 					let classStr = classes ? `class="${classes}"` : ''
@@ -77,7 +103,7 @@ export default {
 					}, "")
 
 					htmlStr += `<div data-block="${blockConstructor.name}" ${classStr} ${datasetStr}>`
-					htmlStr += block.toString(this.blocks)
+					htmlStr += block.toHTML(this.blocks)
 					htmlStr += `</div>`
 				});
 
@@ -115,5 +141,43 @@ export default {
 
 .flip-list-leave-active {
 	position: absolute !important;
+}
+
+
+.add-block {
+  height: 0px;
+  position: relative;
+}
+
+.add-block-inner {
+  position: absolute;
+  display: flex;
+  left: 0;
+  right: 0;
+  height: 20px;
+  opacity: 0;
+  margin-top: -10px;
+}
+
+.add-block-inner > hr:first-child {
+  flex: 10;
+  height: 1px;
+  border: 0;
+  background: #5cc7c7;
+}
+
+.add-block-inner > span {
+  padding: 0 10px;
+}
+
+.add-block-inner > hr:last-child {
+  flex: 1;
+  height: 1px;
+  border: 0;
+  background: #5cc7c7;
+}
+
+.add-block-inner:hover {
+  opacity: 1;
 }
 </style>

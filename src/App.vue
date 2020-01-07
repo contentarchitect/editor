@@ -48,7 +48,7 @@ import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
 import { VPopover, VTooltip } from 'v-tooltip'
 import BlocksComponent from "./components/Blocks.vue"
 import { PortalTarget } from 'portal-vue'
-
+import NewBlock from "./blocks/new/main.js"
 
 export default {
 	name: 'ContentArchitect',
@@ -99,6 +99,14 @@ export default {
 			// $slotBlocks: () => this.slotBlocks
 			get slottedBlocks () {
 				return _this.slotBlocks
+			},
+
+			addNewBlockAfter: this.addNewBlockAfter,
+			replaceBlock: this.replaceBlock,
+			removeBlock: this.removeBlock,
+
+			get usableBlocks () {
+				return _this.usableBlocks
 			}
 		}
 	},
@@ -136,12 +144,27 @@ export default {
 			const newBlock = new usableBlock();
 			this.slotBlocks.push(newBlock)
 		},
+		removeBlock (block) {
+			const index = this.slotBlocks.indexOf(block);
+
+			if (index !== -1) {
+				this.slotBlocks.splice(index, 1)
+			}
+		},
 		reRender (html) {
 			this.$emit('change', html)
 			this.renderedHTML = html;
 			if (this.output) {
 				document.getElementById(this.output).value = html
 			}
+		},
+		addNewBlockAfter (block) {
+			const ind = this.slotBlocks.indexOf(block) + 1;
+			this.slotBlocks.splice(ind, 0, new NewBlock())
+		},
+		replaceBlock (block, newBlock) {
+			const ind = this.slotBlocks.indexOf(block)
+			Vue.set(this.slotBlocks, ind, newBlock)
 		}
 	},
 	watch: {

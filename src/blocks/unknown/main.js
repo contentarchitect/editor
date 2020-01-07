@@ -12,7 +12,7 @@ export default class Unknown extends Block {
 		outerHTML: ""
 	}
 
-	toString () {
+	toHTML () {
 		return this.innerHTML
 	}
 

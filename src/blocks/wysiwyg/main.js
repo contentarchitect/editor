@@ -14,7 +14,7 @@ export default class Wysiwyg extends Block {
 		placeholder: "Type your text"
 	}
 
-	toString () {
+	toHTML () {
 		return this.content
 	}
 

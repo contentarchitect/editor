@@ -11,7 +11,7 @@ export default class Quote extends Block {
 		cite: "Anonym"
 	}
 
-	toString () {
+	toHTML () {
 		let str = ""
 
 		str += this.content

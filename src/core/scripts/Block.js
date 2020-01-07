@@ -53,9 +53,6 @@ export default class Block {
 	static get settingsComponent () {
 	}
 
-	static toString () {
-	}
-
 	get dataset () {
 		return {}
 	}

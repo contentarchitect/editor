@@ -19,7 +19,7 @@ export default class Image extends Block {
 
 	static defaultSettings = {}
 
-	toString () {
+	toHTML () {
 		let str = '';
 
 		this.images.forEach(image => {

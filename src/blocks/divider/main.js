@@ -20,7 +20,7 @@ export default class Divider extends Block {
 	}
 
 
-	toString () {
+	toHTML () {
 		switch(this.dividerType) {
 			case "star":
 				return `<div class="divider divider-${this.dividerType}"></div>`

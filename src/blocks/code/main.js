@@ -21,7 +21,7 @@ export default class Code extends Block {
 		highlighted: ''
 	}
 
-	toString () {
+	toHTML () {
 		return this.highlighted
 	}
 

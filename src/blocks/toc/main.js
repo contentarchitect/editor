@@ -11,7 +11,7 @@ export default class Toc extends Block {
 		tree: null
 	}
 
-	toString (blocks) {
+	toHTML (blocks) {
 		const headers = blocks.filter(block => block.constructor.name == "Header")
 		return treeToHTML(serialize(headers).children)
 	}

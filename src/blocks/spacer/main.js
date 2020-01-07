@@ -20,7 +20,7 @@ export default class Spacer extends Block {
 		maxHeight: Infinity
 	}
 
-	toString () {
+	toHTML () {
 		return `<div style="height: ${this.height}px"></div>`;
 	}
 	

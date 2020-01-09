@@ -83,6 +83,37 @@ function isFirefox() {
 	return typeof InstallTrigger !== 'undefined';
 }
 
+function takeToParagraph(body) {
+	const childNodes = body.childNodes
+
+	let index = Array.from(childNodes).findIndex(node => node.nodeType == 1 && node.tagName == "P")
+	if (index < 1) index = childNodes.length
+
+	const p = document.createElement("p")
+	new Array(index).fill().forEach((el, ind) => p.appendChild(body.removeChild(childNodes[ind])))
+
+	return p;
+}
+
+function isFirstElementParagraph(childNodes) {
+	let result = false;
+
+	Array.from(childNodes).reduce((acc, node, i, arr) => {
+		if (node.nodeType == 1 && node.tagName == "P") {
+			if (acc == "") {
+				result = true
+			}
+			arr.splice(1);
+		}
+
+		if (node.nodeType == 3) {
+			return acc + node.textContent.trim()
+		}
+	}, '')
+
+	return result 
+}
+
 export default {
 	props: {
 		value: {
@@ -138,6 +169,7 @@ export default {
 		});
 
 		this.changeHandler()
+		this.changeToBlock()
 
 		this.$once("hook:beforeDestroy", () => {
 			this.popperInstance.destroy();
@@ -208,10 +240,53 @@ export default {
 			this.showCreateLink = false;
 			this.selectionLinkUrl = '';
 		},
-		changeHandler () {
-			this.showPlaceholder = this.$refs.body.innerText.trim() == ""
+		changeToBlock () {
+			const editable = this.$refs.body
 
-			this.$emit('input', this.$refs.body.innerHTML);
+			if (
+				this.block
+				&& !isFirstElementParagraph(editable.childNodes)
+			) {
+				const p = takeToParagraph(editable)
+				editable.insertBefore(p, editable.firstChild)
+			}
+		},
+		changeHandler () {
+			const editable = this.$refs.body;
+
+			if (
+				this.block
+				&& editable.children.length == 1
+				&& editable.children[0].tagName == "P"
+				&& editable.children[0].children.length == 0
+			) {
+				const br = document.createElement("br")
+				editable.children[0].appendChild(br)
+			}
+
+			if (
+				editable.innerText.trim() != ""
+			) {
+				this.showPlaceholder = false
+			} else if (
+				this.block
+				&& editable.children.length > 1
+			) {
+				this.showPlaceholder = false
+			} else if (
+				this.block
+				&& editable.children.length == 1
+				&& editable.children[0].innerText.trim() == ""
+			) {
+				this.showPlaceholder = true
+			} else if (
+				!this.block
+				&& editable.innerText.trim() == ""
+			) {
+				this.showPlaceholder = true
+			}
+
+			this.$emit('input', editable.innerHTML);
 		},
 		keydownHandler (e) {
 			if (e.which === 13 && !this.block) {

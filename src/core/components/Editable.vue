@@ -189,6 +189,8 @@ export default {
 		},
 		selectionChangeHandler (e) {
 			let selection = this.document.getSelection();
+			if (selection.rangeCount == 0 || !this.$refs.body.contains(selection.anchorNode)) return;
+
 			let selectionRect = selection.getRangeAt(0).getBoundingClientRect();
 
 			if (selection.anchorNode === selection.focusNode && selection.anchorOffset === selection.focusOffset) {

@@ -4,7 +4,7 @@
 			<block
 				v-model="blocks[i]"
 				
-				:key="block.id"
+				:key="'a-' + block.id"
 				:disable-move-down="i+1 === blocks.length"
 				:disable-move-up="i === 0"
 				@remove-block="removeBlock"
@@ -12,7 +12,7 @@
 				@move-block-up="moveBlockUp"
 				@duplicate="duplicate" />			
 			<div
-				:key="block.id"
+				:key="'b-' + block.id"
 				v-show="showAddBlock(block)"
 				class="add-block"
 				@click="addNewBlockAfter(block)"

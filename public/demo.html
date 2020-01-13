@@ -101,6 +101,19 @@ body {
 .container > section:first-child {
 	margin-right: 50px;
 }
+
+.badge {
+	color: white;
+	background-color: #c792ea;
+	padding: 0.25em .4em;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+
+.red {
+	color: red;
+}
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
@@ -309,6 +322,8 @@ typography.injectStyles()</pre>
 			"text-right": "Right"
 		}
 	}
+
+	editor.inlineClasses = ['badge', 'red']
 </script>
 </body>
 </html>

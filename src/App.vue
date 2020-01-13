@@ -72,6 +72,12 @@ export default {
 		classOptions: {
 			type: [Object, Array]
 		},
+		inlineClasses: {
+			type: [Array],
+			default () {
+				return []
+			}
+		},
 		output: {},
 		value: {},
 		blockStyles: {
@@ -95,6 +101,9 @@ export default {
 				get classOptions () {
 					return _this.classOptions
 				},
+				get inlineClasses() {
+					return _this.inlineClasses;
+				}
 			},
 			// $slotBlocks: () => this.slotBlocks
 			get slottedBlocks () {

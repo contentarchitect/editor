@@ -29,26 +29,26 @@
 						</div>
 					</template>
 					<template v-else>
-						<button @click.prevent="command('bold')" :class="{ 'ca-active': commandStatus.bold }" type="button" tabindex="-1">
+						<button @click.prevent="command('bold')" class="button-icon" :class="{ 'ca-active': commandStatus.bold }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<path class="ca-stroke" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
 								<path class="ca-stroke" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path>
 							</svg>
 						</button>
-						<button @click.prevent="command('italic')" :class="{ 'ca-active': commandStatus.italic }" type="button" tabindex="-1">
+						<button @click.prevent="command('italic')" class="button-icon" :class="{ 'ca-active': commandStatus.italic }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<line class="ca-stroke" x1="7" x2="13" y1="4" y2="4"></line>
 								<line class="ca-stroke" x1="5" x2="11" y1="14" y2="14"></line>
 								<line class="ca-stroke" x1="8" x2="10" y1="14" y2="4"></line>
 							</svg>
 						</button>
-						<button @click.prevent="command('underline')" :class="{ 'ca-active': commandStatus.underline }" type="button" tabindex="-1">
+						<button @click.prevent="command('underline')" class="button-icon" :class="{ 'ca-active': commandStatus.underline }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<path class="ca-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
 								<rect class="ca-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
 							</svg>
 						</button>
-						<button @click.prevent="command('strikethrough')" :class="{ 'ca-active': commandStatus.strike }" type="button" tabindex="-1">
+						<button @click.prevent="command('strikethrough')" class="button-icon" :class="{ 'ca-active': commandStatus.strike }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<line class="ca-stroke ca-thin" x1="15.5" x2="2.5" y1="8.5" y2="9.5"></line>
 								<path class="ca-fill" d="M9.007,8C6.542,7.791,6,7.519,6,6.5,6,5.792,7.283,5,9,5c1.571,0,2.765.679,2.969,1.309a1,1,0,0,0,1.9-.617C13.356,4.106,11.354,3,9,3,6.2,3,4,4.538,4,6.5a3.2,3.2,0,0,0,.5,1.843Z"></path>
@@ -56,13 +56,26 @@
 							</svg>
 						</button>
 
-						<button @click.prevent="command('createLink')" :class="{ 'ca-active': commandStatus.link }" type="button" tabindex="-1">
+						<button @click.prevent="command('createLink')" class="button-icon" :class="{ 'ca-active': commandStatus.link }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<line class="ca-stroke" x1="7" x2="11" y1="7" y2="11"></line>
 								<path class="ca-even ca-stroke" d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path>
 								<path class="ca-even ca-stroke" d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path>
 							</svg>
 						</button>
+
+						<template v-for="className in appSettings.inlineClasses">
+							<button
+								@click.prevent="command('inline-class', className)"
+								:class="{
+									'ca-active': commandStatus[className]
+								}"
+								type="button"
+								tabindex="-1"
+								:key="className">
+								.{{ className }}
+							</button>
+						</template>
 					</template>
 
 					<div class="toolbar-arrow"></div>
@@ -114,7 +127,36 @@ function isFirstElementParagraph(childNodes) {
 	return result 
 }
 
+function unWrap(dom) {
+	const parent = dom.parentNode;
+	while (dom.firstChild) {
+		parent.insertBefore(dom.firstChild, dom)
+	}
+	parent.removeChild(dom);
+}
+
+function isSelectedCustomTag(selection, cssClass, tagName = "SPAN") {
+	if (!selection.rangeCount) return
+	const range = selection.getRangeAt(0)
+	const container = selectedContainer(range)
+
+	if (!container) return;
+
+	return container.nodeType == Node.ELEMENT_NODE
+		&& container.tagName == tagName
+		&& container.classList.contains(cssClass)
+}
+
+function selectedContainer(range) {
+	const container = range.commonAncestorContainer.nodeType == Node.ELEMENT_NODE 
+		? range.commonAncestorContainer
+		: range.commonAncestorContainer.parentElement
+
+	if (container.textContent == range.toString()) return container
+}
+
 export default {
+	inject: ['appSettings'],
 	props: {
 		value: {
 			type: String
@@ -125,7 +167,7 @@ export default {
 		},
 		placeholder: {
 			type: String
-		}
+		},
 	},
 	components: { OnEventOutside, CaInput, CaButton: Button },
 	data () {
@@ -216,7 +258,7 @@ export default {
 
 			this.currentRange = this.document.getSelection().getRangeAt(0);
 		},
-		command (command) {
+		command (command, className) {
 			switch(command) {
 				case 'h1':
 				case 'h2':
@@ -229,6 +271,25 @@ export default {
 					if (parentEl.nodeType == 1 && parentEl.tagName === "A") {
 						this.selectionLinkUrl = this.document.getSelection().anchorNode.parentElement.getAttribute("href");
 					}
+					break;
+				case 'inline-class':
+					const selection = this.document.getSelection()
+
+					if (!selection.rangeCount) break;
+
+					if (isSelectedCustomTag(selection, className)) {
+						const container = selectedContainer(selection.getRangeAt(0))
+						container.classList.remove(className)
+						if (!container.classList.length) unWrap(container)
+						break;
+					}
+
+					const span = document.createElement('span');
+					span.classList.add(className);
+					const range = selection.getRangeAt(0);
+					const content = range.extractContents();
+					span.append(content);
+					range.insertNode(span);
 					break;
 				default:
 					document.execCommand(command, false, null);
@@ -325,6 +386,10 @@ export default {
 			this.commandStatus.underline = document.queryCommandState("underline");
 			this.commandStatus.strikeThrough = document.queryCommandState("strikethrough");
 			this.commandStatus.link = document.queryCommandState("link");
+			
+			this.appSettings.inlineClasses.forEach(className => {
+				this.commandStatus[className] = isSelectedCustomTag(this.document.getSelection(), className);
+			})
 		},
 		createLink () {
 			this.document.getSelection().removeAllRanges();
@@ -426,14 +491,20 @@ export default {
 	background: none;
     border: none;
     cursor: pointer;
-    height: 24px;
     padding: 3px 5px;
-    width: 28px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	outline: none;
+	color: #ccc;
+	font-size: .9em;
+	line-height: .9em;
+}
+
+.toolbar > button.button-icon {
+    height: 24px;
+    width: 28px;
 }
 
 .toolbar > button:hover,

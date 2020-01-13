@@ -8,85 +8,98 @@
 	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 	<title>contentarchitect</title>
 <style>
-	.jumbotron {
-		padding: 2rem 1rem;
-		margin-bottom: 2rem;
-		background-color: #e9ecef;
-		border-radius: .3rem;
-	}
-	
-	.alert {
-		position: relative;
-		padding: .75rem 1.25rem;
-		margin-bottom: 1rem;
-		border: 1px solid transparent;
-		border-radius: .25rem;
-	}
-	
-	.alert-danger {
-		color: #721c24;
-		background-color: #f8d7da;
-		border-color: #f5c6cb;
-	}
-	
-	.alert-success {
-		color: #155724;
-		background-color: #d4edda;
-		border-color: #c3e6cb;
-	}
-	
-	.alert-warning {
-		color: #856404;
-		background-color: #fff3cd;
-		border-color: #ffeeba;
-	}
-	
-	.custom-alert {
-		background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
-		padding-left: 100px;
-		color: #856404;
-		background-color: #fff3cd;
-		border-color: #ffeeba;
-	}
-	
-	.alert blockquote::before, 
-	.alert blockquote::after {
-		color: white !important
-	}
-	
-	.custom-alert blockquote::before, 
-	.custom-alert blockquote::after {
-		color: orange !important
-	}
-	
-	.text-left {
-		text-align: left!important;
-	}
-	
-	.text-center {
-		text-align: center!important;
-	}
-	
-	.text-right {
-		text-align: right!important;
-	}
-	
-	[data-language] {
-		position: relative;
-	}
-	
-	[data-language]:after {
-		content: attr(data-language);
-		position: absolute;
-		right: 10px;
-		top: 10px;
-		background: rgba(0, 0, 0, 0.3);
-		padding: 2px 8px;
-		border-radius: 20px;
-		color: rgba(255,255,255,.5);
-		font-size: .8rem;
-	}
-	</style>
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: .3rem;
+}
+
+.alert {
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.alert-warning {
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.custom-alert {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
+	padding-left: 100px;
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.alert blockquote::before, 
+.alert blockquote::after {
+	color: white !important
+}
+
+.custom-alert blockquote::before, 
+.custom-alert blockquote::after {
+	color: orange !important
+}
+
+.text-left {
+	text-align: left!important;
+}
+
+.text-center {
+	text-align: center!important;
+}
+
+.text-right {
+	text-align: right!important;
+}
+
+[data-language] {
+	position: relative;
+}
+
+[data-language]:after {
+	content: attr(data-language);
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background: rgba(0, 0, 0, 0.3);
+	padding: 2px 8px;
+	border-radius: 20px;
+	color: rgba(255,255,255,.5);
+	font-size: .8rem;
+}
+
+.badge {
+	color: white;
+	background-color: #c792ea;
+	padding: 0.25em .4em;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+
+.red {
+	color: red;
+}
+</style>
 </head>
 
 <body>
@@ -303,6 +316,8 @@ typography.injectStyles()</pre>
 			}
 		}
 	]
+
+	editor.inlineClasses = ['badge', 'red']
 
 	// new ContentArchitect.Editor({
 	// 	blockSettings: {

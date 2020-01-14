@@ -356,9 +356,11 @@ export default {
 				e.preventDefault();
 			} else if (e.which === 8) {
 				const range = this.document.getSelection().getRangeAt(0)
+
 				if (
 					range.startContainer.nodeType === Node.ELEMENT_NODE &&
 					range.startContainer.innerText.trim() === "" &&
+					range.startOffset == 0 &&
 					!range.startContainer.previousElementSibling
 				) {
 					e.preventDefault();

@@ -111,6 +111,7 @@ export default {
 			},
 
 			addNewBlockAfter: this.addNewBlockAfter,
+			addWysiwygBlockAfter: this.addWysiwygBlockAfter,
 			replaceBlock: this.replaceBlock,
 			removeBlock: this.removeBlock,
 
@@ -170,6 +171,13 @@ export default {
 		addNewBlockAfter (block) {
 			const ind = this.slotBlocks.indexOf(block) + 1;
 			this.slotBlocks.splice(ind, 0, new NewBlock())
+		},
+		addWysiwygBlockAfter (blockVueComponent) {
+			const Wysiwyg = this.usableBlocks.find(blockConstructor => blockConstructor.name == "Wysiwyg")
+			if (!Wysiwyg) return
+			if (!blockVueComponent._isVue) return
+			const index = this.slotBlocks.indexOf(blockVueComponent.block)
+			this.slotBlocks.splice(index + 1, 0, new Wysiwyg())
 		},
 		replaceBlock (block, newBlock) {
 			const ind = this.slotBlocks.indexOf(block)

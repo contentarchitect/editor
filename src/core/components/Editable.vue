@@ -179,7 +179,12 @@ function isCaretStart (selection, el) {
 
 export default {
 	name: "Editable",
-	inject: ['appSettings', 'nextBlockComponent'],
+	inject: [
+		'appSettings',
+		'nextBlockComponent',
+		'nextEditableInView',
+		'addWysiwygBlockAfter'
+	],
 	props: {
 		value: {
 			type: String
@@ -223,6 +228,8 @@ export default {
 			} else {
 				this.document = this.$el.getRootNode() || document;
 			}
+
+			this.setCaretStart()
 		})
 		this.$refs.body.innerHTML = this.value;
 
@@ -376,6 +383,16 @@ export default {
 		},
 		keydownHandler (e) {
 			if (e.which === 13 && !this.block) {
+				if (this.isLastEditableInView()) {
+					let block = this;
+
+					while(block.$options.name != "Block") {
+						block = block.$parent
+					}
+
+					this.addWysiwygBlockAfter(block)
+				}
+
 				e.preventDefault();
 			} else if (e.which === 8) {
 				const range = this.document.getSelection().getRangeAt(0)
@@ -442,6 +459,9 @@ export default {
 		innerText () {
 			return this.$refs.body.innerText;
 		},
+		isLastEditableInView () {
+			return !this.nextEditableInView(this)
+		},
 		// focusEndPrevEditable () {
 		// 	const editables = this.$root.$el.getElementsByClassName("editable")
 		// 	const index = Array.from(editables).indexOf(this.$el)
@@ -452,29 +472,29 @@ export default {
 		// 	const editable = beforeEditableEl.__vue__
 		// 	editable.setCaretEnd()
 		// },
-		// focusStartNextEditable () {
-		// 	const editables = this.$root.$el.getElementsByClassName("editable")
-		// 	const index = Array.from(editables).indexOf(this.$el)
-		// 	const nexEditableEl = editables[index+1]
+		focusStartNextEditable () {
+			const editables = this.$root.$el.getElementsByClassName("editable")
+			const index = Array.from(editables).indexOf(this.$el)
+			const nexEditableEl = editables[index+1]
 
-		// 	if (!nexEditableEl) return;
+			if (!nexEditableEl) return;
 
-		// 	const editable = nexEditableEl.__vue__
-		// 	editable.setCaretStart()
-		// },
-		// setCaretStart () {
-		// 	const body = this.$refs.body
-		// 	const sel = this.document.getSelection()
-		// 	sel.selectAllChildren(body)
-		// 	const range = sel.getRangeAt(0)
-		// 	range.collapse(true)
-		// 	sel.removeAllRanges()
-		// 	sel.addRange(range)
-		// 	// const range = new Range()
-		// 	// range.selectNodeContents(body)
-		// 	// this.document.getSelection().removeAllRanges()
-		// 	// this.document.getSelection().addRange(range)
-		// },
+			const editable = nexEditableEl.__vue__
+			editable.setCaretStart()
+		},
+		setCaretStart () {
+			const body = this.$refs.body
+			const sel = this.document.getSelection()
+			sel.selectAllChildren(body)
+			const range = sel.getRangeAt(0)
+			range.collapse(true)
+			sel.removeAllRanges()
+			sel.addRange(range)
+			// const range = new Range()
+			// range.selectNodeContents(body)
+			// this.document.getSelection().removeAllRanges()
+			// this.document.getSelection().addRange(range)
+		},
 		// setCaretEnd () {
 		// 	const body = this.$refs.body
 		// 	const sel = this.document.getSelection()

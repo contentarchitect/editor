@@ -155,10 +155,15 @@ import Popper from "popper.js";
 
 export default {
 	name: "Block",
+	provide() {
+		return {
+			nextEditableInView: this.nextEditableInView
+		}
+	},
 	inject: [
 		'slottedBlocks',
 		'appSettings',
-		'nextBlockComponent'
+		'nextBlockComponent',
 	],
 	model: {
 		prop: 'block',
@@ -356,6 +361,11 @@ export default {
 		capitalized (str) {
 			if (typeof str !== 'string') return ''
 			return str.charAt(0).toUpperCase() + str.slice(1)
+		},
+		nextEditableInView (editable) {
+			const editables = this.$refs.view.$children.filter(comp => comp.$options.name == "Editable")
+			const index = editables.indexOf(editable)
+			return editables[index+1]
 		}
 	},
 }

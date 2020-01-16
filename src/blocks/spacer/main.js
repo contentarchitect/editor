@@ -30,11 +30,15 @@ export default class Spacer extends Block {
 		
 
 		function css2obj (css) {
-			const r = /(?<=^|;)\s*([^:]+)\s*:\s*([^;]+)\s*/g,
-				  o = {}
+			const result = {},
+				  attributes = css.split(';');
 
-			css.replace(r, (m,p,v) => o[p] = v)
-			return o;
+			attributes.forEach(attr => {
+				const [key, value] = attr.split(':');
+				result[key.trim()] = value.trim()
+			});
+
+			return result;
 		}
 
 		height = css2obj(cssString)["height"]

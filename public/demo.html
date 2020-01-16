@@ -131,7 +131,7 @@ body {
 
 		<h1>Editor</h1>
 
-		<content-architect draggable-settings="false" id="ca" output="output" block-styles=".block-style">
+		<content-architect draggable-settings="false" id="editor" output="output" block-styles=".block-style">
 			<div data-block="Toc"></div>
 
 			<div data-block="ExtraUnkown">
@@ -291,7 +291,7 @@ typography.injectStyles()</pre>
 	// ContentArchitect.Blocks.register(Header)
 	// ca.addEventListener('change', val => console.log(val.detail[0]));
 
-	ca.addEventListener('change', val => {
+	editor.addEventListener('change', val => {
 		console.log(val)
 		view.innerHTML = val.detail[0]
 	});
@@ -308,7 +308,7 @@ typography.injectStyles()</pre>
 	// 	}
 	// }
 
-	ca.classOptions = {
+	editor.classOptions = {
 		"jumbotron": "Jumbotron",
 		alert: {
 			"alert-danger": "Danger",

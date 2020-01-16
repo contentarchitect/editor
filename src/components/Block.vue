@@ -8,7 +8,7 @@
 			@mouseenter="showToolbar = true"
 			@mouseleave="showToolbar = false">
 
-			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" />
+			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" ref="view" />
 
 			<div class="control" v-show="block.constructor.name != 'New' && showToolbar || (isSettingsOpen && !separatedPopover)">
 				<Tooltip tooltip="Move down">
@@ -154,9 +154,11 @@ import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Popper from "popper.js";
 
 export default {
+	name: "Block",
 	inject: [
 		'slottedBlocks',
-		'appSettings'
+		'appSettings',
+		'nextBlockComponent'
 	],
 	model: {
 		prop: 'block',

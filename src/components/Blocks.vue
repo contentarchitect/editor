@@ -3,14 +3,14 @@
 		<template v-for="(block, i) in blocks">
 			<block
 				v-model="blocks[i]"
-				
+				ref="block"
 				:key="'a-' + block.id"
 				:disable-move-down="i+1 === blocks.length"
 				:disable-move-up="i === 0"
 				@remove-block="removeBlock"
 				@move-block-down="moveBlockDown"
 				@move-block-up="moveBlockUp"
-				@duplicate="duplicate" />			
+				@duplicate="duplicate" />
 			<div
 				:key="'b-' + block.id"
 				v-show="showAddBlock(block)"
@@ -34,6 +34,12 @@ import { Blocks, Util } from "@contentarchitect/core"
 import Unknown from "../blocks/unknown/main.js"
 
 export default {
+	name: "Blocks",
+	provide () {
+		return {
+			nextBlockComponent: this.nextBlockComponent
+		}
+	},
 	inject: ['addNewBlockAfter'],
 	model: {
 		prop: 'blocks',
@@ -80,6 +86,11 @@ export default {
 			const isNextBlockNew = nextBlock && nextBlock.constructor.name == "New"
 
 			return isThisNewBlock || isNextBlockNew ? false : true
+		},
+		nextBlockComponent (blockComponent) {
+			const index = this.$refs.block.indexOf(blockComponent)
+
+			return this.$refs.block[index+1]
 		}
 	},
 	watch: {

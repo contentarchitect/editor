@@ -155,8 +155,31 @@ function selectedContainer(range) {
 	if (container.textContent == range.toString()) return container
 }
 
+// https://stackoverflow.com/a/7478420/7663430
+function isCaretEnd (selection, el) {
+	if (!selection.rangeCount || !selection.isCollapsed) return
+	const selRange = selection.getRangeAt(0)
+	const testRange = selRange.cloneRange()
+
+	testRange.selectNodeContents(el)
+	testRange.setStart(selRange.endContainer, selRange.endOffset);
+	return testRange.toString().trim() == ""
+}
+
+// https://stackoverflow.com/a/7478420/7663430
+function isCaretStart (selection, el) {
+	if (!selection.rangeCount || !selection.isCollapsed) return
+	const selRange = selection.getRangeAt(0)
+	const testRange = selRange.cloneRange()
+
+	testRange.selectNodeContents(el)
+	testRange.setEnd(selRange.startContainer, selRange.startOffset);
+	return testRange.toString().trim() == ""
+}
+
 export default {
-	inject: ['appSettings'],
+	name: "Editable",
+	inject: ['appSettings', 'nextBlockComponent'],
 	props: {
 		value: {
 			type: String
@@ -366,6 +389,17 @@ export default {
 					e.preventDefault();
 				}
 			}
+			// else if (e.which == 37) {
+			// 	if (this.isCaretStart()) {
+			// 		this.focusEndPrevEditable()
+			// 		e.preventDefault()
+			// 	}
+			// } else if (e.which == 39) {
+			// 	if (this.isCaretEnd()) {
+			// 		this.focusStartNextEditable()
+			// 		e.preventDefault()
+			// 	}
+			// }
 		},
 		keyupHandler (e) {
 			if (e.which === 13){
@@ -407,7 +441,55 @@ export default {
 		},
 		innerText () {
 			return this.$refs.body.innerText;
-		} 
+		},
+		// focusEndPrevEditable () {
+		// 	const editables = this.$root.$el.getElementsByClassName("editable")
+		// 	const index = Array.from(editables).indexOf(this.$el)
+		// 	const beforeEditableEl = editables[index-1]
+
+		// 	if (!beforeEditableEl) return;
+
+		// 	const editable = beforeEditableEl.__vue__
+		// 	editable.setCaretEnd()
+		// },
+		// focusStartNextEditable () {
+		// 	const editables = this.$root.$el.getElementsByClassName("editable")
+		// 	const index = Array.from(editables).indexOf(this.$el)
+		// 	const nexEditableEl = editables[index+1]
+
+		// 	if (!nexEditableEl) return;
+
+		// 	const editable = nexEditableEl.__vue__
+		// 	editable.setCaretStart()
+		// },
+		// setCaretStart () {
+		// 	const body = this.$refs.body
+		// 	const sel = this.document.getSelection()
+		// 	sel.selectAllChildren(body)
+		// 	const range = sel.getRangeAt(0)
+		// 	range.collapse(true)
+		// 	sel.removeAllRanges()
+		// 	sel.addRange(range)
+		// 	// const range = new Range()
+		// 	// range.selectNodeContents(body)
+		// 	// this.document.getSelection().removeAllRanges()
+		// 	// this.document.getSelection().addRange(range)
+		// },
+		// setCaretEnd () {
+		// 	const body = this.$refs.body
+		// 	const sel = this.document.getSelection()
+		// 	sel.selectAllChildren(body.lastChild)
+		// 	const range = sel.getRangeAt(0)
+		// 	range.collapse(false)
+		// 	sel.removeAllRanges()
+		// 	sel.addRange(range)
+		// },
+		// isCaretEnd () {
+		// 	return isCaretEnd(this.document.getSelection(), this.$refs.body)
+		// },
+		// isCaretStart () {
+		// 	return isCaretStart(this.document.getSelection(), this.$refs.body)
+		// },
 
 	}
 }

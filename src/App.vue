@@ -149,6 +149,17 @@ export default {
 			})
 		}
 	},
+	mounted () {
+		// For Firefox bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1066965
+		if (Util.isFirefox()) {
+			const input = document.createElement("input")
+			input.setAttribute("id", "firefoxindicator")
+			input.type = "text"
+			input.style.position = "relative"
+			input.style.left = "-99999px"
+			document.body.append(input)
+		}
+	},
 	methods: {
 		addBlock (usableBlock) {
 			const newBlock = new usableBlock();

@@ -108,4 +108,8 @@ export default class Util {
 		return clonedBlock
 	}
 
+	static isFirefox () {
+		return typeof InstallTrigger !== 'undefined';
+	}
+
 }

@@ -237,11 +237,6 @@ export default {
 					}
 				}
 			});
-
-			setTimeout(() => {
-				const editable = this.$refs.view.$children.find(childComp => childComp.$options.name == "Editable")
-				if (editable) editable.setCaretStart();
-			}, 0)
 		});
 
 		this.$once("hook:beforeDestroy", () => {

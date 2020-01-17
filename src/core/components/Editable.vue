@@ -10,8 +10,8 @@
 			@selectstart="selectStartHandler"
 			@input="changeHandler" 
 			@keydown="keydownHandler"
-			@keyup="keyupHandler"
 			@paste="pasteHandler"
+			@mousedown="fixFirefoxBug"
 		>
 		</div>
 
@@ -92,10 +92,6 @@ import Util from "../scripts/Util.js"
 import CaInput from "./CaInput.vue"
 import Button from "./Button.vue"
 
-function isFirefox() {
-	return typeof InstallTrigger !== 'undefined';
-}
-
 function takeToParagraph(body) {
 	const childNodes = body.childNodes
 
@@ -155,27 +151,27 @@ function selectedContainer(range) {
 	if (container.textContent == range.toString()) return container
 }
 
-// https://stackoverflow.com/a/7478420/7663430
-function isCaretEnd (selection, el) {
-	if (!selection.rangeCount || !selection.isCollapsed) return
-	const selRange = selection.getRangeAt(0)
-	const testRange = selRange.cloneRange()
+// // https://stackoverflow.com/a/7478420/7663430
+// function isCaretEnd (selection, el) {
+// 	if (!selection.rangeCount || !selection.isCollapsed) return
+// 	const selRange = selection.getRangeAt(0)
+// 	const testRange = selRange.cloneRange()
 
-	testRange.selectNodeContents(el)
-	testRange.setStart(selRange.endContainer, selRange.endOffset);
-	return testRange.toString().trim() == ""
-}
+// 	testRange.selectNodeContents(el)
+// 	testRange.setStart(selRange.endContainer, selRange.endOffset);
+// 	return testRange.toString().trim() == ""
+// }
 
-// https://stackoverflow.com/a/7478420/7663430
-function isCaretStart (selection, el) {
-	if (!selection.rangeCount || !selection.isCollapsed) return
-	const selRange = selection.getRangeAt(0)
-	const testRange = selRange.cloneRange()
+// // https://stackoverflow.com/a/7478420/7663430
+// function isCaretStart (selection, el) {
+// 	if (!selection.rangeCount || !selection.isCollapsed) return
+// 	const selRange = selection.getRangeAt(0)
+// 	const testRange = selRange.cloneRange()
 
-	testRange.selectNodeContents(el)
-	testRange.setEnd(selRange.startContainer, selRange.startOffset);
-	return testRange.toString().trim() == ""
-}
+// 	testRange.selectNodeContents(el)
+// 	testRange.setEnd(selRange.startContainer, selRange.startOffset);
+// 	return testRange.toString().trim() == ""
+// }
 
 export default {
 	name: "Editable",
@@ -223,7 +219,7 @@ export default {
 	},
 	mounted () {
 		setTimeout(() => {
-			if (isFirefox()) {
+			if (Util.isFirefox()) {
 				this.document = document;
 			} else {
 				this.document = this.$el.getRootNode() || document;
@@ -381,15 +377,15 @@ export default {
 		},
 		keydownHandler (e) {
 			if (e.which === 13 && !this.block) {
-				if (this.isLastEditableInView()) {
-					let block = this;
+				// if (this.isLastEditableInView()) {
+				// 	let block = this;
 
-					while(block.$options.name != "Block") {
-						block = block.$parent
-					}
+				// 	while(block.$options.name != "Block") {
+				// 		block = block.$parent
+				// 	}
 
-					this.addWysiwygBlockAfter(block)
-				}
+				// 	this.addWysiwygBlockAfter(block)
+				// }
 
 				e.preventDefault();
 			} else if (e.which === 8) {
@@ -415,16 +411,6 @@ export default {
 			// 		e.preventDefault()
 			// 	}
 			// }
-		},
-		keyupHandler (e) {
-			if (e.which === 13){
-				if (this.block && !e.shiftKey) {
-					document.execCommand('formatBlock', false, 'p');
-					e.preventDefault();
-				} else {
-					e.preventDefault();
-				}
-			}
 		},
 		pasteHandler (event) {
 			let paste = (event.clipboardData || window.clipboardData).getData('text');
@@ -457,9 +443,9 @@ export default {
 		innerText () {
 			return this.$refs.body.innerText;
 		},
-		isLastEditableInView () {
-			return !this.nextEditableInView(this)
-		},
+		// isLastEditableInView () {
+		// 	return !this.nextEditableInView(this)
+		// },
 		// focusEndPrevEditable () {
 		// 	const editables = this.$root.$el.getElementsByClassName("editable")
 		// 	const index = Array.from(editables).indexOf(this.$el)
@@ -470,29 +456,29 @@ export default {
 		// 	const editable = beforeEditableEl.__vue__
 		// 	editable.setCaretEnd()
 		// },
-		focusStartNextEditable () {
-			const editables = this.$root.$el.getElementsByClassName("editable")
-			const index = Array.from(editables).indexOf(this.$el)
-			const nexEditableEl = editables[index+1]
+		// focusStartNextEditable () {
+		// 	const editables = this.$root.$el.getElementsByClassName("editable")
+		// 	const index = Array.from(editables).indexOf(this.$el)
+		// 	const nexEditableEl = editables[index+1]
 
-			if (!nexEditableEl) return;
+		// 	if (!nexEditableEl) return;
 
-			const editable = nexEditableEl.__vue__
-			editable.setCaretStart()
-		},
-		setCaretStart () {
-			const body = this.$refs.body
-			const sel = this.document.getSelection()
-			sel.selectAllChildren(body)
-			const range = sel.getRangeAt(0)
-			range.collapse(true)
-			sel.removeAllRanges()
-			sel.addRange(range)
-			// const range = new Range()
-			// range.selectNodeContents(body)
-			// this.document.getSelection().removeAllRanges()
-			// this.document.getSelection().addRange(range)
-		},
+		// 	const editable = nexEditableEl.__vue__
+		// 	editable.setCaretStart()
+		// },
+		// setCaretStart () {
+		// 	const body = this.$refs.body
+		// 	const sel = this.document.getSelection()
+		// 	sel.selectAllChildren(body)
+		// 	const range = sel.getRangeAt(0)
+		// 	range.collapse(true)
+		// 	sel.removeAllRanges()
+		// 	sel.addRange(range)
+		// 	// const range = new Range()
+		// 	// range.selectNodeContents(body)
+		// 	// this.document.getSelection().removeAllRanges()
+		// 	// this.document.getSelection().addRange(range)
+		// },
 		// setCaretEnd () {
 		// 	const body = this.$refs.body
 		// 	const sel = this.document.getSelection()
@@ -508,6 +494,13 @@ export default {
 		// isCaretStart () {
 		// 	return isCaretStart(this.document.getSelection(), this.$refs.body)
 		// },
+		fixFirefoxBug () {
+			if (!Util.isFirefox()) return
+			const x = window.scrollX,
+				  y = window.scrollY
+			document.getElementById("firefoxindicator").focus()
+			window.scrollTo(x, y)
+		}
 
 	}
 }

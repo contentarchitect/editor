@@ -228,8 +228,6 @@ export default {
 			} else {
 				this.document = this.$el.getRootNode() || document;
 			}
-
-			this.setCaretStart()
 		})
 		this.$refs.body.innerHTML = this.value;
 

@@ -22,11 +22,14 @@ export default class Block {
 	classes = []
 
 	static setSettings (settings) {
-		this._settings = this._settings || {}
+		if (!this._settings) {
+			this._settings = Object.assign({}, this.defaultSettings)
+		}
+
 		this._classOptions = this._classOptions || {}
 		const { classOptions, ...sets } = settings
 		Object.assign(this._classOptions, this.defaultClassOptions, classOptions)
-		Object.assign(this._settings, this.defaultSettings, sets)
+		Object.assign(this._settings, sets)
 	}
 
 	static get settings () {

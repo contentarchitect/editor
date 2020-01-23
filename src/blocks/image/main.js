@@ -1,4 +1,4 @@
-import { Block } from "@contentarchitect/core"
+import { Block, Util } from "@contentarchitect/core"
 import view from "./view.vue"
 import settings from "./settings.vue"
 
@@ -13,17 +13,36 @@ export default class Image extends Block {
 
 	static defaultData = {
 		images: [
-			{ image: null, caption: null }
+			{ image: null, caption: null, uploading: false, uploaded: false, data: {} }
 		]
 	}
 
-	static defaultSettings = {}
+	static defaultSettings = {
+		uploadImages: false,
+		upload: this.upload,
+		remove: this.remove
+	}
+
+	static upload (image, block) {
+		return undefined
+	}
+
+	static remove (image, block) {
+		return undefined
+	}
 
 	toHTML () {
 		let str = '';
 
 		this.images.forEach(image => {
-			str += `<figure><img src="${image.image}" />`
+			let data = []
+			Object.keys(image.data).forEach(key => {
+				data.push(`data-${Util.toKebabCase(key)}="${image.data[key]}"`)
+			})
+
+			data = data.join(" ")
+
+			str += `<figure><img src="${image.image}" ${data} />`
 			if (image.caption && image.caption !== '') {
 				str += `<figcaption>${image.caption}</figcaption>`
 			}
@@ -40,7 +59,7 @@ export default class Image extends Block {
 			const img = fig.getElementByTagName("img");
 			const src = img.getAttribute("src");
 			const cpt = fig.getElementByTagName("figcaption").innerHTML;
-			obj.images.push({ image: src, caption: cpt });
+			obj.images.push({ image: src, caption: cpt, data: { ...img.dataset } });
 		})
 		
 		return obj

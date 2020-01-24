@@ -7,9 +7,6 @@ export default {
 	props: ['tooltip'],
 	render (createElement) {
 		return createElement("span", {
-			class: {
-				cihad: true
-			},
 			directives: [
 				{
 					name: "tooltip",

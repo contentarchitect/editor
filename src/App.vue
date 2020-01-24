@@ -5,10 +5,9 @@
 		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
 
 		<blocks v-model='slotBlocks' @htmlrender="reRender" />
+		<add-new-block @click="addNewBlockAfter(slotBlocks[slotBlocks.length-1])" />
 
-		<div style="margin-top: 20px;"></div>
-
-		<v-popover
+		<!-- <v-popover
 			popoverClass="new-block-panel"
 			offset="8"
 			:open="isNewBlockPopoverActive"
@@ -29,7 +28,7 @@
 					</li>
 				</ul>
 			</template>
-		</v-popover>
+		</v-popover> -->
 
 		<!-- <pre>{{ slotBlocks }}</pre> -->
 	</div>
@@ -49,6 +48,8 @@ import { VPopover, VTooltip } from 'v-tooltip'
 import BlocksComponent from "./components/Blocks.vue"
 import { PortalTarget } from 'portal-vue'
 import NewBlock from "./blocks/new/main.js"
+import InsertionPlaceholder from "./components/InsertionPlaceholder.vue"
+import AddNewBlock from "./components/AddNewBlock.vue"
 
 export default {
 	name: 'ContentArchitect',
@@ -57,6 +58,8 @@ export default {
 		VPopover,
 		Tooltip,
 		PortalTarget,
+		InsertionPlaceholder,
+		AddNewBlock,
 		blocks: BlocksComponent
 	},
 	model: {
@@ -191,7 +194,6 @@ export default {
 			this.slotBlocks.splice(index + 1, 0, new Wysiwyg())
 		},
 		replaceBlock (block, newBlock) {
-			debugger;
 			const ind = this.slotBlocks.indexOf(block)
 			Vue.set(this.slotBlocks, ind, newBlock)
 		}

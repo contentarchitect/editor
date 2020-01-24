@@ -11,18 +11,11 @@
 				@move-block-down="moveBlockDown"
 				@move-block-up="moveBlockUp"
 				@duplicate="duplicate" />
-			<div
+			<insertion-placeholder
 				:key="'b-' + block.id"
-				v-show="showAddBlock(block)"
-				class="add-block"
 				@click="addNewBlockAfter(block)"
-			>
-				<div class="add-block-inner">
-					<hr />
-					<span>add block</span>
-					<hr />
-				</div>
-			</div>
+				v-show="showAddBlock(block)"	
+			/>
 		</template>
 	</transition-group>
 </template>
@@ -32,6 +25,7 @@ import Vue from "vue"
 import Block from "./Block.vue"
 import { Blocks, Util } from "@contentarchitect/core"
 import Unknown from "../blocks/unknown/main.js"
+import InsertionPlaceholder from "./InsertionPlaceholder.vue"
 
 export default {
 	name: "Blocks",
@@ -47,7 +41,8 @@ export default {
 	},
 	props: ['blocks'],
 	components: {
-		Block
+		Block,
+		InsertionPlaceholder
 	},
 	data () {
 		return {
@@ -82,10 +77,11 @@ export default {
 			const ind = this.blocks.indexOf(block)
 			const nextBlock = this.blocks[ind + 1]
 
-			const isThisNewBlock = block.constructor.name == "New"
+			const isNewBlock = block.constructor.name == "New"
 			const isNextBlockNew = nextBlock && nextBlock.constructor.name == "New"
+			const isLastBlock = ind+1 == this.blocks.length
 
-			return isThisNewBlock || isNextBlockNew ? false : true
+			return isNewBlock || isNextBlockNew || isLastBlock ? false : true
 		},
 		nextBlockComponent (blockComponent) {
 			const index = this.$refs.block.indexOf(blockComponent)
@@ -152,44 +148,5 @@ export default {
 
 .flip-list-leave-active {
 	position: absolute !important;
-}
-
-
-.add-block {
-  height: 0px;
-  position: relative;
-}
-
-.add-block-inner {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  left: 0;
-  right: 0;
-  height: 14px;
-  opacity: 0;
-  margin-top: -7px;
-}
-
-.add-block-inner > hr:first-child {
-  flex: 10;
-  height: 1px;
-  border: 0;
-  background: #5cc7c7;
-}
-
-.add-block-inner > span {
-  padding: 0 10px;
-}
-
-.add-block-inner > hr:last-child {
-  flex: 1;
-  height: 1px;
-  border: 0;
-  background: #5cc7c7;
-}
-
-.add-block-inner:hover {
-  opacity: 1;
 }
 </style>

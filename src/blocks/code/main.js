@@ -15,10 +15,12 @@ export default class Code extends Block {
 		defaultLanguage: "txt",
 	}
 
-	static defaultData = {
-		language: '',
-		code: '',
-		highlighted: ''
+	static defaultData () {
+		return {
+			language: '',
+			code: '',
+			highlighted: ''
+		}
 	}
 
 	toHTML () {

@@ -6,9 +6,11 @@ export default class Quote extends Block {
 		return view;
 	}
 
-	static defaultData = {
-		content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		cite: "Anonym"
+	static defaultData () {
+		return {
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			cite: "Anonym"
+		}
 	}
 
 	toHTML () {

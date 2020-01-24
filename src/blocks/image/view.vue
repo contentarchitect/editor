@@ -2,8 +2,8 @@
 	<div class="image-block">
 		<div v-for="(image, i) in value.images" :key="i" ref="figure" class="image-block-image">
 			<transition name="bounce" mode="out-in">
-				<div key="1" v-if="image.image" class="image">
-					<img :src="image.image" style="width:100%">
+				<div key="1" v-if="image.url" class="image">
+					<img :src="image.url" style="width:100%">
 
 					<div class="image-overlay" v-if="!image.uploading">
 						<Tooltip tooltip="Remove image">
@@ -25,6 +25,9 @@
 							<div key="2" class="sa upload-text upload-success" v-if="image.uploaded">
 								<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
 								Uploaded
+							</div>
+							<div key="3" class="three-dot upload-text" v-if="image.removing">
+								Removing
 							</div>
 						</transition>
 					</div>
@@ -75,39 +78,43 @@ export default {
 			imageInput.click();
 		},
 		addUrl (index) {
-			this.value.images[index].image = this.url
+			this.value.images[index].url = this.url
 			this.url = ""
 		},
 		removeImage (index) {
+			const image = this.value.images[index];
 			if (this.value.constructor.settings.uploadImages
-				&& this.value.images[index].uploaded) {
-				this.value.constructor.settings.remove(this.value.images[index])
+				&& image.uploaded) {
+				image.removing = true
+				this.value.constructor.settings.remove(image)
 					.then(message => {
-						this.value.images[index].image = ""
+						image.url = ""
+						image.removing = false
 					})
-					.catch(console.error)
+					.catch(msg => {
+						console.error(msg)
+						image.removing = false
+					})
 			} else {
-				this.value.images[index].image = ""
+				image.url = ""
 			}
 		},
-		uploadImage (figure, imageFile) {
-			figure.uploading = true
-			figure.uploaded = false
+		uploadImage (image, imageFile) {
+			image.uploading = true
+			image.uploaded = false
 
 			this.value.constructor.settings.upload(imageFile)
-				.then(({imageUrl, data}) => {
-					console.log("DATTTAAAAA", data)
-					figure.image = imageUrl;
-					Object.assign(figure, {
+				.then(({url, data}) => {
+					Object.assign(image, {
+						url,
 						data,
-						image: imageUrl
+						uploading: false,
+						uploaded: true
 					})
-					figure.uploading = false
-					figure.uploaded = true
 				})
 				.catch(err => {
-					figure.uploading = false
-					figure.uploaded = false
+					image.uploading = false
+					image.uploaded = false
 					console.error(err)
 				})
 		},
@@ -118,11 +125,11 @@ export default {
 				var reader = new FileReader();
 				
 				reader.onload = (e) => {
-					const figure = this.value.images[index]
-					figure.image = e.target.result
+					const image = this.value.images[index]
+					image.url = e.target.result
 
 					if (this.value.constructor.settings.uploadImages)
-						this.uploadImage(figure, input.files[0])
+						this.uploadImage(image, input.files[0])
 				}
 				
 				reader.readAsDataURL(input.files[0]);

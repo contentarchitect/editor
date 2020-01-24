@@ -191,6 +191,7 @@ export default {
 			this.slotBlocks.splice(index + 1, 0, new Wysiwyg())
 		},
 		replaceBlock (block, newBlock) {
+			debugger;
 			const ind = this.slotBlocks.indexOf(block)
 			Vue.set(this.slotBlocks, ind, newBlock)
 		}

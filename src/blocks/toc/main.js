@@ -7,8 +7,10 @@ export default class Toc extends Block {
 		return view;
 	}
 
-	static defaultData = {
-		tree: null
+	static defaultData () {
+		return {
+			tree: null
+		}
 	}
 
 	toHTML (blocks) {

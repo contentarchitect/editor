@@ -17,7 +17,7 @@ export default {
 	props: ['value'],
 	data () {
 		return {
-			emptyImage: { image: null, caption: null },
+			emptyImage: { url: null, caption: null },
 		}
 	},
 	computed: {

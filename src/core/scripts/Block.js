@@ -12,11 +12,11 @@ export default class Block {
 		} else {
 			obj = domOrObject;
 			this.classOptions = this.constructor.getInitialClassOptions()
-			Object.assign(this, this.constructor.defaultData, obj)
+			Object.assign(this, this.constructor.defaultData(), obj)
 		}
 	}
 
-	static defaultData = {}
+	static defaultData () { return {} }
 	static defaultSettings = {}
 	static defaultClassOptions = {}
 	classes = []

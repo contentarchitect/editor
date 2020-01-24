@@ -11,10 +11,19 @@ export default class Image extends Block {
 		return settings;
 	}
 
-	static defaultData = {
-		images: [
-			{ image: null, caption: null, uploading: false, uploaded: false, data: {} }
-		]
+	static defaultData () {
+		return {
+			images: [
+				{
+					url: null,
+					caption: null,
+					uploading: false,
+					uploaded: false,
+					removing: false,
+					data: {}
+				}
+			]
+		}
 	}
 
 	static defaultSettings = {
@@ -42,7 +51,7 @@ export default class Image extends Block {
 
 			data = data.join(" ")
 
-			str += `<figure><img src="${image.image}" ${data} />`
+			str += `<figure><img src="${image.url}" ${data} />`
 			if (image.caption && image.caption !== '') {
 				str += `<figcaption>${image.caption}</figcaption>`
 			}
@@ -57,9 +66,13 @@ export default class Image extends Block {
 
 		Array.from(doc.getElementsByTagName("figure")).forEach(fig => {
 			const img = fig.getElementByTagName("img");
-			const src = img.getAttribute("src");
-			const cpt = fig.getElementByTagName("figcaption").innerHTML;
-			obj.images.push({ image: src, caption: cpt, data: { ...img.dataset } });
+			const url = img.getAttribute("src");
+			const caption = fig.getElementByTagName("figcaption").innerHTML;
+			obj.images.push({
+				url,
+				caption,
+				data: { ...img.dataset }
+			});
 		})
 		
 		return obj

@@ -6,8 +6,10 @@ export default class Wysiwyg extends Block {
 		return view;
 	}
 
-	static defaultData = {
-		content: "<p></p>"
+	static defaultData () {
+		return {
+			content: "<p></p>"
+		}
 	}
 
 	static defaultSettings = {

@@ -11,8 +11,10 @@ export default class Divider extends Block {
 		return settings;
 	}
 
-	static defaultData = {
-		dividerType: 'star'
+	static defaultData () {
+		return {
+			dividerType: 'star'
+		}
 	}
 
 	static defaultSettings = {

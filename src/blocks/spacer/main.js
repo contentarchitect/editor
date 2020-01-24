@@ -11,8 +11,10 @@ export default class Spacer extends Block {
 		return settings;
 	}
 
-	static defaultData = {
-		height: 30
+	static defaultData () {
+		return {
+			height: 30
+		}
 	}
 
 	static defaultSettings = {

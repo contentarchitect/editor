@@ -6,10 +6,12 @@ export default class Unknown extends Block {
 		return View;
 	}
 
-	static defaultData = {
-		holderBlockName: null,
-		innerHTML: "",
-		outerHTML: ""
+	static defaultData () {
+		return {
+			holderBlockName: null,
+			innerHTML: "",
+			outerHTML: ""
+		}
 	}
 
 	toHTML () {

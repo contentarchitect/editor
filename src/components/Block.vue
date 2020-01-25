@@ -69,12 +69,10 @@
 										<a @click="closeBtnAction">✕</a>
 									</div>
 									<div class="settings-panel-body">
-										<settings-section :collapsed="false">
-											<template v-slot:title="{ toggleSection, showSection }">
-												<section-title @click="toggleSection" :collapsed="showSection">General</section-title>
+										<settings-section :collapsed="false" :disabled="true">
+											<template v-slot:title="{ toggleSection, showSection, disabled }">
+												<section-title @click="toggleSection" :collapsed="showSection" :disabled="disabled">General</section-title>
 											</template>
-											<v-button @click="duplicate" primary>Duplicate</v-button>
-											<v-button @click="immediatelyRemoveBlock">Remove</v-button>
 										</settings-section>
 
 										<settings-section :collapsed="true" :disabled="isObjectEmpty(block.constructor.classOptions)">
@@ -122,6 +120,15 @@
 											<component :is="block.constructor.settingsComponent" :settings="block.constructor.settings" :value="block" />
 										</settings-section>
 									</div>
+									<div class="settings-panel-footer">
+										<Tooltip tooltip="Duplicate">
+											<copy-icon @click="duplicate" fill="#ccc" />
+										</Tooltip>
+
+										<Tooltip tooltip="Remove Block">
+											<delete-icon @click="immediatelyRemoveBlock" fill="#e64848" />
+										</Tooltip>
+									</div>
 								</div>
 								<!-- <div class="tooltip-arrow popover-arrow" style="top: 3px;"></div> -->
 							</div>
@@ -152,6 +159,8 @@ import { Portal } from 'portal-vue'
 
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Popper from "popper.js";
+import CopyIcon from "../assets/copy.svg"
+import DeleteIcon from "../assets/delete.svg"
 
 export default {
 	name: "Block",
@@ -192,6 +201,8 @@ export default {
 		RadioButtons,
 		RadioButton,
 		CssGrid,
+		CopyIcon,
+		DeleteIcon,
 		'v-button': Button,
 		"v-popover": VPopover,
 	},
@@ -458,6 +469,18 @@ export default {
 
 .settings-panel-body {
 	padding-bottom: 20px;
+}
+
+.settings-panel-footer {
+	display: flex;
+	padding: 6px 8px;
+	align-items: center;
+	justify-content: flex-end;
+	border-top: 1px solid #000;
+}
+
+.settings-panel-footer > * {
+	margin-left: 5px;
 }
 
 .ui-button--remove {

@@ -6,7 +6,7 @@
 		<div class="add-block-inner">
 			<hr />
 			<span>add block</span>
-			<!-- <hr /> -->
+			<hr />
 		</div>
 	</div>
 </template>
@@ -32,6 +32,7 @@ export default {
 	height: 14px;
 	opacity: 0;
 	margin-top: -7px;
+	transition: opacity .1s;
 }
 
 .add-block-inner > hr:first-child,
@@ -39,16 +40,20 @@ export default {
 	flex: 1;
 	height: 1px;
 	border: 0;
-	background-color: #121212;
+	border-bottom: 1px dashed #121212;
 }
 
 .add-block-inner > span {
 	padding: 0 10px;
 	background-color: #121212;
 	color: #ccc;
-	border-radius: 3px;
+	border-radius: 1em;
+	cursor: default;
 }
 
+.add-block-inner > span:hover {
+	background-color: #444;
+}
 
 .add-block-inner:hover {
   opacity: 1;

@@ -7,16 +7,21 @@
 				</li>
 			</ul>
 
-			<button @click="removeThis">X</button>
+			<ui-button
+				square
+				@click="removeThis"
+				:disabled="disableMoveUp">
+				✕
+			</ui-button>
 		</div>
 	</on-event-outside>
 </template>
 
 <script>
-import { OnEventOutside } from "@contentarchitect/core"
+import { OnEventOutside, UiButton } from "@contentarchitect/core"
 
 export default {
-	components: { OnEventOutside },
+	components: { OnEventOutside, UiButton },
 	props: ['value'],
 	inject: ['slottedBlocks', 'usableBlocks', 'replaceBlock', 'removeBlock'],
 	methods: {
@@ -51,6 +56,7 @@ li {
 
 .new-block-inner {
 	position: relative;
+	margin: 10px 0;
 }
 
 .new-block-inner button {

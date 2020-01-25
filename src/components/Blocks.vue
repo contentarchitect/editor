@@ -149,4 +149,8 @@ export default {
 .flip-list-leave-active {
 	position: absolute !important;
 }
+
+[data-block]:hover + .add-block .add-block-inner {
+	opacity: .2;
+}
 </style>

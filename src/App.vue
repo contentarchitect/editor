@@ -3,33 +3,8 @@
 		<!-- portal-target, multiple ile kullanildiginda bug oluyor -->
 		<!-- bug yuzunden dongu yapildi -->
 		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
-
 		<blocks v-model='slotBlocks' @htmlrender="reRender" />
 		<add-new-block @click="addNewBlockAfter(slotBlocks[slotBlocks.length-1])" />
-
-		<!-- <v-popover
-			popoverClass="new-block-panel"
-			offset="8"
-			:open="isNewBlockPopoverActive"
-			placement="bottom"
-			:container="false"
-			@show="isNewBlockPopoverActive = true"
-			@hide="isNewBlockPopoverActive = false"
-			:handle-resize="false">
-
-			<Tooltip tooltip="Add new block">
-				<ui-button :active="isNewBlockPopoverActive">+</ui-button>
-			</Tooltip>
-
-			<template slot="popover">
-				<ul class="block-list">
-					<li v-for="usableBlock in usableBlocks" :key="usableBlock.name" @click="addBlock(usableBlock)">
-						{{usableBlock.name}}
-					</li>
-				</ul>
-			</template>
-		</v-popover> -->
-
 		<!-- <pre>{{ slotBlocks }}</pre> -->
 	</div>
 </template>

@@ -387,7 +387,7 @@ export default {
 	position: relative;
 }
 
-[data-block]::before {
+[data-block]:not([data-block=New])::before {
 	content: '';
 	top: -10px;
 	left: -10px;

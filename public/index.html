@@ -99,6 +99,14 @@
 .red {
 	color: red;
 }
+
+.drop-cap .editable-body:not(:focus) > p:first-child:first-letter,
+.drop-cap > p:first-child:first-letter {
+    float: left;
+    font-size: 3em;
+    line-height: 1em;
+    margin-right: .1em;
+}
 </style>
 </head>
 
@@ -321,6 +329,12 @@ typography.injectStyles()</pre>
 	// }
 
 	editor.classOptions = [
+		{
+			blocks: ["Paragraph"],
+			classes: {
+				"drop-cap": "First Letter"
+			}
+		},
 		{
 			blocks: ["Code", "Quote"],
 			classes: {

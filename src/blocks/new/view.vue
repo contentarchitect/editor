@@ -7,12 +7,7 @@
 				</li>
 			</ul>
 
-			<ui-button
-				square
-				@click="removeThis"
-				:disabled="disableMoveUp">
-				✕
-			</ui-button>
+			<ui-button square @click="removeThis">✕</ui-button>
 		</div>
 	</on-event-outside>
 </template>

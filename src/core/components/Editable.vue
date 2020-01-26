@@ -347,8 +347,8 @@ export default {
 				&& editable.children[0].tagName == "P"
 				&& editable.children[0].children.length == 0
 			) {
-				const br = document.createElement("br")
-				editable.children[0].appendChild(br)
+				const newLine = document.createTextNode("\n")
+				editable.children[0].appendChild(newLine)
 			}
 
 			if (

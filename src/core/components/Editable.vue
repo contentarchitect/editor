@@ -179,7 +179,7 @@ export default {
 		'appSettings',
 		'nextBlockComponent',
 		'nextEditableInView',
-		'addWysiwygBlockAfter'
+		'addParagraphBlockAfter'
 	],
 	props: {
 		value: {
@@ -384,7 +384,7 @@ export default {
 				// 		block = block.$parent
 				// 	}
 
-				// 	this.addWysiwygBlockAfter(block)
+				// 	this.addParagraphBlockAfter(block)
 				// }
 
 				e.preventDefault();

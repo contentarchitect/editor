@@ -89,7 +89,7 @@ export default {
 			},
 
 			addNewBlockAfter: this.addNewBlockAfter,
-			addWysiwygBlockAfter: this.addWysiwygBlockAfter,
+			addParagraphBlockAfter: this.addParagraphBlockAfter,
 			replaceBlock: this.replaceBlock,
 			removeBlock: this.removeBlock,
 
@@ -161,12 +161,12 @@ export default {
 			const ind = this.slotBlocks.indexOf(block) + 1;
 			this.slotBlocks.splice(ind, 0, new NewBlock())
 		},
-		addWysiwygBlockAfter (blockVueComponent) {
-			const Wysiwyg = this.usableBlocks.find(blockConstructor => blockConstructor.name == "Wysiwyg")
-			if (!Wysiwyg) return
+		addParagraphBlockAfter (blockVueComponent) {
+			const Paragraph = this.usableBlocks.find(blockConstructor => blockConstructor.name == "Paragraph")
+			if (!Paragraph) return
 			if (!blockVueComponent._isVue) return
 			const index = this.slotBlocks.indexOf(blockVueComponent.block)
-			this.slotBlocks.splice(index + 1, 0, new Wysiwyg())
+			this.slotBlocks.splice(index + 1, 0, new Paragraph())
 		},
 		replaceBlock (block, newBlock) {
 			const ind = this.slotBlocks.indexOf(block)

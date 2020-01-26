@@ -1,7 +1,7 @@
 import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
 
-export default class Wysiwyg extends Block {
+export default class Paragraph extends Block {
 	static get viewComponent () {
 		return view;
 	}

@@ -1,6 +1,6 @@
 <template>
 	<div class="image-block">
-		<div v-for="(image, i) in value.images" :key="i" ref="figure" class="image-block-image">
+		<figure v-for="(image, i) in value.images" :key="i" ref="figure" class="image-block-image">
 			<transition name="bounce" mode="out-in">
 				<div key="1" v-if="image.url" class="image">
 					<img :src="image.url" style="width:100%">
@@ -52,8 +52,8 @@
 
 			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)">
 
-			<div><Editable v-model="image.caption" /></div>
-		</div>
+			<figcaption><Editable v-model="image.caption" /></figcaption>
+		</figure>
 	</div>
 </template>
 
@@ -140,14 +140,6 @@ export default {
 </script>
 
 <style>
-figure {
-	margin: 0;
-}
-
-figure img {
-	max-width: 100%;
-}
-
 .image-block {
 	display: flex;
 }

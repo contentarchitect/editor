@@ -5,7 +5,7 @@
 			:placeholder="placeholder"
 			spellcheck="false"
 			class="editable-body"
-			:class="{ placeholder: showPlaceholder }"
+			:class="{ 'show-placeholder': showPlaceholder }"
 			ref="body"
 			@selectstart="selectStartHandler"
 			@input="changeHandler" 
@@ -341,15 +341,15 @@ export default {
 		changeHandler () {
 			const editable = this.$refs.body;
 
-			if (
-				this.block
-				&& editable.children.length == 1
-				&& editable.children[0].tagName == "P"
-				&& editable.children[0].children.length == 0
-			) {
-				const br = document.createElement("br")
-				editable.children[0].appendChild(br)
-			}
+			// if (
+			// 	this.block
+			// 	&& editable.children.length == 1
+			// 	&& editable.children[0].tagName == "P"
+			// 	&& editable.children[0].children.length == 0
+			// ) {
+			// 	const br = document.createElement("br")
+			// 	editable.children[0].appendChild(br)
+			// }			
 
 			if (
 				editable.innerText.trim() != ""
@@ -522,6 +522,10 @@ export default {
 	border-right: 1px solid #333;
 }
 
+.editable-body {
+	min-width: 50px;
+}
+
 .editable-body:focus {
 	outline: none;
 }
@@ -653,12 +657,7 @@ export default {
     fill-rule: evenodd;
 }
 
-.placeholder[placeholder] {
-	position: relative;
-}
-
-.placeholder[placeholder]:before {
-	position: absolute;
+.show-placeholder[placeholder]:not(:focus)::before {
     content: attr(placeholder);
 	font-style: italic;
 	opacity: .5;

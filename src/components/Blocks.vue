@@ -23,7 +23,7 @@
 <script>
 import Vue from "vue"
 import Block from "./Block.vue"
-import { Blocks, Util } from "@contentarchitect/core"
+import { Blocks, Util, renderBlocks } from "@contentarchitect/core"
 import Unknown from "../blocks/unknown/main.js"
 import InsertionPlaceholder from "./InsertionPlaceholder.vue"
 
@@ -93,26 +93,7 @@ export default {
 		blocks: {
 			deep: true,
 			handler () {
-				let htmlStr = '';
-
-	
-				this.blocks.forEach(block => {
-					if (!("toHTML" in block)) return;
-
-					let blockConstructor = block.constructor
-					let classes = block.classes.join(" ")
-					let classStr = classes ? `class="${classes}"` : ''
-
-					const dataset = block.dataset
-
-					let datasetStr = Object.entries(dataset).reduce((acu, [key, value]) => {
-						return acu + ` data-${Util.toKebabCase(key)}="${value}"`
-					}, "")
-
-					htmlStr += `<div data-block="${blockConstructor.name}" ${classStr} ${datasetStr}>`
-					htmlStr += block.toHTML(this.blocks)
-					htmlStr += `</div>`
-				});
+				const htmlStr = renderBlocks(this.blocks)
 
 				this.$emit('htmlrender', htmlStr);
 			}

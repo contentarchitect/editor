@@ -18,6 +18,7 @@ import Block from "./scripts/Block.js"
 import Blocks from "./scripts/Blocks.js"
 import Upload from "./scripts/Upload.js"
 import Util from "./scripts/Util.js"
+import renderBlocks from "./scripts/renderBlocks"
 
 export {
 	Button,
@@ -36,5 +37,6 @@ export {
 	Block,
 	Blocks,
 	Upload,
-	Util
+	Util,
+	renderBlocks
 }

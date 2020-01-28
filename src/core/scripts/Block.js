@@ -83,4 +83,8 @@ export default class Block {
 	static getCssClassesFromDoc (doc) {
 		return [...doc.classList]
 	}
+
+	static serializeFromHTML (blockDom) {
+		return {};
+	}
 }

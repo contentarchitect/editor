@@ -38,7 +38,7 @@
 						<div v-if="value.constructor.settings.uploadImages">
 							<button @click="selectImage(i)">Select</button> your computer
 						</div>
-						<div class="divider" v-if="value.constructor.settings.uploadImages">
+						<div class="upload-divider" v-if="value.constructor.settings.uploadImages">
 							<hr />
 							<span>OR</span>
 							<hr />
@@ -173,18 +173,18 @@ export default {
 	flex-direction: column;
 }
 
-.divider {
+.upload-divider {
 	display: flex;
 	align-items: center;
 	opacity: .2;
 	width: 50%;
 }
 
-.divider > hr {
+.upload-divider > hr {
 	flex: 1;
 }
 
-.divider > span {
+.upload-divider > span {
 	padding: 0 1em;
 }
 

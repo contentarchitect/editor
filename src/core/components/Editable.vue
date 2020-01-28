@@ -341,15 +341,15 @@ export default {
 		changeHandler () {
 			const editable = this.$refs.body;
 
-			// if (
-			// 	this.block
-			// 	&& editable.children.length == 1
-			// 	&& editable.children[0].tagName == "P"
-			// 	&& editable.children[0].children.length == 0
-			// ) {
-			// 	const br = document.createElement("br")
-			// 	editable.children[0].appendChild(br)
-			// }			
+			if (
+				this.block
+				&& editable.children.length == 1
+				&& editable.children[0].tagName == "P"
+				&& editable.children[0].children.length == 0
+			) {
+				const br = document.createElement("br")
+				editable.children[0].appendChild(br)
+			}			
 
 			if (
 				editable.innerText.trim() != ""

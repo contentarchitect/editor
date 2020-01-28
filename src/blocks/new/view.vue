@@ -1,12 +1,13 @@
 <template>
 	<on-event-outside :do="removeThis">
 		<div class="new-block-inner">
-			<ul>
-				<li v-for="blockConstructor in usableBlocks" :key="blockConstructor.name" @click="addBlock(blockConstructor)">
-					{{blockConstructor.name}}
-				</li>
-			</ul>
-
+			<div>
+				<ul>
+					<li v-for="blockConstructor in usableBlocks" :key="blockConstructor.name" @click="addBlock(blockConstructor)">
+						{{blockConstructor.name}}
+					</li>
+				</ul>
+			</div>
 			<ui-button square @click="removeThis">✕</ui-button>
 		</div>
 	</on-event-outside>
@@ -40,8 +41,6 @@ ul, li {
 
 ul {
 	display: flex;
-	background: #121212;
-	border-radius: 3px;
 }
 
 li {
@@ -50,8 +49,14 @@ li {
 }
 
 .new-block-inner {
+	background: #121212;
+	border-radius: 3px;
 	position: relative;
 	margin: 10px 0;
+}
+
+.new-block-inner > div {
+	overflow-x: auto;
 }
 
 .new-block-inner button {

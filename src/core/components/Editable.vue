@@ -64,6 +64,29 @@
 							</svg>
 						</button>
 
+						<button @click.prevent="command('insertOrderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertorderedlist }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<line class="ca-stroke" x1="7" x2="15" y1="4" y2="4"></line>
+								<line class="ca-stroke" x1="7" x2="15" y1="9" y2="9"></line>
+								<line class="ca-stroke" x1="7" x2="15" y1="14" y2="14"></line>
+								<line class="ca-stroke ca-thin" x1="2.5" x2="4.5" y1="5.5" y2="5.5"></line>
+								<path class="ca-fill" d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z"></path>
+								<path class="ca-stroke ca-thin" d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156"></path>
+								<path class="ca-stroke ca-thin" d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109"></path>
+							</svg>
+						</button>
+
+						<button @click.prevent="command('insertUnorderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertunorderedlist }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<line class="ca-stroke" x1="6" x2="15" y1="4" y2="4"></line>
+								<line class="ca-stroke" x1="6" x2="15" y1="9" y2="9"></line>
+								<line class="ca-stroke" x1="6" x2="15" y1="14" y2="14"></line>
+								<line class="ca-stroke" x1="3" x2="3" y1="4" y2="4"></line>
+								<line class="ca-stroke" x1="3" x2="3" y1="9" y2="9"></line>
+								<line class="ca-stroke" x1="3" x2="3" y1="14" y2="14"></line>
+							</svg>
+						</button>
+
 						<template v-for="className in appSettings.inlineClasses">
 							<button
 								@click.prevent="command('inline-class', className)"
@@ -289,6 +312,15 @@ export default {
 				case 'p':
 					document.execCommand('formatBlock', false, command);
 					break;
+				case 'insertOrderedList':
+					document.execCommand('insertOrderedList', false, command);
+					break;
+				case 'insertUnorderedList':
+					document.execCommand('insertUnorderedList', false, command);
+					break;
+				case 'p':
+					document.execCommand('formatBlock', false, command);
+					break;
 				case 'createLink':
 					this.showCreateLink = true;
 					const parentEl = this.document.getSelection().anchorNode.parentElement;
@@ -423,6 +455,8 @@ export default {
 			this.commandStatus.underline = document.queryCommandState("underline");
 			this.commandStatus.strikeThrough = document.queryCommandState("strikethrough");
 			this.commandStatus.link = document.queryCommandState("link");
+			this.commandStatus.insertorderedlist = document.queryCommandState("insertorderedlist");
+			this.commandStatus.insertunorderedlist = document.queryCommandState("insertunorderedlist");
 			
 			this.appSettings.inlineClasses.forEach(className => {
 				this.commandStatus[className] = isSelectedCustomTag(this.document.getSelection(), className);

@@ -107,6 +107,47 @@
     line-height: 1em;
     margin-right: .1em;
 }
+
+.beauty-list ol {
+	margin: 0;
+	padding: 0;
+}
+
+.beauty-list ol {
+	list-style-type: none;
+}
+
+.beauty-list ol li {
+	counter-increment: myCounter;
+	margin: 0 0 1em;
+	padding: 20px 20px 20px 60px;
+	background-color: #dadaff;
+	border-radius: .2em;
+	position: relative;
+}
+
+.beauty-list ol li > b:first-child,
+.beauty-list ol li > strong:first-child {
+	display: block;
+	margin-bottom: .5em;
+}
+
+.beauty-list ol li::before {
+	content: counter(myCounter);
+    color: white;
+    position: absolute;
+    top: 17px;
+    left: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    border-radius: 50%;
+    background-color: #5b5bdc;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
 </style>
 </head>
 
@@ -203,6 +244,14 @@ body {
 				<p>Typography.js provides a vastly simpler way to define and explore typography designs.</p>
 				<p>You provide configuration to the Typography.js JS api and it uses its Typography engine to generate CSS for block and inline elements.</p>
 				<p>Typography.js makes it easy to create designs that are unique, personal, and custom to your project.</p>
+			</div>
+
+			<div data-block="Paragraph" class="beauty-list">
+				<ol>
+					<li><b>Yapılanların firmaya katkısını sorgula:</b> CEO gibi düşün. Senin ve takımının yaptığı işin şirkete ne değer kattığını iyice anlamaya çalış. İşin kalitesi, ürünün özellik bakımından üstünlüğü gibi konularda sorumluluk al. Mühendis olarak işin sadece kod yazmak değil; amacın iyi kararlar alıp firmanın başarılı olmasını sağlamak. Bunu yapabilmek için de neyin gerçekten önemli olduğunu kavraman gerekiyor.</li>
+					<li><b>Kendini debloke etmeyi öğren:</b> Hiçbir ama hiçbir zaman dış etkenlerden ötürü bir görevde tıkanıp kalmayı kabul etme. Çalıştığın kişileri ikna ederek, konuyu senden üst seviyedekilere taşıyarak ve/veya teknik açıdan yaratıcı çözümler bularak ilerlemeye devam et. Tekrar söylüyorum, senin işin sadece kod yazıp onunda dışında olan herşeyin sihirli bir şekilde tamamlanacağını farzedip beklemek değil; amacın enerji harcadığın eforlar ile bir değer üretmek, çalıştığın firmayı ileriye götürmek.</li>
+
+				</ol>
 			</div>
 
 			<div data-block="Header">
@@ -336,7 +385,8 @@ typography.injectStyles()</pre>
 		{
 			blocks: ["Paragraph"],
 			classes: {
-				"drop-cap": "First Letter"
+				"drop-cap": "First Letter",
+				"beauty-list": "Beauty Ordered List"
 			}
 		},
 		{

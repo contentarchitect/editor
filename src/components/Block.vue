@@ -10,6 +10,8 @@
 
 			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" ref="view" />
 
+			<div class="block-bg"></div>
+
 			<div class="control" v-show="block.constructor.name != 'New' && showToolbar || (isSettingsOpen && !separatedPopover)">
 				<Tooltip tooltip="Move down">
 					<ui-button
@@ -398,21 +400,20 @@ export default {
 	position: relative;
 }
 
-[data-block]:not([data-block=New])::before {
-	content: '';
+[data-block]:not([data-block=New]) > .block-bg {
+	position: absolute;
 	top: -10px;
 	left: -10px;
 	right: -10px;
 	bottom: -10px;
-	position: absolute;
 	z-index: -1;
 }
 
-.show-background::before, [data-block]:hover::before {
+.show-background .block-bg, [data-block]:hover .block-bg {
 	background-color: azure;
 }
 
-.unknown-block.show-background::before, .unknown-block[data-block]:hover::before {
+.unknown-block.show-background .block-bg, .unknown-block[data-block]:hover .block-bg {
 	background-color: #fbeded;
 }
 

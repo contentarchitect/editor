@@ -148,6 +148,30 @@
 	text-align: center;
 	font-weight: bold;
 }
+
+.divider-line {
+	display: flex;
+	align-items: center;
+	color: #444;
+}
+
+.divider-line::before,
+.divider-line::after {
+	content: "";
+	flex: 1;
+	border-bottom: 1px solid #ccc;
+}
+
+.divider-line .divider {
+	padding: 0 1em;
+}
+
+.divider-line .divider::before {
+	content: "❧";
+	margin: 0;
+	letter-spacing: normal;
+	font-size: 1.5em;
+}
 </style>
 </head>
 
@@ -196,6 +220,10 @@ body {
 				<p>I don't know how to render this.</p>
 			</div>
 
+			<div data-block="Divider" class="divider-line">
+				<div class="divider"></div>
+			</div>
+
 			<div data-block="Spacer">
 				<div style="height: 130px"></div>
 			</div>
@@ -215,7 +243,7 @@ body {
 				<h1>Typography.js</h1>
 			</div>
 
-			<div data-block="Paragraph">
+			<div data-block="Paragraph" class="alert alert-warning">
 				<p>A powerful toolkit for building websites with beautiful design.</p>
 			</div>
 
@@ -383,6 +411,12 @@ typography.injectStyles()</pre>
 
 	editor.classOptions = [
 		{
+			blocks: ["Divider"],
+			classes: {
+				"divider-line": "Line"
+			}
+		},
+		{
 			blocks: ["Paragraph"],
 			classes: {
 				"drop-cap": "First Letter",
@@ -390,7 +424,7 @@ typography.injectStyles()</pre>
 			}
 		},
 		{
-			blocks: ["Code", "Quote"],
+			blocks: ["Code", "Quote", "Paragraph"],
 			classes: {
 				jumbotron: "Jumbotron",
 				alert: {

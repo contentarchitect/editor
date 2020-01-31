@@ -24,7 +24,7 @@
 						<div class="link-toolbar">
 							<CaInput v-model="selectionLinkUrl" />
 							<CaButton @click="createLink">Add</CaButton>
-							<div class="divider"></div>
+							<div class="link-divider"></div>
 							<CaButton @click="removeLink" :disabled="selectionLinkUrl.trim() === ''">Remove</CaButton>
 						</div>
 					</template>
@@ -550,7 +550,7 @@ export default {
 	font-weight: normal;
 }
 
-.editable .divider {
+.editable .link-divider {
 	display: inline-block;
 	width: 1px;
 	border-right: 1px solid #333;

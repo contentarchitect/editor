@@ -67,9 +67,9 @@ export default class Image extends Block {
 		Array.from(doc.getElementsByTagName("figure")).forEach(fig => {
 			const img = fig.getElementsByTagName("img").item(0);
 			const url = img.getAttribute("src");
-			
+
 			let caption = fig.getElementsByTagName("figcaption").item(0);
-			if (caption) caption = caption.innerHTML
+			caption = caption ? caption.innerHTML : ""
 
 			obj.images.push({
 				url,

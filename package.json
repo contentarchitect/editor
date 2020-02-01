@@ -1,6 +1,6 @@
 {
   "name": "@contentarchitect/editor",
-  "version": "0.2.31",
+  "version": "0.2.32",
   "main": "./dist/CaCore.umd.js",
   "module": "./src/base.js",
   "files": [

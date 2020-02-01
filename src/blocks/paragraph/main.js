@@ -1,9 +1,14 @@
 import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
+import icon from "./icon.svg"
 
 export default class Paragraph extends Block {
 	static get viewComponent () {
 		return view;
+	}
+
+	static get icon () {
+		return icon;
 	}
 
 	static defaultData () {

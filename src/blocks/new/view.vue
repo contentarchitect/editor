@@ -3,8 +3,13 @@
 		<div class="new-block-inner">
 			<div>
 				<ul>
-					<li v-for="blockConstructor in usableBlocks" :key="blockConstructor.name" @click="addBlock(blockConstructor)">
-						{{blockConstructor.name}}
+					<li v-for="blockConstructor in usableBlocks" :key="blockConstructor.name">
+						<a @click.prevent="addBlock(blockConstructor)">
+							<span class="block-icon">
+								<component :is="blockConstructor.icon" />
+							</span>
+							<span class="block-name">{{blockConstructor.name}}</span>
+						</a>
 					</li>
 				</ul>
 			</div>
@@ -36,16 +41,42 @@ export default {
 ul, li {
 	list-style-type: none;
 	margin: 0;
-	padding: 0;
 }
 
 ul {
 	display: flex;
+	padding: 10px;
+	align-items: stretch;
 }
 
 li {
-	padding: 20px;
+	display: flex;
+	align-items: stretch;
+}
+
+li a {
+	padding: 10px 10px 5px;
 	color: aliceblue;
+	font-size: .8em;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex;
+	border-radius: 0.2em;
+	user-select: none;
+	width: 40px;
+}
+
+span.block-icon {
+	flex: 1;
+}
+
+span.block-name {
+	margin-top: 5px;
+}
+
+li a:hover {
+	background-color: #222;
 }
 
 .new-block-inner {
@@ -63,5 +94,11 @@ li {
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+</style>
+
+<style>
+.block-icon > svg {
+	fill: #ccc;
 }
 </style>

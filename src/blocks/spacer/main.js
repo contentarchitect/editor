@@ -1,6 +1,7 @@
 import { Block } from "@contentarchitect/core"
 import view from "./view.vue"
 import settings from "./settings.vue"
+import icon from "./icon.svg"
 
 export default class Spacer extends Block {
 	static get viewComponent () {
@@ -9,6 +10,10 @@ export default class Spacer extends Block {
 
 	static get settingsComponent () {
 		return settings;
+	}
+
+	static get icon () {
+		return icon;
 	}
 
 	static defaultData () {

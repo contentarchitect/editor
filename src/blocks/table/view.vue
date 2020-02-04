@@ -12,7 +12,6 @@
 					<Editable
 						block
 						v-model="col.value"
-						placeholder="col"
 					/>
 				</th>
 			</tr>
@@ -23,7 +22,6 @@
 					<Editable
 						block
 						v-model="col.value"
-						placeholder="col"
 					/>
 				</td>
 			</tr>

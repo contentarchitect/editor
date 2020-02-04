@@ -1,19 +1,19 @@
 <template>
-  <css-grid :columns="['50px', '1fr']" gap="8px">
+  <css-grid :columns="['2fr', '3fr']" gap="8px">
 	<label for="">Image Count</label>
-	<radio-buttons v-model="imageCount" inline>
-		<radio-button :value="1">1</radio-button>
-		<radio-button :value="2">2</radio-button>
-		<radio-button :value="3">3</radio-button>
-	</radio-buttons>
+	<div class="image-control">
+		<v-button @click="decreaseImagesCount" :disabled="value.images.length == 1">-</v-button>
+		<span>{{imagesCount}}</span>
+		<v-button @click="increaseImagesCount">+</v-button>
+	</div>
   </css-grid>
 </template>
 
 <script>
-import { CssGrid, RadioButtons, RadioButton } from "@contentarchitect/core"
+import { CssGrid, Button } from "@contentarchitect/core"
 
 export default {
-	components: { CssGrid, RadioButtons, RadioButton },
+	components: { CssGrid, "v-button": Button },
 	props: ['value'],
 	data () {
 		return {
@@ -21,24 +21,38 @@ export default {
 		}
 	},
 	computed: {
-		imageCount: {
-			get () {
-				return this.value.images.length;
-			},
-			set (newImageCount) {
-				let oldImageCount = this.value.images.length;
-				if (newImageCount > oldImageCount) {
-					let addCount = newImageCount - oldImageCount;
-					this.value.images.push(...Array(addCount).fill().map(_ => { return { ...this.emptyImage } }));
-				} else {
-					this.value.images.splice(newImageCount)
-				}	
+		imagesCount () {
+			return this.value.images.length;
+		}
+	},
+	methods: {
+		decreaseImagesCount () {
+			if (this.value.images.length == 1) {
+				return;
 			}
+				
+			this.value.images.pop()
+		},
+		increaseImagesCount () {
+			const newImage = {
+				...this.value.constructor.defaultData().images[0]
+			}
+
+			this.value.images.push(newImage);
 		}
 	}
 }
 </script>
 
-<style>
+<style scoped>
+.image-control {
+	display: flex;
+	align-items: center;
+}
 
+.image-control > span {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
 </style>

@@ -64,7 +64,7 @@
 							</svg>
 						</button>
 
-						<button @click.prevent="command('insertOrderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertorderedlist }" type="button" tabindex="-1">
+						<button v-if="this.block" @click.prevent="command('insertOrderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertorderedlist }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<line class="ca-stroke" x1="7" x2="15" y1="4" y2="4"></line>
 								<line class="ca-stroke" x1="7" x2="15" y1="9" y2="9"></line>
@@ -76,7 +76,7 @@
 							</svg>
 						</button>
 
-						<button @click.prevent="command('insertUnorderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertunorderedlist }" type="button" tabindex="-1">
+						<button v-if="this.block" @click.prevent="command('insertUnorderedList')" class="button-icon" :class="{ 'ca-active': commandStatus.insertunorderedlist }" type="button" tabindex="-1">
 							<svg viewBox="0 0 18 18">
 								<line class="ca-stroke" x1="6" x2="15" y1="4" y2="4"></line>
 								<line class="ca-stroke" x1="6" x2="15" y1="9" y2="9"></line>

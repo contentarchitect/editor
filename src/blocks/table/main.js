@@ -3,6 +3,18 @@ import view from "./view.vue"
 import settings from "./settings.vue"
 import icon from "./icon.svg"
 
+function serializeRows (rows) {
+    const data = []
+
+    Array.from(rows).forEach(row => {
+        let rowData = []
+        Array.from(row.children).forEach(col => rowData.push({ value: col.innerHTML }))
+        data.push(rowData)
+    })
+
+    return data;
+}
+
 export default class Table extends Block {
     static get viewComponent () {
         return view;
@@ -57,4 +69,31 @@ export default class Table extends Block {
             ${tbody}
         </table>`
     }
+
+    static serializeFromHTML (html) {
+        const table = html.querySelector("table")
+        if (!table) return this.defaultData()
+
+        let caption = table ? table.caption : ""
+        caption = caption || ""
+
+        const data = []
+
+        const thead = !!table.tHead
+
+        if (thead) {
+            data.push(serializeRows(table.tHead.children)[0])
+        }
+
+        Array.from(table.tBodies).forEach(tbody => {
+            data.push(...serializeRows(tbody.children))
+        })
+
+		return {
+			caption,
+            thead,
+            data
+		}
+	}
+
 }

@@ -5,7 +5,7 @@
 			:placeholder="placeholder"
 			spellcheck="false"
 			class="editable-body"
-			:class="{ 'show-placeholder': showPlaceholder }"
+			:class="{ 'show-placeholder': showPlaceholder, 'editable-block': block }"
 			ref="body"
 			@selectstart="selectStartHandler"
 			@input="changeHandler" 
@@ -219,6 +219,7 @@ export default {
 	components: { OnEventOutside, CaInput, CaButton: Button },
 	data () {
 		return {
+			val: this.value,
 			document: null,
 			popperInstance: null,
 			fakeRefStyle: {
@@ -241,9 +242,13 @@ export default {
 		}
 	},
 	created () {
-		if (this.value.trim() == "" && this.block) {
-			const value = this.value = "<p></p>"
-			this.$emit('input', value);
+		if (this.val == null) {
+			this.val = ""
+		}
+
+		if (this.val.trim() == "" && this.block) {
+			const value = this.val = "<p></p>"
+			this.$emit('input', this.val);
 		}
 	},
 	mounted () {
@@ -254,7 +259,7 @@ export default {
 				this.document = this.$el.getRootNode() || document;
 			}
 		})
-		this.$refs.body.innerHTML = this.value;
+		this.$refs.body.innerHTML = this.val;
 
 		this.popperInstance = new Popper(this.$refs.fakeRef, this.$refs.toolbar, {
 			placement: 'bottom',
@@ -562,7 +567,16 @@ export default {
 }
 
 .editable-body {
+	display: inline-block;
+	min-height: 1em;
+	min-width: 1px;
+	cursor: text;
+}
+
+.editable-body.editable-block {
+	width: 100%;
 	min-width: 50px;
+	display: block;
 }
 
 .editable-body:focus {
@@ -702,5 +716,9 @@ export default {
 	opacity: .5;
     padding: inherit;
     margin: inherit;
+}
+
+.show-placeholder.editable-block[placeholder]:not(:focus)::before {
+	position: absolute;
 }
 </style>

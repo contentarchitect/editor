@@ -11,7 +11,7 @@
 }
 
 [data-block=Table] th {
-	text-align: left;
+	text-align: inherit;
 }
 
 [data-block=Table] caption {
@@ -21,7 +21,7 @@
 
 [data-block=Table] th,
 [data-block=Table] td {
-	padding: 10px;
+	padding: .5em;
 }
 
 [data-block=Table] th p:first-child,

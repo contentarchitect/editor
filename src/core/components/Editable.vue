@@ -240,6 +240,12 @@ export default {
 			showPlaceholder: false
 		}
 	},
+	created () {
+		if (this.value.trim() == "" && this.block) {
+			const value = this.value = "<p></p>"
+			this.$emit('input', value);
+		}
+	},
 	mounted () {
 		setTimeout(() => {
 			if (Util.isFirefox()) {
@@ -287,7 +293,6 @@ export default {
 				this.isOpenToolbar = false;
 				return;
 			}
-
 
 			let editableRect = this.$el.getBoundingClientRect();
 

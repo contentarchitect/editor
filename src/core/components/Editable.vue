@@ -567,7 +567,6 @@ export default {
 }
 
 .editable-body {
-	display: inline-block;
 	min-height: 1em;
 	min-width: 1px;
 	cursor: text;

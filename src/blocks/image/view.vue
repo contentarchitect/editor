@@ -52,7 +52,7 @@
 
 			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)">
 
-			<figcaption><Editable v-model="image.caption" /></figcaption>
+			<figcaption><Editable v-model="image.caption" placeholder="Image caption" /></figcaption>
 		</figure>
 	</div>
 </template>

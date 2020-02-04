@@ -18,7 +18,7 @@ export default class Spacer extends Block {
 
 	static defaultData () {
 		return {
-			height: 30
+			height: 80
 		}
 	}
 

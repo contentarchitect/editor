@@ -10,6 +10,7 @@
 			<tr>
 				<th v-for="(col, i) in value.data[0]" :key="i">
 					<Editable
+						block
 						v-model="col.value"
 						placeholder="col"
 					/>
@@ -17,9 +18,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="(row, i) in tbody" :key="row.id">
+			<tr v-for="row in tbody" :key="row.id">
 				<td v-for="(col, j) in row" :key="j">
 					<Editable
+						block
 						v-model="col.value"
 						placeholder="col"
 					/>

@@ -3,6 +3,10 @@
 </template>
 
 <script>
+// https://css-tricks.com/snippets/javascript/htmlentities-for-javascript/
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 
 export default {
 	props: ['value'],
@@ -18,7 +22,7 @@ export default {
 				// "\n" is necessary. Beacuse if textarea has an empty new line, <pre> doesn't add new line. In this situation, the heights aren't equal.
 				highlighted = Prism.highlight(this.value.code + "\n", Prism.languages[this.value.language] || "", this.value.language || "")
 			} else {
-				highlighted = this.value.code + "\n"
+				highlighted = htmlEntities(this.value.code + "\n")
 			}
 
 			this.highlighted = highlighted

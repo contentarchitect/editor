@@ -385,6 +385,14 @@ export default {
 
 			if (
 				this.block
+				&& editable.children.length == 0
+			) {
+				const p = document.createElement("p")
+				editable.appendChild(p)
+			}
+
+			if (
+				this.block
 				&& editable.children.length == 1
 				&& editable.children[0].tagName == "P"
 				&& editable.children[0].children.length == 0
@@ -430,6 +438,11 @@ export default {
 				// }
 
 				e.preventDefault();
+			} else if (e.which == 13 && this.block && !e.shiftKey) {
+				setTimeout(() => {
+					document.execCommand('formatBlock', false, 'p');
+				}, 0)
+				// e.preventDefault()
 			} else if (e.which === 8) {
 				const range = this.document.getSelection().getRangeAt(0)
 
@@ -456,6 +469,7 @@ export default {
 		},
 		pasteHandler (event) {
 			let paste = (event.clipboardData || window.clipboardData).getData('text');
+			paste = paste.replace(/\n\s*\n/g, '\n');
 			document.execCommand("insertText", false, paste);
 			event.preventDefault();
 		},

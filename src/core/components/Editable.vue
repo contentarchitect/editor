@@ -196,6 +196,42 @@ function selectedContainer(range) {
 // 	return testRange.toString().trim() == ""
 // }
 
+function changeChildListToP (editable) {
+	for (let childDom of editable.childNodes) {
+		if (childDom.nodeType == Node.ELEMENT_NODE && childDom.tagName == "DIV") {
+			changeDomTagName(childDom, "p")
+		} else if (childDom.nodeType == Node.ELEMENT_NODE && childDom.tagName == "BR") {
+			childDom.remove()
+		} else if (childDom.nodeType == Node.TEXT_NODE) {
+			wrapTextNodeWithTag(childDom, "p")
+		}
+	}
+}
+
+// https://stackoverflow.com/a/15086834/7663430
+function changeDomTagName (dom, tagName) {
+  const newDom = document.createElement(tagName);
+ 
+  // Copy the children
+  while (dom.firstChild) {
+      newDom.appendChild(dom.firstChild); // *Moves* the child
+  }
+
+  // Copy the attributes
+  for (let index = dom.attributes.length - 1; index >= 0; --index) {
+      newDom.attributes.setNamedItem(dom.attributes[index].cloneNode());
+  }
+
+  // Replace it
+  dom.parentNode.replaceChild(newDom, dom);
+}
+
+function wrapTextNodeWithTag (textNode, tagName) {
+	const dom = document.createElement(tagName)
+	dom.appendChild(textNode.cloneNode())
+	textNode.parentNode.replaceChild(dom, textNode)
+}
+
 export default {
 	name: "Editable",
 	inject: [
@@ -238,7 +274,8 @@ export default {
 				link: false
 			},
 			selectionLinkUrl: '',
-			showPlaceholder: false
+			showPlaceholder: false,
+			observer: null,
 		}
 	},
 	created () {
@@ -271,9 +308,25 @@ export default {
 		this.changeHandler()
 		this.changeToBlock()
 
+		if (this.block) {
+				changeChildListToP(this.$refs.body);
+			this.observer = new MutationObserver(() => {
+				changeChildListToP(this.$refs.body);
+				const range = this.document.getSelection().getRangeAt(0)
+				if (range.startContainer == this.$refs.body) {
+					range.setStart(this.$refs.body.firstElementChild, 0)
+				}
+			});	
+
+			this.observer.observe(this.$refs.body, { childList: true });
+		}
+
 		this.$once("hook:beforeDestroy", () => {
 			this.popperInstance.destroy();
 			document.removeEventListener('selectionchange', this.selectionChangeHandler);
+			if (this.observer) {
+				this.observer.disconnect()
+			}
 		})
 	},
 	watch: {
@@ -282,6 +335,11 @@ export default {
 				this.popperInstance.update()
 			})
 		},
+		block () {
+			if (this.observer && !this.block) {
+				this.observer.disconnect()
+			}
+		}
 	},
 	methods: {
 		selectStartHandler () {

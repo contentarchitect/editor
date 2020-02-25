@@ -75,7 +75,8 @@ export default class Table extends Block {
         if (!table) return this.defaultData()
 
         let caption = table ? table.caption : ""
-        caption = caption.innerHTML || ""
+
+        if (caption) caption = caption.innerHTML
 
         const data = []
 

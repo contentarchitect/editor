@@ -17,7 +17,9 @@
 </template>
 
 <script>
-import { CssGrid, CssGridItem, Button } from "@contentarchitect/core"
+import CssGrid from "../../core/components/CssGrid.vue"
+import CssGridItem from "../../core/components/CssGridItem.vue"
+import Button from "../../core/components/Button.vue"
 
 export default {
 	props: ['value'],

@@ -52,7 +52,7 @@
 
 			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)">
 
-			<figcaption v-edit:[captionSettings]="image.caption"></figcaption>
+			<figcaption v-edit:[captionSettings].complex="{ obj: value.images[i], exp: 'caption' }"></figcaption>
 		</figure>
 	</div>
 </template>

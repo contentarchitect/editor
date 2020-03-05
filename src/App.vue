@@ -2,6 +2,12 @@
 	<div style="margin: 0 auto; width: 100%;">
 		<!-- portal-target, multiple ile kullanildiginda bug oluyor -->
 		<!-- bug yuzunden dongu yapildi -->
+		<Editable
+			ref="editableToolbar"
+			:refDiv="editableRef"
+			:currentRange="currentRange"
+			:block="currentEditableIsBlock"
+		/>
 		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
 		<blocks v-model='slotBlocks' @htmlrender="reRender" />
 		<add-new-block @click="addNewBlockAfter(slotBlocks[slotBlocks.length-1])" />
@@ -16,6 +22,7 @@ import {
 	Util,
 	Tooltip,
 	Blocks,
+	Editable
 } from "@contentarchitect/core"
 
 import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
@@ -35,6 +42,7 @@ export default {
 		PortalTarget,
 		InsertionPlaceholder,
 		AddNewBlock,
+		Editable,
 		blocks: BlocksComponent
 	},
 	model: {
@@ -103,7 +111,15 @@ export default {
 			Blocks: Blocks,
 			isNewBlockPopoverActive: false,
 			slotBlocks: [],
-			renderedHTML: ""
+			renderedHTML: "",
+			editableRef: {
+				x: 0,
+				y: 0,
+				width: 10,
+				height: 10
+			},
+			currentRange: null,
+			currentEditableIsBlock: false
 		}
 	},
 	created () {
@@ -171,6 +187,23 @@ export default {
 		replaceBlock (block, newBlock) {
 			const ind = this.slotBlocks.indexOf(block)
 			Vue.set(this.slotBlocks, ind, newBlock)
+		},
+		showEditableToolbar({ x, y, width, height}, { currentRange, isBlock }) {
+			this.currentRange = currentRange
+			this.currentEditableIsBlock = isBlock
+
+			this.editableRef = Object.assign({}, {
+				x,
+				y,
+				width,
+				height
+			})
+
+			
+			this.$refs.editableToolbar.open()
+		},
+		hideEditableToolbar () {
+			this.$refs.editableToolbar.close()
 		}
 	},
 	watch: {

@@ -1,12 +1,20 @@
 <template>
-  <Editable v-model="value.content" block :placeholder="value.constructor.settings.placeholder" />
+  <!-- <Editable v-model="value.content" block :placeholder="value.constructor.settings.placeholder" /> -->
+  <div v-edit:[config].block="value.content"></div>
 </template>
 
 <script>
-import { Editable } from "@contentarchitect/core"
+import { edit } from "@contentarchitect/core"
 
 export default {
-	components: { Editable },
+	directives: { edit },
 	props: ['value'],
+	data () {
+		return {
+			config: {
+				placeholder: this.value.constructor.settings.placeholder
+			}
+		}
+	}
 }
 </script>

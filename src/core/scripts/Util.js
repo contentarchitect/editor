@@ -112,4 +112,12 @@ export default class Util {
 		return typeof InstallTrigger !== 'undefined';
 	}
 
+	static unWrap(dom) {
+		const parent = dom.parentNode;
+		while (dom.firstChild) {
+			parent.insertBefore(dom.firstChild, dom)
+		}
+		parent.removeChild(dom);
+	}
+
 }

@@ -1,7 +1,23 @@
 <template>
-	<div style="position: relative">
+	<div class="editable">
+		<div
+			contenteditable="true"
+			:placeholder="placeholder"
+			spellcheck="false"
+			class="editable-body"
+			:class="{ 'show-placeholder': showPlaceholder, 'editable-block': block }"
+			ref="body"
+			@selectstart="selectStartHandler"
+			@input="changeHandler" 
+			@keydown="keydownHandler"
+			@paste="pasteHandler"
+			@mousedown="fixFirefoxBug"
+		>
+		</div>
+
 		<div class="fake-ref" :style="fakeRefStyle" ref="fakeRef"></div>
-		<on-event-outside :do="close" event="mousedown">
+
+		<on-event-outside :do="closeToolbar" event="mousedown">
 			<transition name="fade">
 				<div ref="toolbar" class="toolbar" v-show="isOpenToolbar" >
 					<template v-if="showCreateLink">
@@ -99,6 +115,45 @@ import Util from "../scripts/Util.js"
 import CaInput from "./CaInput.vue"
 import Button from "./Button.vue"
 
+function takeToParagraph(body) {
+	const childNodes = body.childNodes
+
+	let index = Array.from(childNodes).findIndex(node => node.nodeType == 1 && node.tagName == "P")
+	if (index < 1) index = childNodes.length
+
+	const p = document.createElement("p")
+	new Array(index).fill().forEach((el, ind) => p.appendChild(body.removeChild(childNodes[ind])))
+
+	return p;
+}
+
+function isFirstElementParagraph(childNodes) {
+	let result = false;
+
+	Array.from(childNodes).reduce((acc, node, i, arr) => {
+		if (node.nodeType == 1 && node.tagName == "P") {
+			if (acc == "") {
+				result = true
+			}
+			arr.splice(1);
+		}
+
+		if (node.nodeType == 3) {
+			return acc + node.textContent.trim()
+		}
+	}, '')
+
+	return result 
+}
+
+function unWrap(dom) {
+	const parent = dom.parentNode;
+	while (dom.firstChild) {
+		parent.insertBefore(dom.firstChild, dom)
+	}
+	parent.removeChild(dom);
+}
+
 function isSelectedCustomTag(selection, cssClass, tagName = "SPAN") {
 	if (!selection.rangeCount) return
 	const range = selection.getRangeAt(0)
@@ -119,35 +174,98 @@ function selectedContainer(range) {
 	if (container.textContent == range.toString()) return container
 }
 
+// // https://stackoverflow.com/a/7478420/7663430
+// function isCaretEnd (selection, el) {
+// 	if (!selection.rangeCount || !selection.isCollapsed) return
+// 	const selRange = selection.getRangeAt(0)
+// 	const testRange = selRange.cloneRange()
+
+// 	testRange.selectNodeContents(el)
+// 	testRange.setStart(selRange.endContainer, selRange.endOffset);
+// 	return testRange.toString().trim() == ""
+// }
+
+// // https://stackoverflow.com/a/7478420/7663430
+// function isCaretStart (selection, el) {
+// 	if (!selection.rangeCount || !selection.isCollapsed) return
+// 	const selRange = selection.getRangeAt(0)
+// 	const testRange = selRange.cloneRange()
+
+// 	testRange.selectNodeContents(el)
+// 	testRange.setEnd(selRange.startContainer, selRange.startOffset);
+// 	return testRange.toString().trim() == ""
+// }
+
+function changeChildListToP (editable) {
+	for (let childDom of editable.childNodes) {
+		if (childDom.nodeType == Node.ELEMENT_NODE && childDom.tagName == "DIV") {
+			changeDomTagName(childDom, "p")
+		} else if (childDom.nodeType == Node.ELEMENT_NODE && childDom.tagName == "BR") {
+			childDom.remove()
+		} else if (childDom.nodeType == Node.TEXT_NODE) {
+			wrapTextNodeWithTag(childDom, "p")
+		}
+	}
+}
+
+// https://stackoverflow.com/a/15086834/7663430
+function changeDomTagName (dom, tagName) {
+  const newDom = document.createElement(tagName);
+ 
+  // Copy the children
+  while (dom.firstChild) {
+      newDom.appendChild(dom.firstChild); // *Moves* the child
+  }
+
+  // Copy the attributes
+  for (let index = dom.attributes.length - 1; index >= 0; --index) {
+      newDom.attributes.setNamedItem(dom.attributes[index].cloneNode());
+  }
+
+  // Replace it
+  dom.parentNode.replaceChild(newDom, dom);
+}
+
+function wrapTextNodeWithTag (textNode, tagName) {
+	const dom = document.createElement(tagName)
+	dom.appendChild(textNode.cloneNode())
+	textNode.parentNode.replaceChild(dom, textNode)
+}
+
 export default {
-	name: "Editablee",
+	name: "Editable",
 	inject: [
 		'appSettings',
+		'nextBlockComponent',
+		'nextEditableInView',
+		'addParagraphBlockAfter'
 	],
 	props: {
+		value: {
+			type: String
+		},
 		block: {
 			type: Boolean,
-			default: true,
+			default: false
 		},
-		refDiv: {
-			default () {
-				return {
-					x: 0,
-					y: 0,
-					width: 10,
-					height: 10
-				}
-			}
+		placeholder: {
+			type: String
 		},
-		currentRange: {}
 	},
 	components: { OnEventOutside, CaInput, CaButton: Button },
 	data () {
 		return {
+			val: this.value,
 			document: null,
 			popperInstance: null,
-			showCreateLink: false,
+			fakeRefStyle: {
+				width: 0,
+				height: 0,
+				transform: 'translate(0)'
+			},
 			isOpenToolbar: false,
+			showCreateLink: false,
+			currentRange: null,
 			commandStatus: {
 				bold: false,
 				italic: false,
@@ -158,7 +276,16 @@ export default {
 			selectionLinkUrl: '',
 			showPlaceholder: false,
 			observer: null,
-			fakeRefStyle: {}
+		}
+	},
+	created () {
+		if (this.val == null) {
+			this.val = ""
+		}
+
+		if (this.val.trim() == "" && this.block) {
+			const value = this.val = "<p></p>"
+			this.$emit('input', this.val);
 		}
 	},
 	mounted () {
@@ -169,7 +296,7 @@ export default {
 				this.document = this.$el.getRootNode() || document;
 			}
 		})
-		// this.$refs.body.innerHTML = this.val;
+		this.$refs.body.innerHTML = this.val;
 
 		this.popperInstance = new Popper(this.$refs.fakeRef, this.$refs.toolbar, {
 			placement: 'bottom',
@@ -178,28 +305,28 @@ export default {
 			}
 		});
 
-		// this.changeHandler()
-		// this.changeToBlock()
+		this.changeHandler()
+		this.changeToBlock()
 
-		// if (this.block) {
-		// 		changeChildListToP(this.$refs.body);
-		// 	this.observer = new MutationObserver(() => {
-		// 		changeChildListToP(this.$refs.body);
-		// 		const range = this.document.getSelection().getRangeAt(0)
-		// 		if (range.startContainer == this.$refs.body) {
-		// 			range.setStart(this.$refs.body.firstElementChild, 0)
-		// 		}
-		// 	});	
+		if (this.block) {
+				changeChildListToP(this.$refs.body);
+			this.observer = new MutationObserver(() => {
+				changeChildListToP(this.$refs.body);
+				const range = this.document.getSelection().getRangeAt(0)
+				if (range.startContainer == this.$refs.body) {
+					range.setStart(this.$refs.body.firstElementChild, 0)
+				}
+			});	
 
-		// 	this.observer.observe(this.$refs.body, { childList: true });
-		// }
+			this.observer.observe(this.$refs.body, { childList: true });
+		}
 
 		this.$once("hook:beforeDestroy", () => {
 			this.popperInstance.destroy();
-			// document.removeEventListener('selectionchange', this.selectionChangeHandler);
-			// if (this.observer) {
-			// 	this.observer.disconnect()
-			// }
+			document.removeEventListener('selectionchange', this.selectionChangeHandler);
+			if (this.observer) {
+				this.observer.disconnect()
+			}
 		})
 	},
 	watch: {
@@ -208,34 +335,57 @@ export default {
 				this.popperInstance.update()
 			})
 		},
-		refDiv: {
-			deep: true,
-			handler () {
-				const editableRect = this.$refs.fakeRef.parentElement.getBoundingClientRect();
-				const transform = `translate(${this.refDiv.x - editableRect.x}px,${this.refDiv.y - editableRect.y}px)`;
-				this.fakeRefStyle = {
-					transform,
-					width: this.refDiv.width + "px",
-					height: this.refDiv.height + "px",
-				}
-
-				this.$nextTick(() => {
-					this.popperInstance.update()
-				})
+		block () {
+			if (this.observer && !this.block) {
+				this.observer.disconnect()
 			}
 		}
 	},
 	methods: {
-		open () {
-			this.isOpenToolbar = true
+		selectStartHandler () {
+			document.addEventListener("selectionchange", this.selectionChangeHandler)
 		},
-		close () {
-			this.isOpenToolbar = false;
-			this.showCreateLink = false;
-			this.selectionLinkUrl = '';
+		selectionChangeHandler (e) {
+			let selection = this.document.getSelection();
+			if (selection.rangeCount == 0 || !this.$refs.body.contains(selection.anchorNode)) return;
+
+			let selectionRect = selection.getRangeAt(0).getBoundingClientRect();
+
+			if (selection.anchorNode === selection.focusNode && selection.anchorOffset === selection.focusOffset) {
+				this.isSelected = false;
+				this.isOpenToolbar = false;
+				return;
+			}
+
+			let editableRect = this.$el.getBoundingClientRect();
+
+			this.fakeRefStyle.width = selectionRect.width + "px";
+			this.fakeRefStyle.height = selectionRect.height + "px";
+			this.fakeRefStyle.transform = `translate(${selectionRect.x - editableRect.x}px,${selectionRect.y - editableRect.y}px)`;
+
+			this.updateCommandStatus();
+
+			this.isOpenToolbar = true;
+
+			this.$nextTick(() => {
+				this.popperInstance.update();
+			});
+
+			this.currentRange = this.document.getSelection().getRangeAt(0);
 		},
 		command (command, className) {
 			switch(command) {
+				case 'h1':
+				case 'h2':
+				case 'p':
+					document.execCommand('formatBlock', false, command);
+					break;
+				case 'insertOrderedList':
+					document.execCommand('insertOrderedList', false, command);
+					break;
+				case 'insertUnorderedList':
+					document.execCommand('insertUnorderedList', false, command);
+					break;
 				case 'p':
 					document.execCommand('formatBlock', false, command);
 					break;
@@ -254,7 +404,7 @@ export default {
 					if (isSelectedCustomTag(selection, className)) {
 						const container = selectedContainer(selection.getRangeAt(0))
 						container.classList.remove(className)
-						if (!container.classList.length) Util.unWrap(container)
+						if (!container.classList.length) unWrap(container)
 						break;
 					}
 
@@ -265,35 +415,121 @@ export default {
 					span.append(content);
 					range.insertNode(span);
 					break;
-				case 'insertUnorderedList':
-				case 'insertOrderedList':
-					document.execCommand(command, false, null)
-					const sel = this.document.getSelection();
-					if (sel.rangeCount) {
-						const range = sel.getRangeAt(0)
-						let list;
-
-						list = range.commonAncestorContainer;
-
-						if (list.tagName === "UL" || list.tagName === "OL") {
-							
-						} else if (command == 'insertOrderedList') {
-							list = range.commonAncestorContainer.parentElement.closest('ol')
-						} else if (command == 'insertUnorderedList') {
-							list = range.commonAncestorContainer.parentElement.closest('ul')
-						}
-
-						if (list.parentElement.tagName == "P") {
-							Util.unWrap(list.parentElement)
-						}
-					}
-					break;
 				default:
 					document.execCommand(command, false, null);
 					break;
 			}
 
 			this.updateCommandStatus();
+		},
+		closeToolbar () {
+			this.isOpenToolbar = false;
+			this.showCreateLink = false;
+			this.selectionLinkUrl = '';
+		},
+		changeToBlock () {
+			const editable = this.$refs.body
+
+			if (
+				this.block
+				&& !isFirstElementParagraph(editable.childNodes)
+			) {
+				const p = takeToParagraph(editable)
+				editable.insertBefore(p, editable.firstChild)
+			}
+		},
+		changeHandler () {
+			const editable = this.$refs.body;
+
+			if (
+				this.block
+				&& editable.children.length == 0
+			) {
+				const p = document.createElement("p")
+				editable.appendChild(p)
+			}
+
+			if (
+				this.block
+				&& editable.children.length == 1
+				&& editable.children[0].tagName == "P"
+				&& editable.children[0].children.length == 0
+			) {
+				const br = document.createElement("br")
+				editable.children[0].appendChild(br)
+			}			
+
+			if (
+				editable.innerText.trim() != ""
+			) {
+				this.showPlaceholder = false
+			} else if (
+				this.block
+				&& editable.children.length > 1
+			) {
+				this.showPlaceholder = false
+			} else if (
+				this.block
+				&& editable.children.length == 1
+				&& editable.children[0].innerText.trim() == ""
+			) {
+				this.showPlaceholder = true
+			} else if (
+				!this.block
+				&& editable.innerText.trim() == ""
+			) {
+				this.showPlaceholder = true
+			}
+
+			this.$emit('input', editable.innerHTML);
+		},
+		keydownHandler (e) {
+			if (e.which === 13 && !this.block) {
+				// if (this.isLastEditableInView()) {
+				// 	let block = this;
+
+				// 	while(block.$options.name != "Block") {
+				// 		block = block.$parent
+				// 	}
+
+				// 	this.addParagraphBlockAfter(block)
+				// }
+
+				e.preventDefault();
+			} else if (e.which == 13 && this.block && !e.shiftKey) {
+				setTimeout(() => {
+					document.execCommand('formatBlock', false, 'p');
+				}, 0)
+				// e.preventDefault()
+			} else if (e.which === 8) {
+				const range = this.document.getSelection().getRangeAt(0)
+
+				if (
+					range.startContainer.nodeType === Node.ELEMENT_NODE &&
+					range.startContainer.innerText.trim() === "" &&
+					range.startOffset == 0 &&
+					!range.startContainer.previousElementSibling
+				) {
+					e.preventDefault();
+				}
+			}
+			// else if (e.which == 37) {
+			// 	if (this.isCaretStart()) {
+			// 		this.focusEndPrevEditable()
+			// 		e.preventDefault()
+			// 	}
+			// } else if (e.which == 39) {
+			// 	if (this.isCaretEnd()) {
+			// 		this.focusStartNextEditable()
+			// 		e.preventDefault()
+			// 	}
+			// }
+		},
+		pasteHandler (event) {
+			let paste = (event.clipboardData || window.clipboardData).getData('text');
+			paste = paste.replace(/\n\s*\n/g, '\n');
+			document.execCommand("insertText", false, paste);
+			event.preventDefault();
 		},
 		updateCommandStatus () {
 			this.commandStatus.bold = document.queryCommandState("bold");
@@ -320,6 +556,68 @@ export default {
 			this.showCreateLink = false;
 			this.updateCommandStatus();
 		},
+		innerText () {
+			return this.$refs.body.innerText;
+		},
+		// isLastEditableInView () {
+		// 	return !this.nextEditableInView(this)
+		// },
+		// focusEndPrevEditable () {
+		// 	const editables = this.$root.$el.getElementsByClassName("editable")
+		// 	const index = Array.from(editables).indexOf(this.$el)
+		// 	const beforeEditableEl = editables[index-1]
+
+		// 	if (!beforeEditableEl) return;
+
+		// 	const editable = beforeEditableEl.__vue__
+		// 	editable.setCaretEnd()
+		// },
+		// focusStartNextEditable () {
+		// 	const editables = this.$root.$el.getElementsByClassName("editable")
+		// 	const index = Array.from(editables).indexOf(this.$el)
+		// 	const nexEditableEl = editables[index+1]
+
+		// 	if (!nexEditableEl) return;
+
+		// 	const editable = nexEditableEl.__vue__
+		// 	editable.setCaretStart()
+		// },
+		// setCaretStart () {
+		// 	const body = this.$refs.body
+		// 	const sel = this.document.getSelection()
+		// 	sel.selectAllChildren(body)
+		// 	const range = sel.getRangeAt(0)
+		// 	range.collapse(true)
+		// 	sel.removeAllRanges()
+		// 	sel.addRange(range)
+		// 	// const range = new Range()
+		// 	// range.selectNodeContents(body)
+		// 	// this.document.getSelection().removeAllRanges()
+		// 	// this.document.getSelection().addRange(range)
+		// },
+		// setCaretEnd () {
+		// 	const body = this.$refs.body
+		// 	const sel = this.document.getSelection()
+		// 	sel.selectAllChildren(body.lastChild)
+		// 	const range = sel.getRangeAt(0)
+		// 	range.collapse(false)
+		// 	sel.removeAllRanges()
+		// 	sel.addRange(range)
+		// },
+		// isCaretEnd () {
+		// 	return isCaretEnd(this.document.getSelection(), this.$refs.body)
+		// },
+		// isCaretStart () {
+		// 	return isCaretStart(this.document.getSelection(), this.$refs.body)
+		// },
+		fixFirefoxBug () {
+			if (!Util.isFirefox()) return
+			const x = window.scrollX,
+				  y = window.scrollY
+			document.getElementById("firefoxindicator").focus()
+			window.scrollTo(x, y)
+		}
+
 	}
 }
 </script>
@@ -349,9 +647,6 @@ export default {
 .editable-body.editable-block {
 	width: 100%;
 	min-width: 50px;
-}
-
-.editable-body.editable-block:not(td):not(th) {
 	display: block;
 }
 

@@ -52,24 +52,29 @@
 
 			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)">
 
-			<figcaption><Editable v-model="image.caption" placeholder="Image caption" /></figcaption>
+			<figcaption v-edit:[captionSettings]="image.caption"></figcaption>
 		</figure>
 	</div>
 </template>
 
 <script>
-import { UiButton, Editable, Tooltip } from "@contentarchitect/core"
+import { UiButton, Tooltip, edit } from "@contentarchitect/core"
 
 export default {
 	props: ['value'],
 	components: {
-		Editable,
 		[UiButton.name]: UiButton,
 		Tooltip
 	},
+	directives: {
+		edit
+	},
 	data () {
 		return {
-			url: ''
+			url: '',
+			captionSettings: {
+				placeholder: "Image caption"
+			}
 		}
 	},
 	methods: {

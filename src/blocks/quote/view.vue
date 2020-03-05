@@ -1,17 +1,25 @@
 <template>
 	<blockquote>
-		<Editable v-model="value.content" block placeholder="Type your text" />
-		<cite class="cite">
-			<Editable v-model="value.cite" placeholder="Type the citation" />
-		</cite>
+		<div v-edit:[blockquoteSettings].block="value.content"></div>
+		<cite class="cite" v-edit:[citeSettings]="value.cite"></cite>
 	</blockquote>
 </template>
 
 <script>
-import { Editable } from "@contentarchitect/core"
+import { edit } from "@contentarchitect/core"
 
 export default {
-	components: { Editable },
-	props: ['value']
+	directives: { edit },
+	props: ['value'],
+	data () {
+		return {
+			blockquoteSettings: {
+				placeholder: "Type your text"
+			},
+			citeSettings: {
+				placeholder: "Type the citation"
+			}
+		}
+	}
 }
 </script>

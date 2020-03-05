@@ -5,6 +5,7 @@ import Checkbox from "./components/Checkbox.vue"
 import CssGrid from "./components/CssGrid.vue"
 import CssGridItem from "./components/CssGridItem.vue"
 import Editable from "./components/Editable.vue"
+// import Editablee from "./components/Editablee.vue"
 import OnEventOutside from "./components/OnEventOutside.vue"
 import RadioButton from "./components/RadioButton.vue"
 import RadioButtons from "./components/RadioButtons.vue"
@@ -20,6 +21,9 @@ import Upload from "./scripts/Upload.js"
 import Util from "./scripts/Util.js"
 import renderBlocks from "./scripts/renderBlocks"
 
+// Directives
+import edit from "./directives/edit.js"
+
 export {
 	Button,
 	CaInput,
@@ -27,6 +31,7 @@ export {
 	CssGrid,
 	CssGridItem,
 	Editable,
+	// Editablee,
 	OnEventOutside,
 	RadioButton,
 	RadioButtons,
@@ -38,5 +43,6 @@ export {
 	Blocks,
 	Upload,
 	Util,
-	renderBlocks
+	renderBlocks,
+	edit
 }

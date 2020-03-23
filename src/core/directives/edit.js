@@ -1,5 +1,5 @@
-import Vue from "vue"
 import Util from "../scripts/Util.js"
+import DirectiveUtil from "../scripts/DirectiveUtil.js"
 
 function selectStartHandler () {
 	document.addEventListener("selectionchange", selectionChangeHandler.bind(this))
@@ -9,16 +9,13 @@ function selectionChangeHandler (e) {
 	let selection = this.document.getSelection();
 	if (selection.rangeCount == 0 || !this.el.contains(selection.anchorNode)) return;
 
-	let selectionRect = selection.getRangeAt(0).getBoundingClientRect();
-
 	if (selection.getRangeAt(0).collapsed) {
 		this.appComponent.hideEditableToolbar()	
 		return;
 	}
-
 	const currentRange = this.document.getSelection().getRangeAt(0);
 	this.appComponent.showEditableToolbar(
-		selectionRect,
+		selection.getRangeAt(0),
 		{ 
 			currentRange, 
 			isBlock: this.isBlock
@@ -72,7 +69,7 @@ function changeHandler (event) {
 	if (this.binding.modifiers.complex) {
 		this.binding.value.obj[this.binding.value.exp] = this.el.innerHTML
 	} else {
-		setValue(this.vnode.context, this.binding.expression, this.el.innerHTML);
+		DirectiveUtil.setValue(this.vnode.context, this.binding.expression, this.el.innerHTML);
 	}
 }
 
@@ -81,21 +78,6 @@ function pasteHandler (event) {
 	paste = paste.replace(/\n\s*\n/g, '\n');
 	document.execCommand("insertText", false, paste);
 	event.preventDefault();
-}
-
-// https://stackoverflow.com/questions/10934664/convert-string-in-dot-notation-to-get-the-object-reference/10934946#10934946
-function setValue(obj, str, val) {
-	str = str.split('.');
-	while (str.length > 1) {
-		obj = obj[str.shift()];
-	}
-	return obj[str.shift()] = val;
-}
-function getValue(obj, str) {
-    str = str.split(".");
-    for (var i = 0; i < str.length; i++)
-        obj = obj[str[i]];
-    return obj;
 }
 
 function keydownHandler (e) {
@@ -219,6 +201,22 @@ function wrapTextNodeWithTag (textNode, tagName) {
 	textNode.parentNode.replaceChild(dom, textNode)
 }
 
+function focusHandler (event) {
+	this.vnode.context.$emit('focus')
+}
+
+function blurHandler (event) {
+	this.vnode.context.$emit('blur')
+}
+
+function fixFirefoxBug () {
+	if (!Util.isFirefox()) return
+	const x = window.scrollX,
+		  y = window.scrollY
+	document.getElementById("firefoxindicator").focus()
+	window.scrollTo(x, y)
+}
+
 
 export default {
 	bind (el, binding, vnode) {
@@ -271,7 +269,7 @@ export default {
 		if (binding.modifiers.complex) {
 			el.innerHTML = binding.value.obj[binding.value.exp]
 		} else {
-			el.innerHTML = getValue(vnode.context, binding.expression);
+			el.innerHTML = DirectiveUtil.getValue(vnode.context, binding.expression);
 		}
 
 		let appComponent = vnode.context;
@@ -287,6 +285,8 @@ export default {
 		el.addEventListener("input", changeHandler.bind(self))
 		el.addEventListener("keydown", keydownHandler.bind(self))
 		el.addEventListener("paste", pasteHandler)
-		// el.addEventListener("mousedown", this.fixFirefoxBug)
+		el.addEventListener("focus", focusHandler.bind(self))
+		el.addEventListener("blur", blurHandler.bind(self))
+		el.addEventListener("mousedown", fixFirefoxBug)
 	},
 }

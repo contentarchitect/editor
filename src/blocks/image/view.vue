@@ -1,16 +1,14 @@
 <template>
 	<div class="image-block">
 		<figure v-for="(image, i) in value.images" :key="i" ref="figure" class="image-block-image">
-			<transition name="bounce" mode="out-in">
+			<!-- <transition name="bounce" mode="out-in">
 				<div key="1" v-if="image.url" class="image">
 					<img :src="image.url" style="width:100%">
 
 					<div class="image-overlay" v-if="!image.uploading">
-						<Tooltip tooltip="Remove image">
-							<ui-button @click="removeImage(i)" square class="ui-button--danger remove-button">
-								✕
-							</ui-button>
-						</Tooltip>
+						<ui-button @click="removeImage(i)" square class="ui-button--danger remove-button">
+							✕
+						</ui-button>
 					</div>
 
 					<div class="image-overlay upload-info" v-if="value.constructor.settings.uploadImages">
@@ -50,7 +48,12 @@
 				</div>
 			</transition>
 
-			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)">
+			<input type="file" v-show="false" ref="imageInput" @change="readURL($event, i)"> -->
+
+			<img
+				:src="image.url"
+				v-select-image:[imageSelectSettings(i)].complex.upload="{ obj: image, exp: 'url' }"
+			/>
 
 			<figcaption v-edit:[captionSettings].complex="{ obj: value.images[i], exp: 'caption' }"></figcaption>
 		</figure>
@@ -58,89 +61,59 @@
 </template>
 
 <script>
-import { UiButton, Tooltip, edit } from "@contentarchitect/core"
+import { UiButton, edit, selectImage } from "@contentarchitect/core"
 
 export default {
 	props: ['value'],
 	components: {
 		[UiButton.name]: UiButton,
-		Tooltip
 	},
 	directives: {
-		edit
+		edit,
+		selectImage
 	},
 	data () {
 		return {
-			url: '',
 			captionSettings: {
 				placeholder: "Image caption"
-			}
+			},
 		}
 	},
 	methods: {
-		selectImage (index) {
-			let imageInput = this.$refs.imageInput[index];
-			imageInput.click();
-		},
-		addUrl (index) {
-			this.value.images[index].url = this.url
-			this.url = ""
-		},
-		removeImage (index) {
-			const image = this.value.images[index];
-			if (this.value.constructor.settings.uploadImages
-				&& image.uploaded) {
-				image.removing = true
-				this.value.constructor.settings.remove(image)
-					.then(message => {
-						image.url = ""
-						image.removing = false
-					})
-					.catch(msg => {
-						console.error(msg)
-						image.removing = false
-					})
-			} else {
-				image.url = ""
-			}
-		},
-		uploadImage (image, imageFile) {
-			image.uploading = true
-			image.uploaded = false
+		imageSelectSettings (index) {
+			const _this = this;
 
-			this.value.constructor.settings.upload(imageFile)
-				.then(({url, data}) => {
-					Object.assign(image, {
-						url,
-						data,
-						uploading: false,
-						uploaded: true
-					})
-				})
-				.catch(err => {
-					image.uploading = false
-					image.uploaded = false
-					console.error(err)
-				})
-		},
-		readURL (event, index) {
-			const input = event.target;
-
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
+			return  {
+				uploadMethod (imageFile) {
+					const reader = new FileReader();
 				
-				reader.onload = (e) => {
-					const image = this.value.images[index]
-					image.url = e.target.result
+					return new Promise((resolve, reject) => {
+						reader.readAsDataURL(imageFile);
+						reader.onload = e => {
+							if (reader.error) {
+								reject(reader.error.message)
+							} else {
+								const imageId = parseInt(Math.random() * 100)
 
-					if (this.value.constructor.settings.uploadImages)
-						this.uploadImage(image, input.files[0])
+								_this.value.images[index].data = { imageId }
+
+								setTimeout(() => {
+									resolve(e.target.result)
+								}, 2000)
+							}
+						}
+					})
+				},
+				removeMethod () {
+					return new Promise((resolve, reject) => {
+						setTimeout(() => {
+							resolve()
+						}, 2000)
+					})
 				}
-				
-				reader.readAsDataURL(input.files[0]);
 			}
 		}
-	},
+	}
 }
 </script>
 
@@ -156,145 +129,5 @@ export default {
 .image-block > div .image-block-image {
 	width: 100%;
 	max-width: 100%;
-}
-
-.no-image {
-	background: #f0f0f0;
-	display: flex;
-	min-height: 200px;
-	position: relative;
-	height: calc(100% - 18px);
-}
-
-.no-image-border {
-	flex: 1;
-	margin: 20px;
-	padding: 10px;
-	border: 3px dashed #ccc;
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-
-.upload-divider {
-	display: flex;
-	align-items: center;
-	opacity: .2;
-	width: 50%;
-}
-
-.upload-divider > hr {
-	flex: 1;
-}
-
-.upload-divider > span {
-	padding: 0 1em;
-}
-
-.image {
-	position: relative;
-}
-
-.image-overlay {
-	position: absolute !important;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.input-group {
-	display: inline-flex;
-}
-
-.input-group > input[type=text] {
-	flex: 1
-}
-
-.input-group > button {
-	margin-left: -1px;
-}
-
-.remove-button {
-	transition: transform .2s;
-}
-
-.upload-text {
-	padding: .2em .4em; 
-	background: #121212;
-	color: #ccc;
-	border-radius: 3px;
-}
-
-.upload-info {
-	z-index: 1;
-	pointer-events: none;
-}
-
-.upload-success {
-	display: none;
-	background-color: rgba(0, 122.5, 0, 0.5);
-	color: #fff;
-	flex-direction: column;
-	align-items: center;
-}
-
-.upload-success > svg {
-	fill: #fff
-}
-
-.upload-success.hide-after-enter-active {
-	transition-duration: 2s;
-	display: inline-flex;
-}
-
-.image:hover .remove-button {
-	transform: scale(1.2);
-}
-
-.bounce-enter-active {
-  animation: bounce-in .3s;
-}
-
-.bounce-leave-active {
-  animation: bounce-in .3s reverse;
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0.5);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.three-dot::after {
-	content: '';
-	display: inline-block;
-	width: 20px;
-    animation: threedot 1s infinite;
-    animation-direction: alternate;
-}
-
-@keyframes threedot {
-  33% {
-  	content: "."
-  }
-  66% {
-  	content: ".."
-  }
-  
-  100% {
-  	content: "..."
-  }
 }
 </style>

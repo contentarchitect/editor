@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<title>contentarchitect</title>
-	<link rel="stylesheet" href="../dist/CaBlocks.css" class="block-style" />
+	<link rel="stylesheet" href="../dist/CaBlocks.css" />
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 		<strong>We're sorry but content-architect doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 	</noscript>
 
-<style class="block-style">
+<style>
 .jumbotron {
 	padding: 2rem 1rem;
 	margin-bottom: 2rem;
@@ -116,22 +116,13 @@ body {
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
-<script src="https://prismjs.com/components/prism-markup.js"></script>
-<script src="https://prismjs.com/components/prism-clike.js"></script>
-<script src="https://prismjs.com/components/prism-javascript.js"></script>
-<script src="https://prismjs.com/components/prism-css.js"></script>
-<script src="http://unpkg.com/vue"></script>
-<script src="../dist/CaCore.umd.js"></script>
-<script src="../dist/CaBlocks.umd.js"></script>
-	
 <div class="container">
 	<section>
 		<input type="hidden" id="output">
 
 		<h1>Editor</h1>
 
-		<content-architect draggable-settings="false" id="editor" output="output" block-styles=".block-style">
+		<content-architect id="editor" output="output">
 			<div data-block="Toc"></div>
 
 			<div data-block="ExtraUnkown">
@@ -243,10 +234,15 @@ typography.injectStyles()</pre>
 	</section>
 </div>
 
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+<script src="https://prismjs.com/components/prism-markup.js"></script>
+<script src="https://prismjs.com/components/prism-clike.js"></script>
+<script src="https://prismjs.com/components/prism-javascript.js"></script>
+<script src="https://prismjs.com/components/prism-css.js"></script>
+<script src="http://unpkg.com/vue"></script>
+<script src="../dist/CaCore.umd.js"></script>
+<script src="../dist/CaBlocks.umd.js"></script>
 <script src="../dist/CaEditor.umd.js"></script>
-<!-- <script src="../../header/dist/Header.umd.js"></script> -->
 
 
 <script>

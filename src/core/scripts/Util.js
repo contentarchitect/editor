@@ -6,6 +6,7 @@ export default class Util {
 		let chars
 		if (type === 'alphanumeric') chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 		else if (type === 'numeric') chars = '0123456789'
+		else if (type === 'alphabetic') chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 		const clen = chars.length
 		let r = ""
@@ -118,6 +119,34 @@ export default class Util {
 			parent.insertBefore(dom.firstChild, dom)
 		}
 		parent.removeChild(dom);
+	}
+
+	static matchTransformMatrix ({ a, aPos = 'lt', b, bPos = 'lt' }) {
+		const positionMap = {
+			l: 'left',
+			r: 'right',
+			t: 'top',
+			b: 'bottom'
+		}
+
+		const reverseString = str => str.split('').reverse().join('')
+		const normalizePos = pos => (pos.startsWith('t') || pos.startsWith('b')) ? reverseString(pos) : pos
+		const extractPos = pos => pos.split('').map(p => positionMap[p])
+
+		aPos = extractPos(normalizePos(aPos))
+		bPos = extractPos(normalizePos(bPos))
+
+		const aRect = a.getBoundingClientRect()
+		const bRect = b.getBoundingClientRect()
+
+		return {
+			diffX: bRect[bPos[0]] - aRect[aPos[0]],
+			diffY: bRect[bPos[1]] - aRect[aPos[1]]
+		}
+	}
+
+	static transformStyle ({ x, y }) {
+		return `translate(${x}px, ${y}px)`
 	}
 
 }

@@ -1,61 +1,67 @@
 <template>
 	<div
 		class="add-block"
-		@click="$emit('click')"
+		:class="{ 'show-blocks': showBlocks, 'last-add-block': isLastBlock }"
 	>
-		<div class="add-block-inner">
+		<div class="add-block-inner" @click="show" v-show="!showBlocks">
 			<hr />
 			<span>add block</span>
 			<hr />
+		</div>
+
+		<div v-show="showBlocks" ref="blocksPlaceholder" style="position: relative;">
+			&nbsp;
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	name: "insertionPlaceholder",
+	inject: ['showNewBlock', 'hideNewBlock', 'newBlockEventBus'],
+	props: ['index', 'isLastBlock'],
+	data () {
+		return {
+			showBlocks: false
+		}
+	},
+	created () {
+		this.newBlockEventBus.$on('click', () => {
+			this.hide()
+		})
+
+		this.newBlockEventBus.$on('close', () => {
+			this.hide()
+		})
+	},
+	watch: {
+		isLastBlock: {
+			immediate: true,
+			handler () {
+				if (this.isLastBlock)
+					this.newBlockEventBus.lastInsertionPlaceholderComponent = this
+			}
+		}
+	},
+	methods: {
+		show () {
+			this.newBlockEventBus.$emit('click')
+
+			if (!this.showBlocks) {
+				this.showBlocks = true
+				this.$nextTick(() => {
+					this.showNewBlock(this.$refs.blocksPlaceholder, this.index)
+				})
+			}
+		},
+		hide () {
+			this.hideNewBlock()
+			this.showBlocks = false
+		}
+	},
 }
 </script>
 
-<style scoped>
-.add-block {
-	height: 0px;
-	position: relative;
-	z-index: 1;
-}
+<style>
 
-.add-block-inner {
-	position: absolute;
-	display: flex;
-	align-items: center;
-	left: 0;
-	right: 0;
-	height: 14px;
-	opacity: 0;
-	margin-top: -7px;
-	transition: opacity .1s;
-}
-
-.add-block-inner > hr:first-child,
-.add-block-inner > hr:last-child {
-	flex: 1;
-	height: 1px;
-	border: 0;
-	border-bottom: 1px dashed #121212;
-}
-
-.add-block-inner > span {
-	padding: 0 10px;
-	background-color: #121212;
-	color: #ccc;
-	border-radius: 1em;
-	cursor: default;
-}
-
-.add-block-inner > span:hover {
-	background-color: #444;
-}
-
-.add-block-inner:hover {
-  opacity: 1;
-}
 </style>

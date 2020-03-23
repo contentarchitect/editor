@@ -1,145 +1,154 @@
 <template>
-	<on-event-outside :do="closeSettings">
-		<div
-			:data-block="block.constructor.name"
-			v-bind="dataset"
-			:class="[{ 'show-background': showBg || isSettingsOpen, 'unknown-block': block.constructor.name === 'Unknown' }, ...block.classes]"
-			ref="block"
-			@mouseenter="showToolbar = true"
-			@mouseleave="showToolbar = false">
+	<div
+		ref="block"
+		:data-block="block.constructor.name"
+		v-bind="dataset"
+		:class="[{ 'show-background': showBg || isSettingsOpen }, ...block.classes]"
+		@mouseenter="showBackground"
+		@mouseleave="!focused && hideBackground()"
+		@click="focusHandler"
+		v-click-outside="clickOutsideHandler"
+	>	
+		<component
+			ref="view"
+			:is="block.constructor.viewComponent"
+			:settings="block.settings"
+			:value="block"
+			@focus="focusHandler"
+		/>
 
-			<component :is="block.constructor.viewComponent" :settings="block.settings" :value="block" ref="view" />
-
-			<div class="block-bg"></div>
-
-			<div class="control" v-show="block.constructor.name != 'New' && showToolbar || (isSettingsOpen && !separatedPopover)">
-				<Tooltip tooltip="Move down">
-					<ui-button
-						square
-						@click="moveBlockDown"
-						:disabled="disableMoveDown"
-					>
-						↓
-					</ui-button>
-				</Tooltip>
-
-				<Tooltip tooltip="Move up">
-					<ui-button
-						square
-						@click="moveBlockUp"
-						:disabled="disableMoveUp">
-						↑
-					</ui-button>
-				</Tooltip>
-
-
-				<Tooltip tooltip="Remove">
-					<ui-button
-						square
-						@click="removeBlock"
-						class="ui-button--remove"
-						:class="{ 'ui-button--remove-active ui-button--danger': showRemove }">
-						✕
-						<div style="display: inline-block" v-show="showRemove">
-							Remove
-						</div>
-					</ui-button>
-				</Tooltip>
-
-				<Tooltip tooltip="Settings">
-					<ui-button
-						:active="isSettingsOpen"
-						square
-						class="settings-button"
-						:disable="!block.constructor.settingsComponent"
-						ref="settingsButton"
-						@click="toggleSettings"
-					>
-						⋮
-					</ui-button>
-				</Tooltip>
+		<portal :to="block.id">
+			<div
+				ref="background"
+				:style="backgroundStyle"
+				v-show="isBackgroundVisible"
+				class="block-background"
+				:class="{ focused, 'unknown-block': block.constructor.name === 'Unknown' }"
+			>
 			</div>
 
-			<portal :to="`${block.id}`">
-				<transition name="fade">
-					<div v-show="isSettingsOpen || separatedPopover" ref="settings" class="settings-card">
-						<div class="tooltip popover vue-popover-theme">
-							<div class="settings-panel">
-								<div class="tooltip-inner popover-inner">
-									<div class="settings-panel-header" @mousedown="mousedownHandler">
-										{{block.constructor.name.toUpperCase() }} SETTINGS
-										<a @click="closeBtnAction">✕</a>
-									</div>
-									<div class="settings-panel-body">
-										<settings-section :collapsed="false" :disabled="true">
-											<template v-slot:title="{ toggleSection, showSection, disabled }">
-												<section-title @click="toggleSection" :collapsed="showSection" :disabled="disabled">General</section-title>
-											</template>
-										</settings-section>
+			<div
+				ref="controlButtons"	
+				class="control"
+				v-show="isControlButtonsVisible"
+				:style="controlButtonsStyle"
+			>
+				<ui-button
+					square
+					@click="moveBlockDown"
+					:disabled="disableMoveDown"
+				>
+					↓
+				</ui-button>
 
-										<settings-section :collapsed="true" :disabled="isObjectEmpty(block.constructor.classOptions)">
-											<template v-slot:title="{ toggleSection, showSection, disabled }">
-												<section-title
-													@click="() => !disabled && toggleSection()"
-													:collapsed="showSection"
-													:disabled="disabled"
-												>
-													CSS class options
-												</section-title>
-											</template>
-											<template v-for="(humanName, className) in block.constructor.classOptions">
-												<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
-													<template v-if="isObject(humanName)">
-														<span>{{ capitalized(className) }}</span>
-														<select v-model="block.classOptions[className]">
-															<option value=""></option>
-															<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
-																{{humName}}
-															</option>
-														</select>
-													</template>
-													<template v-else>
-														<span>{{ humanName }}</span>
-														<checkbox v-model="block.classOptions[className]" />
-													</template>
-												</css-grid>
-											</template>
-										</settings-section>
+				<ui-button
+					square
+					@click="moveBlockUp"
+					:disabled="disableMoveUp">
+					↑
+				</ui-button>
 
-										<settings-section
-											:collapsed="false"
-											:disabled="!block.constructor.settingsComponent"
-										>
-											<template v-slot:title="{ toggleSection, showSection, disabled }">
-												<section-title
-													@click="() => !disabled && toggleSection()"
-													:collapsed="showSection"
-													:disabled="disabled"
-												>
-													Block
-												</section-title>
-											</template>
-											<component :is="block.constructor.settingsComponent" :settings="block.constructor.settings" :value="block" />
-										</settings-section>
-									</div>
-									<div class="settings-panel-footer">
-										<Tooltip tooltip="Duplicate">
-											<copy-icon @click="duplicate" fill="#ccc" />
-										</Tooltip>
+				<ui-button
+					square
+					@click="removeBlock"
+					class="ui-button--remove"
+					:class="{ 'ui-button--remove-active ui-button--danger': showRemove }">
+					✕
+					<div style="display: inline-block" v-show="showRemove">
+						Remove
+					</div>
+				</ui-button>
 
-										<Tooltip tooltip="Remove Block">
-											<delete-icon @click="immediatelyRemoveBlock" fill="#e64848" />
-										</Tooltip>
-									</div>
+				<ui-button
+					:active="isSettingsOpen"
+					square
+					class="settings-button"
+					:disable="!block.constructor.settingsComponent"
+					ref="settingsButton"
+					@click="toggleSettings"
+				>
+					⋮
+				</ui-button>
+			</div>
+
+			<transition name="fade">
+				<div v-show="isSettingsOpen || separatedPopover" ref="settings" class="settings-card">
+					<div class="tooltip popover vue-popover-theme">
+						<div class="settings-panel">
+							<div class="tooltip-inner popover-inner">
+								<div class="settings-panel-header" @mousedown="mousedownHandler">
+									{{block.constructor.name.toUpperCase() }} SETTINGS
+									<a @click="closeBtnAction">✕</a>
 								</div>
-								<!-- <div class="tooltip-arrow popover-arrow" style="top: 3px;"></div> -->
+								<div class="settings-panel-body">
+									<settings-section :collapsed="false" :disabled="true">
+										<template v-slot:title="{ toggleSection, showSection, disabled }">
+											<section-title @click="toggleSection" :collapsed="showSection" :disabled="disabled">General</section-title>
+										</template>
+									</settings-section>
+
+									<settings-section :collapsed="true" :disabled="isObjectEmpty(block.constructor.classOptions)">
+										<template v-slot:title="{ toggleSection, showSection, disabled }">
+											<section-title
+												@click="() => !disabled && toggleSection()"
+												:collapsed="showSection"
+												:disabled="disabled"
+											>
+												CSS class options
+											</section-title>
+										</template>
+										<template v-for="(humanName, className) in block.constructor.classOptions">
+											<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
+												<template v-if="isObject(humanName)">
+													<span>{{ capitalized(className) }}</span>
+													<select v-model="block.classOptions[className]">
+														<option value=""></option>
+														<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
+															{{humName}}
+														</option>
+													</select>
+												</template>
+												<template v-else>
+													<span>{{ humanName }}</span>
+													<checkbox v-model="block.classOptions[className]" />
+												</template>
+											</css-grid>
+										</template>
+									</settings-section>
+
+									<settings-section
+										:collapsed="false"
+										:disabled="!block.constructor.settingsComponent"
+									>
+										<template v-slot:title="{ toggleSection, showSection, disabled }">
+											<section-title
+												@click="() => !disabled && toggleSection()"
+												:collapsed="showSection"
+												:disabled="disabled"
+											>
+												Block
+											</section-title>
+										</template>
+										<component :is="block.constructor.settingsComponent" :settings="block.constructor.settings" :value="block" />
+									</settings-section>
+								</div>
+								<div class="settings-panel-footer">
+									<!-- <Tooltip tooltip="Duplicate"> -->
+										<copy-icon @click="duplicate" fill="#ccc" />
+									<!-- </Tooltip> -->
+
+									<!-- <Tooltip tooltip="Remove Block"> -->
+										<delete-icon @click="immediatelyRemoveBlock" fill="#e64848" />
+									<!-- </Tooltip> -->
+								</div>
 							</div>
+							<!-- <div class="tooltip-arrow popover-arrow" style="top: 3px;"></div> -->
 						</div>
 					</div>
-				</transition>
-			</portal>
-		</div>
-	</on-event-outside>
+				</div>
+			</transition>
+		</portal>
+	</div>
 </template>
 
 <script>
@@ -152,15 +161,14 @@ import {
 	CssGrid,
 	SectionTitle,
 	SettingsSection,
-	Tooltip,
+	// Tooltip,
 	OnEventOutside,
-	Util	
+	Util,
+	clickOutside
 } from '@contentarchitect/core'
 import { Portal } from 'portal-vue'
 
-
-import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
-import Popper from "popper.js";
+import * as Popper from "@popperjs/core";
 import CopyIcon from "../assets/copy.svg"
 import DeleteIcon from "../assets/delete.svg"
 
@@ -175,6 +183,8 @@ export default {
 		'slottedBlocks',
 		'appSettings',
 		'nextBlockComponent',
+		'showControl',
+		'hideControl',
 	],
 	model: {
 		prop: 'block',
@@ -197,7 +207,6 @@ export default {
 		SectionTitle,
 		[UiButton.name]: UiButton,
 		OnEventOutside,
-		Tooltip,
 		Portal,
 		Checkbox,
 		RadioButtons,
@@ -206,55 +215,58 @@ export default {
 		CopyIcon,
 		DeleteIcon,
 		'v-button': Button,
-		"v-popover": VPopover,
 	},
 	directives: {
-		tooltip: VTooltip,
-		closePopover: VClosePopover,
+		clickOutside
 	},
 	data () {
 	  	return {
 			showBg: false,
-			showToolbar: false,
 			showRemove: false,
 			isSettingsOpen: false,
-			popperInstance: null,
-			autoHide: true,
 			separatedPopover: false,
 			startDragPos: { x: 0, y: 0 },
 			popperPos: { x: 0, y: 0 },
 			popperModifiers: [],
-			isObjectEmpty: Util.isObjectEmpty
+			isObjectEmpty: Util.isObjectEmpty,
+			settingsPopper: null,
+			focused: false,
+			backgroundStyle: {},
+			backgroundVisible: false,
+			controlButtonsStyle: {},
 		}
 	},
 	mounted () {
 		const _this = this;
-
-		this.$nextTick(() => {
-			this.popperInstance = new Popper(this.$refs.settingsButton.$el, this.$refs.settings, {
-				placement: "right-start",
-				modifiers: {
-					offset: {
-						offset: '0, 10'
-					},
-					computeStyle: {
-						fn (data, options) {
-							_this.popperPos.x = data.popper.left;
-							_this.popperPos.y = data.popper.top;
-							if (!_this.separatedPopover) {
-								return Popper.Defaults.modifiers['computeStyle'].fn(data, options);
-							} else {
-								return data;
-							}
-						}
-					}
-				}
-			});
-		});
-
 		this.$once("hook:beforeDestroy", () => {
-			this.popperInstance.destroy();
+			this.settingsPopper && this.settingsPopper.destroy();
 		})
+		
+
+		const resizeObserver = new ResizeObserver(entries => {
+			if (_this.isBackgroundVisible) {
+				entries.forEach(entry => {
+					const { width, height  } = entry.contentRect
+
+					Object.assign(_this.$refs.background.style, {
+						width: width+20+'px',
+						height: height+20+'px'
+					})
+
+					_this.$refs.background.style.removeProperty('transform')
+
+					const { diffX: x, diffY: y } = Util.matchTransformMatrix({
+						a: _this.$refs.background,
+						b: _this.$el
+					})
+
+					Object.assign(_this.$refs.background.style, {
+						transform: Util.transformStyle({ x: x - 10, y: y - 10 })
+					})
+				})
+			}
+		})
+		resizeObserver.observe(this.$el)
 	},
 	computed: {
 		dataset () {
@@ -267,22 +279,25 @@ export default {
 
 			return dataset;
 		},
+		isBackgroundVisible () {
+			return this.focused || this.backgroundVisible
+		},
+		isControlButtonsVisible () {
+			return this.focused
+				   || (this.isSettingsOpen && !this.separatedPopover)
+		}
 	},
 	watch: {
-		showToolbar () {
-			if (!this.showToolbar && this.showRemove) {
-				this.showRemove = false
-			}
-		},
-		isSettingsOpen () {
-			if (this.isSettingsOpen) {
-				this.popperInstance.update();
-				// this.popperInstance.popper.style.display = "block";
+		isControlButtonsVisible () {
+			if (this.isControlButtonsVisible) {
+				this.showControlButtons()
 			} else {
-				// this.popperInstance.popper.style.display = "none";
-				setTimeout(() => {
-					this.popperInstance.update();
-				}, 200)
+				this.hideControlButtons()
+				this.hideBackground()
+			}
+
+			if (!this.isControlButtonsVisible && this.showRemove) {
+				this.showRemove = false
 			}
 		},
 		"block.classOptions": {
@@ -302,16 +317,20 @@ export default {
 					}
 				}
 			},
-		}
+		},
 	},
 	methods: {
 		duplicate () {
 			this.$emit('duplicate', this.block);
 		},
 		moveBlockDown () {
+			this.focused = false
+			this.isSettingsOpen = false
 			this.$emit('move-block-down', this.block)
 		},
 		moveBlockUp () {
+			this.focused = false
+			this.isSettingsOpen = false
 			this.$emit('move-block-up', this.block)
 		},
 		removeBlock () {
@@ -324,14 +343,6 @@ export default {
 		immediatelyRemoveBlock() {
 			this.$emit('remove-block', this.block)
 		},
-		closeSettings (e, path) {
-			if (path.find(el => el == this.$refs.settings)) return
-
-			if (!this.separatedPopover && this.isSettingsOpen) {
-				this.isSettingsOpen = false;
-				this.separatedPopover = false;
-			}
-		},
 		closeBtnAction () {
 			this.isSettingsOpen = false;
 			this.separatedPopover = false;
@@ -339,29 +350,64 @@ export default {
 		toggleSettings () {
 			this.isSettingsOpen = !this.isSettingsOpen;
 
-			if (!this.isSettingsOpen) this.separatedPopover = false
+			if (this.isSettingsOpen) {
+				this.focused = true
+			} else {
+				this.separatedPopover = false
+			}
+
+			this.$nextTick(() => {
+				if (this.isSettingsOpen) {
+					this.$refs.settings.style.removeProperty('display')
+					const _this = this;
+					this.settingsPopper = Popper.createPopper(
+						this.$refs.settingsButton.$el,
+						this.$refs.settings,
+						{
+							placement: "right-start",
+							modifiers: [
+								{
+									name: "offset",
+									options: { offset: [0, 5] }
+								},
+								{
+									name: "applyStyles",
+									fn () {
+										if (_this.separatedPopover) return;
+										const applyStyles = Popper.defaultModifiers.find(mod => mod.name == "applyStyles")
+										applyStyles.fn(...arguments)
+									}
+								}
+							]
+						}
+					)
+					this.settingsPopper.update()
+				}
+			})
 		},
 		mousedownHandler (event) {
 			this.startDragPos.x = event.pageX;
 			this.startDragPos.y = event.pageY;
 			window.addEventListener("mousemove", this.mousemoveHandler);
 			window.addEventListener("mouseup", this.mouseupHandler);
-			// this.hidePopoverArrow();
-			this.autoHide = false;
 			this.separatedPopover = true;
+
+			this.$nextTick(() => {
+				const mat = new WebKitCSSMatrix(this.$refs.settings.style.transform);
+				this.popperPos.x = mat.e;
+				this.popperPos.y = mat.f;
+			})
 		},
 		mousemoveHandler (event) {
-			let transform = { x: 0, y: 0 };
+			const x = this.popperPos.x + event.pageX - this.startDragPos.x,
+				  y = this.popperPos.y + event.pageY - this.startDragPos.y;
 
-			transform.x = this.popperPos.x + event.pageX - this.startDragPos.x;
-			transform.y = this.popperPos.y + event.pageY - this.startDragPos.y;
-
-			this.popperInstance.popper.style.transform = `translate(${transform.x}px, ${transform.y}px)`
+			this.$refs.settings.style.transform = `translate(${x}px, ${y}px)`
 		},
 		mouseupHandler () {
 			window.removeEventListener("mousemove", this.mousemoveHandler);
 			window.removeEventListener("mouseup", this.mouseupHandler);
-			const mat = new WebKitCSSMatrix(this.popperInstance.popper.style.transform);
+			const mat = new WebKitCSSMatrix(this.$refs.settings.style.transform);
 			this.popperPos.x = mat.e;
 			this.popperPos.y = mat.f;
 		},
@@ -379,48 +425,94 @@ export default {
 			const editables = this.$refs.view.$children.filter(comp => comp.$options.name == "Editable")
 			const index = editables.indexOf(editable)
 			return editables[index+1]
+		},
+		showControlButtons () {
+			this.$nextTick(() => {
+				const blockRect = this.$el.getBoundingClientRect();
+				this.$refs.controlButtons.style.removeProperty("display");
+				const controlButtonsRect = this.$refs.controlButtons.getBoundingClientRect();
+
+				// top righ
+				const translateX = blockRect.x 
+					- controlButtonsRect.x
+					+ blockRect.width
+					- controlButtonsRect.width
+
+				const translateY = blockRect.y - controlButtonsRect.y
+				
+				const transform = `translate(${translateX}px,${translateY}px)`;
+
+				this.controlButtonsStyle = {
+					transform
+				}
+			})
+		},
+		hideControlButtons () {
+			this.controlButtonsStyle = {}
+		},
+		clickOutsideHandler (e) {
+			if (e.path.includes(this.$refs.controlButtons) 
+				|| e.path.includes(this.$refs.settings)) return;
+
+			this.focused = false
+			this.isSettingsOpen = false
+			this.hideControlButtons()
+			this.hideBackground()
+		},
+		focusHandler () {
+			this.focused = true
+		},
+		showBackground () {
+			if (this.backgroundVisible) return
+			this.backgroundVisible = true
+
+			this.$nextTick(() => {
+				const blockRect = this.$el.getBoundingClientRect();
+
+				this.$refs.background.style.removeProperty("display");
+				this.$refs.background.style.removeProperty("transform");
+				const bgRect = this.$refs.background.getBoundingClientRect();
+	
+				const translateX = blockRect.x - bgRect.x - 10
+				const translateY = blockRect.y - bgRect.y - 10
+				
+				const transform = `translate(${translateX}px,${translateY}px)`;
+
+				const width = blockRect.width + 20
+				const height = blockRect.height + 20
+	
+				this.backgroundStyle = {
+					transform,
+					width: `${width}px`,
+					height: `${height}px`
+				}
+			})
+		},
+		hideBackground () {
+			this.backgroundVisible = false
+			this.backgroundStyle = {}
 		}
 	},
 }
 </script>
 
-<style>
-@import "../assets/text-button.css"; 
-
-.tooltip.popover .popover-inner {
-	background: #2b2b2b;
-	border-radius: 3px;
-}
-
-.tooltip.popover .popover-arrow {
-	border-color: #121212;
-}
-
-[data-block] {
-	position: relative;
-}
-
-[data-block]:not([data-block=New]) > .block-bg {
+<style scoped>
+.block-background {
 	position: absolute;
-	top: -10px;
-	left: -10px;
-	right: -10px;
-	bottom: -10px;
-	z-index: -1;
+	z-index: 0;
+	background: #f7ffff;
 }
 
-.show-background .block-bg, [data-block]:hover .block-bg {
-	background-color: azure;
+.block-background.focused {
+	background: azure;
 }
 
-.unknown-block.show-background .block-bg, .unknown-block[data-block]:hover .block-bg {
+.block-background.unknown-block {
 	background-color: #fbeded;
 }
 
 .control {
 	position: absolute;
-	right: 0;
-	top: 0;
 	display: grid;
 	grid-template-columns: auto auto auto auto;
 	gap: 5px;
@@ -433,75 +525,8 @@ export default {
 	align-items: flex-start;
 }
 
+
 .settings-button {
 	width: 24px !important;
-}
-
-.settings-card {
-	z-index: 101;
-	font-size: .875rem;
-}
-
-.settings-panel.vue-ui-dark-mode {
-	background: #121212;
-	border-radius: 3px;
-}
-
-.settings-panel {
-	/* padding: 10px; */
-	width: 200px;
-}
-
-.settings-panel > .tooltip-inner.popover-inner {
-	padding: 0 !important;
-}
-
-.settings-panel-header {
-	user-select: none;
-	border-radius: 3px 3px 0 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 6px 8px;
-	border-bottom: 1px solid #000;
-	background: #404040;
-	line-height: 16px;
-}
-
-.settings-panel-body {
-	padding-bottom: 20px;
-}
-
-.settings-panel-footer {
-	display: flex;
-	padding: 6px 8px;
-	align-items: center;
-	justify-content: flex-end;
-	border-top: 1px solid #000;
-}
-
-.settings-panel-footer > * {
-	margin-left: 5px;
-}
-
-.ui-button--remove {
-	transition: width .2s;
-	justify-content: flex-start;
-}
-
-.ui-button--remove.ui-button--remove-active {
-	width: 100px !important;
-}
-
-.fade-enter-active, .fade-leave-active {
-	transition: opacity .2s;
-}
-
-.fade-enter, .fade-leave-to {
-	opacity: 0;
-}
-
-.vue-ui-input {
-	min-width: 70px !important;
 }
 </style>

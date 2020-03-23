@@ -41,47 +41,4 @@ export default {
 </script>
 
 <style scoped>
-.code {
-	position: relative;
-	display: inline-block !important;
-	min-width: 100%;
-}
-
-.textarea-container {
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	opacity: .6;
-	z-index: 1;
-}
-
-.textarea-container > textarea {
-	width: 100%;
-	height: 100%;
-	border: 0;
-	padding: 0;
-	margin: 0;
-	opacity: .6;
-	font-family: inherit;
-	font-size: inherit;
-	font-style: inherit;
-	font-variant-ligatures: inherit;
-	font-weight: inherit;
-	letter-spacing: inherit;
-	line-height: inherit;
-	tab-size: inherit;
-	text-indent: inherit;
-	text-rendering: inherit;
-	text-transform: inherit;
-	color: inherit;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-fill-color: transparent;
-	outline: 0;
-	background: none;
-	overflow: hidden;
-	resize: none;
-}
 </style>

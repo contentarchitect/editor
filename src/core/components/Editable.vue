@@ -1,6 +1,5 @@
 <template>
 	<div style="position: relative">
-		<div class="fake-ref" :style="fakeRefStyle" ref="fakeRef"></div>
 		<on-event-outside :do="close" event="mousedown">
 			<transition name="fade">
 				<div ref="toolbar" class="toolbar" v-show="isOpenToolbar" >
@@ -93,7 +92,7 @@
 </template>
 
 <script>
-import Popper from 'popper.js'
+import { createPopper } from '@popperjs/core'
 import OnEventOutside from "./OnEventOutside.vue"
 import Util from "../scripts/Util.js"
 import CaInput from "./CaInput.vue"
@@ -129,16 +128,6 @@ export default {
 			type: Boolean,
 			default: true,
 		},
-		refDiv: {
-			default () {
-				return {
-					x: 0,
-					y: 0,
-					width: 10,
-					height: 10
-				}
-			}
-		},
 		currentRange: {}
 	},
 	components: { OnEventOutside, CaInput, CaButton: Button },
@@ -158,7 +147,6 @@ export default {
 			selectionLinkUrl: '',
 			showPlaceholder: false,
 			observer: null,
-			fakeRefStyle: {}
 		}
 	},
 	mounted () {
@@ -171,12 +159,27 @@ export default {
 		})
 		// this.$refs.body.innerHTML = this.val;
 
-		this.popperInstance = new Popper(this.$refs.fakeRef, this.$refs.toolbar, {
-			placement: 'bottom',
-			modifiers: {
-				offset: 10
+
+		this.popperInstance = createPopper(
+			{ 
+				getBoundingClientRect() {
+					const domRect = new DOMRect();
+					return domRect.toJSON()
+				}
+			}, // reference
+			this.$refs.toolbar, // tooltip
+			{
+				placement: 'bottom',
+				modifiers: [
+					{
+						name: 'offset',
+						options: {
+							offset: [0, 7]
+						}
+					}
+				]
 			}
-		});
+		);
 
 		// this.changeHandler()
 		// this.changeToBlock()
@@ -208,26 +211,32 @@ export default {
 				this.popperInstance.update()
 			})
 		},
-		refDiv: {
-			deep: true,
-			handler () {
-				const editableRect = this.$refs.fakeRef.parentElement.getBoundingClientRect();
-				const transform = `translate(${this.refDiv.x - editableRect.x}px,${this.refDiv.y - editableRect.y}px)`;
-				this.fakeRefStyle = {
-					transform,
-					width: this.refDiv.width + "px",
-					height: this.refDiv.height + "px",
-				}
+		// selectionRectangle: {
+		// 	deep: true,
+		// 	handler () {
+		// 		// const editableRect = this.$refs.fakeRef.parentElement.getBoundingClientRect();
+		// 		// const transform = `translate(${this.selectionRectangle.x - editableRect.x}px,${this.selectionRectangle.y - editableRect.y}px)`;
+		// 		// this.fakeRefStyle = {
+		// 		// 	transform,
+		// 		// 	width: this.selectionRectangle.width + "px",
+		// 		// 	height: this.selectionRectangle.height + "px",
+		// 		// }
+		// 		console.log(this.selectionRectangle)
+		// 		this.popperInstance.state.elements.reference = { getBoundingClientRect:  () => this.selectionRectangle }
+		// 		this.popperInstance.forceUpdate()
 
-				this.$nextTick(() => {
-					this.popperInstance.update()
-				})
-			}
-		}
+		// 		// this.$nextTick(() => {
+		// 		// })
+		// 	}
+		// }
 	},
 	methods: {
-		open () {
+		open (range) {
 			this.isOpenToolbar = true
+			this.$nextTick(() => {
+				this.popperInstance.state.elements.reference = range
+				this.popperInstance.forceUpdate()
+			})
 		},
 		close () {
 			this.isOpenToolbar = false;
@@ -325,40 +334,6 @@ export default {
 </script>
 
 <style>
-.editable {
-	position: relative;
-}
-
-.editable .toolbar {
-	font-size: 1rem;
-	font-weight: normal;
-}
-
-.editable .link-divider {
-	display: inline-block;
-	width: 1px;
-	border-right: 1px solid #333;
-}
-
-.editable-body {
-	min-height: 1em;
-	min-width: 1px;
-	cursor: text;
-}
-
-.editable-body.editable-block {
-	width: 100%;
-	min-width: 50px;
-}
-
-.editable-body.editable-block:not(td):not(th) {
-	display: block;
-}
-
-.editable-body:focus {
-	outline: none;
-}
-
 .fake-ref {
 	position: absolute;
 	left: 0;
@@ -385,11 +360,11 @@ export default {
     z-index: 1;
 }
 
-.toolbar[x-placement^="bottom"] {
+.toolbar[data-popper-placement^="bottom"] {
 	margin-top: 5px;
 }
 
-.toolbar[x-placement^="bottom"] .toolbar-arrow {
+.toolbar[data-popper-placement^="bottom"] .toolbar-arrow {
     border-width: 0 5px 5px 5px;
     border-left-color: transparent !important;
     border-right-color: transparent !important;
@@ -400,11 +375,11 @@ export default {
     margin-bottom: 0;
 }
 
-.toolbar[x-placement^="top"] {
+.toolbar[data-popper-placement^="top"] {
 	margin-bottom: 5px;
 }
 
-.toolbar[x-placement^="top"] .toolbar-arrow {
+.toolbar[data-popper-placement^="top"] .toolbar-arrow {
     border-width: 5px 5px 0 5px;
     border-left-color: transparent !important;
     border-right-color: transparent !important;
@@ -484,17 +459,5 @@ export default {
 
 .ca-even {
     fill-rule: evenodd;
-}
-
-.show-placeholder[placeholder]:not(:focus)::before {
-    content: attr(placeholder);
-	font-style: italic;
-	opacity: .5;
-    padding: inherit;
-    margin: inherit;
-}
-
-.show-placeholder.editable-block[placeholder]:not(:focus)::before {
-	position: absolute;
 }
 </style>

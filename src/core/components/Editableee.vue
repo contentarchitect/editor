@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import Popper from 'popper.js'
+import Popper from '@popperjs/core'
 import OnEventOutside from "./OnEventOutside.vue"
 import Util from "../scripts/Util.js"
 import CaInput from "./CaInput.vue"
@@ -298,7 +298,7 @@ export default {
 		})
 		this.$refs.body.innerHTML = this.val;
 
-		this.popperInstance = new Popper(this.$refs.fakeRef, this.$refs.toolbar, {
+		this.popperInstance = Popper.createPopper(this.$refs.fakeRef, this.$refs.toolbar, {
 			placement: 'bottom',
 			modifiers: {
 				offset: 10

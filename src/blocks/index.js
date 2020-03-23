@@ -10,6 +10,7 @@ import Code from './code/main.js'
 import Header from '@contentarchitect/header'
 import Toc from './toc/main.js'
 
+import '../assets/main.extract.css'
 import './paragraph/theme.extract.css'
 import "./image/theme.extract.css"
 import "./spacer/theme.extract.css"

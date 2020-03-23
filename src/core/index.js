@@ -11,7 +11,7 @@ import RadioButton from "./components/RadioButton.vue"
 import RadioButtons from "./components/RadioButtons.vue"
 import SectionTitle from "./components/SectionTitle.vue"
 import SettingsSection from "./components/SettingsSection.vue"
-import Tooltip from "./components/Tooltip.vue"
+// import Tooltip from "./components/Tooltip.vue"
 import UiButton from "./components/UiButton.vue"
 
 // Scripts
@@ -19,10 +19,13 @@ import Block from "./scripts/Block.js"
 import Blocks from "./scripts/Blocks.js"
 import Upload from "./scripts/Upload.js"
 import Util from "./scripts/Util.js"
+import DirectiveUtil from "./scripts/DirectiveUtil.js"
 import renderBlocks from "./scripts/renderBlocks"
 
 // Directives
 import edit from "./directives/edit.js"
+import selectImage from "./directives/selectImage.js"
+import clickOutside from "./directives/click-outside.js"
 
 export {
 	Button,
@@ -37,12 +40,15 @@ export {
 	RadioButtons,
 	SectionTitle,
 	SettingsSection,
-	Tooltip,
+	// Tooltip,
 	UiButton,
 	Block,
 	Blocks,
 	Upload,
 	Util,
+	DirectiveUtil,
 	renderBlocks,
-	edit
+	edit,
+	selectImage,
+	clickOutside
 }

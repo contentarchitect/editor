@@ -7,388 +7,6 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 	<title>contentarchitect</title>
-<style>
-.jumbotron {
-	padding: 2rem 1rem;
-	margin-bottom: 2rem;
-	background-color: #e9ecef;
-	border-radius: .3rem;
-}
-
-.alert {
-	position: relative;
-	padding: .75rem 1.25rem;
-	margin-bottom: 1rem;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-}
-
-.alert-danger {
-	color: #721c24;
-	background-color: #f8d7da;
-	border-color: #f5c6cb;
-}
-
-.alert-success {
-	color: #155724;
-	background-color: #d4edda;
-	border-color: #c3e6cb;
-}
-
-.alert-warning {
-	color: #856404;
-	background-color: #fff3cd;
-	border-color: #ffeeba;
-}
-
-.custom-alert {
-	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
-	padding-left: 100px;
-	color: #856404;
-	background-color: #fff3cd;
-	border-color: #ffeeba;
-}
-
-.alert blockquote::before, 
-.alert blockquote::after {
-	color: white !important
-}
-
-.custom-alert blockquote::before, 
-.custom-alert blockquote::after {
-	color: orange !important
-}
-
-.text-left {
-	text-align: left!important;
-}
-
-.text-center {
-	text-align: center!important;
-}
-
-.text-right {
-	text-align: right!important;
-}
-
-[data-language] {
-	position: relative;
-}
-
-[data-language]:after {
-	content: attr(data-language);
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	background: rgba(0, 0, 0, 0.3);
-	padding: 2px 8px;
-	border-radius: 20px;
-	color: rgba(255,255,255,.5);
-	font-size: .8rem;
-}
-
-.badge {
-	color: white;
-	background-color: #c792ea;
-	padding: 0.25em .4em;
-	white-space: nowrap;
-	vertical-align: baseline;
-	border-radius: .25em;
-}
-
-.red {
-	color: red;
-}
-
-.drop-cap .editable-body:not(:focus) > p:first-child:first-letter,
-.drop-cap > p:first-child:first-letter {
-    float: left;
-    font-size: 3em;
-    line-height: 1em;
-    margin-right: .1em;
-}
-
-.beauty-list ol {
-	margin: 0;
-	padding: 0;
-}
-
-.beauty-list ol {
-	list-style-type: none;
-}
-
-.beauty-list ol li {
-	counter-increment: myCounter;
-	margin: 0 0 1em;
-	padding: 20px 20px 20px 60px;
-	background-color: #dadaff;
-	border-radius: .2em;
-	position: relative;
-}
-
-.beauty-list ol li > b:first-child,
-.beauty-list ol li > strong:first-child {
-	display: block;
-	margin-bottom: .5em;
-}
-
-.beauty-list ol li::before {
-	content: counter(myCounter);
-    color: white;
-    position: absolute;
-    top: 17px;
-    left: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    border-radius: 50%;
-    background-color: #5b5bdc;
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	font-weight: bold;
-}
-
-.divider-line {
-	display: flex;
-	align-items: center;
-	color: #444;
-}
-
-.divider-line::before,
-.divider-line::after {
-	content: "";
-	flex: 1;
-	border-bottom: 1px solid #ccc;
-}
-
-.divider-line .divider {
-	padding: 0 1em;
-}
-
-.divider-line .divider::before {
-	content: "❧";
-	margin: 0;
-	letter-spacing: normal;
-	font-size: 1.5em;
-}
-</style>
-
-<style>
-/**
- * prism-material-oceanic
- */
- code[class*="language-"],
- pre[class*="language-"] {
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	color: #c3cee3;
-	background: #263238;
-	font-family: Roboto Mono, monospace;
-	font-size: 1em;
-	line-height: 1.5em;
- 
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
- 
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
- }
- 
- code[class*="language-"]::-moz-selection,
- pre[class*="language-"]::-moz-selection,
- code[class*="language-"] ::-moz-selection,
- pre[class*="language-"] ::-moz-selection {
-	background: #363636;
- }
- 
- code[class*="language-"]::selection,
- pre[class*="language-"]::selection,
- code[class*="language-"] ::selection,
- pre[class*="language-"] ::selection {
-	background: #363636;
- }
- 
- :not(pre) > code[class*="language-"] {
-	white-space: normal;
-	border-radius: 0.2em;
-	padding: 0.1em;
- }
- 
- pre[class*="language-"] {
-	overflow: auto;
-	position: relative;
-	margin: 0.5em 0;
-	padding: 1.25em 1em;
- }
- 
- .language-css > code,
- .language-sass > code,
- .language-scss > code {
-	color: #fd9170;
- }
- 
- [class*="language-"] .namespace {
-	opacity: 0.7;
- }
- 
- .token.atrule {
-	color: #c792ea;
- }
- 
- .token.attr-name {
-	color: #ffcb6b;
- }
- 
- .token.attr-value {
-	color: #c3e88d;
- }
- 
- .token.attribute {
-	color: #c3e88d;
- }
- 
- .token.boolean {
-	color: #c792ea;
- }
- 
- .token.builtin {
-	color: #ffcb6b;
- }
- 
- .token.cdata {
-	color: #80cbc4;
- }
- 
- .token.char {
-	color: #80cbc4;
- }
- 
- .token.class {
-	color: #ffcb6b;
- }
- 
- .token.class-name {
-	color: #f2ff00;
- }
- 
- .token.color {
-	color: #f2ff00;
- }
- 
- .token.comment {
-	color: #546e7a;
- }
- 
- .token.constant {
-	color: #c792ea;
- }
- 
- .token.deleted {
-	color: #f07178;
- }
- 
- .token.doctype {
-	color: #546e7a;
- }
- 
- .token.entity {
-	color: #f07178;
- }
- 
- .token.function {
-	color: #c792ea;
- }
- 
- .token.hexcode {
-	color: #f2ff00;
- }
- 
- .token.id {
-	color: #c792ea;
-	font-weight: bold;
- }
- 
- .token.important {
-	color: #c792ea;
-	font-weight: bold;
- }
- 
- .token.inserted {
-	color: #80cbc4;
- }
- 
- .token.keyword {
-	color: #c792ea;
-	font-style: italic;
- }
- 
- .token.number {
-	color: #fd9170;
- }
- 
- .token.operator {
-	color: #89ddff;
- }
- 
- .token.prolog {
-	color: #546e7a;
- }
- 
- .token.property {
-	color: #80cbc4;
- }
- 
- .token.pseudo-class {
-	color: #c3e88d;
- }
- 
- .token.pseudo-element {
-	color: #c3e88d;
- }
- 
- .token.punctuation {
-	color: #89ddff;
- }
- 
- .token.regex {
-	color: #f2ff00;
- }
- 
- .token.selector {
-	color: #f07178;
- }
- 
- .token.string {
-	color: #c3e88d;
- }
- 
- .token.symbol {
-	color: #c792ea;
- }
- 
- .token.tag {
-	color: #f07178;
- }
- 
- .token.unit {
-	color: #f07178;
- }
- 
- .token.url {
-	color: #fd9170;
- }
- 
- .token.variable {
-	color: #f07178;
- }
-</style>
 </head>
 
 <body>
@@ -403,34 +21,22 @@
 <script src="https://prismjs.com/components/prism-css.js"></script>
 <script src="http://unpkg.com/@rails/activestorage"></script>
 
-<style>
-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-}
-
-.container {
-	margin: 20px auto;
-	width: 90%;
-	display: flex;
-}
-
-.container > section {
-	width: 50%;
-}
-
-.container > section:first-child {
-	margin-right: 50px;
-}
-</style>
-
 <div class="container">
 	<section>
 		<h1>Editor</h1>
 		<content-architect draggable-settings="false" id="editor" output="output" block-styles="head style">
 			<div data-block="Toc"></div>
+
+			<div data-block="Header">
+				<h1>Typography.js</h1>
+			</div>
+
+			<div data-block="Image">
+				<figure>
+					<img src="https://ishadeed.com/assets/intrinsic-sizing/intrinsic-separator.png" />
+					<figcaption>The extrinsic sizing simply means sizing elements </figcaption>
+				</figure>
+			</div>
 
 			<div data-block="Table">
 				<table>
@@ -459,18 +65,6 @@ body {
 				</table>
 			</div>
 
-			<div data-block="Image">
-				<figure>
-					<img src="https://ishadeed.com/assets/intrinsic-sizing/intrinsic-separator.png" />
-					<figcaption>The extrinsic sizing simply means sizing elements </figcaption>
-				</figure>
-
-				<figure>
-					<img src="https://ishadeed.com/assets/intrinsic-sizing/intrinsic-title.png" />
-					<figcaption>Title With Underline</figcaption>
-				</figure>
-			</div>
-
 			<div data-block="ExtraUnkown">
 				<p>I don't know how to render this.</p>
 			</div>
@@ -481,7 +75,7 @@ body {
 
 			<div data-block="Spacer">
 				<div style="height: 130px"></div>
-			</div> -->
+			</div>
 
 			<div data-block="Quote" class="alert custom-alert">
 				<blockquote>
@@ -604,6 +198,411 @@ typography.injectStyles()</pre>
 <script>
 </script>
 
+<style>
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: .3rem;
+}
+
+.alert {
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.alert-warning {
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.custom-alert {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="orange"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>') 1.25em 50% no-repeat;
+	padding-left: 100px;
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+.alert blockquote::before, 
+.alert blockquote::after {
+	color: white !important
+}
+
+.custom-alert blockquote::before, 
+.custom-alert blockquote::after {
+	color: orange !important
+}
+
+.text-left {
+	text-align: left!important;
+}
+
+.text-center {
+	text-align: center!important;
+}
+
+.text-right {
+	text-align: right!important;
+}
+
+[data-language] {
+	position: relative;
+}
+
+[data-language]:after {
+	content: attr(data-language);
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background: rgba(0, 0, 0, 0.3);
+	padding: 2px 8px;
+	border-radius: 20px;
+	color: rgba(255,255,255,.5);
+	font-size: .8rem;
+}
+
+.badge {
+	color: white;
+	background-color: #c792ea;
+	padding: 0.25em .4em;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+
+.red {
+	color: red;
+}
+
+.drop-cap .editable-body:not(:focus) > p:first-child:first-letter,
+.drop-cap > p:first-child:first-letter {
+	float: left;
+	font-size: 3em;
+	line-height: 1em;
+	margin-right: .1em;
+}
+
+.beauty-list ol {
+	margin: 0;
+	padding: 0;
+}
+
+.beauty-list ol {
+	list-style-type: none;
+}
+
+.beauty-list ol li {
+	counter-increment: myCounter;
+	margin: 0 0 1em;
+	padding: 20px 20px 20px 60px;
+	background-color: #dadaff;
+	border-radius: .2em;
+	position: relative;
+}
+
+.beauty-list ol li > b:first-child,
+.beauty-list ol li > strong:first-child {
+	display: block;
+	margin-bottom: .5em;
+}
+
+.beauty-list ol li::before {
+	content: counter(myCounter);
+	color: white;
+	position: absolute;
+	top: 17px;
+	left: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #5b5bdc;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.divider-line {
+	display: flex;
+	align-items: center;
+	color: #444;
+}
+
+.divider-line::before,
+.divider-line::after {
+	content: "";
+	flex: 1;
+	border-bottom: 1px solid #ccc;
+}
+
+.divider-line .divider {
+	padding: 0 1em;
+}
+
+.divider-line .divider::before {
+	content: "❧";
+	margin: 0;
+	letter-spacing: normal;
+	font-size: 1.5em;
+}
+</style>
+
+<style>
+/**
+* prism-material-oceanic
+*/
+code[class*="language-"],
+pre[class*="language-"] {
+text-align: left;
+white-space: pre;
+word-spacing: normal;
+word-break: normal;
+word-wrap: normal;
+color: #c3cee3;
+background: #263238;
+font-family: Roboto Mono, monospace;
+font-size: 1em;
+line-height: 1.5em;
+
+-moz-tab-size: 4;
+-o-tab-size: 4;
+tab-size: 4;
+
+-webkit-hyphens: none;
+-moz-hyphens: none;
+-ms-hyphens: none;
+hyphens: none;
+}
+
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+background: #363636;
+}
+
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+background: #363636;
+}
+
+:not(pre) > code[class*="language-"] {
+white-space: normal;
+border-radius: 0.2em;
+padding: 0.1em;
+}
+
+pre[class*="language-"] {
+overflow: auto;
+position: relative;
+margin: 0.5em 0;
+padding: 1.25em 1em;
+}
+
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+color: #fd9170;
+}
+
+[class*="language-"] .namespace {
+opacity: 0.7;
+}
+
+.token.atrule {
+color: #c792ea;
+}
+
+.token.attr-name {
+color: #ffcb6b;
+}
+
+.token.attr-value {
+color: #c3e88d;
+}
+
+.token.attribute {
+color: #c3e88d;
+}
+
+.token.boolean {
+color: #c792ea;
+}
+
+.token.builtin {
+color: #ffcb6b;
+}
+
+.token.cdata {
+color: #80cbc4;
+}
+
+.token.char {
+color: #80cbc4;
+}
+
+.token.class {
+color: #ffcb6b;
+}
+
+.token.class-name {
+color: #f2ff00;
+}
+
+.token.color {
+color: #f2ff00;
+}
+
+.token.comment {
+color: #546e7a;
+}
+
+.token.constant {
+color: #c792ea;
+}
+
+.token.deleted {
+color: #f07178;
+}
+
+.token.doctype {
+color: #546e7a;
+}
+
+.token.entity {
+color: #f07178;
+}
+
+.token.function {
+color: #c792ea;
+}
+
+.token.hexcode {
+color: #f2ff00;
+}
+
+.token.id {
+color: #c792ea;
+font-weight: bold;
+}
+
+.token.important {
+color: #c792ea;
+font-weight: bold;
+}
+
+.token.inserted {
+color: #80cbc4;
+}
+
+.token.keyword {
+color: #c792ea;
+font-style: italic;
+}
+
+.token.number {
+color: #fd9170;
+}
+
+.token.operator {
+color: #89ddff;
+}
+
+.token.prolog {
+color: #546e7a;
+}
+
+.token.property {
+color: #80cbc4;
+}
+
+.token.pseudo-class {
+color: #c3e88d;
+}
+
+.token.pseudo-element {
+color: #c3e88d;
+}
+
+.token.punctuation {
+color: #89ddff;
+}
+
+.token.regex {
+color: #f2ff00;
+}
+
+.token.selector {
+color: #f07178;
+}
+
+.token.string {
+color: #c3e88d;
+}
+
+.token.symbol {
+color: #c792ea;
+}
+
+.token.tag {
+color: #f07178;
+}
+
+.token.unit {
+color: #f07178;
+}
+
+.token.url {
+color: #fd9170;
+}
+
+.token.variable {
+color: #f07178;
+}
+</style>
+<style>
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.container {
+	margin: 20px auto;
+	width: 90%;
+	display: flex;
+}
+
+.container > section {
+	width: 50%;
+}
+
+.container > section:first-child {
+	margin-right: 50px;
+}
+</style>
+
 </body>
 	
 <script>
@@ -637,7 +636,7 @@ typography.injectStyles()</pre>
 							const imageId = parseInt(Math.random() * 100)
 							alert(imageId)
 							resolve({
-								imageUrl: e.target.result,
+								url: e.target.result,
 								data: { imageId }
 							})
 						}
@@ -721,5 +720,4 @@ typography.injectStyles()</pre>
 	// })
 
 </script>
-
 </html>

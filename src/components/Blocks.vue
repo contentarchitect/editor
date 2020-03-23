@@ -1,5 +1,10 @@
 <template>
-	<transition-group name="flip-list" tag="div" style="position: relative;" data-blocks>
+	<transition-group
+		name="flip-list"
+		tag="div"
+		style="position: relative;"
+		data-blocks
+	>
 		<template v-for="(block, i) in blocks">
 			<block
 				v-model="blocks[i]"
@@ -10,11 +15,14 @@
 				@remove-block="removeBlock"
 				@move-block-down="moveBlockDown"
 				@move-block-up="moveBlockUp"
-				@duplicate="duplicate" />
+				@duplicate="duplicate"
+			/>
+
 			<insertion-placeholder
+				ref="insertionPlaceholder"
 				:key="'b-' + block.id"
-				@click="addNewBlockAfter(block)"
-				v-show="showAddBlock(block)"	
+				:index="i"
+				:is-last-block="blocks.indexOf(block) === blocks.length-1"
 			/>
 		</template>
 	</transition-group>
@@ -31,10 +39,9 @@ export default {
 	name: "Blocks",
 	provide () {
 		return {
-			nextBlockComponent: this.nextBlockComponent
+			nextBlockComponent: this.nextBlockComponent,
 		}
 	},
-	inject: ['addNewBlockAfter'],
 	model: {
 		prop: 'blocks',
 		event: 'change',
@@ -42,7 +49,7 @@ export default {
 	props: ['blocks'],
 	components: {
 		Block,
-		InsertionPlaceholder
+		InsertionPlaceholder,
 	},
 	data () {
 		return {
@@ -73,16 +80,6 @@ export default {
 			this.blocks.splice(ind+1, 0, newBlock);
 			this.$emit("change", this.blocks);
 		},
-		showAddBlock (block) {
-			const ind = this.blocks.indexOf(block)
-			const nextBlock = this.blocks[ind + 1]
-
-			const isNewBlock = block.constructor.name == "New"
-			const isNextBlockNew = nextBlock && nextBlock.constructor.name == "New"
-			const isLastBlock = ind+1 == this.blocks.length
-
-			return isNewBlock || isNextBlockNew || isLastBlock ? false : true
-		},
 		nextBlockComponent (blockComponent) {
 			const index = this.$refs.block.indexOf(blockComponent)
 
@@ -103,35 +100,4 @@ export default {
 </script>
 
 <style>
-[data-block] {
-	transition: transform .2s, all .1s;
-	box-sizing: border-box;
-}
-
-.flip-list-move {
-	transition: transform .2s;
-}
-
-.flip-list-enter {
-	opacity: 0;
-	transform: translateX(-30px);
-}
-
-.flip-list-enter-to, .flip-list-leave {
-	opacity: 1;
-	transform: translateX(0);
-}
-
-.flip-list-leave-to {
-	opacity: 0;
-	transform: translateX(0);
-}
-
-.flip-list-leave-active {
-	position: absolute !important;
-}
-
-[data-block]:hover + .add-block .add-block-inner {
-	opacity: .2;
-}
 </style>

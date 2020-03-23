@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="add-block"
+		class="add-block-button"
 		@click="$emit('click')"
 	>
 		Add block
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped>
-.add-block {
+.add-block-button {
 	display: flex;
 	height: 2em;
 	align-items: center;
@@ -23,7 +23,7 @@ export default {
 	margin-top: 1em;
 }
 
-.add-block:hover {
+.add-block-button:hover {
 	background: #dbf9f9;
 }
 </style>

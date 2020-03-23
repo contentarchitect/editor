@@ -23,8 +23,8 @@ export default class Spacer extends Block {
 	}
 
 	static defaultSettings = {
-		minHeight: 5,
-		maxHeight: Infinity
+		minHeight: 20,
+		maxHeight: 200
 	}
 
 	toHTML () {

@@ -1,16 +1,37 @@
 <template>
-	<div style="margin: 0 auto; width: 100%;">
+	<div style="margin: 0 auto; width: 100%; position: relative;">
+		<control-buttons
+			ref="blockControl"
+			@remove-block="removeBlock"
+			@move-block-down="moveBlockDown"
+			@move-block-up="moveBlockUp"
+		/>
+		<!-- <block-bg ref="blockBg" /> -->
+
+		<new-block ref="newBlock" />
+
 		<!-- portal-target, multiple ile kullanildiginda bug oluyor -->
 		<!-- bug yuzunden dongu yapildi -->
+		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
+
 		<Editable
 			ref="editableToolbar"
-			:refDiv="editableRef"
 			:currentRange="currentRange"
 			:block="currentEditableIsBlock"
 		/>
-		<portal-target v-for="block in slotBlocks" :name="`${block.id}`" :key="block.id" />
-		<blocks v-model='slotBlocks' @htmlrender="reRender" />
-		<add-new-block @click="addNewBlockAfter(slotBlocks[slotBlocks.length-1])" />
+
+		<!-- Step 1 - placeholder for <slot /> -->
+		<div ref="slotBlocks" class="slot-blocks">
+		</div>
+
+		<!-- <blocks v-model='slotBlocks' @htmlrender="reRender" /> -->
+
+		<!-- Step 2 - send blocks to the <content-architect>'s slot -->
+		<MountingPortal :mount-to="'#' + mountTo" :name="'source-' + mountTo" append>
+			<blocks ref="blocks" v-model='slotBlocks' @htmlrender="reRender" />
+		</MountingPortal>
+
+		<new-block-button @click="showAddNewBlock" />
 		<!-- <pre>{{ slotBlocks }}</pre> -->
 	</div>
 </template>
@@ -20,29 +41,29 @@ import Vue from "vue"
 import {
 	UiButton,
 	Util,
-	Tooltip,
 	Blocks,
-	Editable
+	Editable,
 } from "@contentarchitect/core"
 
 import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
-import { VPopover, VTooltip } from 'v-tooltip'
 import BlocksComponent from "./components/Blocks.vue"
-import { PortalTarget } from 'portal-vue'
-import NewBlock from "./blocks/new/main.js"
-import InsertionPlaceholder from "./components/InsertionPlaceholder.vue"
-import AddNewBlock from "./components/AddNewBlock.vue"
+// import NewBlock from "./blocks/new/main.js"
+import NewBlock from "./components/NewBlock.vue"
+import NewBlockButton from "./components/NewBlockButton.vue"
+import ControlButtons from "./components/ControlButtons.vue"
+// import BlockBg from "./components/BlockBg.vue"
+import { PortalTarget, MountingPortal } from 'portal-vue'
 
 export default {
 	name: 'ContentArchitect',
 	components: {
 		UiButton,
-		VPopover,
-		Tooltip,
-		PortalTarget,
-		InsertionPlaceholder,
-		AddNewBlock,
+		NewBlockButton,
+		NewBlock,
 		Editable,
+		ControlButtons,
+		PortalTarget,
+		MountingPortal,
 		blocks: BlocksComponent
 	},
 	model: {
@@ -66,9 +87,6 @@ export default {
 		},
 		output: {},
 		value: {},
-		blockStyles: {
-			type: String
-		},
 		usableBlocks: {
 			type: Array,
 			default() {
@@ -96,14 +114,19 @@ export default {
 				return _this.slotBlocks
 			},
 
-			addNewBlockAfter: this.addNewBlockAfter,
 			addParagraphBlockAfter: this.addParagraphBlockAfter,
-			replaceBlock: this.replaceBlock,
+			addBlock: this.addBlock,
 			removeBlock: this.removeBlock,
+			replaceBlock: this.replaceBlock,
 
 			get usableBlocks () {
 				return _this.usableBlocks
-			}
+			},
+			showControl: this.showControl,
+			hideControl: this.hideControl,
+			showNewBlock: this.showNewBlock,
+			hideNewBlock: this.hideNewBlock,
+			newBlockEventBus: this.newBlockEventBus
 		}
 	},
 	data() {
@@ -112,15 +135,25 @@ export default {
 			isNewBlockPopoverActive: false,
 			slotBlocks: [],
 			renderedHTML: "",
-			editableRef: {
+			selectionRectangle: {
 				x: 0,
 				y: 0,
 				width: 10,
 				height: 10
 			},
 			currentRange: null,
-			currentEditableIsBlock: false
+			currentEditableIsBlock: false,
+			mountTo: Util.generateID(3, 'alphabetic'),
+			newBlockEventBus: new Vue({ 
+				data() {
+					return {
+						lastInsertionPlaceholderComponent: null
+					}
+				}
+			})
 		}
+	},
+	beforeCreate () {
 	},
 	created () {
 		Blocks.editors.push(this);
@@ -136,12 +169,8 @@ export default {
 			})
 		}
 
-		if (this.blockStyles) {
-			document.querySelectorAll(this.blockStyles).forEach(style => {
-				let clonedStyle = style.cloneNode(true);
-				this.$root.$options.customElement.shadowRoot.appendChild(clonedStyle)
-			})
-		}
+		// Step 3 - Remove <content-architect>'s inside
+		this.$root.$options.customElement.innerHTML = `<div id="${this.mountTo}"></div>`
 	},
 	mounted () {
 		// For Firefox bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1066965
@@ -153,11 +182,19 @@ export default {
 			input.style.left = "-99999px"
 			document.body.append(input)
 		}
+
+		// Step 4 - put slot to slotBlocks ref
+		this.$refs.slotBlocks.innerHTML = "<slot />"
 	},
 	methods: {
-		addBlock (usableBlock) {
+		addBlock (usableBlock, index) {
 			const newBlock = new usableBlock();
-			this.slotBlocks.push(newBlock)
+
+			if (index !== undefined) {
+				this.slotBlocks.splice(index+1, 0, newBlock)
+			} else {
+				this.slotBlocks.push(newBlock)
+			}
 		},
 		removeBlock (block) {
 			const index = this.slotBlocks.indexOf(block);
@@ -165,6 +202,18 @@ export default {
 			if (index !== -1) {
 				this.slotBlocks.splice(index, 1)
 			}
+
+			this.$emit("change", this.slotBlocks);
+		},
+		moveBlockDown (block) {
+			const indexOfBlock = this.slotBlocks.indexOf(block);
+			this.slotBlocks.splice(indexOfBlock + 1, 0, this.slotBlocks.splice(indexOfBlock, 1)[0]);
+			this.$emit("change", this.slotBlocks);
+		},
+		moveBlockUp (block) {
+			const indexOfBlock = this.slotBlocks.indexOf(block);
+			this.slotBlocks.splice(indexOfBlock - 1, 0, this.slotBlocks.splice(indexOfBlock, 1)[0]);
+			this.$emit("change", this.slotBlocks);
 		},
 		reRender (html) {
 			this.$emit('change', html)
@@ -172,10 +221,6 @@ export default {
 			if (this.output) {
 				document.getElementById(this.output).value = html
 			}
-		},
-		addNewBlockAfter (block) {
-			const ind = this.slotBlocks.indexOf(block) + 1;
-			this.slotBlocks.splice(ind, 0, new NewBlock())
 		},
 		addParagraphBlockAfter (blockVueComponent) {
 			const Paragraph = this.usableBlocks.find(blockConstructor => blockConstructor.name == "Paragraph")
@@ -188,22 +233,30 @@ export default {
 			const ind = this.slotBlocks.indexOf(block)
 			Vue.set(this.slotBlocks, ind, newBlock)
 		},
-		showEditableToolbar({ x, y, width, height}, { currentRange, isBlock }) {
+		showEditableToolbar(range, { currentRange, isBlock }) {
 			this.currentRange = currentRange
 			this.currentEditableIsBlock = isBlock
-
-			this.editableRef = Object.assign({}, {
-				x,
-				y,
-				width,
-				height
-			})
-
-			
-			this.$refs.editableToolbar.open()
+			this.$refs.editableToolbar.open(range)
 		},
 		hideEditableToolbar () {
 			this.$refs.editableToolbar.close()
+		},
+		showControl (blockComponent) {
+			this.$refs.blockControl.show(blockComponent)
+			// this.$refs.blockBg.show(blockComponent)
+		},
+		hideControl () {
+			this.$refs.blockControl.hide()
+			// this.$refs.blockBg.hide()
+		},
+		showAddNewBlock () {
+			this.newBlockEventBus.lastInsertionPlaceholderComponent.show()
+		},
+		showNewBlock (el, index) {
+			this.$refs.newBlock.show(el, index)
+		},
+		hideNewBlock (el) {
+			this.$refs.newBlock.hide()
 		}
 	},
 	watch: {

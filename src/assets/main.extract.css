@@ -1,0 +1,234 @@
+/* Add block insertion placeholder */
+.add-block {
+	height: 0px;
+	position: relative;
+	z-index: 1;
+}
+
+.add-block.show-blocks {
+	height: 90px;
+	pointer-events: none;
+}
+
+.add-block.show-blocks button {
+	pointer-events: visible;
+}
+
+.add-block-inner {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	left: 0;
+	right: 0;
+	height: 14px;
+	opacity: 0;
+	margin-top: -7px;
+	transition: opacity .1s;
+}
+
+.add-block-inner > hr:first-child,
+.add-block-inner > hr:last-child {
+	flex: 1;
+	height: 1px;
+	border: 0;
+	border-bottom: 1px dashed #121212;
+}
+
+.add-block-inner > span {
+	padding: 0 10px;
+	background-color: #121212;
+	color: #ccc;
+	border-radius: 1em;
+	cursor: default;
+}
+
+.add-block-inner > span:hover {
+	background-color: #444;
+}
+
+.add-block-inner:hover {
+	opacity: 1;
+}
+
+.last-add-block .add-block-inner {
+	opacity: 0 !important;
+}
+
+/* Block */
+[data-block] {
+	transition: transform .2s, all .1s;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.flip-list-move {
+	transition: transform .2s;
+}
+
+.flip-list-enter {
+	opacity: 0;
+	transform: translateX(-30px);
+}
+
+.flip-list-enter-to, .flip-list-leave {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.flip-list-leave-to {
+	opacity: 0;
+	transform: translateX(0);
+}
+
+.flip-list-leave-active {
+	position: absolute !important;
+}
+
+[data-block]:hover + .add-block .add-block-inner {
+	opacity: .2;
+}
+
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+	opacity: 0;
+}
+
+
+/* Code */
+.code {
+	position: relative;
+	display: inline-block !important;
+	min-width: 100%;
+}
+
+.textarea-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	opacity: .6;
+	z-index: 1;
+}
+
+.textarea-container > textarea {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	opacity: .6;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant-ligatures: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	line-height: inherit;
+	tab-size: inherit;
+	text-indent: inherit;
+	text-rendering: inherit;
+	text-transform: inherit;
+	color: inherit;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-fill-color: transparent;
+	outline: 0;
+	background: none;
+	overflow: hidden;
+	resize: none;
+}
+
+/* Editable */
+.editable {
+	position: relative;
+}
+
+.editable .toolbar {
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+.editable .link-divider {
+	display: inline-block;
+	width: 1px;
+	border-right: 1px solid #333;
+}
+
+.editable-body {
+	min-height: 1em;
+	min-width: 1px;
+	cursor: text;
+}
+
+.editable-body.editable-block {
+	width: 100%;
+	min-width: 50px;
+}
+
+.editable-body.editable-block:not(td):not(th) {
+	display: block;
+}
+
+.editable-body:focus {
+	outline: none;
+}
+
+.show-placeholder[placeholder]:not(:focus)::before {
+    content: attr(placeholder);
+	font-style: italic;
+	opacity: .5;
+}
+
+.show-placeholder.editable-block[placeholder]:not(:focus)::before {
+	position: absolute;
+}
+
+/* Image Block */
+img:not([src]),
+img[src=''] { 
+	font-weight: 300;
+	line-height: 2;  
+	text-align: center;
+	height: auto;
+	display: block;
+	position: relative;
+	min-width: 100px;
+	min-height: 100px;
+}
+  
+img:not([src]):before,
+img[src='']:before {
+	content: " ";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgb(240, 240, 240);
+}
+  
+img:not([src]):after,
+img[src='']:after { 
+	content: "Image";
+	font-size: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(100, 100, 100);
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: .6em;
+	width: calc(100% - 1.2em);
+	height: calc(100% - 1.2em);
+	border: 2px dashed rgb(200, 200, 200);
+	border-radius: .2em;
+	box-sizing: border-box;
+}
+
+/* Unknown Block */

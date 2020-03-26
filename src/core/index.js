@@ -23,9 +23,9 @@ import DirectiveUtil from "./scripts/DirectiveUtil.js"
 import renderBlocks from "./scripts/renderBlocks"
 
 // Directives
-import edit from "./directives/edit.js"
-import selectImage from "./directives/selectImage.js"
-import clickOutside from "./directives/click-outside.js"
+import EditDirective from "./directives/EditDirective.js"
+import SelectImage from "./directives/SelectImage.js"
+import ClickOutside from "./directives/ClickOutside.js"
 
 export {
 	Button,
@@ -48,7 +48,7 @@ export {
 	Util,
 	DirectiveUtil,
 	renderBlocks,
-	edit,
-	selectImage,
-	clickOutside
+	EditDirective,
+	SelectImage,
+	ClickOutside
 }

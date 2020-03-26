@@ -28,10 +28,12 @@ function changeHandler (event) {
 		this.isBlock
 		&& this.el.children.length == 0
 	) {
-		const p = document.createElement("p")
-		this.el.appendChild(p)
+			const p = document.createElement("p")
+			p.innerHTML = this.el.innerHTML;
+			this.el.innerHTML = '';
+			this.el.appendChild(p)
 	}
-
+		
 	if (
 		this.isBlock
 		&& this.el.children.length == 1
@@ -228,7 +230,6 @@ export default {
 			config: binding.arg || {}
 		}
 
-		
 		setTimeout(() => {
 			
 			let doc = document;

@@ -23,11 +23,13 @@
 </template>
 
 <script>
-import { edit } from "@contentarchitect/core"
+import { EditDirective } from "@contentarchitect/core"
 
 export default {
 	props: ['value'],
-	directives: { edit },
+	directives: {
+		edit: EditDirective
+	},
 	data () {
 		return {
 			captionSettings: {

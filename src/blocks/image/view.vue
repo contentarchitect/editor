@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { UiButton, edit, selectImage } from "@contentarchitect/core"
+import { UiButton, EditDirective, SelectImage } from "@contentarchitect/core"
 
 export default {
 	props: ['value'],
@@ -69,8 +69,8 @@ export default {
 		[UiButton.name]: UiButton,
 	},
 	directives: {
-		edit,
-		selectImage
+		SelectImage,
+		edit: EditDirective,
 	},
 	data () {
 		return {

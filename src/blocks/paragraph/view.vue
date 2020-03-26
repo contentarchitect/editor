@@ -4,10 +4,12 @@
 </template>
 
 <script>
-import { edit } from "@contentarchitect/core"
+import { EditDirective } from "@contentarchitect/core"
 
 export default {
-	directives: { edit },
+	directives: {
+		edit: EditDirective
+	},
 	props: ['value'],
 	data () {
 		return {

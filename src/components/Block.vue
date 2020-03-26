@@ -164,7 +164,7 @@ import {
 	// Tooltip,
 	OnEventOutside,
 	Util,
-	clickOutside
+	ClickOutside
 } from '@contentarchitect/core'
 import { Portal } from 'portal-vue'
 
@@ -217,7 +217,7 @@ export default {
 		'v-button': Button,
 	},
 	directives: {
-		clickOutside
+		ClickOutside
 	},
 	data () {
 	  	return {

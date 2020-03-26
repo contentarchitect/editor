@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { Util, clickOutside } from "@contentarchitect/core"
+import { Util, ClickOutside } from "@contentarchitect/core"
 
 export default {
-	directives: { clickOutside },
+	directives: { ClickOutside },
 	props: {
 		height: {
 			type: Number,

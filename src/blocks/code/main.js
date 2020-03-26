@@ -16,9 +16,7 @@ export default class Code extends Block {
 		return icon
 	}
 
-	static defaultSettings = {
-		defaultLanguage: "txt",
-	}
+	static defaultSettings = {}
 
 	static defaultData () {
 		return {
@@ -33,8 +31,6 @@ export default class Code extends Block {
 	}
 
 	static serializeFromHTML (html) {
-		const languageClass = Array.from(html.querySelector("pre").classList).find(str => str.startsWith("language-"));
-
 		// const language = /language-(.+)$/.exec(languageClass)[1]
 		const language = html.dataset.language;
 

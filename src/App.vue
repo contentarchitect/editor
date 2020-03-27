@@ -241,6 +241,9 @@ export default {
 		hideEditableToolbar () {
 			this.$refs.editableToolbar.close()
 		},
+		updateCommandStatus () {
+			this.$refs.editableToolbar.updateCommandStatus()
+		},
 		showControl (blockComponent) {
 			this.$refs.blockControl.show(blockComponent)
 			// this.$refs.blockBg.show(blockComponent)

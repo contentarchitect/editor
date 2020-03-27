@@ -6,6 +6,8 @@ function selectStartHandler () {
 }
 
 function selectionChangeHandler (e) {
+	this.appComponent.updateCommandStatus();
+
 	let selection = this.document.getSelection();
 	if (selection.rangeCount == 0 || !this.el.contains(selection.anchorNode)) return;
 

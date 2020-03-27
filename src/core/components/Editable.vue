@@ -133,7 +133,6 @@ export default {
 	components: { OnEventOutside, CaInput, CaButton: Button },
 	data () {
 		return {
-			document: null,
 			popperInstance: null,
 			showCreateLink: false,
 			isOpenToolbar: false,
@@ -150,16 +149,6 @@ export default {
 		}
 	},
 	mounted () {
-		setTimeout(() => {
-			if (Util.isFirefox()) {
-				this.document = document;
-			} else {
-				this.document = this.$el.getRootNode() || document;
-			}
-		})
-		// this.$refs.body.innerHTML = this.val;
-
-
 		this.popperInstance = createPopper(
 			{ 
 				getBoundingClientRect() {
@@ -188,7 +177,7 @@ export default {
 		// 		changeChildListToP(this.$refs.body);
 		// 	this.observer = new MutationObserver(() => {
 		// 		changeChildListToP(this.$refs.body);
-		// 		const range = this.document.getSelection().getRangeAt(0)
+		// 		const range = document.getSelection().getRangeAt(0)
 		// 		if (range.startContainer == this.$refs.body) {
 		// 			range.setStart(this.$refs.body.firstElementChild, 0)
 		// 		}
@@ -250,13 +239,13 @@ export default {
 					break;
 				case 'createLink':
 					this.showCreateLink = true;
-					const parentEl = this.document.getSelection().anchorNode.parentElement;
+					const parentEl = document.getSelection().anchorNode.parentElement;
 					if (parentEl.nodeType == 1 && parentEl.tagName === "A") {
-						this.selectionLinkUrl = this.document.getSelection().anchorNode.parentElement.getAttribute("href");
+						this.selectionLinkUrl = document.getSelection().anchorNode.parentElement.getAttribute("href");
 					}
 					break;
 				case 'inline-class':
-					const selection = this.document.getSelection()
+					const selection = document.getSelection()
 
 					if (!selection.rangeCount) break;
 
@@ -277,7 +266,7 @@ export default {
 				case 'insertUnorderedList':
 				case 'insertOrderedList':
 					document.execCommand(command, false, null)
-					const sel = this.document.getSelection();
+					const sel = document.getSelection();
 					if (sel.rangeCount) {
 						const range = sel.getRangeAt(0)
 						let list;
@@ -314,12 +303,12 @@ export default {
 			this.commandStatus.insertunorderedlist = document.queryCommandState("insertunorderedlist");
 			
 			this.appSettings.inlineClasses.forEach(className => {
-				this.commandStatus[className] = isSelectedCustomTag(this.document.getSelection(), className);
+				this.commandStatus[className] = isSelectedCustomTag(document.getSelection(), className);
 			})
 		},
 		createLink () {
-			this.document.getSelection().removeAllRanges();
-			this.document.getSelection().addRange(this.currentRange);
+			document.getSelection().removeAllRanges();
+			document.getSelection().addRange(this.currentRange);
 			document.execCommand('createLink', false, this.selectionLinkUrl);
 			this.showCreateLink = false;
 			this.updateCommandStatus();

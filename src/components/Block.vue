@@ -31,7 +31,6 @@
 				ref="controlButtons"	
 				class="control"
 				v-show="isControlButtonsVisible"
-				:style="controlButtonsStyle"
 			>
 				<ui-button
 					square
@@ -164,7 +163,7 @@ import {
 	// Tooltip,
 	OnEventOutside,
 	Util,
-	ClickOutside
+	ClickOutside,
 } from '@contentarchitect/core'
 import { Portal } from 'portal-vue'
 
@@ -233,7 +232,6 @@ export default {
 			focused: false,
 			backgroundStyle: {},
 			backgroundVisible: false,
-			controlButtonsStyle: {},
 		}
 	},
 	mounted () {
@@ -292,7 +290,6 @@ export default {
 			if (this.isControlButtonsVisible) {
 				this.showControlButtons()
 			} else {
-				this.hideControlButtons()
 				this.hideBackground()
 			}
 
@@ -427,28 +424,17 @@ export default {
 			return editables[index+1]
 		},
 		showControlButtons () {
-			this.$nextTick(() => {
-				const blockRect = this.$el.getBoundingClientRect();
-				this.$refs.controlButtons.style.removeProperty("display");
-				const controlButtonsRect = this.$refs.controlButtons.getBoundingClientRect();
-
-				// top righ
-				const translateX = blockRect.x 
-					- controlButtonsRect.x
-					+ blockRect.width
-					- controlButtonsRect.width
-
-				const translateY = blockRect.y - controlButtonsRect.y
-				
-				const transform = `translate(${translateX}px,${translateY}px)`;
-
-				this.controlButtonsStyle = {
-					transform
-				}
+			this.$refs.controlButtons.style.removeProperty("display");
+			this.$refs.controlButtons.style.removeProperty("transform");
+			Object.assign(this.$refs.controlButtons.style, {
+				width: this.$el.offsetWidth+'px'
 			})
-		},
-		hideControlButtons () {
-			this.controlButtonsStyle = {}
+			const diff = Util.matchTransformMatrix({
+				a: this.$refs.controlButtons,
+				b: this.$el
+			})
+			const transform = Util.transformStyle({ x: diff.diffX, y: diff.diffY })
+			Object.assign(this.$refs.controlButtons.style, { transform })
 		},
 		clickOutsideHandler (e) {
 			if (e.path.includes(this.$refs.controlButtons) 
@@ -456,7 +442,6 @@ export default {
 
 			this.focused = false
 			this.isSettingsOpen = false
-			this.hideControlButtons()
 			this.hideBackground()
 		},
 		focusHandler () {
@@ -517,7 +502,13 @@ export default {
 	grid-template-columns: auto auto auto auto;
 	gap: 5px;
 	align-items: start;
+	justify-content: end;
 	z-index: 100;
+	pointer-events: none;
+}
+
+.control > * {
+	pointer-events: all;
 }
 
 .control > .has-tooltip {

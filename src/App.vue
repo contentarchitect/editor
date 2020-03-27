@@ -85,7 +85,7 @@ export default {
 				return []
 			}
 		},
-		output: {},
+		output: String,
 		value: {},
 		usableBlocks: {
 			type: Array,

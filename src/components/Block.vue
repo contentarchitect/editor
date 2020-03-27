@@ -100,12 +100,12 @@
 											<css-grid :columns="['2fr', '3fr']" :key="className" :style="{ marginBottom: '8px' }">
 												<template v-if="isObject(humanName)">
 													<span>{{ capitalized(className) }}</span>
-													<select v-model="block.classOptions[className]">
+													<v-select v-model="block.classOptions[className]">
 														<option value=""></option>
 														<option v-for="(humName, clsName) in humanName" :value="clsName" :key="clsName">
 															{{humName}}
 														</option>
-													</select>
+													</v-select>
 												</template>
 												<template v-else>
 													<span>{{ humanName }}</span>
@@ -160,6 +160,7 @@ import {
 	CssGrid,
 	SectionTitle,
 	SettingsSection,
+	VSelect,
 	// Tooltip,
 	OnEventOutside,
 	Util,
@@ -173,6 +174,24 @@ import DeleteIcon from "../assets/delete.svg"
 
 export default {
 	name: "Block",
+	components: {
+		SettingsSection,
+		SectionTitle,
+		[UiButton.name]: UiButton,
+		OnEventOutside,
+		Portal,
+		Checkbox,
+		RadioButtons,
+		RadioButton,
+		CssGrid,
+		CopyIcon,
+		DeleteIcon,
+		VSelect,
+		'v-button': Button,
+	},
+	directives: {
+		ClickOutside
+	},
 	provide() {
 		return {
 			nextEditableInView: this.nextEditableInView
@@ -200,23 +219,6 @@ export default {
 			type: Boolean,
 			default: false
 		}
-	},
-	components: {
-		SettingsSection,
-		SectionTitle,
-		[UiButton.name]: UiButton,
-		OnEventOutside,
-		Portal,
-		Checkbox,
-		RadioButtons,
-		RadioButton,
-		CssGrid,
-		CopyIcon,
-		DeleteIcon,
-		'v-button': Button,
-	},
-	directives: {
-		ClickOutside
 	},
 	data () {
 	  	return {

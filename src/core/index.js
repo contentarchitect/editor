@@ -13,6 +13,7 @@ import SectionTitle from "./components/SectionTitle.vue"
 import SettingsSection from "./components/SettingsSection.vue"
 // import Tooltip from "./components/Tooltip.vue"
 import UiButton from "./components/UiButton.vue"
+import VSelect from "./components/VSelect.vue"
 
 // Scripts
 import Block from "./scripts/Block.js"
@@ -42,6 +43,7 @@ export {
 	SettingsSection,
 	// Tooltip,
 	UiButton,
+	VSelect,
 	Block,
 	Blocks,
 	Upload,

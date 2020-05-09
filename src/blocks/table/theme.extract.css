@@ -17,6 +17,7 @@
 [data-block=Table] caption {
 	padding: .5em;
 	caption-side: bottom;
+	text-align: center;
 }
 
 [data-block=Table] th,

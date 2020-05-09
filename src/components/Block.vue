@@ -80,11 +80,11 @@
 									<a @click="closeBtnAction">✕</a>
 								</div>
 								<div class="settings-panel-body">
-									<settings-section :collapsed="false" :disabled="true">
+									<!-- <settings-section :collapsed="false" :disabled="true">
 										<template v-slot:title="{ toggleSection, showSection, disabled }">
 											<section-title @click="toggleSection" :collapsed="showSection" :disabled="disabled">General</section-title>
 										</template>
-									</settings-section>
+									</settings-section> -->
 
 									<settings-section :collapsed="true" :disabled="isObjectEmpty(block.constructor.classOptions)">
 										<template v-slot:title="{ toggleSection, showSection, disabled }">
@@ -439,8 +439,11 @@ export default {
 			Object.assign(this.$refs.controlButtons.style, { transform })
 		},
 		clickOutsideHandler (e) {
-			if (e.path.includes(this.$refs.controlButtons) 
-				|| e.path.includes(this.$refs.settings)) return;
+			// e.path isn't valid for Firefox. 
+			const path = e.path || (e.composedPath && e.composedPath());
+
+			if (path.includes(this.$refs.controlButtons) 
+				|| path.includes(this.$refs.settings)) return;
 
 			this.focused = false
 			this.isSettingsOpen = false

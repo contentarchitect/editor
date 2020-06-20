@@ -676,11 +676,11 @@
   version "0.0.1"
 
 "@contentarchitect/editor@file:.":
-  version "0.2.40"
+  version "0.3.1"
   dependencies:
-    "@contentarchitect/blocks" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.40-d8b405e8-fda3-495b-a9c2-3378358fdc81-1583762216288/node_modules/@contentarchitect/editor/src/blocks"
-    "@contentarchitect/core" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.40-d8b405e8-fda3-495b-a9c2-3378358fdc81-1583762216288/node_modules/@contentarchitect/editor/src/core"
-    "@contentarchitect/header" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-editor-0.2.40-d8b405e8-fda3-495b-a9c2-3378358fdc81-1583762216288/node_modules/@contentarchitect/header"
+    "@contentarchitect/blocks" "file:../../../../../../home/cihad/.cache/yarn/v6/npm-@contentarchitect-editor-0.3.1-8c5752ce-b20a-4804-b3d1-f2a4dcdd42ac-1592581458880/node_modules/@contentarchitect/editor/src/blocks"
+    "@contentarchitect/core" "file:../../../../../../home/cihad/.cache/yarn/v6/npm-@contentarchitect-editor-0.3.1-8c5752ce-b20a-4804-b3d1-f2a4dcdd42ac-1592581458880/node_modules/@contentarchitect/editor/src/core"
+    "@contentarchitect/header" "file:../../../../../../home/cihad/.cache/yarn/v6/npm-@contentarchitect-editor-0.3.1-8c5752ce-b20a-4804-b3d1-f2a4dcdd42ac-1592581458880/node_modules/@contentarchitect/header"
     "@popperjs/core" "^2.1.0"
     "@vue/web-component-wrapper" "^1.2.0"
     axios "^0.19.0"
@@ -693,7 +693,7 @@
 "@contentarchitect/header@file:../header":
   version "0.2.2"
   dependencies:
-    "@contentarchitect/editor" "file:C:/Users/cihad/AppData/Local/Yarn/Cache/v4/npm-@contentarchitect-header-0.2.2-559235c4-31bc-468a-b8c6-5791cc3c9d64-1583762216261/node_modules/@contentarchitect/editor"
+    "@contentarchitect/editor" "file:../../../../../../home/cihad/.cache/yarn/v6/npm-@contentarchitect-header-0.2.2-bb6f74c7-45f0-462e-b4ca-a53befa492dd-1592581458874/node_modules/@contentarchitect/editor"
     core-js "^2.6.5"
     vue "^2.6.10"
 
@@ -8533,6 +8533,11 @@ yargs@^13.0.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.1"
+
+yaz@^0.0.3-1:
+  version "0.0.3-1"
+  resolved "https://registry.yarnpkg.com/yaz/-/yaz-0.0.3-1.tgz#62293f654985e9e18ba9bca9a22e1ac63d8bccbb"
+  integrity sha512-jofKhdPt7lro5PEjdiitaa6gA7FYlLRPmoOAoovNBm1USTvzocvcuh+u9ljlkI1mcaopbyjwsuHnFQZO0QERQQ==
 
 yorkie@^2.0.0:
   version "2.0.0"

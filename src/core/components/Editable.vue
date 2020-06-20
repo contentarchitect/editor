@@ -70,6 +70,14 @@
 							</svg>
 						</button>
 
+						<button @click.prevent="command('code')" class="button-icon" :class="{ 'ca-active': commandStatus.code }" type="button" tabindex="-1">
+							<svg viewBox="0 0 18 18">
+								<polyline class="ca-even ca-stroke" points="5 7 3 9 5 11"></polyline>
+								<polyline class="ca-even ca-stroke" points="13 7 15 9 13 11"></polyline>
+								<line class="ca-stroke" x1="10" x2="8" y1="5" y2="13"></line>
+							</svg>
+						</button>
+
 						<template v-for="className in appSettings.inlineClasses">
 							<button
 								@click.prevent="command('inline-class', className)"
@@ -97,6 +105,7 @@ import OnEventOutside from "./OnEventOutside.vue"
 import Util from "../scripts/Util.js"
 import CaInput from "./CaInput.vue"
 import Button from "./Button.vue"
+import yaz from "yaz"
 
 function isSelectedCustomTag(selection, cssClass, tagName = "SPAN") {
 	if (!selection.rangeCount) return
@@ -200,24 +209,6 @@ export default {
 				this.popperInstance.update()
 			})
 		},
-		// selectionRectangle: {
-		// 	deep: true,
-		// 	handler () {
-		// 		// const editableRect = this.$refs.fakeRef.parentElement.getBoundingClientRect();
-		// 		// const transform = `translate(${this.selectionRectangle.x - editableRect.x}px,${this.selectionRectangle.y - editableRect.y}px)`;
-		// 		// this.fakeRefStyle = {
-		// 		// 	transform,
-		// 		// 	width: this.selectionRectangle.width + "px",
-		// 		// 	height: this.selectionRectangle.height + "px",
-		// 		// }
-		// 		console.log(this.selectionRectangle)
-		// 		this.popperInstance.state.elements.reference = { getBoundingClientRect:  () => this.selectionRectangle }
-		// 		this.popperInstance.forceUpdate()
-
-		// 		// this.$nextTick(() => {
-		// 		// })
-		// 	}
-		// }
 	},
 	methods: {
 		open (range) {
@@ -233,7 +224,41 @@ export default {
 			this.selectionLinkUrl = '';
 		},
 		command (command, className) {
+			const sel = document.getSelection();
+
 			switch(command) {
+				case 'bold':
+					if (yaz.Range.isWrappedWith("STRONG")) {
+						yaz.Range.undo("STRONG")
+					} else {
+						const element = document.createElement('strong')
+						yaz.Range.surround(element)
+					}
+					break;
+				case 'italic':
+					if (yaz.Range.isWrappedWith("EM")) {
+						yaz.Range.undo("EM")
+					} else {
+						const element = document.createElement('em')
+						yaz.Range.surround(element)
+					}
+					break;
+				case 'underline':
+					if (yaz.Range.isWrappedWith("U")) {
+						yaz.Range.undo("U")
+					} else {
+						const element = document.createElement('u')
+						yaz.Range.surround(element)
+					}
+					break;
+				case 'strikethrough':
+					if (yaz.Range.isWrappedWith("S")) {
+						yaz.Range.undo("S")
+					} else {
+						const element = document.createElement('s')
+						yaz.Range.surround(element)
+					}
+					break;
 				case 'p':
 					document.execCommand('formatBlock', false, command);
 					break;
@@ -245,28 +270,35 @@ export default {
 					}
 					break;
 				case 'inline-class':
-					const selection = document.getSelection()
+					// const selection = document.getSelection()
 
-					if (!selection.rangeCount) break;
+					// if (!selection.rangeCount) break;
 
-					if (isSelectedCustomTag(selection, className)) {
-						const container = selectedContainer(selection.getRangeAt(0))
-						container.classList.remove(className)
-						if (!container.classList.length) Util.unWrap(container)
-						break;
+					// if (isSelectedCustomTag(selection, className)) {
+					// 	const container = selectedContainer(selection.getRangeAt(0))
+					// 	container.classList.remove(className)
+					// 	if (!container.classList.length) Util.unWrap(container)
+					// 	break;
+					// }
+
+					// const span = document.createElement('span');
+					// span.classList.add(className);
+					// const range = selection.getRangeAt(0);
+					// const content = range.extractContents();
+					// span.append(content);
+					// range.insertNode(span);
+					
+					if (yaz.Range.isWrappedWithClassName(className)) {
+						yaz.Range.undo({ className, tagName: "SPAN" })
+					} else {
+						const element = document.createElement("span")
+						element.classList.add(className)
+						yaz.Range.surround(element)
 					}
-
-					const span = document.createElement('span');
-					span.classList.add(className);
-					const range = selection.getRangeAt(0);
-					const content = range.extractContents();
-					span.append(content);
-					range.insertNode(span);
 					break;
 				case 'insertUnorderedList':
 				case 'insertOrderedList':
 					document.execCommand(command, false, null)
-					const sel = document.getSelection();
 					if (sel.rangeCount) {
 						const range = sel.getRangeAt(0)
 						let list;
@@ -286,6 +318,13 @@ export default {
 						}
 					}
 					break;
+				case 'code':
+					if (sel.rangeCount) {
+						const range = sel.getRangeAt(0)
+						let code = document.createElement('code');
+						range.surroundContents(code);
+					}
+					break;
 				default:
 					document.execCommand(command, false, null);
 					break;
@@ -294,16 +333,20 @@ export default {
 			this.updateCommandStatus();
 		},
 		updateCommandStatus () {
-			this.commandStatus.bold = document.queryCommandState("bold");
-			this.commandStatus.italic = document.queryCommandState("italic");
-			this.commandStatus.underline = document.queryCommandState("underline");
-			this.commandStatus.strikeThrough = document.queryCommandState("strikethrough");
-			this.commandStatus.link = document.queryCommandState("link");
-			this.commandStatus.insertorderedlist = document.queryCommandState("insertorderedlist");
-			this.commandStatus.insertunorderedlist = document.queryCommandState("insertunorderedlist");
+			this.commandStatus = {
+				...this.commandStatus,
+				bold: yaz.Range.isWrappedWith("STRONG"),
+				italic: yaz.Range.isWrappedWith("EM"),
+				underline: yaz.Range.isWrappedWith("U"),
+				strike: yaz.Range.isWrappedWith("S"),
+				link: document.queryCommandState("link"),
+				insertorderedlist: document.queryCommandState("insertorderedlist"),
+				insertunorderedlist: document.queryCommandState("insertunorderedlist"),
+				code: true
+			}
 			
 			this.appSettings.inlineClasses.forEach(className => {
-				this.commandStatus[className] = isSelectedCustomTag(document.getSelection(), className);
+				this.commandStatus[className] = yaz.Range.isWrappedWithClassName(className)
 			})
 		},
 		createLink () {

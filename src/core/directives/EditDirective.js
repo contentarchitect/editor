@@ -11,10 +11,10 @@ function selectionChangeHandler (e) {
 	let selection = this.document.getSelection();
 	if (selection.rangeCount == 0 || !this.el.contains(selection.anchorNode)) return;
 
-	if (selection.getRangeAt(0).collapsed) {
-		this.appComponent.hideEditableToolbar()	
-		return;
-	}
+	// if (selection.getRangeAt(0).collapsed) {
+	// 	this.appComponent.hideEditableToolbar()	
+	// 	return;
+	// }
 	const currentRange = this.document.getSelection().getRangeAt(0);
 	this.appComponent.showEditableToolbar(
 		selection.getRangeAt(0),

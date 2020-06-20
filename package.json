@@ -16,7 +16,8 @@
     "build:blocks": "vue-cli-service build --target lib --name CaBlocks ./src/blocks/index.js --no-clean",
     "build": "rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks",
     "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect"
+    "inspect": "vue-cli-service inspect",
+    "lnk": "yarn link @contentarchitect/core @contentarchitect/block @contentarchitect/header"
   },
   "dependencies": {
     "@contentarchitect/blocks": "file:src/blocks",

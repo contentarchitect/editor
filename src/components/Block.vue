@@ -392,7 +392,7 @@ export default {
 			this.separatedPopover = true;
 
 			this.$nextTick(() => {
-				const mat = new WebKitCSSMatrix(this.$refs.settings.style.transform);
+				const mat = new DOMMatrix(this.$refs.settings.style.transform);
 				this.popperPos.x = mat.e;
 				this.popperPos.y = mat.f;
 			})
@@ -406,7 +406,7 @@ export default {
 		mouseupHandler () {
 			window.removeEventListener("mousemove", this.mousemoveHandler);
 			window.removeEventListener("mouseup", this.mouseupHandler);
-			const mat = new WebKitCSSMatrix(this.$refs.settings.style.transform);
+			const mat = new DOMMatrix(this.$refs.settings.style.transform);
 			this.popperPos.x = mat.e;
 			this.popperPos.y = mat.f;
 		},

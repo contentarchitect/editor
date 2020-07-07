@@ -214,7 +214,28 @@ export default {
 		open (range) {
 			this.isOpenToolbar = true
 			this.$nextTick(() => {
-				this.popperInstance.state.elements.reference = range
+				let rect = range.getBoundingClientRect()
+
+				let el = range
+
+				if (rect.left == 0 && rect.right == 0) {
+					const { bottom, height, left, top } = range.startContainer.getBoundingClientRect()
+
+					el = {
+						getBoundingClientRect() {
+							return {
+								height,
+								// left,
+								top,
+								width: 0,
+								x: left,
+								y: top
+							}
+						}
+					}
+				}
+
+				this.popperInstance.state.elements.reference = el
 				this.popperInstance.forceUpdate()
 			})
 		},

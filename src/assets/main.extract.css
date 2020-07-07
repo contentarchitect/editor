@@ -185,6 +185,7 @@
 
 .show-placeholder.editable-block[placeholder]:not(:focus)::before {
 	position: absolute;
+	pointer-events: none;
 }
 
 /* Image Block */

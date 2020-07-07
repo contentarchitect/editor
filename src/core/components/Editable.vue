@@ -340,10 +340,11 @@ export default {
 					}
 					break;
 				case 'code':
-					if (sel.rangeCount) {
-						const range = sel.getRangeAt(0)
-						let code = document.createElement('code');
-						range.surroundContents(code);
+					if (yaz.Range.isWrappedWith("CODE")) {
+						yaz.Range.undo("CODE")
+					} else {
+						const element = document.createElement('code')
+						yaz.Range.surround(element)
 					}
 					break;
 				default:

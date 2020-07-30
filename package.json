@@ -1,6 +1,6 @@
 {
   "name": "@contentarchitect/editor",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "./dist/ContentArchitect.umd.js",
   "module": "./src/editor.js",
   "files": [

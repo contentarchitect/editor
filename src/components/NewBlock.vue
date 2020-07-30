@@ -1,8 +1,11 @@
 <template>
 	<div class="new-block-inner" :style="style" v-show="showThis" style="z-index: 1; position: absolute">
-		<div>
+		<div v-if="!registeredBlocks.length" class="no-blocks">
+			There are no blocks.
+		</div>
+		<div v-else>
 			<ul>
-				<li v-for="blockConstructor in usableBlocks" :key="blockConstructor.name">
+				<li v-for="blockConstructor in registeredBlocks" :key="blockConstructor.name">
 					<a @click.prevent="addNewBlock(blockConstructor)">
 						<span class="block-icon">
 							<component :is="blockConstructor.icon" />
@@ -17,16 +20,19 @@
 </template>
 
 <script>
-import { OnEventOutside, UiButton } from "@contentarchitect/core"
+import OnEventOutside from "./OnEventOutside"
+import UiButton from "./UiButton"
+import Blocks from "../scripts/Blocks"
 
 export default {
 	components: { OnEventOutside, UiButton },
-	inject: ['usableBlocks', 'addBlock', 'newBlockEventBus'],
+	inject: ['addBlock', 'newBlockEventBus'],
 	data () {
 		return {
 			showThis: false,
 			style: {},
-			index: -1
+			index: -1,
+			registeredBlocks: Blocks.registeredBlocks
 		}
 	},
 	methods: {
@@ -130,6 +136,14 @@ li a:hover {
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+
+.no-blocks {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ccc;
+	padding: 2em;
 }
 </style>
 

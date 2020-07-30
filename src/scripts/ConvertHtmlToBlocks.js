@@ -1,4 +1,4 @@
-import { Blocks } from "@contentarchitect/core"
+import Blocks from "./Blocks"
 import Unknown from "../blocks/unknown/main.js"
 
 const convertHtmlToBlocks = function (html) {

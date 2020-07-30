@@ -1,5 +1,5 @@
 import Vue from "vue"
-import { Blocks } from "@contentarchitect/core"
+import Blocks from "../components/Blocks"
 import Unknown from "../blocks/unknown/main.js"
 
 export default function findUnknownBlocks (blockConstructor, slotBlocks) {

@@ -604,10 +604,10 @@ body {
 </style>
 
 </body>
-	
+	<script src="https://unpkg.com/@contentarchitect/paragraph@0.0.0/dist/paragraph.js"></script>
 <script>
-
-	// console.log(ContentArchitect);
+	
+	console.log({ContentArchitect, Paragraph});
 	editor.addEventListener('change', val => {
 		view.innerHTML = val.detail[0]
 	});

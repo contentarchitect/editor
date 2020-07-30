@@ -38,21 +38,16 @@
 
 <script>
 import Vue from "vue"
-import {
-	UiButton,
-	Util,
-	Blocks,
-	Editable,
-} from "@contentarchitect/core"
-
-import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
+import { PortalTarget, MountingPortal } from 'portal-vue'
+import UiButton from "./components/UiButton"
+import Editable from "./components/Editable"
 import BlocksComponent from "./components/Blocks.vue"
-// import NewBlock from "./blocks/new/main.js"
 import NewBlock from "./components/NewBlock.vue"
 import NewBlockButton from "./components/NewBlockButton.vue"
 import ControlButtons from "./components/ControlButtons.vue"
-// import BlockBg from "./components/BlockBg.vue"
-import { PortalTarget, MountingPortal } from 'portal-vue'
+import Blocks from "./scripts/Blocks"
+import Util from "./scripts/Util"
+import convertHtmlToBlocks from "./scripts/ConvertHtmlToBlocks"
 
 export default {
 	name: 'ContentArchitect',

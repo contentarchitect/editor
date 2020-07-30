@@ -31,7 +31,9 @@
 <script>
 import Vue from "vue"
 import Block from "./Block.vue"
-import { Blocks, Util, renderBlocks } from "@contentarchitect/core"
+import Blocks from "./Blocks.vue"
+import Util from "../scripts/Util"
+import renderBlocks from "../scripts/renderBlocks"
 import Unknown from "../blocks/unknown/main.js"
 import InsertionPlaceholder from "./InsertionPlaceholder.vue"
 

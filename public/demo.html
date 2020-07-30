@@ -240,13 +240,12 @@ typography.injectStyles()</pre>
 <script src="https://prismjs.com/components/prism-javascript.js"></script>
 <script src="https://prismjs.com/components/prism-css.js"></script>
 <script src="http://unpkg.com/vue"></script>
-<script src="../dist/CaCore.umd.js"></script>
-<script src="../dist/CaBlocks.umd.js"></script>
-<script src="../dist/CaEditor.umd.js"></script>
+<script src="../dist/ContentArchitect.umd.js"></script>
+<script src="https://unpkg.com/@contentarchitect/paragraph"></script>
 
 
 <script>
-
+	ContentArchitect.Blocks.register(Paragraph)
 	// class Header extends ContentArchitect.Block {
 	// 	static get viewComponent () {
 	// 		return {

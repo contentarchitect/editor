@@ -59,7 +59,7 @@
 
 <script>
 import Util from "../scripts/Util"
-import UiButton from "../components/UiButton"
+import UiButton from "./UiButton"
 
 export default {
 	components: { UiButton },

@@ -2,13 +2,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	configureWebpack (config) {
-		config.externals = config.externals || [];
+		// config.externals = config.externals || [];
 
-		if (process.env.NODE_ENV === 'production') {
-			config.externals.push({
-				"@contentarchitect/core": "CaCore"
-			})
-		}
+		// if (process.env.NODE_ENV === 'production') {
+		// 	config.externals.push({
+		// 		"@contentarchitect/core": "CaCore"
+		// 	})
+		// }
 	},
 	css: {
 		extract: false

@@ -11,13 +11,9 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:core": "vue-cli-service build --target lib --name CaCore ./src/core/index.js --no-clean",
-    "build:editor": "vue-cli-service build --target lib --name CaEditor ./src/editor.js --no-clean",
-    "build:blocks": "vue-cli-service build --target lib --name CaBlocks ./src/blocks/index.js --no-clean",
-    "build": "rm -rf dist && npm run build:core && npm run build:editor && npm run build:blocks",
+    "build": "vue-cli-service build --target lib --name ContentArchitect ./src/editor.js --no-clean",
     "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect",
-    "lnk": "yarn link @contentarchitect/core @contentarchitect/block @contentarchitect/header"
+    "inspect": "vue-cli-service inspect"
   },
   "dependencies": {
     "@contentarchitect/blocks": "file:src/blocks",

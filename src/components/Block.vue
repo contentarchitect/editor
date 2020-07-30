@@ -151,21 +151,19 @@
 </template>
 
 <script>
-import {
-	Button,
-	UiButton,
-	Checkbox,
-	RadioButtons,
-	RadioButton,
-	CssGrid,
-	SectionTitle,
-	SettingsSection,
-	VSelect,
-	// Tooltip,
-	OnEventOutside,
-	Util,
-	ClickOutside,
-} from '@contentarchitect/core'
+import Button from "./Button"
+import UiButton from "./UiButton"
+import Checkbox from "./Checkbox"
+import RadioButtons from "./RadioButtons"
+import RadioButton from "./RadioButton"
+import CssGrid from "./CssGrid"
+import SectionTitle from "./SectionTitle"
+import SettingsSection from "./SettingsSection"
+import VSelect from "./VSelect"
+import OnEventOutside from "./OnEventOutside"
+import Util from "../scripts/Util"
+import ClickOutside from "../directives/ClickOutside"
+
 import { Portal } from 'portal-vue'
 
 import * as Popper from "@popperjs/core";

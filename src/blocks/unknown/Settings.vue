@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import CssGrid from "../../core/components/CssGrid.vue"
-import CssGridItem from "../../core/components/CssGridItem.vue"
-import Button from "../../core/components/Button.vue"
+import CssGrid from "../../components/CssGrid.vue"
+import CssGridItem from "../../components/CssGridItem.vue"
+import Button from "../../components/Button.vue"
 
 export default {
 	props: ['value'],

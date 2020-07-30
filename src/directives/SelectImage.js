@@ -1,5 +1,5 @@
 import Vue from "vue"
-import ImageControl from "./ImageControl.vue"
+import ImageControl from "../components/ImageControl"
 
 // https://stackoverflow.com/questions/10934664/convert-string-in-dot-notation-to-get-the-object-reference/10934946#10934946
 function setValue(obj, str, val) {

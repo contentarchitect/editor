@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { UiButton } from '@contentarchitect/core'
+import UiButton from './UiButton'
 import * as Popper from '@popperjs/core'
 // import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
 

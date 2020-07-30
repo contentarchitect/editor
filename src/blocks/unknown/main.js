@@ -1,4 +1,4 @@
-import Block from "../../core/scripts/Block.js"
+import Block from "../../scripts/Block.js"
 import View from "./View.vue"
 import Settings from "./Settings.vue"
 

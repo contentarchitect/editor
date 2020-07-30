@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Unknown from "@/blocks/unknown/main.js"
+import Unknown from "../blocks/unknown/main.js"
 
 const Blocks = new Vue({
 	data() {
@@ -10,7 +10,8 @@ const Blocks = new Vue({
 	},
 	methods: {
 		register (blockConstructor) {
-			this.registeredBlocks.push(blockConstructor)
+			console.log("Blocks from self", this)
+			this.$set(this.registeredBlocks, this.registeredBlocks.length, blockConstructor)
 			this.editors.forEach(editor => this.findUnknownBlocks(blockConstructor, editor.slotBlocks))
 		},
 		findUnknownBlocks (blockConstructor, blocks) {

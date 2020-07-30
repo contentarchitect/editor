@@ -181,11 +181,11 @@
     content: attr(placeholder);
 	font-style: italic;
 	opacity: .5;
+	pointer-events: none;
 }
 
 .show-placeholder.editable-block[placeholder]:not(:focus)::before {
 	position: absolute;
-	pointer-events: none;
 }
 
 /* Image Block */

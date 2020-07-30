@@ -185,7 +185,6 @@ export default {
 					_this.uploaded = true
 				})
 				.catch(err => {
-					debugger;
 					_this.uploading = false
 					_this.uploaded = false
 					console.error(err)

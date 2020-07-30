@@ -10,7 +10,6 @@ const Blocks = new Vue({
 	},
 	methods: {
 		register (blockConstructor) {
-			console.log("Blocks from self", this)
 			this.$set(this.registeredBlocks, this.registeredBlocks.length, blockConstructor)
 			this.editors.forEach(editor => this.findUnknownBlocks(blockConstructor, editor.slotBlocks))
 		},

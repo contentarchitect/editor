@@ -22,6 +22,8 @@ import Button from './components/Button'
 import VSelect from './components/VSelect'
 import UiButton from './components/UiButton'
 import CaInput from './components/CaInput'
+import RadioButtons from './components/RadioButtons'
+import RadioButton from './components/RadioButton'
 
 import './assets/main.extract.css'
 
@@ -42,5 +44,7 @@ export {
 	Button,
 	VSelect,
 	UiButton,
-	CaInput
+	CaInput,
+	RadioButtons,
+	RadioButton,
 }

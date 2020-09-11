@@ -82,14 +82,14 @@ export default {
 		},
 		output: String,
 		value: {},
-		usableBlocks: {
-			type: Array,
-			default() {
-				return Blocks.registeredBlocks.slice().map(blockConstructor => {
-					return new Proxy(blockConstructor, {})
-				});
-			}
-		}
+		// usableBlocks: {
+		// 	type: Array,
+		// 	default() {
+		// 		return Blocks.registeredBlocks.slice().map(blockConstructor => {
+		// 			return new Proxy(blockConstructor, {})
+		// 		});
+		// 	}
+		// }
 	},
 	provide() {
 		const _this = this;
@@ -114,9 +114,9 @@ export default {
 			removeBlock: this.removeBlock,
 			replaceBlock: this.replaceBlock,
 
-			get usableBlocks () {
-				return _this.usableBlocks
-			},
+			// get usableBlocks () {
+			// 	return _this.usableBlocks
+			// },
 			showControl: this.showControl,
 			hideControl: this.hideControl,
 			showNewBlock: this.showNewBlock,
@@ -218,7 +218,7 @@ export default {
 			}
 		},
 		addParagraphBlockAfter (blockVueComponent) {
-			const Paragraph = this.usableBlocks.find(blockConstructor => blockConstructor.name == "Paragraph")
+			const Paragraph = Blocks.registeredBlocks.find(blockConstructor => blockConstructor.name == "Paragraph")
 			if (!Paragraph) return
 			if (!blockVueComponent._isVue) return
 			const index = this.slotBlocks.indexOf(blockVueComponent.block)
@@ -264,7 +264,7 @@ export default {
 				Object.entries(this.blockSettings).forEach(([blockName, settings]) => {
 					let usableBlock;
 
-					if (usableBlock = this.usableBlocks.find(blk => blk.name === blockName)) {
+					if (usableBlock = Blocks.registeredBlocks.find(blk => blk.name === blockName)) {
 						usableBlock.setSettings(settings)
 					}
 				})
@@ -282,8 +282,8 @@ export default {
 
 				classOptions.forEach(optionsSetting => {
 					let blockConstructors = optionsSetting.blocks
-						? this.usableBlocks.filter(blockConstructor => optionsSetting.blocks.includes(blockConstructor.name))
-						: this.usableBlocks
+						? Blocks.registeredBlocks.filter(blockConstructor => optionsSetting.blocks.includes(blockConstructor.name))
+						: Blocks.registeredBlocks
 					const classOptionsMap = optionsSetting.classes
 
 					blockConstructors.forEach(blockConstructor => {

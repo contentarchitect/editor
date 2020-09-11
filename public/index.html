@@ -6,25 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-	<title>contentarchitect</title>
+	<title>ContentArchitect</title>
 </head>
 
 <body>
-<noscript>
-	<strong>We're sorry but content-architect doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-</noscript>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
 <script src="https://prismjs.com/components/prism-markup.js"></script>
 <script src="https://prismjs.com/components/prism-clike.js"></script>
 <script src="https://prismjs.com/components/prism-javascript.js"></script>
 <script src="https://prismjs.com/components/prism-css.js"></script>
-<script src="http://unpkg.com/@rails/activestorage"></script>
+<script src="http://cdn.jsdelivr.net/npm/@rails/activestorage"></script>
 
 <div class="container">
 	<section>
 		<h1>Editor</h1>
-		<content-architect draggable-settings="false" id="editor" output="output">
+		<content-architect id="editor" output="output">
 			<div data-block="Toc"></div>
 
 			<div data-block="Header">
@@ -194,9 +191,7 @@ typography.injectStyles()</pre>
 		<div id="view"></div>
 	</section>
 </div>
-<!-- built files will be auto injected -->
-<script>
-</script>
+
 
 <style>
 .jumbotron {
@@ -604,19 +599,22 @@ body {
 </style>
 
 </body>
-	<script src="https://unpkg.com/@contentarchitect/paragraph@0.0.0/dist/paragraph.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@contentarchitect/paragraph"></script>
 <script>
+	ContentArchitect.Blocks.register(Paragraph)
 	
-	console.log({ContentArchitect, Paragraph});
+
 	editor.addEventListener('change', val => {
 		view.innerHTML = val.detail[0]
 	});
+
 	editor.blockSettings = {
-		Header: {
-			// levels: [1,2],
-			// defaultLevel: 3
-			// anchorLink: false
-		},
+		// Header: {
+		// 	levels: [1,2],
+		// 	defaultLevel: 3
+		// 	anchorLink: false
+		// },
 		// Spacer: {
 		// 	defaultHeight: 50,
 		// 	minHeight: 30,
@@ -650,21 +648,6 @@ body {
 			}
 		}
 	}
-
-	// editor.classOptions = {
-	// 	"jumbotron": "Jumbotron",
-	// 	alert: {
-	// 		"alert-danger": "Danger",
-	// 		"alert-success": "Success",
-	// 		"alert-warning": "Warning",
-	// 		"custom-alert": "Custom"
-	// 	},
-	// 	text: {
-	// 		"text-left": "Left",
-	// 		"text-center": "Center",
-	// 		"text-right": "Right"
-	// 	}
-	// }
 
 	editor.classOptions = [
 		{
@@ -704,20 +687,5 @@ body {
 	]
 
 	editor.inlineClasses = ['badge', 'red']
-
-	// new ContentArchitect.Editor({
-	// 	blockSettings: {
-	// 		Header: {
-	// 			levels: [1,2],
-	// 			defaultLevel: 3
-	// 		},
-	// 		Spacer: {
-	// 		    defaultHeight: 50,
-	// 		    minHeight: 30,
-	// 		    maxHeight: 100
-	// 		}
-	// 	}
-	// })
-
 </script>
 </html>

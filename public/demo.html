@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<title>contentarchitect</title>
-	<link rel="stylesheet" href="../dist/CaBlocks.css" />
+	<link rel="stylesheet" href="../dist/ContentArchitect.css" />4
 </head>
 
 <body>
@@ -239,69 +239,19 @@ typography.injectStyles()</pre>
 <script src="https://prismjs.com/components/prism-clike.js"></script>
 <script src="https://prismjs.com/components/prism-javascript.js"></script>
 <script src="https://prismjs.com/components/prism-css.js"></script>
-<script src="http://unpkg.com/vue"></script>
+<script src="http://cdn.jsdelivr.net/npm/vue@2"></script>
 <script src="../dist/ContentArchitect.umd.js"></script>
-<script src="https://unpkg.com/@contentarchitect/paragraph"></script>
+<script src="https://cdn.jsdelivr.net/npm/@contentarchitect/paragraph"></script>
 
 
 <script>
 	ContentArchitect.Blocks.register(Paragraph)
-	// class Header extends ContentArchitect.Block {
-	// 	static get viewComponent () {
-	// 		return {
-	// 			props: ['value'],
-	// 			template: "<p v-html='value.content'></p>"
-	// 		};
-	// 	}
 
-	// 	get data () {
-	// 		return {
-	// 			content: "Merhaba"
-	// 		}
-	// 	}
-
-	// 	static renderHTML (data) {
-	// 		return `<p>${data.content}</p>`
-	// 	}
-
-	// 	static serializeFromHTML (blockDom) {
-	// 		let obj = { content: "" }
-
-	// 		obj.content = blockDom.innerHTML;
-	// 		return obj;
-	// 	}
-	// }
-	// addHeader.addEventListener("click", () => {
-	// 	ContentArchitect.Blocks.register(Header)
-	// })
-
-	// addHeader.addEventListener("click", () => {
-	// 	let script = document.createElement("script");
-	// 	script.src = "../../header/dist/Header.umd.js"
-	// 	script.onload = () => {
-	// 		ContentArchitect.Blocks.register(Header)
-	// 	}
-	// 	document.body.appendChild(script)
-	// })
-	// ContentArchitect.Blocks.register(Header)
-	// ca.addEventListener('change', val => console.log(val.detail[0]));
 
 	editor.addEventListener('change', val => {
 		console.log(val)
 		view.innerHTML = val.detail[0]
 	});
-
-	// ca.blockSettings = {
-	// 	Header: {
-	// 		levels: [1,2],
-	// 		defaultLevel: 3
-	// 	},
-	// 	Spacer: {
-	// 		defaultHeight: 50,
-	// 		minHeight: 30,
-	// 		maxHeight: 100
-	// 	}
-	// }
 
 	editor.classOptions = {
 		"jumbotron": "Jumbotron",

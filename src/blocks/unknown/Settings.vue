@@ -3,7 +3,7 @@
 		<label for="">Convert to</label>
 		<select v-model="selectedBlock">
 			<option
-				v-for="block in usableBlocks"
+				v-for="block in Blocks.registeredBlocks"
 				:value="block.name"
 				:key="block.name"
 			>
@@ -20,14 +20,16 @@
 import CssGrid from "../../components/CssGrid.vue"
 import CssGridItem from "../../components/CssGridItem.vue"
 import Button from "../../components/Button.vue"
+import Blocks from "../../scripts/Blocks"
 
 export default {
 	props: ['value'],
-	inject: ['usableBlocks', 'replaceBlock'],
+	inject: ['replaceBlock'],
 	components: { CssGrid, CssGridItem, 'v-button': Button },
 	data () {
 		return {
-			selectedBlock: null
+			Blocks,
+			selectedBlock: null,
 		}
 	},
 	methods: {
@@ -36,7 +38,7 @@ export default {
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(this.value.outerHTML, "text/html");
 			const blockDom = doc.querySelector("[data-block]")
-			const blockConstuctor = this.usableBlocks.find(block => block.name == this.selectedBlock) 
+			const blockConstuctor = Blocks.registeredBlocks.find(block => block.name == this.selectedBlock) 
 			this.replaceBlock(this.value, new blockConstuctor(blockDom))
 		}
 	}
